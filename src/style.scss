@@ -1,0 +1,25 @@
+:root {
+  --primary-color: #8a2be2;
+  --secondary-color: #943fe4;
+  --bg-color: #ffffff;
+  --scroll-bar-color: #dbdbdb;
+  --basic-font-size: 16px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  outline: none;
+  font-size: var(--basic-font-size);
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: var(--scroll-bar-color);
+  }
+}

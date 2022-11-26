@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import MainContent from './components/MainContent/index.vue'
 
 </script>
 
 <template>
-  <HelloWorld msg="Violet UI" />
+  <MainContent />
 </template>
 
 <style scoped>
