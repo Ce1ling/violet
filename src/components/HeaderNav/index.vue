@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const searchVal = ref('')
 const handleSearch = () => {
@@ -9,7 +12,7 @@ const handleSearch = () => {
 
 <template>
   <header class="header-wrap">
-    <h1>LOGO</h1>
+    <h1 @click="router.push('/')">LOGO</h1>
     <div class="search-wrap">
       <i @click="handleSearch">icon</i>
       <input 

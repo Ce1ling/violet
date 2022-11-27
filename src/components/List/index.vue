@@ -1,23 +1,23 @@
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { useRouter } from 'vue-router'
+import { useStore } from '../../stores/list'
 
-const components = reactive([
-  { id: 1, type: 'title', name: '基础组件' },
-  { id: 2, type: 'component', name: 'Button 按钮' },
-  { id: 3, type: 'component', name: 'Layout 布局' },
-  { id: 4, type: 'title', name: '表单组件' },
-  { id: 5, type: 'component', name: 'Input 输入框' },
-  { id: 6, type: 'component', name: 'Checkbox 复选框' },
-])
+const router = useRouter()
+const store = useStore()
 
+const handleRouterPush = (name: string) => {
+  router.push({ name })
+}
 </script>
 
 <template>
   <nav class="nav-wrap">
     <ul class="nav-list">
-      <li class="nav-item" v-for="item in components" :key="item.id">
+      <li class="nav-item" 
+        v-for="item in store.list" :key="item.id"
+        @click="handleRouterPush(item.name)">
         <p :class="item.type === 'title' ? 'title' : 'component'">
-          {{ item.name }}
+          {{ item.title }}
         </p>
       </li>
     </ul>
@@ -47,5 +47,4 @@ const components = reactive([
     }
   }
 }
-
 </style>
