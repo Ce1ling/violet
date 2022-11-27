@@ -1,11 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import layout from '../layout/index.vue'
 import componentsRoutes from '../components/List/childRoutes'
 
 const routes = [
   { 
     path: '/', 
-    component: layout,
+    component: () => import('../layout/index.vue'),
     children: [
       {
         path: 'components',

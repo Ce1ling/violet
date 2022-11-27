@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<Props>(), {
   disabled: false,
   loading: false
 })
-const emits = defineEmits(['click'])
+const emit = defineEmits(['click'])
 
 
 const buttonClass = computed(() => {
@@ -34,7 +34,7 @@ const buttonClass = computed(() => {
 
 const handleClick = (e: Event) => {
   if (props.disabled) { return false; }
-  emits('click', e)
+  emit('click', e)
 }
 </script>
 

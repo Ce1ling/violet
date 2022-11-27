@@ -1,15 +1,12 @@
-import Button from '../../views/Button/index.vue'
-import Layout from '../../views/Layout/index.vue'
-
 export default [
   {
     path: 'button',
     name: 'button',
-    component: Button
+    component: () => import('../../views/Button/index.vue')
   },
   {
     path: 'layout',
     name: 'layout',
-    component: Layout
+    component: () => import('../../views/Layout/index.vue')
   },
 ]
