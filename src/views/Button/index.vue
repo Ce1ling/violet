@@ -1,20 +1,64 @@
 <script setup lang="ts">
-import { reactive } from 'vue';
-import Button from '../../components/UIComponents/Button/index.vue'
+import { ref, reactive } from 'vue';
 import Contents from '../Contents/index.vue'
+import Examples from './Examples.vue'
+import Apis from './Apis.vue'
 
-const contents = reactive([
-  { title: 'button contents' }
+const isExamplePage = ref(true)
+const exampleContents = reactive([
+  { title: 'button example', anchor: '基础用法' }
+])
+const apiContents = reactive([
+  { title: 'button api', anchor: 'props' }
 ])
 </script>
 
 <template>
   <section class="content">
-    vi-button 组件页面
-    <Button />
+    <h1 class="title">Button 按钮</h1>
+    <p class="desc">基础按钮组件</p>
+    <div class="tabs-wrap">
+      <div 
+        class="tab-item" 
+        :class="{ active: isExamplePage }" 
+        @click="isExamplePage = true">
+        示例
+      </div>
+      <div 
+        class="tab-item" 
+        :class="{ active: !isExamplePage }" 
+        @click="isExamplePage = false">
+        API
+      </div>
+    </div>
+    <component :is="isExamplePage ? Examples : Apis" />
   </section>
-  <Contents class="contents" :list="contents" />
+  <Contents 
+    class="contents" 
+    :list="isExamplePage ? exampleContents : apiContents" 
+  />
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+.active {
+  background-color: var(--primary-color) !important;
+  color: #fff !important;
+}
+.content {
+  .tabs-wrap {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    width: 160px;
+    padding: 8px 0;
+    margin: 8px 0;
+    background-color: #eeeeee;
+    border-radius: 5px;
+    .tab-item {
+      cursor: pointer;
+      border-radius: 5px;
+      padding: 10px 20px;
+    }
+  }
+}
 </style>

@@ -36,6 +36,7 @@ const handleRouterPush = (name: string) => {
   padding-left: 20px !important;
 }
 .nav-wrap {
+  border-right: 1px solid #ddd;
   .nav-list {
     padding: 20px;
     .nav-item {

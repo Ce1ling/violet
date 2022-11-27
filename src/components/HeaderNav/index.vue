@@ -29,8 +29,8 @@ const handleSearch = () => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid var(--primary-color);
   padding: 20px;
+  border-bottom: 1px solid #ddd;
   h1 {
     font-size: 28px;
     color: var(--primary-color);

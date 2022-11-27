@@ -17,7 +17,6 @@ import Content from '../views/Content/index.vue'
 .main-body {
   display: flex;
   > * {
-    border: 1px solid red;
     &:nth-child(odd) { flex: 2; }
     &:not(:nth-child(odd)) { flex: 8; }
   }

@@ -1,9 +1,11 @@
 :root {
   --primary-color: #8a2be2;
-  --secondary-color: #943fe4;
+  --secondary-color: #aa50ff;
   --bg-color: #ffffff;
   --scroll-bar-color: #dbdbdb;
   --basic-font-size: 16px;
+  --all-animation-duration: 0.3s;
+  --border-raduis: 5px;
 }
 
 * {
@@ -14,6 +16,7 @@
   list-style: none;
   outline: none;
   font-size: var(--basic-font-size);
+  transition: all var(--all-animation-duration);
   &::-webkit-scrollbar {
     width: 10px;
     height: 10px;
