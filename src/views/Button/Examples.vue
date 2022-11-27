@@ -1,11 +1,17 @@
 <script setup lang="ts">
-import ViButton from '../../components/UIComponents/Button/index.vue'
+import ViButton from '../../../packages/components/Button/index.vue'
 
+const handleClick = () => {
+  console.log('button click')
+}
 </script>
 
 <template>
   <div>
-    <vi-button>按钮</vi-button>
+    <vi-button 
+      type="primary" 
+      @click="handleClick" 
+    >按钮</vi-button>
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ViLayout from '../../components/UIComponents/Layout/index.vue'
+import ViLayout from '../../../packages/components/Layout/index.vue'
 
 </script>
 
