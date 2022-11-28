@@ -4,12 +4,13 @@ import componentsRoutes from '../components/List/childRoutes'
 const routes = [
   { 
     path: '/', 
+    redirect: { name: 'components' },
     component: () => import('../layout/index.vue'),
     children: [
       {
         path: 'components',
         name: 'components',
-        redirect: 'button',
+        redirect: { name: 'button' },
         children: componentsRoutes
       },
     ]
