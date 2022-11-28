@@ -1,6 +1,6 @@
 :root {
-  --primary-color: #8a2be2;
-  --secondary-color: #aa50ff;
+  --primary-color: #802ae8;   // rgb(128, 42, 232)
+  --secondary-color: #802aff;   // rgb(128, 42, 255)
   --bg-color: #ffffff;
   --scroll-bar-color: #dbdbdb;
   --basic-font-size: 16px;
@@ -15,8 +15,10 @@
   text-decoration: none;
   list-style: none;
   outline: none;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: var(--basic-font-size);
   transition: all var(--all-animation-duration);
+  scroll-behavior: smooth;
   &::-webkit-scrollbar {
     width: 10px;
     height: 10px;
@@ -25,4 +27,12 @@
     border-radius: 10px;
     background-color: var(--scroll-bar-color);
   }
+}
+code {
+  background-color: #eee;
+  border-radius: 5px;
+  padding: 2px 8px;
+}
+#app {
+  min-width: 1024px;
 }

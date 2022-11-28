@@ -40,6 +40,7 @@ const handleRouterPush = (name: string) => {
   .nav-list {
     padding: 20px;
     .nav-item {
+      transition: all 0s;
       padding: 10px 0;
       &:hover {
         cursor: pointer;

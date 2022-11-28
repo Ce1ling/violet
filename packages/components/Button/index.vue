@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { ref, computed, reactive } from 'vue'
 
 type Props = {
   type?: string
@@ -8,6 +8,8 @@ type Props = {
   circle?: boolean
   disabled?: boolean
   loading?: boolean
+  bgColor?: string
+  color?: string
 }
 const props = withDefaults(defineProps<Props>(), {
   type: 'primary',
@@ -20,16 +22,35 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits(['click'])
 
 
+const color = reactive({
+  primary: '#802ae8',
+  success: '#72d342',
+  warning: '#e2b72b',
+  danger: '#e25f2b'
+})
+
 const buttonClass = computed(() => {
   const classList = [`vi-button__${props.type}`]
 
-  if (props.text) { classList.push(`text-color-${props.type}`) }
+  if (props.text) { classList.push('text-color') }
   if (props.round) { classList.push('round') }
   if (props.circle) { classList.push('circle') } 
   if (props.disabled) { classList.push('disabled') }
   if (props.loading) { classList.push('loading') }
 
   return classList
+})
+const getBgColor = computed(() => {
+  if (props.bgColor) {
+    return props.bgColor
+  }
+  return color[props.type]
+})
+const getColor = computed(() => {
+  if (props.color) {
+    return props.color
+  }
+  return '#ffffff'
 })
 
 const handleClick = (e: Event) => {
@@ -48,15 +69,6 @@ const handleClick = (e: Event) => {
 </template>
 
 <style scoped lang="scss">
-$success-pri-color: #72d342;
-$success-sec-color: #7be247;
-
-$warn-pri-color: #e2b72b;
-$warn-sec-color: #eec12d;
-
-$danger-pri-color: #e25f2b;
-$danger-sec-color: #f76d37;
-
 .vi-button {
   font-size: 14px;
   padding: 8px 18px;
@@ -65,77 +77,38 @@ $danger-sec-color: #f76d37;
   text-align: center;
   cursor: pointer;
   transition: none;
-  color: #fff;
-  &:hover {
-    color: #fff;
-    background-color: var(--secondary-color);
-  }
-  &:active { background-color: var(--primary-color); }
-  // 按钮种类
-  &__normal {
-    color: #000;
-    background-color: #fff;
-    border: 1px solid #ddd;
-  }
-  &__primary {
-    background-color: var(--primary-color);
-  }
-  &__success {
-    background-color: $success-pri-color;
-    &:hover { background-color: $success-sec-color; }
-    &:active { background-color: $success-pri-color; }
-  }
-  &__warn {
-    background-color: $warn-pri-color;
-    &:hover { background-color: $warn-sec-color; }
-    &:active { background-color: $warn-pri-color; }
-  }
-  &__danger {
-    background-color: $danger-pri-color;
-    &:hover { background-color: $danger-sec-color; }
-    &:active { background-color: $danger-pri-color; }
-  }
+  color: v-bind(getColor);
+  background-color: v-bind(getBgColor);
+  &:hover { filter: brightness(110%); }
+  &:active { filter: brightness(100%); }
 }
+// 文字按钮
 .text-color {
-  &-primary {
-    background-color: transparent;
-    color: var(--primary-color);
-  }
-  &-success {
-    background-color: transparent;
-    color: $success-pri-color;
-  }
-  &-warn {
-    background-color: transparent;
-    color: $warn-pri-color;
-  }
-  &-danger {
-    background-color: transparent;
-    color: $danger-pri-color;
-  }
+  background-color: transparent;
+  color: v-bind(getBgColor);
 }
-[class*="text-color"] {
-  transition: background-color .2s;
-}
+// 圆角按钮
 .round {
   border-radius: 20px;
 }
+// 圆形按钮
 .circle {
-  width: 48px;
-  height: 48px;
+  width: 38px;
+  height: 38px;
+  font-size: 12px;
   padding: 8px;
   line-height: 0;
   border-radius: 50%;
 }
-.disabled {
-  opacity: 0.5 !important;
-  cursor: not-allowed !important;
-  background-color: var(--primary-color) !important;
-  &:hover { background-color: var(--primary-color) !important; }
-  &:active { background-color: var(--primary-color) !important; }
-}
+// 加载状态
 .loading {
   opacity: 0.5;
   pointer-events: none;
+}
+// 禁用状态
+.disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+  &:hover { filter: brightness(100%); }
 }
 </style>
