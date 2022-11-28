@@ -28,7 +28,6 @@ const handleRouterPush = (name: string) => {
 .title {
   font-size: 18px !important;
   font-weight: 600 !important;
-
   &:hover { background-color: transparent !important; }
 }
 
@@ -38,17 +37,17 @@ const handleRouterPush = (name: string) => {
 
 .nav-wrap {
   border-right: 1px solid #ddd;
-
   .nav-list {
     padding: 20px;
     position: sticky;
     top: var(--header-height);
-
+    height: calc(100vh - var(--header-height));
+    overflow: hidden;
+    &:hover { overflow: auto; }
     .nav-item {
       transition: all 0s;
       padding: 10px 0;
       cursor: pointer;
-
       &:hover { color: var(--secondary-color); }
     }
   }
