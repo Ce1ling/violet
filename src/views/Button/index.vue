@@ -30,7 +30,10 @@ const apiContents = reactive(['props'])
         API
       </div>
     </div>
-    <component :is="isExamplePage ? Examples : Apis" :anchors="exampleContents" />
+    <component 
+      :is="isExamplePage ? Examples : Apis" 
+      :anchors="exampleContents" 
+    />
   </section>
   <Contents 
     class="contents" 
