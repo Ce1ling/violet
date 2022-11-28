@@ -6,11 +6,10 @@ import Apis from './Apis.vue'
 
 const isExamplePage = ref(true)
 const exampleContents = reactive([
-  { title: 'button example', anchor: '基础用法' }
+  '基础用法', '加载状态', '禁用状态', '文字类型', 
+  '自定义背景颜色', '自定义文字颜色'
 ])
-const apiContents = reactive([
-  { title: 'button api', anchor: 'props' }
-])
+const apiContents = reactive(['props'])
 </script>
 
 <template>
@@ -31,7 +30,7 @@ const apiContents = reactive([
         API
       </div>
     </div>
-    <component :is="isExamplePage ? Examples : Apis" />
+    <component :is="isExamplePage ? Examples : Apis" :anchors="exampleContents" />
   </section>
   <Contents 
     class="contents" 
@@ -45,6 +44,7 @@ const apiContents = reactive([
   color: #fff !important;
 }
 .content {
+  padding: 0 10px;
   .tabs-wrap {
     display: flex;
     gap: 5px;

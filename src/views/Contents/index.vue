@@ -1,9 +1,6 @@
 <script setup lang="ts">
 type Props = {
-  list: Array<{
-    title: string
-    anchor: string
-  }>
+  list: string[]
 }
 defineProps<Props>()
 
@@ -14,7 +11,7 @@ defineProps<Props>()
     <p>目录</p>
     <ul class="list">
       <li class="item" v-for="(item, i) in list" :key="i">
-        <a :href="`#${item.anchor}`">{{ item.title }}</a>
+        <a :href="`#${item}`">{{ item }}</a>
       </li>
     </ul>
   </aside>
@@ -29,6 +26,7 @@ defineProps<Props>()
     .item {
       padding: 0 0 5px;
       a {
+        transition: all 0s;
         color: #6d6d6d;
         &:hover {
           color: var(--primary-color);
