@@ -26,11 +26,17 @@ const handleSearch = () => {
 
 <style scoped lang="scss">
 .header-wrap {
+  width: 100%;
+  height: var(--header-height);
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px;
   border-bottom: 1px solid #ddd;
+  background-color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
   h1 {
     font-size: 28px;
     color: var(--primary-color);

@@ -28,24 +28,28 @@ const handleRouterPush = (name: string) => {
 .title {
   font-size: 18px !important;
   font-weight: 600 !important;
-  &:hover {
-    background-color: transparent !important;
-  }
+
+  &:hover { background-color: transparent !important; }
 }
+
 .component {
   padding-left: 20px !important;
 }
+
 .nav-wrap {
   border-right: 1px solid #ddd;
+
   .nav-list {
     padding: 20px;
+    position: sticky;
+    top: var(--header-height);
+
     .nav-item {
       transition: all 0s;
       padding: 10px 0;
-      &:hover {
-        cursor: pointer;
-        color: var(--secondary-color);
-      }
+      cursor: pointer;
+
+      &:hover { color: var(--secondary-color); }
     }
   }
 }

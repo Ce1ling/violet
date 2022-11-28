@@ -6,6 +6,7 @@
   --basic-font-size: 16px;
   --all-animation-duration: 0.3s;
   --border-raduis: 5px;
+  --header-height: 80px;
 }
 
 * {
@@ -19,20 +20,24 @@
   font-size: var(--basic-font-size);
   transition: all var(--all-animation-duration);
   scroll-behavior: smooth;
+
   &::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
   }
+
   &::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background-color: var(--scroll-bar-color);
   }
 }
+
 code {
   background-color: #eee;
   border-radius: 5px;
   padding: 2px 8px;
 }
+
 #app {
   min-width: 1024px;
 }

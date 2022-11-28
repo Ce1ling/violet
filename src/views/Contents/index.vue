@@ -13,14 +13,16 @@ const active = ref(0)
 
 <template>
   <aside class="content-aside">
-    <p>目录</p>
-    <ul class="list">
-      <li class="item" v-for="(item, i) in list" :key="i">
-        <a :href="`#${item}`" :class="{ active: active === i }" @click="active = i">
-          {{ item }}
-        </a>
-      </li>
-    </ul>
+    <nav>
+      <ul class="list">
+        <li class="list-title"><p>目录</p></li>
+        <li class="item" v-for="(item, i) in list" :key="i">
+          <a :href="`#${item}`" :class="{ active: active === i }" @click="active = i">
+            {{ item }}
+          </a>
+        </li>
+      </ul>
+    </nav>
   </aside>
 </template>
 
@@ -28,11 +30,19 @@ const active = ref(0)
 .active {
   color: var(--primary-color) !important;
 }
+
 .content-aside {
   color: #6d6d6d;
-  > p { font-weight: 600; }
+  padding-left: 50px;
+  > nav {
+    position: sticky;
+    top: calc(var(--header-height) + 30px);
+  }
   .list {
-    margin: 10px;
+    &-title {
+      font-weight: 600;
+      margin: 10px 0;
+    }
     .item {
       padding: 0 0 5px;
       a {
