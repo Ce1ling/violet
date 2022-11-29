@@ -81,7 +81,10 @@ $scorll-wh: 4px;
       overflow-y: auto; 
       padding-right: calc(20px - $scorll-wh);
     }
-    .nav-item { cursor: pointer; }
+    .nav-item { 
+      cursor: pointer;
+      > p { transition: all var(--animation-duration); }
+    }
   }
 }
 </style>

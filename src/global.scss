@@ -3,8 +3,8 @@
   --secondary-color: #802aff;   // rgb(128, 42, 255)
   --bg-color: #ffffff;
   --scroll-bar-color: #dbdbdb;
-  --basic-font-size: 16px;
-  --all-animation-duration: 0.3s;
+  --basic-font-size: 14px;
+  --animation-duration: 0.3s;
   --border-radius: 5px;
   --header-height: 80px;
   --font-color: #555555;
@@ -17,11 +17,9 @@
   text-decoration: none;
   list-style: none;
   outline: none;
-  color: var(--font-color);
   word-break: break-all;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: var(--basic-font-size);
-  transition: all var(--all-animation-duration);
   scroll-behavior: smooth;
 
   &::-webkit-scrollbar {

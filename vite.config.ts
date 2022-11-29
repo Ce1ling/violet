@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+// @ts-ignore
 import { svgBuilder } from './src/plugins/svgBuilder'
 
 // https://vitejs.dev/config/

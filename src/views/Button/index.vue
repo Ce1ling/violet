@@ -61,6 +61,7 @@ const apiContents = reactive(['props'])
       cursor: pointer;
       border-radius: 5px;
       padding: 10px 20px;
+      transition: all var(--animation-duration);
     }
   }
 }

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import Example from './Example.vue'
-import ViButton from '../../../packages/components/Button/index.vue'
 
 type Props = {
   anchors: string[]

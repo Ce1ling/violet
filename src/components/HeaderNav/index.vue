@@ -52,9 +52,6 @@ const handleSearch = () => {
     border: 1px solid gray;
     border-radius: 50px;
     overflow: hidden;
-    .icon {
-
-    }
     input {
       padding: 5px;
       border: none;
