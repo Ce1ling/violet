@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router'
 import { useStore } from '../../stores/list'
 
@@ -16,13 +16,18 @@ type Item = {
 }
 
 const handleRouterPush = (item: Item, i: number) => {
-  if (active.value === i) { return; } 
+  if (active.value === i) { return } 
+  if (item.type === 'title') { ++i }
 
-  if (item.type === 'title') { active.value = ++i }
-  else { active.value = i }
+  active.value = i
+  localStorage.setItem('componentsActive', i.toString())
   
   router.push({ name: item.name })
 }
+onMounted(() => {
+  const activeStr = localStorage.getItem('componentsActive') || 1
+  active.value = Number(activeStr)
+})
 </script>
 
 <template>
