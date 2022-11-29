@@ -14,7 +14,10 @@ const handleSearch = () => {
   <header class="header-wrap">
     <h1 @click="router.push('/')">LOGO</h1>
     <div class="search-wrap">
-      <i @click="handleSearch">icon</i>
+      <vi-icon 
+        name="search" cursor="pointer"
+        @click="handleSearch"
+      >123</vi-icon>
       <input 
         type="text" 
         placeholder="请输入搜索内容" 
@@ -43,10 +46,15 @@ const handleSearch = () => {
     cursor: pointer;
   }
   .search-wrap {
+    display: flex;
+    align-items: center;
     padding: 0 5px;
     border: 1px solid gray;
     border-radius: 50px;
     overflow: hidden;
+    .icon {
+
+    }
     input {
       padding: 5px;
       border: none;
