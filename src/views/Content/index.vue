@@ -14,7 +14,7 @@
   justify-content: space-between;
   :deep(.content) { flex: 8; }
   :deep(.contents) { flex: 2; }
-  :deep(.title) { font-size: 30px; }
+  :deep(.title) { font-size: 28px; }
   :deep(.desc) { margin: 20px 0; }
 }
 </style>

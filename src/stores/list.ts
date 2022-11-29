@@ -5,7 +5,7 @@ export const useStore = defineStore('list', {
     list: [
       { id: 1, type: 'title', title: '基础组件', name: 'components' },
       { id: 2, type: 'component', title: 'Button 按钮', name: 'button' },
-      { id: 13, type: 'component', title: 'Icon 图标', name: '' },
+      { id: 13, type: 'component', title: 'Icon 图标', name: 'icon' },
       { id: 13, type: 'component', title: 'Link 链接', name: '' },
       { id: 18, type: 'title', title: '布局组件', name: 'components' },
       { id: 19, type: 'component', title: 'Divider 分割线', name: '' },
