@@ -64,6 +64,7 @@ const handleClick = (e: Event) => {
     @click="handleClick"
     class="vi-button" 
     :class="buttonClass">
+    <vi-icon name="loading" size="15px" color="#fff" v-if="loading" />
     <slot></slot>
   </button>
 </template>

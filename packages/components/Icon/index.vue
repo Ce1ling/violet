@@ -3,7 +3,7 @@ import { computed, ref } from "vue"
 
 type Props = {
   name: string
-  size: string
+  size?: string
   color?: string
   cursor?: string
 }
@@ -17,12 +17,28 @@ const iconName = computed(() => `#icon-${props.name}`)
 </script>
 
 <template>
-  <svg class="icon" v-bind="$attrs" :style="{ color, width: size, height: size }">
+  <svg 
+    class="icon" v-bind="$attrs" 
+    :style="{ color, width: size, height: size }"
+    :class="{ 'icon-loading': name === 'loading' }">
     <use :xlink:href="iconName" />
   </svg>
 </template>
 
 <style scoped lang='scss'>
+@keyframes loading {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.icon-loading {
+  animation: loading 2s infinite linear;
+}
+
 .icon {
   fill: currentColor;
   vertical-align: middle;
