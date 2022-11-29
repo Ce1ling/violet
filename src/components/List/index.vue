@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
 import { useRouter } from 'vue-router'
 import { useStore } from '../../stores/list'
 
@@ -53,18 +53,13 @@ $scorll-wh: 4px;
   font-size: 18px !important;
   font-weight: 600 !important;
   padding: 10px 0;
-  &:hover {
-    color: var(--primary-color);
-  }
+  &:hover { color: var(--primary-color); }
 }
 .component {
   margin: 5px 0;
-  padding: 10px 0;
-  padding-left: 20px;
+  padding: 10px 20px;
   border-radius: var(--border-radius);
-  &:hover {
-    background-color: #ddd;
-  }
+  &:hover { background-color: #ddd; }
 }
 
 .nav-wrap {
@@ -83,7 +78,7 @@ $scorll-wh: 4px;
       height: $scorll-wh; 
     }
     &:hover { 
-      overflow: auto; 
+      overflow-y: auto; 
       padding-right: calc(20px - $scorll-wh);
     }
     .nav-item { cursor: pointer; }

@@ -17,6 +17,8 @@
   text-decoration: none;
   list-style: none;
   outline: none;
+  color: var(--font-color);
+  word-break: break-all;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: var(--basic-font-size);
   transition: all var(--all-animation-duration);

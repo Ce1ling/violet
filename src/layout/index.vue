@@ -16,9 +16,7 @@ import Content from '../views/Content/index.vue'
 <style scoped lang="scss">
 .main-body {
   display: flex;
-  > * {
-    &:nth-child(odd) { flex: 2; }
-    &:not(:nth-child(odd)) { flex: 8; }
-  }
+  > .nav-wrap { max-width: 300px; }
+  > .content-wrap { flex: 8; }
 }
 </style>
