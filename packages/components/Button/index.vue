@@ -73,7 +73,7 @@ const handleClick = (e: Event) => {
   font-size: 14px;
   padding: 8px 18px;
   border: none;
-  border-radius: var(--border-raduis);
+  border-radius: var(--border-radius);
   text-align: center;
   cursor: pointer;
   transition: none;
