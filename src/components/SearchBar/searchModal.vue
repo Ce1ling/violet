@@ -79,6 +79,10 @@ nextTick(() => searchInp.value?.focus())
           </li>
         </ul>
       </section>
+      <footer class="search-footer">
+        <span>Powered by</span>
+        <a href="https://github.com/Ce1ling" target="_blank"> L1en </a>
+      </footer>
     </div>
   </div>
 </template>
@@ -134,10 +138,12 @@ nextTick(() => searchInp.value?.focus())
         text-align: center;
       }
       .result-list {
+        max-height: 500px;
         margin: 10px 0;
+        overflow-y: auto;
         .result-item {
           padding: 20px 10px;
-          margin-top: 10px;
+          margin: 10px;
           font-size: 18px;
           background-color: #fff;
           box-shadow: 2px 2px 5px 2px #ddd;
@@ -150,6 +156,9 @@ nextTick(() => searchInp.value?.focus())
           }
         }
       }
+    }
+    .search-footer {
+      text-align: right;
     }
   }
 }
