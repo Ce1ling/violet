@@ -47,14 +47,12 @@ const getBgColor = computed(() => {
   return color[props.type]
 })
 const getColor = computed(() => {
-  if (props.color) {
-    return props.color
-  }
+  if (props.color) { return props.color }
   return '#ffffff'
 })
 
-const handleClick = (e: Event) => {
-  if (props.disabled) { return false; }
+const handleClick = (e: MouseEvent) => {
+  if (props.disabled) { return }
   emit('click', e)
 }
 </script>
