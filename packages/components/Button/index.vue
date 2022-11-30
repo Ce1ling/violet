@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, reactive } from 'vue'
+import { computed, reactive } from 'vue'
 
 type Props = {
   type?: string
@@ -105,6 +105,7 @@ const handleClick = (e: Event) => {
 .loading {
   opacity: 0.5;
   pointer-events: none;
+  user-select: none;
 }
 // 禁用状态
 .disabled {
