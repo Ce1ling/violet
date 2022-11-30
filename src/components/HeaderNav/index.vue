@@ -1,29 +1,15 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import SearchBar from '../SearchBar/index.vue'
 
 const router = useRouter()
 
-const searchVal = ref('')
-const handleSearch = () => {
-  console.log(`根据关键词 ${searchVal.value} 进行搜索`)
-}
 </script>
 
 <template>
   <header class="header-wrap">
     <h1 @click="router.push('/')">LOGO</h1>
-    <div class="search-wrap">
-      <vi-icon 
-        name="search" cursor="pointer"
-        @click="handleSearch"
-      >123</vi-icon>
-      <input 
-        type="text" 
-        placeholder="请输入搜索内容" 
-        v-model.trim="searchVal"
-        @keyup.enter="handleSearch">
-    </div>
+    <SearchBar />
   </header>
 </template>
 
@@ -44,18 +30,6 @@ const handleSearch = () => {
     font-size: 28px;
     color: var(--primary-color);
     cursor: pointer;
-  }
-  .search-wrap {
-    display: flex;
-    align-items: center;
-    padding: 0 5px;
-    border: 1px solid gray;
-    border-radius: 50px;
-    overflow: hidden;
-    input {
-      padding: 5px;
-      border: none;
-    }
   }
 }
 </style>
