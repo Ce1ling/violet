@@ -65,6 +65,7 @@ nextTick(() => searchInp.value?.focus())
         <vi-icon 
           v-show="showClearBtn" 
           name="close" cursor="pointer" 
+          hover-color="var(--primary-color)"
           size="30px" @click="searchVal = ''"
         />
       </header>

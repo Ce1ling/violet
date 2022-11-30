@@ -6,6 +6,7 @@ type Props = {
   size?: string
   color?: string
   cursor?: string
+  hoverColor?: string
 }
 const props = withDefaults(defineProps<Props>(), {
   size: '20px',
@@ -13,13 +14,13 @@ const props = withDefaults(defineProps<Props>(), {
   cursor: 'auto'
 })
 
+const getHoverColor = computed(() => props.hoverColor ? props.hoverColor : props.color)
 const iconName = computed(() => `#icon-${props.name}`)
 </script>
 
 <template>
   <svg 
     class="icon" v-bind="$attrs" 
-    :style="{ color, width: size, height: size }"
     :class="{ 'icon-loading': name === 'loading' }">
     <use :xlink:href="iconName" />
   </svg>
@@ -40,8 +41,13 @@ const iconName = computed(() => `#icon-${props.name}`)
 }
 
 .icon {
+  color: v-bind(color);
+  width: v-bind(size);
+  height: v-bind(size);
+  cursor: v-bind(cursor);
   fill: currentColor;
   vertical-align: middle;
-  cursor: v-bind(cursor);
+  transition: color .2s;
+  &:hover { color: v-bind(getHoverColor); }
 }
 </style>
