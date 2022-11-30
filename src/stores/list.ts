@@ -24,10 +24,15 @@ export const useStore = defineStore('list', {
       { id: 15, type: 'component', title: 'Menu 菜单', name: '' },
       { id: 16, type: 'component', title: 'Tabs 标签切换', name: '' },
       { id: 17, type: 'component', title: 'Pagination 分页器', name: '' },
-    ]
+    ],
+    active: Number(localStorage.getItem('componentsActive')) || 1
   }),
   getters: {
   },
   actions: {
+    setActive(i: number) {
+      this.active = i
+      localStorage.setItem('componentsActive', i.toString())
+    }
   }
 })

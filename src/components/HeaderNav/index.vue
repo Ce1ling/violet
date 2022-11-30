@@ -1,14 +1,20 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import SearchBar from '../SearchBar/index.vue'
+import { useStore } from '../../stores/list'
 
 const router = useRouter()
+const store = useStore()
 
+const handleRouterPush = () => {
+  store.setActive(1)
+  router.push('/')
+}
 </script>
 
 <template>
   <header class="header-wrap">
-    <h1 @click="router.push('/')">LOGO</h1>
+    <h1 @click="handleRouterPush">LOGO</h1>
     <SearchBar />
   </header>
 </template>

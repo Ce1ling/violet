@@ -1,12 +1,9 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from '../../stores/list'
 
 const router = useRouter()
 const store = useStore()
-
-const active = ref(1)
 
 type Item = {
   id: number
@@ -16,18 +13,12 @@ type Item = {
 }
 
 const handleRouterPush = (item: Item, i: number) => {
-  if (active.value === i) { return } 
+  if (store.active === i) { return }
   if (item.type === 'title') { ++i }
 
-  active.value = i
-  localStorage.setItem('componentsActive', i.toString())
-  
+  store.setActive(i)
   router.push({ name: item.name })
 }
-onMounted(() => {
-  const activeStr = localStorage.getItem('componentsActive') || 1
-  active.value = Number(activeStr)
-})
 </script>
 
 <template>
@@ -37,7 +28,7 @@ onMounted(() => {
         v-for="(item, i) in store.list" :key="item.id"
         @click="handleRouterPush(item, i)">
         <p :class="{ 
-          active: (active === i) && (item.type !== 'title'),
+          active: (store.active === i) && (item.type !== 'title'),
           [item.type]: item.type
         }">
           {{ item.title }}
