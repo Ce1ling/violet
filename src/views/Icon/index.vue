@@ -6,6 +6,8 @@
     <h1>Icon 图标组件</h1>
     <vi-icon name="search" size="200px" color="blueviolet" />
     <vi-icon name="loading" size="200px" color="blueviolet" />
+    <vi-icon name="close" size="200px" color="blueviolet" />
+    <vi-icon name="top" size="200px" color="blueviolet" />
   </div>
 </template>
 
