@@ -59,6 +59,7 @@ $scorll-wh: 4px;
 }
 
 .nav-wrap {
+  max-width: 300px;
   color: var(--font-color);
   border-right: 1px solid #ddd;
   .nav-list {
