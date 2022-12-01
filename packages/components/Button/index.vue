@@ -62,7 +62,7 @@ const handleClick = (e: MouseEvent) => {
     @click="handleClick"
     class="vi-button" 
     :class="buttonClass">
-    <vi-icon name="loading" size="15px" color="#fff" v-if="loading" />
+    <vi-icon name="loading" size="15px" color="#fff" cursor="wait" v-if="loading" />
     <slot></slot>
   </button>
 </template>
@@ -102,8 +102,8 @@ const handleClick = (e: MouseEvent) => {
 // 加载状态
 .loading {
   opacity: 0.5;
-  pointer-events: none;
-  user-select: none;
+  cursor: wait;
+  &:hover { filter: brightness(100%); }
 }
 // 禁用状态
 .disabled {
