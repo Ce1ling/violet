@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@kangc/v-md-editor": "2.3.15",
+    "highlight.js": "11.7.0",
     "pinia": "2.0.26",
     "vue": "^3.2.41",
     "vue-router": "4.1.6"

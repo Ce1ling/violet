@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue';
+import { ref, reactive } from 'vue'
 import Contents from '../Contents/index.vue'
 import Examples from './Examples.vue'
 import Apis from './Apis.vue'
+import buttonMD from '../../../docs/components/button.md?raw'
 
 const isExamplePage = ref(true)
 const exampleContents = reactive([
@@ -30,6 +31,7 @@ const apiContents = reactive(['props'])
         API
       </div>
     </div>
+    <v-md-preview :text="buttonMD" ></v-md-preview>
     <component 
       :is="isExamplePage ? Examples : Apis" 
       :anchors="exampleContents" 
