@@ -38,7 +38,7 @@ const handleSearch = () => {
 }
 
 // 自动获取焦点
-const searchInp = ref<HTMLElement | null>(null)
+const searchInp = ref<HTMLInputElement | null>(null)
 nextTick(() => searchInp.value?.focus())
 
 </script>
