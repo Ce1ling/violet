@@ -5,12 +5,8 @@ import Examples from './Examples.vue'
 import Apis from './Apis.vue'
 
 const isExamplePage = ref(true)
-const exampleContents = reactive([
-  { title: 'layout example', anchor: '基础用法' }
-])
-const apiContents = reactive([
-  { title: 'layout api', anchor: 'props' }
-])
+const exampleContents = reactive(['基础用法'])
+const apiContents = reactive(['layout api'])
 </script>
 
 <template>

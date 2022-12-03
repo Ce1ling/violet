@@ -44,7 +44,7 @@ const getBgColor = computed(() => {
   if (props.bgColor) {
     return props.bgColor
   }
-  return color[props.type]
+  return color[props.type as keyof typeof color]
 })
 const getColor = computed(() => {
   if (props.color) { return props.color }
