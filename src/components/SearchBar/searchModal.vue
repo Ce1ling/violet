@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { nextTick, reactive, ref, watch } from 'vue'
-import { hidden } from './useSearch'
+import { close } from './useSearch'
 import ViIcon from '../../../packages/components/Icon/index.vue'
 
 
@@ -44,7 +44,7 @@ nextTick(() => searchInp.value?.focus())
 </script>
 
 <template>
-  <div class="search-modal" @click="hidden">
+  <div class="search-modal" @click="close">
     <Transition>
     <div class="search-dialog" @click.stop="void">
       <header class="search-header">
