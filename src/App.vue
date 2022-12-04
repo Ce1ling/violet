@@ -21,8 +21,8 @@ onUnmounted(() => {
 
 <template>
   <router-view />
-  <div title="返回顶部" class="go-top-wrap" v-show="showGoTop" @click="goTop"> 
-    <vi-icon name="top" size="50px" cursor="pointer" />
+  <div title="返回顶部" class="go-top-wrap" v-show="showGoTop" @click="goTop">
+    <vi-icon name="top" size="30px" cursor="pointer" />
   </div>
 </template>
 
@@ -34,6 +34,7 @@ onUnmounted(() => {
   bottom: 100px;
   border: 1px solid #ddd;
   background-color: #fff;
+  padding: 10px;
   cursor: pointer;
   &:hover { background-color: #ddd; }
 }
