@@ -11,7 +11,7 @@ type Props = {
 const props = withDefaults(defineProps<Props>(), {
   size: '20px',
   color: '#000000',
-  cursor: 'auto'
+  cursor: 'pointer'
 })
 
 const getHoverColor = computed(() => props.hoverColor ? props.hoverColor : props.color)

@@ -6,12 +6,11 @@ import Content from '../views/Content/index.vue'
 import FooterInfo from '../views/FooterInfo/index.vue'
 
 
-
 const showGoTop = ref(false)
 
 const handleScroll = () => {
   const halfHeight = window.innerHeight * 0.5
-  if (window.scrollY >= halfHeight) { showGoTop.value = true } 
+  if (window.scrollY >= halfHeight) { showGoTop.value = true }
   else { showGoTop.value = false }
 }
 const goTop = () => window.scrollTo({ top: 0 })
@@ -34,7 +33,7 @@ onUnmounted(() => {
     </section>
   </main>
   <div title="返回顶部" class="go-top-wrap" v-show="showGoTop" @click="goTop">
-    <vi-icon name="top" size="30px" cursor="pointer" />
+    <vi-icon name="top" size="30px" />
   </div>
 </template>
 

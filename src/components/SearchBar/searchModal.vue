@@ -50,12 +50,12 @@ nextTick(() => searchInp.value?.focus())
         <label for="search-inp">
           <vi-icon 
             v-if="isSearching"
-            name="loading" cursor="pointer" 
-            size="30px" color="var(--primary-color)" />
+            name="loading" size="30px" 
+            color="var(--primary-color)" />
           <vi-icon 
             v-else
-            name="search" cursor="pointer" 
-            size="30px" color="var(--primary-color)" />
+            name="search" size="30px" 
+            color="var(--primary-color)" />
         </label>
         <input 
           type="text" placeholder="请输入内容" autocomplete="off"
@@ -64,9 +64,9 @@ nextTick(() => searchInp.value?.focus())
         />
         <vi-icon 
           v-show="showClearBtn" 
-          name="close" cursor="pointer" 
+          name="close" size="30px" 
           hover-color="var(--primary-color)"
-          size="30px" @click="searchVal = ''"
+          @click="searchVal = ''"
         />
       </header>
       <section class="search-body">
