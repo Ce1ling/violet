@@ -45,6 +45,7 @@ nextTick(() => searchInp.value?.focus())
 
 <template>
   <div class="search-modal" @click="hidden">
+    <Transition>
     <div class="search-dialog" @click.stop="void">
       <header class="search-header">
         <label for="search-inp">
@@ -84,10 +85,20 @@ nextTick(() => searchInp.value?.focus())
         <a href="https://github.com/Ce1ling" target="_blank"> L1en </a>
       </footer>
     </div>
+    </Transition>
   </div>
 </template>
 
 <style scoped lang="scss">
+@keyframes dialog-scale {
+  from {
+    transform: translateX(-50%) scale(0.5);
+  }
+  to {
+    transform: translateX(-50%) scale(1);
+  }
+}
+
 .search-modal {
   width: 100vw;
   height: 100vh;
@@ -109,6 +120,7 @@ nextTick(() => searchInp.value?.focus())
     transform: translateX(-50%);
     display: flex;
     flex-direction: column;
+    animation: dialog-scale .3s;
     .search-header {
       display: flex;
       align-items: center;
