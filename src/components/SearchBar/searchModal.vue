@@ -45,7 +45,6 @@ nextTick(() => searchInp.value?.focus())
 
 <template>
   <div class="search-modal" @click="close">
-    <Transition>
     <div class="search-dialog" @click.stop="void">
       <header class="search-header">
         <label for="search-inp">
@@ -85,7 +84,6 @@ nextTick(() => searchInp.value?.focus())
         <a href="https://github.com/Ce1ling" target="_blank"> L1en </a>
       </footer>
     </div>
-    </Transition>
   </div>
 </template>
 

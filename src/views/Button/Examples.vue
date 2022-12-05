@@ -22,10 +22,18 @@ const basicCode = ref(
   <vi-button type="danger" round> 危险按钮 </vi-button>
 </div>
 <div>
-  <vi-button type="primary" circle> 主 </vi-button>
-  <vi-button type="success" circle> 成 </vi-button>
-  <vi-button type="warning" circle> 警 </vi-button>
-  <vi-button type="danger" circle> 危 </vi-button>
+  <vi-button type="primary" circle>  
+    <vi-icon name="home" color="#fff" />
+  </vi-button>
+  <vi-button type="success" circle> 
+    <vi-icon name="check" color="#fff" />
+  </vi-button>
+  <vi-button type="warning" circle> 
+    <vi-icon name="delete" color="#fff" />
+  </vi-button>
+  <vi-button type="danger" circle> 
+    <vi-icon name="close" color="#fff" />
+  </vi-button>
 </div>`
 )
 
@@ -88,10 +96,18 @@ const colorCode = ref(
         <vi-button type="danger" round> 危险按钮 </vi-button>
       </div>
       <div>
-        <vi-button type="primary" circle> 主 </vi-button>
-        <vi-button type="success" circle> 成 </vi-button>
-        <vi-button type="warning" circle> 警 </vi-button>
-        <vi-button type="danger" circle> 危 </vi-button>
+        <vi-button type="primary" circle>  
+          <vi-icon name="home" color="#fff" />
+        </vi-button>
+        <vi-button type="success" circle> 
+          <vi-icon name="check" color="#fff" />
+        </vi-button>
+        <vi-button type="warning" circle> 
+          <vi-icon name="delete" color="#fff" />
+        </vi-button>
+        <vi-button type="danger" circle> 
+          <vi-icon name="close" color="#fff" />
+        </vi-button>
       </div>
     </template>
   </Example>
