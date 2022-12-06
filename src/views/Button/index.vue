@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
 import Contents from '../Contents/index.vue'
-import Examples from './Examples.vue'
-import Apis from './Apis.vue'
-import buttonMD from '../../../docs/components/button.md?raw'
+import buttonMD from '../../../docs/components/Button/index.md?raw'
+import buttonApi from '../../../docs/components/Button/api.md?raw'
 
 const isExamplePage = ref(true)
 const exampleContents = reactive([
@@ -15,27 +14,25 @@ const apiContents = reactive(['props'])
 
 <template>
   <section class="content">
-    <h1 class="title">Button 按钮</h1>
-    <p class="desc">基础按钮组件</p>
-    <div class="tabs-wrap">
-      <div 
-        class="tab-item" 
-        :class="{ active: isExamplePage }" 
-        @click="isExamplePage = true">
-        示例
-      </div>
-      <div 
-        class="tab-item" 
-        :class="{ active: !isExamplePage }" 
-        @click="isExamplePage = false">
-        API
+    <div class="description">
+      <h1 class="title">Button 按钮</h1>
+      <p class="desc">基础按钮组件</p>
+      <div class="tabs-wrap">
+        <div 
+          class="tab-item" 
+          :class="{ active: isExamplePage }" 
+          @click="(isExamplePage = true)">
+          示例
+        </div>
+        <div 
+          class="tab-item" 
+          :class="{ active: !isExamplePage }" 
+          @click="(isExamplePage = false)">
+          API
+        </div>
       </div>
     </div>
-    <v-md-preview :text="buttonMD" ></v-md-preview>
-    <component 
-      :is="isExamplePage ? Examples : Apis" 
-      :anchors="exampleContents" 
-    />
+    <v-md-preview :text="isExamplePage ? buttonMD : buttonApi" />
   </section>
   <Contents 
     class="contents" 
@@ -49,7 +46,9 @@ const apiContents = reactive(['props'])
   color: #fff !important;
 }
 .content {
-  padding: 0 10px;
+  .description {
+    padding: 20px 30px;
+  }
   .tabs-wrap {
     display: flex;
     gap: 5px;

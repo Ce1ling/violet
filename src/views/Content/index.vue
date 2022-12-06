@@ -9,7 +9,6 @@
 
 <style scoped lang="scss">
 .content-wrap {
-  padding: 20px;
   display: flex;
   justify-content: space-between;
   :deep(.content) { flex: 8; }

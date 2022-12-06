@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue';
 import Contents from '../Contents/index.vue'
-import Examples from './Examples.vue'
-import Apis from './Apis.vue'
 
 const isExamplePage = ref(true)
 const exampleContents = reactive(['基础用法'])
@@ -27,7 +25,6 @@ const apiContents = reactive(['layout api'])
         API
       </div>
     </div>
-    <component :is="isExamplePage ? Examples : Apis" />
   </section>
   <Contents 
     class="contents" 

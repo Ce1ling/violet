@@ -1,0 +1,10 @@
+| 属性名 | 属性说明 | 属性类型 | 属性默认值 |
+| :---: | :---: | :---: | :---: |
+| type | 定义按钮类型 | string | primary |
+| text | 是否为文字按钮 | boolean | false |
+| round | 是否为圆角按钮 | boolean | fasle |
+| circle | 是否为圆形按钮 | boolean | false |
+| disabled | 是否为禁用状态 | boolean | false |
+| loading | 是否为加载状态 | boolean | false |
+| bgColor | 定义按钮背景颜色 | string | —— |
+| color | 定义按钮文字颜色 | string | —— |
