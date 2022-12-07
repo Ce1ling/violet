@@ -6,7 +6,7 @@ const router = useRouter()
 const store = useStore()
 
 type Item = {
-  id: number
+  id: string
   type: string
   title: string
   name: string 
@@ -19,6 +19,7 @@ const handleRouterPush = (item: Item, i: number) => {
   store.setActive(i)
   router.push({ name: item.name })
 }
+console.log(store.list);
 </script>
 
 <template>
