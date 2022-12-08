@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
 import Contents from '../Contents/index.vue'
-import buttonMD from '../../../docs/components/Button/index.md?raw'
-import buttonApi from '../../../docs/components/Button/api.md?raw'
 
 const isExamplePage = ref(true)
 const exampleContents = reactive([
@@ -32,7 +30,6 @@ const apiContents = reactive(['props'])
         </div>
       </div>
     </div>
-    <v-md-preview :text="isExamplePage ? buttonMD : buttonApi" />
   </section>
   <Contents 
     class="contents" 
