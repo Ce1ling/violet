@@ -19,7 +19,6 @@ const handleRouterPush = (item: Item, i: number) => {
   store.setActive(i)
   router.push({ name: item.name })
 }
-console.log(store.list);
 </script>
 
 <template>
