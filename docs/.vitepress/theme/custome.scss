@@ -1,6 +1,6 @@
 :root {
-  --primary-color: #802ae8;   // rgb(128, 42, 232)
-  --secondary-color: #802aff;   // rgb(128, 42, 255)
+  --primary-color: #802ae8;
+  --secondary-color: #802aff;
   --bg-color: #ffffff;
   --scroll-bar-color: #dbdbdb;
   --basic-font-size: 14px;
@@ -8,6 +8,12 @@
   --border-radius: 5px;
   --header-height: 80px;
   --font-color: #555555;
+
+  // 定制 vitepress
+  --vp-code-block-bg: #ddd;   // 代码块背景色
+  --vp-c-brand: #802ae8;    // 侧边栏高亮色
+  --vp-c-bg-alt: unset;
+  --vp-c-divider-light: transparent;
 }
 
 * {
@@ -26,7 +32,6 @@
     width: 8px;
     height: 8px;
   }
-
   &::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background-color: var(--scroll-bar-color);
@@ -41,6 +46,34 @@
 
 #app {
   min-width: 1024px;
+  // header 
+  .VPNav {
+    background-color: #fff;
+    position: relative;
+    // header 底部边框
+    &::after {
+      content: '';
+      width: 100%;
+      height: 1px;
+      background-color: #ddd;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+    // 左边 logo 
+    .title {
+      color: #802ae8;
+    }
+    // 右边
+    .content {
+      backdrop-filter: unset;
+    }
+  }
+  // aside
+  .VPSidebar {
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+  }
 }
 
 .hidden {
