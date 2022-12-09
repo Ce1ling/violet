@@ -31,10 +31,11 @@ onUnmounted(() => {
   position: fixed;
   right: 100px;
   bottom: 100px;
-  border: 1px solid #ddd;
-  background-color: #fff;
+  z-index: 999999999;
+  border: 1px solid #dddddd;
+  background-color: #ffffff;
   padding: 10px;
   cursor: pointer;
-  &:hover { background-color: #ddd; }
+  &:hover { background-color: #dddddd; }
 }
 </style>

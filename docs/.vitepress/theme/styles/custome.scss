@@ -1,4 +1,8 @@
 #app {
+  > .Layout {
+    position: relative;
+  }
+
   // 标题的链接(#)
   .vp-doc a {
     font-size: 20px;
@@ -19,6 +23,9 @@
       bottom: 0;
       left: 0;
     }
+    .container {
+      max-width: 100% !important;
+    }
     // 左 logo 
     .title {
       font-size: 26px;
@@ -31,17 +38,25 @@
   }
 
   // 首页
-  .VPHome {
-    .VPHomeHero {
-      // 开始按钮
-      .action:first-child .VPButton {
-        padding: 0 40px;
-        font-weight: bold;
+  #VPContent.is-home {
+    .VPHome {
+      .VPHomeHero {
+        padding: 0;
+        position: absolute;
+        top: 50%;
+        left: 30%;
+        transform: translate(-30%, -50%);
+
+        // 开始按钮
+        .action:first-child .VPButton {
+          padding: 0 40px;
+          font-weight: bold;
+        }
+        // 名称
+        .name span { font-size: 86px; }
+        // 标题
+        .text { max-width: 100%; }
       }
-      // name
-      .name span { font-size: 86px; }
-      // 标题文字
-      .text { max-width: 100%; }
     }
   }
 
@@ -49,10 +64,11 @@
   .VPSidebar {
     border-right: 1px solid #dddddd;
     overflow-y: hidden !important;
+    width: unset;
+    padding-left: 32px;
     &:hover { overflow-y: auto !important; }
     .nav {
       .title .title-text { font-size: 18px; }
-
       .items {
         > a {
           transition: color 0s, background-color .3s;
@@ -63,6 +79,20 @@
             color: #fff;
             background-color: var(--primary-color);
           }
+        }
+      }
+    }
+  }
+
+  // 文档内容
+  #VPContent.has-sidebar {
+    padding-left: var(--vp-sidebar-width);
+    .VPDoc {
+      .content {
+        padding-bottom: var(--footer-height);
+        .content-container {
+          margin: 0;
+          max-width: unset;
         }
       }
     }
