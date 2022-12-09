@@ -8,10 +8,10 @@
 
 <div>
   <vi-button> 主要按钮 </vi-button>
-  <!-- <vi-icon name="loading" /> -->
-  <!-- <vi-button type="success"> 成功按钮 </vi-button>
+  <vi-button type="success"> 成功按钮 </vi-button>
   <vi-button type="warning"> 警告按钮 </vi-button>
-  <vi-button type="danger"> 危险按钮 </vi-button> -->
+  <vi-button type="danger"> 危险按钮 </vi-button>
+  <!-- <vi-icon name="loading" /> -->
 </div>
 <!-- 
 <div>

@@ -1,6 +1,6 @@
 :root {
   --primary-color: #802ae8;
-  --secondary-color: #802aff;
+  --secondary-color: #6e25db;
   --bg-color: #ffffff;
   --scroll-bar-wh: 8px;
   --scroll-bar-color: #dbdbdb;
@@ -41,4 +41,10 @@
   /* 内容区 content */
   // --vp-code-block-bg: #ddd;   // 代码块背景色
   --vp-c-brand-dark: var(--primary-color);
+  // TIP 片段背景颜色
+  --vp-custom-block-tip-bg: #892be211;
+  // TIP 片段文字颜色
+  --vp-custom-block-tip-text: var(--secondary-color);
+  // TIP 片段边框颜色
+  --vp-custom-block-tip-border: var(--primary-color);
 }
