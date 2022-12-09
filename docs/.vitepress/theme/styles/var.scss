@@ -1,0 +1,36 @@
+:root {
+  --primary-color: #802ae8;
+  --secondary-color: #802aff;
+  --bg-color: #ffffff;
+  --scroll-bar-color: #dbdbdb;
+  --basic-font-size: 14px;
+  --animation-duration: 0.3s;
+  --border-radius: 5px;
+  --header-height: 80px;
+  --font-color: #555555;
+
+  /* 定制 vitepress */
+
+  /* 首页 Homepage */
+  // brand 按钮边框
+  --vp-button-brand-border: var(--primary-color);
+  // brand 按钮 hover 状态
+  --vp-button-brand-hover-border: var(--primary-color);
+  // brand 按钮 hover 文字颜色
+  --vp-button-brand-hover-text: var(--primary-color);
+  // brand 按钮 hover 背景色
+  --vp-button-brand-hover-bg: transparent;
+  // brand 按钮背景色
+  --vp-button-brand-bg: var(--primary-color);
+
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(180deg, #319bff, var(--primary-color));;
+
+  /* 组件页，侧边栏 Aside */
+  --vp-c-brand: #802ae8;    // 高亮色
+  --vp-c-bg-alt: unset;   // 区块色
+  --vp-c-divider-light: transparent;    // 分割线
+
+  /* 组件页，内容区 Content */
+  // --vp-code-block-bg: #ddd;   // 代码块背景色
+}

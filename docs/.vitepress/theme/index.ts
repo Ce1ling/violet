@@ -1,7 +1,8 @@
 import Layout from './Layout.vue'
 import button from '../../../packages/components/Button/index.vue'
 import icon from '../../../packages/components/Icon/index.vue'
-import './custome.scss'
+import './styles/var.scss'
+import './styles/global.scss'
 
 const components = [ 
   { name: 'vi-button', component: button },

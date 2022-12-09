@@ -1,31 +1,3 @@
-:root {
-  --primary-color: #802ae8;
-  --secondary-color: #802aff;
-  --bg-color: #ffffff;
-  --scroll-bar-color: #dbdbdb;
-  --basic-font-size: 14px;
-  --animation-duration: 0.3s;
-  --border-radius: 5px;
-  --header-height: 80px;
-  --font-color: #555555;
-
-  // 定制 vitepress
-  // 首页 Homepage
-  --vp-button-brand-border: var(--primary-color);    // brand 按钮边框
-  --vp-button-brand-hover-border: var(--primary-color);  // brand 按钮 hover 状态
-  --vp-button-brand-hover-text: var(--primary-color);   // brand 按钮 hover 文字颜色
-  --vp-button-brand-hover-bg: transparent;   // brand 按钮 hover 背景色
-  --vp-button-brand-bg: var(--primary-color);   // brand 按钮背景色
-
-  // 组件页，侧边栏 Aside
-  --vp-c-brand: #802ae8;    // 高亮色
-  --vp-c-bg-alt: unset;   // 区块色
-  --vp-c-divider-light: transparent;    // 分割线
-
-  // 组件页，内容区 Content
-  // --vp-code-block-bg: #ddd;   // 代码块背景色
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -47,12 +19,6 @@
     background-color: var(--scroll-bar-color);
   }
 }
-
-// html {
-//   // 变为灰白
-//   filter: grayscale(1) !important;
-//   -webkit-filter: grayscale(1) !important;
-// }
 
 #app {
   min-width: 1024px;
@@ -90,13 +56,27 @@
       // name
       .name span { font-size: 86px; }
       // 标题文字
-      .text { max-width: 100%; }      
+      .text { max-width: 100%; }
     }
   }
   // aside
   .VPSidebar {
-    border-right: 1px solid var(--vp-c-bg);
-    filter: brightness(0.9);
+    border-right: 1px solid #dddddd;
+  }
+}
+
+
+// dark 主题
+html.dark {
+  #app {
+    .VPNav {
+      &::after {
+        filter: brightness(1.9);
+      }
+    }
+    .VPSidebar {
+      border-right: 1px solid #555555;
+    }
   }
 }
 
@@ -108,7 +88,13 @@
   }
 }
 
-
+// 搜索弹窗的隐藏滚动条
 .hidden {
   overflow: hidden;
+}
+
+// 变为灰白
+.gray-filer {
+  filter: grayscale(1) !important;
+  -webkit-filter: grayscale(1) !important;
 }
