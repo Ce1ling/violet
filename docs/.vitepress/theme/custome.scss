@@ -10,10 +10,20 @@
   --font-color: #555555;
 
   // 定制 vitepress
-  --vp-code-block-bg: #ddd;   // 代码块背景色
-  --vp-c-brand: #802ae8;    // 侧边栏高亮色
-  --vp-c-bg-alt: unset;
-  --vp-c-divider-light: transparent;
+  // 首页 Homepage
+  --vp-button-brand-border: var(--primary-color);    // brand 按钮边框
+  --vp-button-brand-hover-border: var(--primary-color);  // brand 按钮 hover 状态
+  --vp-button-brand-hover-text: var(--primary-color);   // brand 按钮 hover 文字颜色
+  --vp-button-brand-hover-bg: transparent;   // brand 按钮 hover 背景色
+  --vp-button-brand-bg: var(--primary-color);   // brand 按钮背景色
+
+  // 组件页，侧边栏 Aside
+  --vp-c-brand: #802ae8;    // 高亮色
+  --vp-c-bg-alt: unset;   // 区块色
+  --vp-c-divider-light: transparent;    // 分割线
+
+  // 组件页，内容区 Content
+  // --vp-code-block-bg: #ddd;   // 代码块背景色
 }
 
 * {
@@ -48,33 +58,56 @@
   min-width: 1024px;
   // header 
   .VPNav {
-    background-color: #fff;
-    position: relative;
+    background-color: var(--vp-c-bg);
     // header 底部边框
     &::after {
       content: '';
       width: 100%;
       height: 1px;
-      background-color: #ddd;
+      background-color: var(--vp-c-bg);
+      filter: brightness(0.9);
       position: absolute;
       bottom: 0;
       left: 0;
     }
-    // 左边 logo 
+    // 左 logo 
     .title {
+      font-size: 26px;
       color: #802ae8;
     }
-    // 右边
+    // 右
     .content {
       backdrop-filter: unset;
     }
   }
+  .VPHome {
+    .VPHomeHero {
+      // 开始按钮
+      .action:first-child .VPButton {
+        padding: 0 40px;
+        font-weight: bold;
+      }
+      // name
+      .name span { font-size: 86px; }
+      // 标题文字
+      .text { max-width: 100%; }      
+    }
+  }
   // aside
   .VPSidebar {
-    background-color: #fff;
-    border-right: 1px solid #ddd;
+    border-right: 1px solid var(--vp-c-bg);
+    filter: brightness(0.9);
   }
 }
+
+// 标签的链接(#)
+.vp-doc a {
+  font-size: 20px;
+  &:hover {
+    color: var(--primary-color);
+  }
+}
+
 
 .hidden {
   overflow: hidden;
