@@ -3,6 +3,7 @@ import button from '../../../packages/components/Button/index.vue'
 import icon from '../../../packages/components/Icon/index.vue'
 import './styles/var.scss'
 import './styles/global.scss'
+import './styles/custome.scss'
 
 const components = [ 
   { name: 'vi-button', component: button },

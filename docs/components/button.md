@@ -134,7 +134,7 @@
 
 ## APIs
 
-以下是 `button` 组件的 `api`
+### 属性
 
 | 属性名 | 属性说明 | 属性类型 | 属性默认值 |
 | :---: | :---: | :---: | :---: |
@@ -144,5 +144,10 @@
 | circle | 是否为圆形按钮 | boolean | false |
 | disabled | 是否为禁用状态 | boolean | false |
 | loading | 是否为加载状态 | boolean | false |
-| bgColor | 定义按钮背景颜色 | string | —— |
+| bg-color | 定义按钮背景颜色 | string | —— |
 | color | 定义按钮文字颜色 | string | —— |
+
+### 事件
+
+
+### 方法

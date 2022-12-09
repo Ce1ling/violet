@@ -1,0 +1,96 @@
+#app {
+  // 标题的链接(#)
+  .vp-doc a {
+    font-size: 20px;
+    &:hover { color: var(--primary-color); }
+  }
+  
+  // 头部
+  .VPNav {
+    background-color: var(--vp-c-bg);
+    // header 底部边框
+    &::after {
+      content: '';
+      width: 100%;
+      height: 1px;
+      background-color: var(--vp-c-bg);
+      filter: brightness(0.9);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+    // 左 logo 
+    .title {
+      font-size: 26px;
+      color: #802ae8;
+    }
+    // 右
+    .content {
+      backdrop-filter: unset;
+    }
+  }
+
+  // 首页
+  .VPHome {
+    .VPHomeHero {
+      // 开始按钮
+      .action:first-child .VPButton {
+        padding: 0 40px;
+        font-weight: bold;
+      }
+      // name
+      .name span { font-size: 86px; }
+      // 标题文字
+      .text { max-width: 100%; }
+    }
+  }
+
+  // 侧边栏
+  .VPSidebar {
+    border-right: 1px solid #dddddd;
+    overflow-y: hidden !important;
+    &:hover { overflow-y: auto !important; }
+    .nav {
+      .title .title-text { font-size: 18px; }
+
+      .items {
+        > a {
+          transition: color 0s, background-color .3s;
+          padding: 10px !important;
+          border-radius: var(--border-radius);
+          &:hover { background-color: #ddd; }
+          &.active {
+            color: #fff;
+            background-color: var(--primary-color);
+          }
+        }
+      }
+    }
+  }
+  
+  // 文档底部
+  .VPDocFooter {
+    display: none !important;
+  }
+}
+
+// dark 主题
+html.dark #app {
+  // 头部
+  .VPNav {
+    &::after { filter: brightness(1.9); }
+  }
+  
+  // 侧边栏
+  .VPSidebar {
+    border-right: 1px solid #555555;
+    overflow-y: hidden !important;
+
+    .nav .items > a {
+      &:hover { background-color: #555555; }
+      &.active {
+        background-color: var(--primary-color);
+      }
+    }
+  }
+}

@@ -22,79 +22,15 @@
 
 #app {
   min-width: 1024px;
-  // header 
-  .VPNav {
-    background-color: var(--vp-c-bg);
-    // header 底部边框
-    &::after {
-      content: '';
-      width: 100%;
-      height: 1px;
-      background-color: var(--vp-c-bg);
-      filter: brightness(0.9);
-      position: absolute;
-      bottom: 0;
-      left: 0;
-    }
-    // 左 logo 
-    .title {
-      font-size: 26px;
-      color: #802ae8;
-    }
-    // 右
-    .content {
-      backdrop-filter: unset;
-    }
-  }
-  .VPHome {
-    .VPHomeHero {
-      // 开始按钮
-      .action:first-child .VPButton {
-        padding: 0 40px;
-        font-weight: bold;
-      }
-      // name
-      .name span { font-size: 86px; }
-      // 标题文字
-      .text { max-width: 100%; }
-    }
-  }
-  // aside
-  .VPSidebar {
-    border-right: 1px solid #dddddd;
-  }
 }
 
-
-// dark 主题
-html.dark {
-  #app {
-    .VPNav {
-      &::after {
-        filter: brightness(1.9);
-      }
-    }
-    .VPSidebar {
-      border-right: 1px solid #555555;
-    }
-  }
-}
-
-// 标签的链接(#)
-.vp-doc a {
-  font-size: 20px;
-  &:hover {
-    color: var(--primary-color);
-  }
-}
-
-// 搜索弹窗的隐藏滚动条
-.hidden {
+// 隐藏滚动条
+.scroll-hidden {
   overflow: hidden;
 }
 
 // 变为灰白
-.gray-filer {
+.gray-filter {
   filter: grayscale(1) !important;
   -webkit-filter: grayscale(1) !important;
 }

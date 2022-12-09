@@ -26,11 +26,17 @@
   --vp-home-hero-name-color: transparent;
   --vp-home-hero-name-background: -webkit-linear-gradient(180deg, #319bff, var(--primary-color));;
 
-  /* 组件页，侧边栏 Aside */
-  --vp-c-brand: #802ae8;    // 高亮色
-  --vp-c-bg-alt: unset;   // 区块色
-  --vp-c-divider-light: transparent;    // 分割线
+  /* 侧边栏 aside */
+  // 高亮色
+  --vp-c-brand: #802ae8;
+  // 区块色
+  --vp-c-bg-alt: unset;
+  // 分割线
+  --vp-c-divider-light: transparent;
+  // 宽度
+  --vp-sidebar-width: 300px;
 
-  /* 组件页，内容区 Content */
+  /* 内容区 content */
   // --vp-code-block-bg: #ddd;   // 代码块背景色
+  --vp-c-brand-dark: var(--primary-color);
 }
