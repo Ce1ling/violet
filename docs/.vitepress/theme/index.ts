@@ -7,7 +7,6 @@ import './styles/global.scss'
 import './styles/custome.scss'
 
 const components = [ 
-  // UI 组件
   { name: 'vi-button', component: button },
   { name: 'vi-icon', component: icon },
 ]

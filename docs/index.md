@@ -21,3 +21,14 @@ hero:
       text: 在 GitHub 上查看
       link: https://github.com/Ce1ling/violet
 ---
+
+<script setup lang="ts">
+import { nextTick } from 'vue'
+
+// 首页在加载动画时隐藏滚动条
+nextTick(() => {
+  const app: HTMLElement = document.querySelector('#app')!
+  app.classList.add('scroll-hidden')
+  setTimeout(() => app.classList.remove('scroll-hidden'), 1000)
+})
+</script>

@@ -14,7 +14,6 @@ export default {
   markdown: {
     config: (md) => {
       // use more markdown-it plugins!
-      // md.use(svgBuilder)
       // md.use(require('markdown-it-xxx'))
     }
   },
