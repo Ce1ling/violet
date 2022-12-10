@@ -99,8 +99,11 @@
       .title .title-text { font-size: 18px; }
       .items {
         > a {
+          overflow: hidden;
+          text-overflow:ellipsis;
+          white-space: nowrap;
           transition: color 0s, background-color .3s;
-          padding: 10px 18px !important;
+          padding: 10px 14px !important;
           border-radius: var(--border-radius);
           &:hover { background-color: #ddd; }
           &.active {
