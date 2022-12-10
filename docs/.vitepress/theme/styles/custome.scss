@@ -133,21 +133,37 @@
 }
 
 // dark 主题
-html.dark #app {
-  // 头部
-  .VPNav {
-    &::after { filter: brightness(1.9); }
+html.dark {
+  &:root {
+    --scroll-bar-color: #555;
+    --border-color: #555;
   }
-  
-  // 侧边栏
-  .VPSidebar {
-    border-right: 1px solid #555555;
-    overflow-y: hidden !important;
 
-    .nav .items > a {
-      &:hover { background-color: #555555; }
-      &.active {
-        background-color: var(--primary-color);
+  #app {
+    // 头部
+    .VPNav {
+      &::after { filter: brightness(1.9); }
+    }
+    
+    // 侧边栏
+    .VPSidebar {
+      border-right: 1px solid #555555;
+      overflow-y: hidden !important;
+
+      .nav .items > a {
+        &:hover { background-color: #555555; }
+        &.active {
+          background-color: var(--primary-color);
+        }
+      }
+    }
+
+    // 内容 
+    #VPContent.has-sidebar {
+
+      // 底部颜色
+      .footer-wrap {
+        filter: brightness(2);
       }
     }
   }

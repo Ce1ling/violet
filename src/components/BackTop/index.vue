@@ -32,10 +32,13 @@ onUnmounted(() => {
   right: 100px;
   bottom: 100px;
   z-index: 999999999;
-  border: 1px solid #dddddd;
-  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  background-color: var(--vp-c-bg-alpha-with-backdrop);
   padding: 10px;
   cursor: pointer;
-  &:hover { background-color: #dddddd; }
+  &:hover { 
+    background-color: var(--vp-c-bg-alpha-with-backdrop); 
+    filter: brightness(0.8); 
+  }
 }
 </style>
