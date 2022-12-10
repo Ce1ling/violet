@@ -96,6 +96,7 @@
     padding-left: 32px;
     &:hover { overflow-y: auto !important; }
     .nav {
+      margin-top: 24px;
       .title .title-text { font-size: 18px; }
       .items {
         > a {
@@ -103,7 +104,7 @@
           text-overflow:ellipsis;
           white-space: nowrap;
           transition: color 0s, background-color .3s;
-          padding: 10px 14px !important;
+          padding: 8px 14px !important;
           border-radius: var(--border-radius);
           &:hover { background-color: #ddd; }
           &.active {
