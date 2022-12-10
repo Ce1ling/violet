@@ -10,6 +10,7 @@ const author = '<a href="https://github.com/Ce1ling" target="_blank">L1en</a>'
 export default {
   title: 'Violet',
   description: 'A Vue3 UI Framework',
+  lang: 'zh-CN',
   markdown: {
     config: (md) => {
       // use more markdown-it plugins!
