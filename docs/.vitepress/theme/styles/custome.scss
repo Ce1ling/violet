@@ -125,6 +125,10 @@
         .content-container {
           margin: 0;
           max-width: unset;
+          table {
+            width: 100%;
+            display: table;
+          }
         }
       }
     }
