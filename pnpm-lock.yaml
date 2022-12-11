@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@iconify/vue': 4.0.1
   '@vitejs/plugin-vue': ^3.2.0
   nanoid: 4.0.0
   sass: 1.56.1
@@ -12,6 +13,7 @@ specifiers:
   vue-tsc: ^1.0.9
 
 dependencies:
+  '@iconify/vue': registry.npmmirror.com/@iconify/vue/4.0.1_vue@3.2.45
   nanoid: registry.npmmirror.com/nanoid/4.0.0
   vue: registry.npmmirror.com/vue/3.2.45
 
@@ -267,6 +269,24 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  registry.npmmirror.com/@iconify/types/2.0.0:
+    resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@iconify/types/-/types-2.0.0.tgz}
+    name: '@iconify/types'
+    version: 2.0.0
+    dev: false
+
+  registry.npmmirror.com/@iconify/vue/4.0.1_vue@3.2.45:
+    resolution: {integrity: sha512-k4VwcSQpGqJpoyqENRRviFuXlVcquLvQ6BKLNJ6o2amZo7u+3HyALSO79Xyz7Sg68szQGstOk6weaKUF0DJbog==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@iconify/vue/-/vue-4.0.1.tgz}
+    id: registry.npmmirror.com/@iconify/vue/4.0.1
+    name: '@iconify/vue'
+    version: 4.0.1
+    peerDependencies:
+      vue: '>=3'
+    dependencies:
+      '@iconify/types': registry.npmmirror.com/@iconify/types/2.0.0
+      vue: registry.npmmirror.com/vue/3.2.45
+    dev: false
 
   registry.npmmirror.com/@types/web-bluetooth/0.0.16:
     resolution: {integrity: sha512-oh8q2Zc32S6gd/j50GowEjKLoOVOwHP/bWVjKJInBwQqdOYMdPrf1oVlelTlyfFK3CKxL1uahMDAr+vy8T7yMQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/web-bluetooth/-/web-bluetooth-0.0.16.tgz}

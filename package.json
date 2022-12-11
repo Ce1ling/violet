@@ -12,6 +12,7 @@
     "docs:serve": "vitepress serve docs"
   },
   "dependencies": {
+    "@iconify/vue": "4.0.1",
     "nanoid": "4.0.0",
     "vue": "^3.2.41"
   },

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, ref } from "vue"
+import { computed } from "vue"
+import { Icon as Iconify } from '@iconify/vue'
 
 type Props = {
   name: string
@@ -22,35 +23,37 @@ const isLoading = computed(() => (props.name === 'loading') && props.loading)
 </script>
 
 <template>
-  <svg 
-    class="icon" v-bind="$attrs" 
-    :class="{ 'icon-loading': isLoading }">
-    <use :xlink:href="iconName" />
-  </svg>
+  <i class="vi-icon" :class="{
+    'icon-loading': isLoading
+  }">
+    <Iconify class="icon" icon="ep:loading" />
+  </i>
 </template>
 
 <style scoped lang='scss'>
 @keyframes loading {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 .icon-loading {
   animation: loading 2s infinite linear;
 }
 
-.icon {
-  color: v-bind(color);
-  width: v-bind(size);
-  height: v-bind(size);
-  cursor: v-bind(cursor);
-  fill: currentColor;
-  vertical-align: middle;
-  transition: color .2s;
-  &:hover { color: v-bind(getHoverColor); }
+.vi-icon {
+  font-style: normal;
+  .icon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  // color: v-bind(color);
+  // width: v-bind(size);
+  // height: v-bind(size);
+  // cursor: v-bind(cursor);
+  // fill: currentColor;
+  // vertical-align: middle;
+  // transition: color .2s;
+  // &:hover { color: v-bind(getHoverColor); }
 }
 </style>
