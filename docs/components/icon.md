@@ -1,6 +1,8 @@
 # Icon 图标
 
-你可以使用 `vi-icon` 来使用 Violet 的图标，Violet 为您提供了一下图标:
+基础 Icon 图标组件，内含 Violet 提供的一些基础图标。
+
+## 图标集合
 
 <div style="display: flex; gap: 10px; flex-wrap: wrap;">
   <vi-icon name="search" size="100px" />
@@ -14,7 +16,7 @@
   <vi-icon name="male" size="100px" />
   <vi-icon name="fullscreen" size="100px" />
   <vi-icon name="home" size="100px" />
-  <vi-icon name="homeFull" size="100px" />
+  <vi-icon name="home-fill" size="100px" />
   <vi-icon name="link" size="100px" />
   <vi-icon name="linux" size="100px" />
   <vi-icon name="mac" size="100px" />

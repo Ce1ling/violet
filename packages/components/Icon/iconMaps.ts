@@ -10,7 +10,7 @@ export const iconMaps = {
   male: 'material-symbols:male',
   fullscreen: 'material-symbols:fullscreen',
   home: 'ant-design:home-outlined',
-  homeFull: 'ic:round-home',
+  'home-fill': 'ant-design:home-filled',
   link: 'mdi:link-variant',
   linux: 'uil:linux',
   mac: 'icon-park-outline:mac-finder',
