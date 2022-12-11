@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue"
 import { Icon as Iconify } from '@iconify/vue'
+import { iconMaps } from './iconMaps'
 
 type Props = {
   name: string
@@ -18,15 +19,13 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const getHoverColor = computed(() => props.hoverColor ? props.hoverColor : props.color)
-const iconName = computed(() => `#icon-${props.name}`)
+const iconName = computed(() => iconMaps[props.name])
 const isLoading = computed(() => (props.name === 'loading') && props.loading)
 </script>
 
 <template>
-  <i class="vi-icon" :class="{
-    'icon-loading': isLoading
-  }">
-    <Iconify class="icon" icon="ep:loading" />
+  <i class="vi-icon" :title="props.name">
+    <Iconify class="icon" :icon="iconName" :class="{ 'icon-loading': isLoading }"/>
   </i>
 </template>
 
@@ -43,17 +42,13 @@ const isLoading = computed(() => (props.name === 'loading') && props.loading)
 .vi-icon {
   font-style: normal;
   .icon {
-    width: 16px;
-    height: 16px;
+    fill: currentColor;
+    transition: color .2s;
+    color: v-bind(color);
+    width: v-bind(size);
+    height: v-bind(size);
+    cursor: v-bind(cursor);
+    &:hover { color: v-bind(getHoverColor); }
   }
-  
-  // color: v-bind(color);
-  // width: v-bind(size);
-  // height: v-bind(size);
-  // cursor: v-bind(cursor);
-  // fill: currentColor;
-  // vertical-align: middle;
-  // transition: color .2s;
-  // &:hover { color: v-bind(getHoverColor); }
 }
 </style>
