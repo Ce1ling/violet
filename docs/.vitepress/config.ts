@@ -10,6 +10,13 @@ export default {
   title: 'Violet',
   description: 'A Vue3 UI Framework',
   lang: 'zh-CN',
+  markdown: {
+    // 代码块主题
+    theme: {
+      light: 'material-lighter',
+      dark: 'material-palenight'
+    },
+  },
   themeConfig: {
     // 头部导航
     // nav: [
