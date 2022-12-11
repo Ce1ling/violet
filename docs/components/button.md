@@ -3,6 +3,8 @@
 
 基础按钮组件，改善您的按钮。
 
+<vi-tabs></vi-tabs>
+
 ## 基础用法
 
 <div style="display: flex; gap: 10px;">

@@ -1,5 +1,5 @@
 import customeLayout from './Layout.vue'
-import { Button, Icon, Layout } from '../../../packages/components'
+import { Button, Icon, Layout, Tabs } from '../../../packages/components'
 
 import './styles/var.scss'
 import './styles/global.scss'
@@ -9,6 +9,7 @@ const components = [
   { name: 'vi-button', component: Button },
   { name: 'vi-icon', component: Icon },
   { name: 'vi-layout', component: Layout },
+  { name: 'vi-tabs', component: Tabs },
 ]
 
 export default {
