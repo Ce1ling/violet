@@ -13,7 +13,7 @@ type Props = {
 }
 const props = withDefaults(defineProps<Props>(), {
   size: '20px',
-  color: '#000000',
+  color: 'inherit',
   cursor: 'pointer',
   loading: true
 })
