@@ -63,12 +63,18 @@ const handleClick = (e: MouseEvent) => {
     class="vi-button" 
     :class="buttonClass">
     <vi-icon name="loading" size="15px" color="#fff" cursor="wait" v-if="loading" />
-    <slot></slot>
+    <span>
+      <slot></slot>
+    </span>
   </button>
 </template>
 
 <style scoped lang="scss">
 .vi-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
   font-size: 14px;
   padding: 8px 18px;
   border: none;

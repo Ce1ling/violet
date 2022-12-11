@@ -7,7 +7,7 @@ const { Layout } = DefaultTheme
 </script>
 
 <template>
-  <Layout> 
+  <Layout>
     <template #doc-after>
       <FooterInfo />
     </template>
