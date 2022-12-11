@@ -1,5 +1,5 @@
 import { h, render } from 'vue'
-import SearchModal from './searchModal.vue'
+import SearchModal from '../../components/SearchBar/searchModal.vue'
 
 const container = document.createElement('div')
 let hasExist = false

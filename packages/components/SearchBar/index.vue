@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
-import { show } from './useSearch'
+import { show } from '../../hooks/useSearch'
 
 onMounted(() => {
   window.addEventListener('keydown', (e) => {
@@ -15,7 +15,7 @@ onMounted(() => {
 
 <template>
   <button class="search-btn" @click="show">
-    <vi-icon name="search" size="25px" color="#666" />
+    <vi-icon name="search" color="#666" />
     <div class="keyboard">+</div>
     <span> 唤起搜索 </span>
   </button>

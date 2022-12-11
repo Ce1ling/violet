@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { nextTick, reactive, ref, watch } from 'vue'
-import { close } from './useSearch'
+import { close } from '../../hooks/useSearch'
 import ViIcon from '../../../packages/components/Icon/index.vue'
 
 
@@ -23,7 +23,7 @@ watch(searchVal, (val) => {
 })
 
 const handleSearch = () => {
-  if (isSearching.value) { return }
+  if (isSearching.value || !searchVal.value) { return }
   isSearching.value = true
   setTimeout(() => {
     isSearching.value = false
@@ -55,7 +55,8 @@ nextTick(() => searchInp.value?.focus())
           <vi-icon 
             v-else
             name="search" size="30px" 
-            color="var(--primary-color)" />
+            color="var(--primary-color)" 
+            @click="handleSearch"/>
         </label>
         <input 
           type="text" placeholder="请输入内容" autocomplete="off"
