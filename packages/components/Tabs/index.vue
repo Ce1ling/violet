@@ -1,22 +1,29 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { provide, ref } from 'vue'
 
 
-const active = ref('0px')
+const active = ref(0)
+provide('active', active)
+
 const handleTabClick = (i: number) => {
-  active.value = i === 1 ? '0px' : '90px'
+  active.value = i
+  console.log('index and active', i, active.value)
 }
 </script>
 
 <template>
-  <div class="vi-tabs">
-    <div class="vi-tab" :class="{ active: active === '0px' }" 
-      @click="handleTabClick(1)">
-      tab 1
+  <div class="vi-tabs-wrap">
+    <div class="vi-tabs__header">
+      <div class="vi-tab" 
+        v-for="(i, index) in 3"
+        :key="index"
+        :class="{ active: active === index }" 
+        @click="handleTabClick(index)">
+        tab {{ i }}
+      </div>
     </div>
-    <div class="vi-tab" :class="{ active: active === '90px' }" 
-      @click="handleTabClick(2)">
-      tab 2
+    <div class="vi-tabs__content">
+      <slot></slot>
     </div>
   </div>
 </template>
@@ -26,36 +33,38 @@ const handleTabClick = (i: number) => {
   color: #fff;
 }
 
-.vi-tabs {
-  display: flex;
-  gap: 10px;
-  // border: 1px solid black;
-  border-radius: var(--border-radius);
-  user-select: none;
-  background-color: #eee;
-  position: relative;
-  z-index: 1;
-  &::before {
-    content: '';
-    background-color: var(--primary-color);
+.vi-tabs-wrap {
+  .vi-tabs__header {
+    display: flex;
+    gap: 10px;
+    // border: 1px solid black;
     border-radius: var(--border-radius);
-    width: 80px;
-    height: 100%;
-    position: absolute;
-    left: v-bind(active);
-    top: 0;
-    z-index: -1;
-    transition: left .3s;
-    cursor: pointer;
-  }
-  .vi-tab {
-    max-width: 80px;
-    width: 80px;
-    padding: 10px 20px;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    text-align: center;
-    transition: color .3s;
+    user-select: none;
+    background-color: #eee;
+    position: relative;
+    z-index: 1;
+    &::before {
+      content: '';
+      background-color: var(--primary-color);
+      border-radius: var(--border-radius);
+      width: 80px;
+      height: 100%;
+      position: absolute;
+      left: v-bind(active);
+      top: 0;
+      z-index: -1;
+      transition: left .3s;
+      cursor: pointer;
+    }
+    .vi-tab {
+      max-width: 80px;
+      width: 80px;
+      padding: 10px 20px;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      text-align: center;
+      transition: color .3s;
+    }
   }
 }
 </style>
