@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
-import { show } from '../../hooks/useSearch'
+import { useSearch } from '../../hooks/useSearch'
+
+const { show } = useSearch()
 
 onMounted(() => {
   window.addEventListener('keydown', (e) => {
@@ -30,11 +32,11 @@ onMounted(() => {
   border: 2px solid transparent;
   border-radius: var(--border-radius);
   cursor: pointer;
-  background-color: #fff;
+  background-color: var(--vp-c-bg-alpha-with-backdrop);
   color: #666;
   transition: all .3s;
   &:hover { 
-    background-color: #eee; 
+    background-color: var(--vp-c-bg-alpha-with-backdrop); 
     border-color: var(--primary-color); 
   }
   .keyboard {

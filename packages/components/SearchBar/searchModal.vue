@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { nextTick, reactive, ref, watch } from 'vue'
-import { close } from '../../hooks/useSearch'
+import { useSearch } from '../../hooks/useSearch'
 import ViIcon from '../../../packages/components/Icon/index.vue'
 
 
@@ -13,6 +13,7 @@ type Results = Array<{
 }>
 const results = reactive<Results>([])
 
+const { close } = useSearch()
 watch(searchVal, (val) => {
   if (!val) {
     showClearBtn.value = false
@@ -44,7 +45,7 @@ nextTick(() => searchInp.value?.focus())
 </script>
 
 <template>
-  <div class="search-modal" @click="close">
+  <div class="search-modal" @click="close()">
     <div class="search-dialog" @click.stop="void">
       <header class="search-header">
         <label for="search-inp">
