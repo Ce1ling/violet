@@ -30,7 +30,7 @@ const color = reactive({
 })
 
 const buttonClass = computed(() => {
-  const classList = [`vi-button__${props.type}`]
+  const classList: string[] = []
 
   if (props.text) { classList.push('text-color') }
   if (props.round) { classList.push('round') }
@@ -44,7 +44,10 @@ const getBgColor = computed(() => props.bgColor
   ? props.bgColor 
   : color[props.type as keyof typeof color]
 )
-const getColor = computed(() => props.color ? props.color : '#ffffff')
+const getColor = computed(() => {
+  if (props.text && !props.color) { return color[props.type as keyof typeof color] }
+  return props.color ? props.color : '#fff'
+})
 
 const handleClick = (e: MouseEvent) => !props.disabled ? emit('click', e) : null
 </script>
@@ -54,7 +57,7 @@ const handleClick = (e: MouseEvent) => !props.disabled ? emit('click', e) : null
     @click="handleClick"
     class="vi-button" 
     :class="buttonClass">
-    <vi-icon name="loading" size="15px" color="#fff" cursor="wait" v-if="loading" />
+    <vi-icon name="loading" size="16px" v-if="loading" />
     <span>
       <slot></slot>
     </span>
@@ -82,7 +85,7 @@ const handleClick = (e: MouseEvent) => !props.disabled ? emit('click', e) : null
 // 文字按钮
 .text-color {
   background-color: transparent;
-  color: v-bind(getBgColor);
+  color: v-bind(getColor);
 }
 // 圆角按钮
 .round {

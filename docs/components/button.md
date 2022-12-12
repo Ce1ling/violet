@@ -122,16 +122,16 @@
 :::
 
 <div style="display: flex; gap: 10px;">
-  <vi-button type="primary" text bg-color="orange"> 自定义1 </vi-button>
-  <vi-button type="success" text bg-color="skyblue"> 自定义2 </vi-button>
+  <vi-button type="primary" bg-color="orange"> 自定义1 </vi-button>
+  <vi-button type="success" bg-color="skyblue"> 自定义2 </vi-button>
   <vi-button type="warning" bg-color="violet"> 自定义3 </vi-button>
   <vi-button type="danger" bg-color="blueviolet"> 自定义4 </vi-button>
 </div>
 
 ```vue
 <template>
-  <vi-button type="primary" text bg-color="orange"> 自定义1 </vi-button>
-  <vi-button type="success" text bg-color="skyblue"> 自定义2 </vi-button>
+  <vi-button type="primary" bg-color="orange"> 自定义1 </vi-button>
+  <vi-button type="success" bg-color="skyblue"> 自定义2 </vi-button>
   <vi-button type="warning" bg-color="violet"> 自定义3 </vi-button>
   <vi-button type="danger" bg-color="blueviolet"> 自定义4 </vi-button>
 </template>
