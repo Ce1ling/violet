@@ -71,7 +71,7 @@ const handleClick = (e: MouseEvent) => !props.disabled ? emit('click', e) : null
   align-items: center;
   width: auto;
   font-size: 14px;
-  padding: 8px 18px;
+  padding: 6px 18px;
   border: none;
   border-radius: var(--border-radius);
   text-align: center;
