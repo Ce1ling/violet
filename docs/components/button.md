@@ -3,9 +3,6 @@
 
 基础按钮组件，改善您的按钮。
 
-<vi-tabs>
-  <vi-tab v-for="i in 10" :key="i" :label="i - 1">{{ i - 1 }}</vi-tab>
-</vi-tabs>
 
 ## 基础用法
 

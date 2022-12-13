@@ -6,8 +6,9 @@ const active = ref(0)
 provide('active', active)
 
 const handleTabClick = (i: number) => {
+  if (active.value === i) { return }
   active.value = i
-  console.log('index and active', i, active.value)
+  
 }
 </script>
 

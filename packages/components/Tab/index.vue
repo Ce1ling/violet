@@ -16,12 +16,11 @@ const active: Active = inject('active', { value: 0 })
 const show = ref(false)
 
 watch(active, () => {
-  console.log('changed', active.value);
+  // console.log('changed', active.value);
   show.value = active.value === props.label ? true : false;
 }, { immediate: true })
 
 onMounted(() => {
-  console.log('inject active', active, props.label);
 })
 </script>
 
