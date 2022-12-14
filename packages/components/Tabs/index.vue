@@ -1,14 +1,25 @@
 <script setup lang="ts">
 import { provide, ref } from 'vue'
 
+type Item = { 
+  id: string 
+  label: string
+  content: string
+}
+type Props = {
+  data: Array<Item>
+}
+const props = defineProps<Props>()
+const emit = defineEmits(['change'])
 
-const active = ref(0)
+
+const active = ref('example')
 provide('active', active)
 
-const handleTabClick = (i: number) => {
-  if (active.value === i) { return }
-  active.value = i
-  
+const handleTabClick = (item: Item) => {
+  if (active.value === item.label) { return }
+  active.value = item.label
+  emit('change', item)
 }
 </script>
 
@@ -16,10 +27,10 @@ const handleTabClick = (i: number) => {
   <div class="vi-tabs-wrap">
     <div class="vi-tabs__header">
       <div class="vi-tab" 
-        v-for="(i, index) in 3"
-        :key="index"
-        :class="{ active: active === index }" 
-        @click="handleTabClick(index)">
+        v-for="item, i in data"
+        :key="item.id"
+        :class="{ active: active === item.label }" 
+        @click="handleTabClick(item)">
         tab {{ i }}
       </div>
     </div>

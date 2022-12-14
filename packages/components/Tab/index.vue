@@ -21,6 +21,8 @@ watch(active, () => {
 }, { immediate: true })
 
 onMounted(() => {
+  console.log('tab label', props.label);
+  console.log('parent', parent);
 })
 </script>
 
