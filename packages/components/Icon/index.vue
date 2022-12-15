@@ -29,7 +29,7 @@ const isLoading = computed(() => (props.name === 'loading') && props.loading)
   </i>
 </template>
 
-<style scoped lang='scss'>
+<style lang='scss'>
 @keyframes loading {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

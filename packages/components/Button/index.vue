@@ -64,7 +64,7 @@ const handleClick = (e: MouseEvent) => !props.disabled ? emit('click', e) : null
   </button>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
 .vi-button {
   display: flex;
   justify-content: center;
