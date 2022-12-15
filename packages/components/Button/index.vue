@@ -57,7 +57,7 @@ const handleClick = (e: MouseEvent) => !props.disabled ? emit('click', e) : null
     @click="handleClick"
     class="vi-button" 
     :class="buttonClass">
-    <vi-icon name="loading" size="16px" v-if="loading" />
+    <vi-icon name="loading" size="16px" cursor="loading" v-if="loading" />
     <span>
       <slot></slot>
     </span>
