@@ -1,47 +1,46 @@
 <script setup lang="ts">
-import { onMounted, provide, ref, useSlots, h, watch, computed, nextTick } from 'vue'
+import { onMounted, provide, ref, useSlots, h, watch, computed, nextTick, onUpdated } from 'vue'
 
 type Props = {
   active: string;
-  bgColor?: string
+  bgColor?: string;
+  ifMode: boolean;
 }
 const props = withDefaults(defineProps<Props>(), {
-  bgColor: '#eee'
+  bgColor: '#eee',
+  ifMode: false
 })
-const emit = defineEmits(['change'])
+const emits = defineEmits(['change'])
 const slots = useSlots()
 
 const defualtActive = ref<string>(props.active || '')
-const activeBg = ref<HTMLElement | null>(null)
 
-provide('active', defualtActive)
 watch(() => props.active, val => {
   if (val) { defualtActive.value = val }
 })
-const activeBgWidth = ref('0px')
-const activeBgPosition = ref('0px')
 
 const RenderTabHeader = () => {
   return slots.default && 
     slots.default().map(vNode => h('div', {
-      class: ['vi-tab', { 
-        'vi-tab__active': defualtActive.value === vNode.props?.label 
+      class: ['vi-tab', {
+        'vi-tab__active': defualtActive.value === vNode.props?.label
       }],
       innerHTML: vNode.props?.label,
-      ref: 'activeBg',
       onClick: () => {
         defualtActive.value = vNode.props?.label
-        activeBgPosition.value = '80px'
       }
     }))
 }
 const RenderTabContent = () => {
-  return slots.default && 
-    slots.default().find(vNode => vNode.props?.label === defualtActive.value)
+  if (!slots.default) { return }
+  return props.ifMode 
+    ? slots.default().find(vNode => vNode.props?.label === defualtActive.value)
+    : slots.default().map(vNode => h(vNode, { style: { 
+      display: defualtActive.value === vNode.props?.label ? 'block' : 'none' 
+    }}))
 }
 
-onMounted(() => {
-})
+
 </script>
 
 <template>
@@ -58,7 +57,7 @@ onMounted(() => {
 <style lang="scss">
 .vi-tab__active {
   color: #fff;
-  // background-color: blueviolet;
+  background-color: var(--primary-color);
 }
 
 .vi-tabs {
@@ -69,27 +68,13 @@ onMounted(() => {
     background-color: v-bind(bgColor);
     position: relative;
     z-index: 1;
-    &::before {
-      content: '';
-      background-color: var(--primary-color);
-      border-radius: var(--border-radius);
-      // width: v-bind(activeBgWidth);
-      width: 60px;
-      height: 100%;
-      position: absolute;
-      left: v-bind(activeBgPosition);
-      top: 0;
-      z-index: -1;
-      transition: left .3s;
-      cursor: pointer;
-    }
     .vi-tab {
       padding: 8px 18px;
       border-radius: var(--border-radius);
       cursor: pointer;
       text-align: center;
-      transition: color .3s;
-    }    
+      transition: background-color .3s;
+    }
   }
 }
 </style>
