@@ -20,7 +20,7 @@ onUnmounted(() => {
 
 <template>
   <div title="返回顶部" class="back-top-wrap" v-show="show" @click="back">
-    <vi-icon name="top" size="50px" />
+    <vi-icon name="top" size="44px" color="var(--primary-color)" />
   </div>
 </template>
 
@@ -31,7 +31,7 @@ onUnmounted(() => {
   right: 100px;
   bottom: 100px;
   z-index: 999999999;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--primary-color);
   background-color: var(--vp-c-bg-alpha-with-backdrop);
   cursor: pointer;
   &:hover { 
