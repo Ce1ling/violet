@@ -1,11 +1,14 @@
 <script setup lang="ts">
-import { onMounted, provide, ref, useSlots, h, watch, computed, nextTick, onUpdated } from 'vue'
+import { ref, useSlots, h, watch} from 'vue'
+import type { VNode, VNodeArrayChildren } from 'vue'
 
 type Props = {
-  active: string;
-  bgColor?: string;
-  ifMode?: boolean;
+  active: string
+  bgColor?: string
+  ifMode?: boolean
 }
+type RenderVNode = VNodeArrayChildren | undefined
+
 const props = withDefaults(defineProps<Props>(), {
   active: '',
   bgColor: '#eee',
@@ -14,32 +17,98 @@ const props = withDefaults(defineProps<Props>(), {
 const emits = defineEmits(['change'])
 const slots = useSlots()
 
-const defualtActive = ref<string>(props.active)
+const defaultActive = ref<string>(props.active)
 
 watch(() => props.active, val => {
-  if (val) { defualtActive.value = val }
+  if (val) { defaultActive.value = val }
 })
 
-const RenderTabHeader = () => {
-  return slots.default && slots.default().map(vNode => {
-    return !vNode.type.toString().includes('Comment') && h('div', {
-      class: ['vi-tabs__header__item', {
-        'vi-tab__active': defualtActive.value === vNode.props?.name
-      }],
-      innerHTML: vNode.props?.label,
-      onClick: () => {
-        defualtActive.value = vNode.props?.name
-      }
-    })
+const checkDOMType = (key: string) => {
+  /**
+   * 此方法用于检查 DOM 类型，共以下几种：
+   *  1. normal: 正常节点
+   *  2. fragment: v-for 产生的一个父节点片段
+   *  3. comment: 注释节点
+   */
+  
+  switch (key) {
+    case 'Symbol(Comment)':
+      return 'comment'
+    case 'Symbol(Fragment)':
+      return 'fragment'
+    default:
+      return 'normal'
+  }
+}
+const hRenderTabHeader = (node: string, vNode: VNode) => {
+  /**
+   * 此方法是对 Vue h函数 的封装，但仅用于渲染 Tab 的头部
+   */
+
+   return h(node, {
+    class: ['vi-tabs__header__item', {
+      'vi-tabs__active': defaultActive.value === vNode.props?.name
+    }],
+    innerHTML: vNode.props?.label,
+    onClick: () => {
+      defaultActive.value = vNode.props?.name
+    }
   })
 }
-const RenderTabContent = () => {
+const RenderTabHeader = (): RenderVNode => {
+  /**
+   * 此方法用于筛选并渲染 Tab 头部
+   */
+
+  return slots.default && slots.default().map(vNode => {
+    const type = checkDOMType(vNode.type.toString())
+    if (type === 'normal') {
+      return hRenderTabHeader('div', vNode)
+    }
+    if (type === 'fragment') {
+      return vNode.children && (vNode.children as VNodeArrayChildren).map(child => {
+        return hRenderTabHeader('div', child as VNode)
+      })
+    }
+  })
+}
+const hRenderTabContent = (vNode: VNode) => {
+  /**
+   * 此方法是对 Vue h函数 的封装，但仅用于渲染 Tab 的内容
+   */
+
+  return h(vNode, { style: { 
+    display: defaultActive.value === vNode.props?.name ? 'block' : 'none' 
+  }})
+}
+const RenderTabContent = (): RenderVNode => {
+  /**
+   * 此方法用于筛选并渲染 Tab 内容体
+   */
+
   if (!slots.default) { return }
+
   return props.ifMode 
-    ? slots.default().find(vNode => vNode.props?.name === defualtActive.value)
-    : slots.default().map(vNode => h(vNode, { style: { 
-      display: defualtActive.value === vNode.props?.name ? 'block' : 'none' 
-    }}))
+    ? slots.default().map(vNode => {
+        const type = checkDOMType(vNode.type.toString())
+        if (type === 'normal') {
+          return slots.default!().find(normalVNode => normalVNode.props?.name === defaultActive.value)
+        } 
+        if (type === 'fragment') {
+          return (vNode.children as VNodeArrayChildren)?.find(childNode => {
+            return (childNode as VNode).props?.name === defaultActive.value
+          })
+        }
+      })
+    : slots.default().map(vNode => {
+        const type = checkDOMType(vNode.type.toString())
+        if (type === 'normal') { return hRenderTabContent(vNode) }
+        if (type === 'fragment') {
+          return (vNode.children as VNodeArrayChildren).map(childNode => {
+            return hRenderTabContent(childNode as VNode)
+          })
+        }
+      })
 }
 
 
@@ -57,7 +126,7 @@ const RenderTabContent = () => {
 </template>
 
 <style lang="scss">
-.vi-tab__active {
+.vi-tabs__active {
   color: #fff;
   background-color: var(--primary-color);
 }
