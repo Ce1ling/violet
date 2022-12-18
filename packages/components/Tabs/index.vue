@@ -21,8 +21,8 @@ watch(() => props.active, val => {
 })
 
 const RenderTabHeader = () => {
-  return slots.default && 
-    slots.default().map(vNode => h('div', {
+  return slots.default && slots.default().map(vNode => {
+    return !vNode.type.toString().includes('Comment') && h('div', {
       class: ['vi-tabs__header__item', {
         'vi-tab__active': defualtActive.value === vNode.props?.name
       }],
@@ -30,7 +30,8 @@ const RenderTabHeader = () => {
       onClick: () => {
         defualtActive.value = vNode.props?.name
       }
-    }))
+    })
+  })
 }
 const RenderTabContent = () => {
   if (!slots.default) { return }
@@ -69,7 +70,7 @@ const RenderTabContent = () => {
     background-color: v-bind(bgColor);
     position: relative;
     z-index: 1;
-    overflow: hidden;
+    // overflow: hidden;
     &__item {
       flex-shrink: 0;
       padding: 8px 18px;

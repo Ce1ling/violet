@@ -26,9 +26,9 @@ const handle = (i: number) => {
       <vi-tab label="tab3" name="7">7</vi-tab>
       <vi-tab label="tab3" name="8">8</vi-tab>
       <vi-tab label="tab3" name="9">9</vi-tab>
-      <vi-tab label="tab3" name="10">10</vi-tab>
-      <vi-tab label="tab3" name="11">11</vi-tab>
-      <vi-tab label="tab3" name="12">12</vi-tab>
+      <!-- <vi-tab label="tab3" name="10">10</vi-tab> -->
+      <!-- <vi-tab label="tab3" name="11">11</vi-tab> -->
+      <!-- <vi-tab label="tab3" name="12">12</vi-tab> -->
     </vi-tabs>
   </div>
 </template>
