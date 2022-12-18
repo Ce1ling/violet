@@ -23,7 +23,7 @@ watch(() => props.active, val => {
 const RenderTabHeader = () => {
   return slots.default && 
     slots.default().map(vNode => h('div', {
-      class: ['vi-tab', {
+      class: ['vi-tabs__header__item', {
         'vi-tab__active': defualtActive.value === vNode.props?.name
       }],
       innerHTML: vNode.props?.label,
@@ -64,14 +64,16 @@ const RenderTabContent = () => {
 .vi-tabs {
   .vi-tabs__header {
     display: flex;
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
     user-select: none;
     background-color: v-bind(bgColor);
     position: relative;
     z-index: 1;
-    .vi-tab {
+    overflow: hidden;
+    &__item {
+      flex-shrink: 0;
       padding: 8px 18px;
-      border-radius: var(--border-radius);
+      border-radius: var(--border-radius) var(--border-radius) 0 0;
       cursor: pointer;
       text-align: center;
       transition: background-color .3s;
