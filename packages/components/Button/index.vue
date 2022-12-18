@@ -81,35 +81,36 @@ const handleClick = (e: MouseEvent) => !props.disabled ? emit('click', e) : null
   background-color: v-bind(getBgColor);
   &:hover { filter: brightness(110%); }
   &:active { filter: brightness(100%); }
-}
-// 文字按钮
-.text-color {
-  background-color: transparent;
-  color: v-bind(getColor);
-}
-// 圆角按钮
-.round {
-  border-radius: 20px;
-}
-// 圆形按钮
-.circle {
-  width: 38px;
-  height: 38px;
-  font-size: 12px;
-  padding: 8px;
-  line-height: 0;
-  border-radius: 50%;
-}
-// 加载状态
-.loading {
-  opacity: 0.5;
-  cursor: wait;
-  &:hover { filter: brightness(100%); }
-}
-// 禁用状态
-.disabled {
-  opacity: 0.5 !important;
-  cursor: not-allowed !important;
-  &:hover { filter: brightness(100%); }
+
+  // 文字按钮
+  &.text-color {
+    background-color: transparent;
+    color: v-bind(getColor);
+  }
+  // 圆角按钮
+  &.round {
+    border-radius: 20px;
+  }
+  // 圆形按钮
+  &.circle {
+    width: 38px;
+    height: 38px;
+    font-size: 12px;
+    padding: 8px;
+    line-height: 0;
+    border-radius: 50%;
+  }
+  // 加载状态
+  &.loading {
+    opacity: 0.5;
+    cursor: wait;
+    &:hover { filter: brightness(100%); }
+  }
+  // 禁用状态
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    &:hover { filter: brightness(100%); }
+  }
 }
 </style>
