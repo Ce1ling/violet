@@ -7,7 +7,7 @@ const tabs = reactive([
   { id: nanoid(), label: 'example', content: '这是示例页' },
   { id: nanoid(), label: 'api', content: '这是 API 页' }
 ])
-const tab = ref('tab1')
+const tab = ref('1')
 
 const handle = (i: number) => {
   console.log('handle', i)
@@ -17,9 +17,9 @@ const handle = (i: number) => {
 <template>
   <div>
     <vi-tabs @change="handle" :active="tab">
-      <vi-tab label="tab1" >1</vi-tab>
-      <vi-tab label="tab2222" >2</vi-tab>
-      <vi-tab label="tab3" >3</vi-tab>
+      <vi-tab label="tab1" name="1">1</vi-tab>
+      <vi-tab label="tab2222" name="2">2</vi-tab>
+      <vi-tab label="tab3" name="3">3</vi-tab>
     </vi-tabs>
   </div>
 </template>

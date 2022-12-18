@@ -4,16 +4,17 @@ import { onMounted, provide, ref, useSlots, h, watch, computed, nextTick, onUpda
 type Props = {
   active: string;
   bgColor?: string;
-  ifMode: boolean;
+  ifMode?: boolean;
 }
 const props = withDefaults(defineProps<Props>(), {
+  active: '',
   bgColor: '#eee',
   ifMode: false
 })
 const emits = defineEmits(['change'])
 const slots = useSlots()
 
-const defualtActive = ref<string>(props.active || '')
+const defualtActive = ref<string>(props.active)
 
 watch(() => props.active, val => {
   if (val) { defualtActive.value = val }
@@ -23,20 +24,20 @@ const RenderTabHeader = () => {
   return slots.default && 
     slots.default().map(vNode => h('div', {
       class: ['vi-tab', {
-        'vi-tab__active': defualtActive.value === vNode.props?.label
+        'vi-tab__active': defualtActive.value === vNode.props?.name
       }],
       innerHTML: vNode.props?.label,
       onClick: () => {
-        defualtActive.value = vNode.props?.label
+        defualtActive.value = vNode.props?.name
       }
     }))
 }
 const RenderTabContent = () => {
   if (!slots.default) { return }
   return props.ifMode 
-    ? slots.default().find(vNode => vNode.props?.label === defualtActive.value)
+    ? slots.default().find(vNode => vNode.props?.name === defualtActive.value)
     : slots.default().map(vNode => h(vNode, { style: { 
-      display: defualtActive.value === vNode.props?.label ? 'block' : 'none' 
+      display: defualtActive.value === vNode.props?.name ? 'block' : 'none' 
     }}))
 }
 
