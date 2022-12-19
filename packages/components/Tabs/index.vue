@@ -14,7 +14,7 @@ const props = withDefaults(defineProps<Props>(), {
   bgColor: '#eee',
   ifMode: false
 })
-const emits = defineEmits(['change'])
+const emits = defineEmits(['tab-click'])
 const slots = useSlots()
 
 const defaultActive = ref<string>(props.active)
@@ -50,8 +50,9 @@ const hRenderTabHeader = (node: string, vNode: VNode) => {
       'vi-tabs__active': defaultActive.value === vNode.props?.name
     }],
     innerHTML: vNode.props?.label,
-    onClick: () => {
+    onClick: (e: MouseEvent) => {
       defaultActive.value = vNode.props?.name
+      emits('tab-click', vNode.props?.name, e)
     }
   })
 }

@@ -3,7 +3,7 @@ type Props = {
   label: string
   name: string
 }
-defineProps<Props>()
+const props = defineProps<Props>()
 
 </script>
 

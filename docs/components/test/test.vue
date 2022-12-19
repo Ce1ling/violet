@@ -9,14 +9,14 @@ const tabs = reactive([
 ])
 const tab = ref('example')
 
-const handle = (i: number) => {
-  console.log('handle', i)
+const handle = (name: string, e: MouseEvent) => {
+  console.log('tab-click', name, e.target)
 }
 </script>
 
 <template>
   <div>
-    <vi-tabs @change="handle" :active="tab">
+    <vi-tabs @tab-click="handle" :active="tab">
       <vi-tab 
         v-for="tab in tabs" :key="tab.id"
         :label="tab.label" :name="tab.name">
