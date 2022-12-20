@@ -125,12 +125,32 @@
         .content-container {
           margin: 0;
           max-width: unset;
+          // 表格
           table {
             width: 100%;
             display: table;
           }
+          // tip 区块
+          .tip.custom-block {
+            border-radius: var(--border-radius);
+          }
         }
       }
+    }
+  }
+
+  // 示例区域
+  .VPDoc .content {
+    .examples {
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      padding: var(--default-padding);
+    }
+    [class*="language-"] {
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      // height: 0px;
+      // height: unset;
     }
   }
   
