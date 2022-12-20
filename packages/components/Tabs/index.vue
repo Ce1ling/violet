@@ -4,6 +4,7 @@ import type { VNode, VNodeArrayChildren } from 'vue'
 
 type Props = {
   active: string
+  activeBgColor?: string
   bgColor?: string
   ifMode?: boolean
 }
@@ -11,10 +12,11 @@ type RenderVNode = VNodeArrayChildren | undefined
 
 const props = withDefaults(defineProps<Props>(), {
   active: '',
+  activeBgColor: 'var(--primary-color)',
   bgColor: '#eee',
   ifMode: false
 })
-const emits = defineEmits(['tab-click'])
+const emit = defineEmits(['tab-click'])
 const slots = useSlots()
 
 const defaultActive = ref<string>(props.active)
@@ -52,7 +54,7 @@ const hRenderTabHeader = (node: string, vNode: VNode) => {
     innerHTML: vNode.props?.label,
     onClick: (e: MouseEvent) => {
       defaultActive.value = vNode.props?.name
-      emits('tab-click', vNode.props?.name, e)
+      emit('tab-click', vNode.props?.name, e)
     }
   })
 }
@@ -129,7 +131,7 @@ const RenderTabContent = (): RenderVNode => {
 <style lang="scss">
 .vi-tabs__active {
   color: #fff;
-  background-color: var(--primary-color);
+  background-color: v-bind(activeBgColor);
 }
 
 .vi-tabs {
