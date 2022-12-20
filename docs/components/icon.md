@@ -6,7 +6,7 @@
 
 <div style="display: flex; gap: 10px; flex-wrap: wrap;">
   <vi-icon name="search" size="100px" />
-  <vi-icon name="loading" size="100px" />
+  <vi-icon name="loading" size="100px" :loading="true" />
   <vi-icon name="check" size="100px" />
   <vi-icon name="close" size="100px" />
   <vi-icon name="delete" size="100px" />

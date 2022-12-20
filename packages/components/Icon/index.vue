@@ -10,22 +10,24 @@ type Props = {
   cursor?: string
   hoverColor?: string
   loading?: boolean
+  duration?: number
 }
 const props = withDefaults(defineProps<Props>(), {
   size: '20px',
   color: 'inherit',
   cursor: 'pointer',
-  loading: true
+  loading: false,
+  duration: 2
 })
 
 const getHoverColor = computed(() => props.hoverColor ? props.hoverColor : props.color)
 const iconName = computed(() => iconMaps[props.name])
-const isLoading = computed(() => (props.name === 'loading') && props.loading)
+const loadingDuration = computed(() => props.duration + 's')
 </script>
 
 <template>
   <i class="vi-icon" :title="props.name">
-    <Iconify class="icon" :icon="iconName" :class="{ 'icon-loading': isLoading }"/>
+    <Iconify class="icon" :icon="iconName" :class="{ 'icon-loading': loading }"/>
   </i>
 </template>
 
@@ -36,7 +38,7 @@ const isLoading = computed(() => (props.name === 'loading') && props.loading)
 }
 
 .icon-loading {
-  animation: loading 2s infinite linear;
+  animation: loading v-bind(loadingDuration) infinite linear;
 }
 
 .vi-icon {
