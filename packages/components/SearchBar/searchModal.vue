@@ -52,7 +52,7 @@ nextTick(() => searchInp.value?.focus())
           <vi-icon 
             v-if="isSearching"
             name="loading" size="30px" 
-            color="var(--primary-color)" />
+            color="var(--primary-color)" loading />
           <vi-icon 
             v-else
             name="search" size="30px" 

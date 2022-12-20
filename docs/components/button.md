@@ -217,8 +217,3 @@
 | bg-color | 定义按钮背景颜色 | string | —— |
 | color | 定义按钮文字颜色 | string | —— |
 | prefix | 加载时的图标是否在前面(左边) | boolean | true |
-
-### 事件
-
-
-### 方法
