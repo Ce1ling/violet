@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, reactive } from 'vue'
+import { computed, h, reactive } from 'vue'
+import { Icon as ViIcon } from '../index'
 
 type Props = {
   type?: string
@@ -10,6 +11,7 @@ type Props = {
   loading?: boolean
   bgColor?: string
   color?: string
+  prefix?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
   type: 'primary',
@@ -17,10 +19,10 @@ const props = withDefaults(defineProps<Props>(), {
   round: false,
   circle: false,
   disabled: false,
-  loading: false
+  loading: false,
+  prefix: true
 })
 const emit = defineEmits(['click'])
-
 
 const color = reactive({
   primary: '#802ae8',
@@ -49,6 +51,16 @@ const getColor = computed(() => {
   return props.color ? props.color : '#fff'
 })
 
+const RenderIcon = () => {
+  if (!props.loading) return null
+
+  return h(ViIcon, {
+    name: 'loading',
+    size: '16px',
+    cursor: 'wait',
+    loading: true
+  })
+}
 const handleClick = (e: MouseEvent) => !props.disabled ? emit('click', e) : null
 </script>
 
@@ -57,10 +69,15 @@ const handleClick = (e: MouseEvent) => !props.disabled ? emit('click', e) : null
     @click="handleClick"
     class="vi-button" 
     :class="buttonClass">
-    <vi-icon name="loading" size="16px" cursor="loading" v-if="loading" />
+    <slot name="prefix">
+      <RenderIcon v-if="prefix" />
+    </slot>
     <span>
       <slot></slot>
     </span>
+    <slot name="suffix">
+      <RenderIcon v-if="!prefix" />
+    </slot>
   </button>
 </template>
 
@@ -70,6 +87,7 @@ const handleClick = (e: MouseEvent) => !props.disabled ? emit('click', e) : null
   justify-content: center;
   align-items: center;
   width: auto;
+  gap: 4px;
   font-size: 14px;
   padding: 6px 18px;
   border: none;
