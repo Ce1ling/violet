@@ -127,8 +127,12 @@
           max-width: unset;
           // 表格
           table {
-            width: 100%;
             display: table;
+            width: 100%;
+            tr, th, td { border: none; }
+            th:not(:last-child), td:not(:last-child) {
+              border-right: 1px solid var(--border-color);
+            }
           }
           // tip 区块
           .tip.custom-block {
@@ -159,6 +163,7 @@
     // display: none !important;
     .prev,
     .next {
+      border-radius: var(--border-radius);
       position: relative;
       &::after {
         content: '<';
@@ -181,8 +186,8 @@
 // dark 主题
 html.dark {
   &:root {
-    --scroll-bar-color: #555;
-    --border-color: #555;
+    --scroll-bar-color: #555555;
+    --border-color: #555555;
     --vp-code-block-bg: #3c3841;
   }
 

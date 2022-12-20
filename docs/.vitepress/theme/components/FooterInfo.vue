@@ -30,7 +30,8 @@ const links = [
   position: absolute;
   left: -32px;
   bottom: 0;
-  z-index: 99;
+  // 此处 z-inde 不可小于 10，为什么呢？你可以小于 10 然后开启 dark 模式看看就知道了
+  z-index: 19;
   .footer-list {
     h1 { 
       font-size: 16px; 
