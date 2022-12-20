@@ -156,7 +156,25 @@
   
   // 文档底部
   .VPDocFooter {
-    display: none !important;
+    // display: none !important;
+    .prev,
+    .next {
+      position: relative;
+      &::after {
+        content: '<';
+        color: var(--primary-color);
+        position: absolute;
+        left: 4px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+    .next {
+      &::after {
+        content: '>';
+        right: 4px;
+      }
+    }
   }
 }
 

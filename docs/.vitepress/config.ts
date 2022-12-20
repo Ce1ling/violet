@@ -36,6 +36,11 @@ export default {
     ],
     // 右侧锚点标题
     outlineTitle: '目录',
+    // 文档底部
+    docFooter: {
+      prev: '',
+      next: ''
+    },
     // 底部信息。注意：当 sidebar 显示时，footer 则不会显示
     footer: {
       message: `Powered by ❤️ ${author}`,
