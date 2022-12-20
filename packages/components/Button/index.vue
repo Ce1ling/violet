@@ -79,8 +79,9 @@ const handleClick = (e: MouseEvent) => !props.disabled ? emit('click', e) : null
   transition: none;
   color: v-bind(getColor);
   background-color: v-bind(getBgColor);
-  &:hover { filter: brightness(110%); }
-  &:active { filter: brightness(100%); }
+  transition: opacity 0.1s;
+  &:hover { opacity: 0.677777; }
+  &:active { opacity: 1; }
 
   // 文字按钮
   &.text-color {
@@ -104,13 +105,11 @@ const handleClick = (e: MouseEvent) => !props.disabled ? emit('click', e) : null
   &.loading {
     opacity: 0.5;
     cursor: wait;
-    &:hover { filter: brightness(100%); }
   }
   // 禁用状态
   &.disabled {
     opacity: 0.5;
     cursor: not-allowed;
-    &:hover { filter: brightness(100%); }
   }
 }
 </style>

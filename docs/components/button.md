@@ -4,25 +4,27 @@
 
 ## 基础用法
 
-<div style="display: flex; gap: 10px;">
-  <vi-button> 主要按钮 </vi-button>
-  <vi-button type="success"> 成功按钮 </vi-button>
-  <vi-button type="warning"> 警告按钮 </vi-button>
-  <vi-button type="danger"> 危险按钮 </vi-button>
-</div>
+<div class="examples">
+  <div style="display: flex; gap: 10px;">
+    <vi-button> 主要按钮 </vi-button>
+    <vi-button type="success"> 成功按钮 </vi-button>
+    <vi-button type="warning"> 警告按钮 </vi-button>
+    <vi-button type="danger"> 危险按钮 </vi-button>
+  </div>
 
-<div style="display: flex; gap: 10px; margin: 10px 0;">
-  <vi-button type="primary" round> 主要按钮 </vi-button>
-  <vi-button type="success" round> 成功按钮 </vi-button>
-  <vi-button type="warning" round> 警告按钮 </vi-button>
-  <vi-button type="danger" round> 危险按钮 </vi-button>
-</div>
+  <div style="display: flex; gap: 10px; margin: 10px 0;">
+    <vi-button type="primary" round> 主要按钮 </vi-button>
+    <vi-button type="success" round> 成功按钮 </vi-button>
+    <vi-button type="warning" round> 警告按钮 </vi-button>
+    <vi-button type="danger" round> 危险按钮 </vi-button>
+  </div>
 
-<div style="display: flex; gap: 10px;">
-  <vi-button type="primary" circle> <vi-icon name="home" /> </vi-button>
-  <vi-button type="success" circle> <vi-icon name="check" /> </vi-button>
-  <vi-button type="warning" circle> <vi-icon name="warning" /> </vi-button>
-  <vi-button type="danger" circle> <vi-icon name="delete" /> </vi-button>
+  <div style="display: flex; gap: 10px;">
+    <vi-button type="primary" circle> <vi-icon name="home" /> </vi-button>
+    <vi-button type="success" circle> <vi-icon name="check" /> </vi-button>
+    <vi-button type="warning" circle> <vi-icon name="warning" /> </vi-button>
+    <vi-button type="danger" circle> <vi-icon name="delete" /> </vi-button>
+  </div>
 </div>
 
 ```vue
@@ -54,11 +56,13 @@
 
 使用 `loading` 属性， 使按钮处于加载状态。
 
-<div style="display: flex; gap: 10px;">
-  <vi-button type="primary" :loading="true"> 主要按钮 </vi-button>
-  <vi-button type="success" :loading="true"> 成功按钮 </vi-button>
-  <vi-button type="warning" :loading="true"> 警告按钮 </vi-button>
-  <vi-button type="danger" :loading="true"> 危险按钮 </vi-button>
+<div class="examples">
+  <div style="display: flex; gap: 10px;">
+    <vi-button type="primary" :loading="true"> 主要按钮 </vi-button>
+    <vi-button type="success" :loading="true"> 成功按钮 </vi-button>
+    <vi-button type="warning" :loading="true"> 警告按钮 </vi-button>
+    <vi-button type="danger" :loading="true"> 危险按钮 </vi-button>
+  </div>
 </div>
 
 ```vue
@@ -74,11 +78,13 @@
 
 使用 `disabled` 属性， 使按钮处于禁用状态。
 
-<div style="display: flex; gap: 10px;">
-  <vi-button type="primary" disabled> 主要按钮 </vi-button>
-  <vi-button type="success" disabled> 成功按钮 </vi-button>
-  <vi-button type="warning" disabled> 警告按钮 </vi-button>
-  <vi-button type="danger" disabled> 危险按钮 </vi-button>
+<div class="examples">
+  <div style="display: flex; gap: 10px;">
+    <vi-button type="primary" disabled> 主要按钮 </vi-button>
+    <vi-button type="success" disabled> 成功按钮 </vi-button>
+    <vi-button type="warning" disabled> 警告按钮 </vi-button>
+    <vi-button type="danger" disabled> 危险按钮 </vi-button>
+  </div>
 </div>
 
 ```vue
@@ -94,11 +100,13 @@
 
 使用 `text` 属性，来定义文本类型按钮。
 
-<div style="display: flex; gap: 10px;">
-  <vi-button type="primary" text> 主要按钮 </vi-button>
-  <vi-button type="success" text> 成功按钮 </vi-button>
-  <vi-button type="warning" text> 警告按钮 </vi-button>
-  <vi-button type="danger" text> 危险按钮 </vi-button>
+<div class="examples">
+  <div style="display: flex; gap: 10px;">
+    <vi-button type="primary" text> 主要按钮 </vi-button>
+    <vi-button type="success" text> 成功按钮 </vi-button>
+    <vi-button type="warning" text> 警告按钮 </vi-button>
+    <vi-button type="danger" text> 危险按钮 </vi-button>
+  </div>
 </div>
 
 ```vue
@@ -115,14 +123,16 @@
 使用 `bg-color` 属性，来自定义按钮的背景颜色。
 
 ::: tip
-按钮的 `active`、`hover` 状态我们将会为您自动计算。对于特别鲜艳的颜色，如果计算不准确，您也可以手动修改。
+按钮的 `active` 和 `hover` 状态我们将会为您自动计算。
 :::
 
-<div style="display: flex; gap: 10px;">
-  <vi-button type="primary" bg-color="orange"> 自定义1 </vi-button>
-  <vi-button type="success" bg-color="skyblue"> 自定义2 </vi-button>
-  <vi-button type="warning" bg-color="violet"> 自定义3 </vi-button>
-  <vi-button type="danger" bg-color="blueviolet"> 自定义4 </vi-button>
+<div class="examples">
+  <div style="display: flex; gap: 10px;">
+    <vi-button type="primary" bg-color="orange"> 自定义1 </vi-button>
+    <vi-button type="success" bg-color="skyblue"> 自定义2 </vi-button>
+    <vi-button type="warning" bg-color="violet"> 自定义3 </vi-button>
+    <vi-button type="danger" bg-color="blueviolet"> 自定义4 </vi-button>
+  </div>
 </div>
 
 ```vue
@@ -138,11 +148,13 @@
 
 使用 `color` 属性，来自定义按钮的文字颜色。
 
-<div style="display: flex; gap: 10px;">
-  <vi-button type="primary" text color="orange"> 自定义1 </vi-button>
-  <vi-button type="success" text color="skyblue"> 自定义2 </vi-button>
-  <vi-button type="warning" color="green"> 自定义3 </vi-button>
-  <vi-button type="danger" color="blue"> 自定义4 </vi-button>
+<div class="examples">
+  <div style="display: flex; gap: 10px;">
+    <vi-button type="primary" text color="orange"> 自定义1 </vi-button>
+    <vi-button type="success" text color="skyblue"> 自定义2 </vi-button>
+    <vi-button type="warning" color="green"> 自定义3 </vi-button>
+    <vi-button type="danger" color="blue"> 自定义4 </vi-button>
+  </div>
 </div>
 
 ```vue
