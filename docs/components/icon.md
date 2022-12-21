@@ -1,7 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { iconMaps } from '../../packages/components/Icon/iconMaps'
 const isLoading = ref(false)
 const duration = ref(2)
+
+const copy = (name: string) => {
+  navigator.clipboard.writeText(`<vi-icon name="${name}" />`)
+    .then(res => console.log('复制成功'))
+    .catch(err => console.log('复制失败'))
+}
 </script>
 
 # Icon 图标
@@ -152,33 +159,41 @@ const duration = ref(2)
 
 ## 图标集合
 
-<div style="display: flex; gap: 10px; flex-wrap: wrap;">
-  <vi-icon name="search" size="50px" />
-  <vi-icon name="loading" size="50px" />
-  <vi-icon name="check" size="50px" />
-  <vi-icon name="close" size="50px" />
-  <vi-icon name="delete" size="50px" />
-  <vi-icon name="edit" size="50px" />
-  <vi-icon name="envelop" size="50px" />
-  <vi-icon name="female" size="50px" />
-  <vi-icon name="male" size="50px" />
-  <vi-icon name="fullscreen" size="50px" />
-  <vi-icon name="home" size="50px" />
-  <vi-icon name="home-fill" size="50px" />
-  <vi-icon name="link" size="50px" />
-  <vi-icon name="linux" size="50px" />
-  <vi-icon name="mac" size="50px" />
-  <vi-icon name="windows" size="50px" />
-  <vi-icon name="menu" size="50px" />
-  <vi-icon name="minus" size="50px" />
-  <vi-icon name="plus" size="50px" />
-  <vi-icon name="setting" size="50px" />
-  <vi-icon name="top" size="50px" />
-  <vi-icon name="user" size="50px" />
-  <vi-icon name="warning" size="50px" />
-  <vi-icon name="zoomin" size="50px" />
-  <vi-icon name="zoomout" size="50px" />
-</div>
+点击图标即可复制。
+
+<ul class="icon-list">
+  <li v-for="icon in Object.keys(iconMaps)" :key="icon" @click="copy(icon)">
+    <vi-icon :name="icon" size="50px" />
+    <span> {{ icon }} </span>
+  </li>
+</ul>
+
+<style scoped lang="scss">
+.icon-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  border-left: 1px solid var(--border-color);
+  border-top: 1px solid var(--border-color);
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  min-width: 780px;
+  > li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 10px;
+    border-right: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+
+    span { cursor: pointer }
+    &:hover {
+      color: var(--primary-color);
+    }
+  }
+}
+</style>
 
 ## APIs
 

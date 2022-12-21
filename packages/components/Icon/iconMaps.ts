@@ -14,6 +14,7 @@ export const iconMaps = {
   link: 'mdi:link-variant',
   linux: 'uil:linux',
   mac: 'icon-park-outline:mac-finder',
+  windows: 'teenyicons:windows-outline',
   menu: 'material-symbols:menu-rounded',
   minus: 'ic:baseline-minus',
   plus: 'material-symbols:add',
@@ -21,7 +22,6 @@ export const iconMaps = {
   top: 'material-symbols:keyboard-arrow-up-rounded',
   user: 'mdi:user',
   warning: 'mdi:warning-circle-outline',
-  windows: 'teenyicons:windows-outline',
   zoomin: 'fad:zoomin',
   zoomout: 'fad:zoomout',
 }
