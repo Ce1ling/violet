@@ -102,7 +102,7 @@ nextTick(() => searchInp.value?.focus())
 .search-modal {
   width: 100vw;
   height: 100vh;
-  background-color: #eeeeeeaa;
+  background-color: var(--search-mask-color);
   position: fixed;
   top: 0;
   left: 0;
@@ -111,9 +111,9 @@ nextTick(() => searchInp.value?.focus())
     width: 500px;
     max-width: 500px;
     padding: 20px;
-    background-color: #fff;
+    background-color: var(--vp-c-bg);
     border-radius: var(--border-radius);
-    box-shadow: 0 0 10px #ddd;
+    box-shadow: 0 0 10px var(--search-modal-shadow-color);
     position: fixed;
     top: 10%;
     left: 50%;
@@ -128,18 +128,17 @@ nextTick(() => searchInp.value?.focus())
       padding-right: 10px;
       border: 2px solid var(--primary-color);
       border-radius: var(--border-radius);
-      background-color: #eee;
+      background-color: var(--vp-c-bg);
       overflow: hidden;
       #search-inp {
         width: 100%;
         height: 50px;
         padding: 5px;
         border: none;
-        color: #555;
         font-size: 18px;
         font-weight: 600;
-        background-color: #eee;
-        &::placeholder { font-weight: normal; }
+        background-color: var(--vp-c-bg);
+        &::placeholder { font-weight: normal; color: #555; }
       }
     }
     .search-body {
@@ -157,8 +156,8 @@ nextTick(() => searchInp.value?.focus())
           padding: 20px 10px;
           margin: 10px;
           font-size: 18px;
-          background-color: #fff;
-          box-shadow: 2px 2px 5px 2px #ddd;
+          background-color: var(--vp-c-bg);
+          box-shadow: 2px 2px 5px 2px var(--search-modal-shadow-color);
           border-radius: var(--border-radius);
           transition: all .2s;
           cursor: pointer;
@@ -170,7 +169,8 @@ nextTick(() => searchInp.value?.focus())
       }
     }
     .search-footer {
-      text-align: right;
+      text-align: right;  
+      > a { color: var(--primary-color) }
     }
   }
 }
