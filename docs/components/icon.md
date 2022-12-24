@@ -177,7 +177,6 @@ const duration = ref(2)
   border-top: 1px solid var(--border-color);
   display: grid;
   grid-template-columns: repeat(10, 1fr);
-  min-width: 780px;
   > li {
     display: flex;
     flex-direction: column;
@@ -186,12 +185,14 @@ const duration = ref(2)
     padding: 10px;
     border-right: 1px solid var(--border-color);
     border-bottom: 1px solid var(--border-color);
-
     span { cursor: pointer }
     &:hover {
       color: var(--primary-color);
     }
   }
+}
+@media screen and (max-width: 1422px) {
+  .icon-list { grid-template-columns: repeat(8, 1fr); }
 }
 </style>
 

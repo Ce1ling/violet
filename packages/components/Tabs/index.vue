@@ -13,7 +13,7 @@ type RenderVNode = VNodeArrayChildren | undefined
 const props = withDefaults(defineProps<Props>(), {
   active: '',
   activeBgColor: 'var(--primary-color)',
-  bgColor: '#eee',
+  bgColor: '#eeeeee',
   ifMode: false
 })
 const emit = defineEmits(['tab-click'])

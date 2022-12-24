@@ -200,7 +200,6 @@ html.dark {
     // 侧边栏
     .VPSidebar {
       border-right: 1px solid #555555;
-      overflow-y: hidden !important;
 
       .nav .items > a {
         &:hover { background-color: #555555; }
