@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, useSlots, h, watch} from 'vue'
+import { ref, useSlots, h, watch, onMounted} from 'vue'
 import type { VNode, VNodeArrayChildren } from 'vue'
 
 type Props = {
@@ -16,6 +16,10 @@ const props = withDefaults(defineProps<Props>(), {
   bgColor: '#eeeeee',
   ifMode: false
 })
+
+onMounted(() => {
+  console.log('props is ', props.ifMode);
+})
 const emit = defineEmits(['tab-click'])
 const slots = useSlots()
 
@@ -25,7 +29,7 @@ watch(() => props.active, val => {
   if (val) { defaultActive.value = val }
 })
 
-const checkDOMType = (key: string) => {
+const checkNodeType = (key: string) => {
   /**
    * 此方法用于检查 DOM 类型，共以下几种：
    *  1. normal: 正常节点
@@ -64,7 +68,7 @@ const RenderTabHeader = (): RenderVNode => {
    */
 
   return slots.default && slots.default().map(vNode => {
-    const type = checkDOMType(vNode.type.toString())
+    const type = checkNodeType(vNode.type.toString())
     if (type === 'normal') {
       return hRenderTabHeader('div', vNode)
     }
@@ -93,9 +97,11 @@ const RenderTabContent = (): RenderVNode => {
 
   return props.ifMode 
     ? slots.default().map(vNode => {
-        const type = checkDOMType(vNode.type.toString())
+        const type = checkNodeType(vNode.type.toString())
         if (type === 'normal') {
-          return slots.default!().find(normalVNode => normalVNode.props?.name === defaultActive.value)
+          return vNode.props?.name === defaultActive.value 
+            ? slots.default!().find(normalVNode => normalVNode.props?.name === defaultActive.value)
+            : null
         } 
         if (type === 'fragment') {
           return (vNode.children as VNodeArrayChildren)?.find(childNode => {
@@ -104,7 +110,7 @@ const RenderTabContent = (): RenderVNode => {
         }
       })
     : slots.default().map(vNode => {
-        const type = checkDOMType(vNode.type.toString())
+        const type = checkNodeType(vNode.type.toString())
         if (type === 'normal') { return hRenderTabContent(vNode) }
         if (type === 'fragment') {
           return (vNode.children as VNodeArrayChildren).map(childNode => {

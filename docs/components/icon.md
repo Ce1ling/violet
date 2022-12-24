@@ -204,7 +204,7 @@ const duration = ref(2)
 | :---: | :---: | :---: | :---: |
 | name | 图标名称 | string | —— |
 | size | 图标大小 | string | '20px' |
-| color | 图标颜色 | string | 继承 |
+| color | 图标颜色 | string | inherit |
 | cursor | 移入时的鼠标指针 | string | 'pointer' |
 | hover-color | 鼠标移入时的颜色（CSS `hover` 状态） | string | —— |
 | loading | 是否需要加载动画 | boolean | false |
