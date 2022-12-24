@@ -30,6 +30,34 @@ Tabs 选项卡切换组件，分隔展示不同类型的数据。
 </template>
 ```
 
+## ifMode
+
+类似 Vue `v-if` 与 `v-show` 的区别，为了性能考虑，此模式默认为 `false`。如果您有需要，可以开启，开启后只有高亮的 Tab 会被渲染，其他 Tab 将被销毁！
+
+::: tip
+您可以打开“开发者工具”，并在 `Elements` 面板中来查看节点的渲染情况。如果您熟悉 Vue 的 `v-if` 与 `v-show`，相信您瞬间就能懂！
+:::
+
+<div class="examples">
+  <vi-tabs active="1" bg-color="var(--border-color)" ifMode>
+    <vi-tab label="Vue" name="1">Vue，渐进式 JavaScript 框架</vi-tab>
+    <vi-tab label="React" name="2">React，用于构建用户界面的 JavaScript 库</vi-tab>
+    <vi-tab label="Svelte" name="3">Svelte，控制性增强的 Web 应用程序</vi-tab>
+    <vi-tab label="Solid" name="4">Solid，用于构建用户界面的简单且高性能的响应式</vi-tab>
+  </vi-tabs>
+</div>
+
+```vue
+<template>
+  <vi-tabs active="1" ifMode>
+    <vi-tab label="Vue" name="1">Vue，渐进式 JavaScript 框架</vi-tab>
+    <vi-tab label="React" name="2">React，用于构建用户界面的 JavaScript 库</vi-tab>
+    <vi-tab label="Svelte" name="3">Svelte，控制性增强的 Web 应用程序</vi-tab>
+    <vi-tab label="Solid" name="4">Solid，用于构建用户界面的简单且高性能的响应式</vi-tab>
+  </vi-tabs>
+</template>
+```
+
 ## APIs
 
 ### Tabs 属性
@@ -45,7 +73,7 @@ Tabs 选项卡切换组件，分隔展示不同类型的数据。
 
 | 事件名 | 事件触发时机 | 事件参数 |
 | :---: | :---: | :---: |
-| tab-click | Tab 点击时触发 | (name: 当前点击的 Tab, event: 默认事件对象) |
+| tab-click | Tab 标题点击时触发 | (name: 当前点击的 Tab, event: 默认事件对象) |
 
 ### Tab 属性
 
