@@ -19,14 +19,14 @@
   </div>
 
   <div style="display: flex; gap: 10px; margin: 10px 0;">
-    <vi-button type="primary" round> 主要按钮 </vi-button>
+    <vi-button round> 主要按钮 </vi-button>
     <vi-button type="success" round> 成功按钮 </vi-button>
     <vi-button type="warning" round> 警告按钮 </vi-button>
     <vi-button type="danger" round> 危险按钮 </vi-button>
   </div>
 
   <div style="display: flex; gap: 10px;">
-    <vi-button type="primary" circle> <vi-icon name="home" /> </vi-button>
+    <vi-button circle> <vi-icon name="home" /> </vi-button>
     <vi-button type="success" circle> <vi-icon name="check" /> </vi-button>
     <vi-button type="warning" circle> <vi-icon name="warning" /> </vi-button>
     <vi-button type="danger" circle> <vi-icon name="delete" /> </vi-button>
@@ -43,14 +43,14 @@
   </div>
 
   <div>
-    <vi-button type="primary" round> 主要按钮 </vi-button>
+    <vi-button round> 主要按钮 </vi-button>
     <vi-button type="success" round> 成功按钮 </vi-button>
     <vi-button type="warning" round> 警告按钮 </vi-button>
     <vi-button type="danger" round> 危险按钮 </vi-button>
   </div>
 
   <div>
-    <vi-button type="primary" circle> <vi-icon name="home" /> </vi-button>
+    <vi-button circle> <vi-icon name="home" /> </vi-button>
     <vi-button type="success" circle> <vi-icon name="check" /> </vi-button>
     <vi-button type="warning" circle> <vi-icon name="warning" /> </vi-button>
     <vi-button type="danger" circle> <vi-icon name="delete" /> </vi-button>
