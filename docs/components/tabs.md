@@ -39,7 +39,7 @@ Tabs 选项卡切换组件，分隔展示不同类型的数据。
 :::
 
 <div class="examples">
-  <vi-tabs active="1" bg-color="var(--border-color)" ifMode>
+  <vi-tabs active="1" bg-color="var(--border-color)" if-mode>
     <vi-tab label="Vue" name="1">Vue，渐进式 JavaScript 框架</vi-tab>
     <vi-tab label="React" name="2">React，用于构建用户界面的 JavaScript 库</vi-tab>
     <vi-tab label="Svelte" name="3">Svelte，控制性增强的 Web 应用程序</vi-tab>
@@ -49,7 +49,7 @@ Tabs 选项卡切换组件，分隔展示不同类型的数据。
 
 ```vue
 <template>
-  <vi-tabs active="1" ifMode>
+  <vi-tabs active="1" if-mode>
     <vi-tab label="Vue" name="1">Vue，渐进式 JavaScript 框架</vi-tab>
     <vi-tab label="React" name="2">React，用于构建用户界面的 JavaScript 库</vi-tab>
     <vi-tab label="Svelte" name="3">Svelte，控制性增强的 Web 应用程序</vi-tab>
@@ -81,4 +81,3 @@ Tabs 选项卡切换组件，分隔展示不同类型的数据。
 | :---: | :---: | :---: | :---: |
 | label | Tab 标题 | string | —— |
 | name | 唯一标识符，Tabs 的 `active` 根据此属性辨别当前展示的 Tab | string | —— |
-

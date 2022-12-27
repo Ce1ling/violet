@@ -20,24 +20,26 @@ const copy = (name: string) => {
 使用 `name` 属性来定义图标，它是必须的！
 
 <div class="examples">
-  <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+  <vi-row>
     <vi-icon name="windows" size="50px" />
     <vi-icon name="linux" size="50px" />
     <vi-icon name="mac" size="50px" />
     <vi-icon name="check" size="50px" />
     <vi-icon name="close" size="50px" />
     <vi-icon name="loading" size="50px" />
-  </div>
+  </vi-row>
 </div>
 
 ```vue
 <template>
-  <vi-icon name="windows" size="50px" />
-  <vi-icon name="linux" size="50px" />
-  <vi-icon name="mac" size="50px" />
-  <vi-icon name="check" size="50px" />
-  <vi-icon name="close" size="50px" />
-  <vi-icon name="loading" size="50px" />
+  <vi-row>
+    <vi-icon name="windows" size="50px" />
+    <vi-icon name="linux" size="50px" />
+    <vi-icon name="mac" size="50px" />
+    <vi-icon name="check" size="50px" />
+    <vi-icon name="close" size="50px" />
+    <vi-icon name="loading" size="50px" />
+  </vi-row>
 </template>
 ```
 
@@ -50,11 +52,11 @@ Violet 为您提供了一个内置的加载动画，使用 `loading` 属性可�
 :::
 
 <div class="examples">
-  <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+  <vi-row>
     <vi-icon name="loading" size="50px" loading />
     <vi-icon name="close" size="50px" :loading="isLoading" />
     <vi-button @click="isLoading = !isLoading">测试</vi-button>
-  </div>
+  </vi-row>
 </div>
 
 ```vue
@@ -64,9 +66,11 @@ const isLoading = ref(false)
 </script>
 
 <template>
-  <vi-icon name="loading" size="50px" loading />
-  <vi-icon name="close" size="50px" :loading="isLoading" />
-  <vi-button @click="isLoading = !isLoading">测试</vi-button>
+  <vi-row>
+    <vi-icon name="loading" size="50px" loading />
+    <vi-icon name="close" size="50px" :loading="isLoading" />
+    <vi-button @click="isLoading = !isLoading">测试</vi-button>
+  </vi-row>
 </template>
 ```
 
@@ -75,12 +79,12 @@ const isLoading = ref(false)
 有时候可能您对动画的默认加载时长不满意，可以使用 `duration` 属性来自定义加载时间。通过下方“加”、“减”按钮查看效果。
 
 <div class="examples">
-  <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+  <vi-row>
     <vi-icon name="loading" size="50px" loading :duration="duration" />
     <p>当前动画时间为：{{ duration }} 秒</p>
     <vi-button circle @click="duration ++"> <vi-icon name="plus" title="增加" /> </vi-button>
     <vi-button circle @click="duration --"> <vi-icon name="minus" title="减少" /> </vi-button>
-  </div>
+  </vi-row>
 </div>
 
 ```vue
@@ -90,10 +94,12 @@ const duration = ref(2)
 </script>
 
 <template>
-  <vi-icon name="loading" size="50px" loading :duration="duration" />
-  <p>当前动画时间为：{{ duration }} 秒</p>
-  <vi-button circle @click="duration ++"> <vi-icon name="plus" title="增加" /> </vi-button>
-  <vi-button circle @click="duration --"> <vi-icon name="minus" title="减少" /> </vi-button>
+  <vi-row>
+    <vi-icon name="loading" size="50px" loading :duration="duration" />
+    <p>当前动画时间为：{{ duration }} 秒</p>
+    <vi-button circle @click="duration ++"> <vi-icon name="plus" title="增加" /> </vi-button>
+    <vi-button circle @click="duration --"> <vi-icon name="minus" title="减少" /> </vi-button>
+  </vi-row>
 </template>
 ```
 
@@ -102,18 +108,20 @@ const duration = ref(2)
 图标的默认颜色是继承自父级的，您可以使用 `color` 属性手动定义颜色。
 
 <div class="examples">
-  <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+  <vi-row>
     <vi-icon name="check" size="50px" color="blueviolet" />
     <vi-icon name="close" size="50px" color="violet" />
     <vi-icon name="plus" size="50px" color="orange" />
-  </div>
+  </vi-row>
 </div>
 
 ```vue
 <template>
-  <vi-icon name="check" color="blueviolet" />
-  <vi-icon name="close" color="violet" />
-  <vi-icon name="plus" color="orange" />
+  <vi-row>
+    <vi-icon name="check" size="50px" color="blueviolet" />
+    <vi-icon name="close" size="50px" color="violet" />
+    <vi-icon name="plus" size="50px" color="orange" />
+  </vi-row>
 </template>
 ```
 
@@ -122,18 +130,20 @@ const duration = ref(2)
 使用 `hover-color` 属性，可以直接定义图标 `hover` 状态的颜色。
 
 <div class="examples">
-  <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+  <vi-row>
     <vi-icon name="check" size="50px" hover-color="blueviolet" />
     <vi-icon name="close" size="50px" hover-color="violet" />
     <vi-icon name="plus" size="50px" hover-color="orange" />
-  </div>
+  </vi-row>
 </div>
 
 ```vue
 <template>
-  <vi-icon name="check" size="50px" hover-color="blueviolet" />
-  <vi-icon name="close" size="50px" hover-color="violet" />
-  <vi-icon name="plus" size="50px" hover-color="orange" />
+  <vi-row>
+    <vi-icon name="check" size="50px" hover-color="blueviolet" />
+    <vi-icon name="close" size="50px" hover-color="violet" />
+    <vi-icon name="plus" size="50px" hover-color="orange" />
+  </vi-row>
 </template>
 ```
 
@@ -142,18 +152,20 @@ const duration = ref(2)
 使用 `cursor` 属性来定义鼠标指针状态。此功能完全等同于 CSS 的 `cursor` 属性，考虑到图标大部分时候都是可以被点击的，所以它默认是 `pointer` 状态。
 
 <div class="examples">
-  <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+  <vi-row>
     <vi-icon name="check" size="50px" cursor="text" />
     <vi-icon name="close" size="50px" cursor="not-allowed" />
     <vi-icon name="plus" size="50px" cursor="move" />
-  </div>
+  </vi-row>
 </div>
 
 ```vue
 <template>
-  <vi-icon name="check" size="50px" cursor="text" />
-  <vi-icon name="close" size="50px" cursor="not-allowed" />
-  <vi-icon name="plus" size="50px" cursor="move" />
+  <vi-row>
+    <vi-icon name="check" size="50px" cursor="text" />
+    <vi-icon name="close" size="50px" cursor="not-allowed" />
+    <vi-icon name="plus" size="50px" cursor="move" />
+  </vi-row>
 </template>
 ```
 
