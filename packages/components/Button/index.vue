@@ -25,10 +25,10 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits(['click'])
 
 const color = reactive({
-  primary: '#802ae8',
-  success: '#72d342',
-  warning: '#e2b72b',
-  danger: '#e25f2b'
+  primary: 'var(--primary-color)',
+  success: 'var(--success-color)',
+  warning: 'var(--warning-color)',
+  danger: 'var(--danger-color)'
 })
 
 const buttonClass = computed(() => {
