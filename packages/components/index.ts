@@ -4,6 +4,7 @@ import Tabs from './Tabs/index.vue'
 import Tab from './Tabs/Tab.vue'
 import Row from './Layout/Row.vue'
 import Col from './Layout/Col.vue'
+import Link from './Link/index.vue'
 
 export {
   Button,
@@ -12,4 +13,5 @@ export {
   Tab,
   Row,
   Col,
+  Link,
 }

@@ -4,7 +4,7 @@
   }
 
   // 标题的链接(#)
-  .vp-doc a {
+  .vp-doc .header-anchor {
     font-size: 28px;
     &:hover { color: var(--primary-color); }
   }
