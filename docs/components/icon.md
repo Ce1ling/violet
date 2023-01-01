@@ -175,7 +175,7 @@ const duration = ref(2)
 
 <ul class="icon-list">
   <li v-for="icon in Object.keys(iconMaps)" :key="icon" @click="copy(icon)">
-    <vi-icon :name="icon" size="50px" />
+    <vi-icon :name="icon" size="28px" />
     <span> {{ icon }} </span>
   </li>
 </ul>
@@ -203,8 +203,8 @@ const duration = ref(2)
     }
   }
 }
-@media screen and (max-width: 1422px) {
-  .icon-list { grid-template-columns: repeat(8, 1fr); }
+@media screen and (max-width: 1820px) {
+  .icon-list { grid-template-columns: repeat(6, 1fr); }
 }
 </style>
 
