@@ -20,7 +20,7 @@ onUnmounted(() => {
 
 <template>
   <div title="返回顶部" class="back-top-wrap" v-show="show" @click="back">
-    <vi-icon name="top" size="44px" color="var(--primary-color)" />
+    <vi-icon name="Top" size="44px" color="var(--primary-color)" />
   </div>
 </template>
 

@@ -55,7 +55,7 @@ const RenderIcon = () => {
   if (!props.loading) return null
 
   return h(ViIcon, {
-    name: 'loading',
+    name: 'Loading',
     size: '16px',
     cursor: 'wait',
     loading: true

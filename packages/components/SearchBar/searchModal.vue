@@ -51,11 +51,11 @@ nextTick(() => searchInp.value?.focus())
         <label for="search-inp">
           <vi-icon 
             v-if="isSearching"
-            name="loading" size="30px" 
+            name="Loading" size="30px" 
             color="var(--primary-color)" loading />
           <vi-icon 
             v-else
-            name="search" size="30px" 
+            name="Search" size="30px" 
             color="var(--primary-color)" 
             @click="handleSearch"/>
         </label>
@@ -66,7 +66,7 @@ nextTick(() => searchInp.value?.focus())
         />
         <vi-icon 
           v-show="showClearBtn" 
-          name="close" size="30px" 
+          name="Close" size="30px" 
           hover-color="var(--primary-color)"
           @click="searchVal = ''"
         />

@@ -17,7 +17,7 @@ onMounted(() => {
 
 <template>
   <button class="search-btn" @click="show">
-    <vi-icon name="search" />
+    <vi-icon name="Search" />
     <div class="keyboard"> + </div>
     <span> 唤起搜索 </span>
   </button>

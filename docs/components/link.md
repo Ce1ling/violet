@@ -82,26 +82,26 @@
   <vi-row gap="28px">
     <vi-link type="success" href="#" target="_blank"> 
       <template #prefix>
-        <vi-icon name="plus" />
+        <vi-icon name="Plus" />
       </template>
       violet
     </vi-link>
     <vi-link type="danger" href="#" target="_blank"> 
       violet
       <template #suffix>
-        <vi-icon name="minus" />
+        <vi-icon name="Minus" />
       </template>
     </vi-link>
     <vi-link type="success" href="#" target="_blank" disabled> 
       <template #prefix>
-        <vi-icon name="plus" cursor="inherit" />
+        <vi-icon name="Plus" cursor="inherit" />
       </template>
       violet
     </vi-link>
     <vi-link type="danger" href="#" target="_blank" disabled> 
       violet
       <template #suffix>
-        <vi-icon name="minus" cursor="inherit" />
+        <vi-icon name="Minus" cursor="inherit" />
       </template>
     </vi-link>
   </vi-row>
@@ -112,14 +112,14 @@
   <vi-row gap="28px">
     <vi-link type="success" href="#" target="_blank"> 
       <template #prefix>
-        <vi-icon name="plus" />
+        <vi-icon name="Plus" />
       </template>
       violet
     </vi-link>
     <vi-link type="danger" href="#" target="_blank"> 
       violet
       <template #suffix>
-        <vi-icon name="minus" />
+        <vi-icon name="Minus" />
       </template>
     </vi-link>
   </vi-row>

@@ -26,10 +26,10 @@
   </vi-row>
 
   <vi-row>
-    <vi-button circle> <vi-icon name="home" /> </vi-button>
-    <vi-button type="success" circle> <vi-icon name="check" /> </vi-button>
-    <vi-button type="warning" circle> <vi-icon name="warning" /> </vi-button>
-    <vi-button type="danger" circle> <vi-icon name="delete" /> </vi-button>
+    <vi-button circle> <vi-icon name="Home" /> </vi-button>
+    <vi-button type="success" circle> <vi-icon name="Check" /> </vi-button>
+    <vi-button type="warning" circle> <vi-icon name="Warning" /> </vi-button>
+    <vi-button type="danger" circle> <vi-icon name="Delete" /> </vi-button>
   </vi-row>
 </div>
 
@@ -50,10 +50,10 @@
   </vi-row>
 
   <vi-row>
-    <vi-button circle> <vi-icon name="home" /> </vi-button>
-    <vi-button type="success" circle> <vi-icon name="check" /> </vi-button>
-    <vi-button type="warning" circle> <vi-icon name="warning" /> </vi-button>
-    <vi-button type="danger" circle> <vi-icon name="delete" /> </vi-button>
+    <vi-button circle> <vi-icon name="Home" /> </vi-button>
+    <vi-button type="success" circle> <vi-icon name="Check" /> </vi-button>
+    <vi-button type="warning" circle> <vi-icon name="Warning" /> </vi-button>
+    <vi-button type="danger" circle> <vi-icon name="Delete" /> </vi-button>
   </vi-row>
 </template>
 ```
@@ -75,13 +75,13 @@
     <vi-button type="warning" loading> 
       加载状态3 
       <template #prefix>
-        <vi-icon name="close" size="16px" cursor="wait" loading />
+        <vi-icon name="Close" size="16px" cursor="wait" loading />
       </template>
     </vi-button>
     <vi-button type="danger" loading :prefix="false">
       加载状态4 
       <template #suffix>
-        <vi-icon name="close" size="16px" cursor="wait" loading />
+        <vi-icon name="Close" size="16px" cursor="wait" loading />
       </template>
     </vi-button>
   </vi-row>
@@ -95,13 +95,13 @@
     <vi-button type="warning" loading> 
       加载状态3 
       <template #prefix>
-        <vi-icon name="close" size="16px" cursor="wait" loading />
+        <vi-icon name="Close" size="16px" cursor="wait" loading />
       </template>
     </vi-button>
     <vi-button type="danger" loading :prefix="false">
       加载状态4 
       <template #suffix>
-        <vi-icon name="close" size="16px" cursor="wait" loading />
+        <vi-icon name="Close" size="16px" cursor="wait" loading />
       </template>
     </vi-button>
   </vi-row>
