@@ -6,6 +6,7 @@ import Row from './Layout/Row.vue'
 import Col from './Layout/Col.vue'
 import Link from './Link/index.vue'
 import Divider from './Divider/index.vue'
+import { Toast } from './Toast/index'
 
 export {
   Button,
@@ -16,4 +17,5 @@ export {
   Col,
   Link,
   Divider,
+  Toast,
 }
