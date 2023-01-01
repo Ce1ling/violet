@@ -204,7 +204,7 @@ const duration = ref(2)
   }
 }
 @media screen and (max-width: 1820px) {
-  .icon-list { grid-template-columns: repeat(6, 1fr); }
+  .icon-list { grid-template-columns: repeat(5, 1fr); }
 }
 </style>
 
