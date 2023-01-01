@@ -1,7 +1,4 @@
-import { basic } from "../stores/components/basic"
-import { form } from "../stores/components/form"
-import { layout } from "../stores/components/layout"
-import { navigation } from '../stores/components/navigation'
+import { basic, layout, form, navigation, message } from '../routes/index'
 
 const author = '<a href="https://github.com/Ce1ling" target="_blank">L1en</a>'
 
@@ -33,6 +30,7 @@ export default {
       { text: '布局组件', items: layout },
       { text: '表单组件', items: form },
       { text: '导航组件', items: navigation },
+      { text: '消息组件', items: message },
     ],
     // 右侧锚点标题
     outlineTitle: '目录',
