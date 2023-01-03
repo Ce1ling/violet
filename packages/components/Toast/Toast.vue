@@ -4,9 +4,11 @@ import type { Options } from './index'
 
 type Props = {
   type: Options['type']
+  yPosition?: string
 }
 const props = withDefaults(defineProps<Props>(), {
-  type: 'info'
+  type: 'info',
+  yPosition: '0px'
 })
 
 const type = {
@@ -22,7 +24,7 @@ const getBgColor = computed(() => {
   return type[props.type]
 })
 const getYPosition = computed(() => {
-  return '20px'
+  return props.yPosition
 })
 const zIndex = computed(() => {
   return year + 1
@@ -62,12 +64,10 @@ const zIndex = computed(() => {
 }
 .v-enter-active,
 .v-leave-active {
-  animation: show .3s ease;
-  /* transition: opacity 0.5s ease; */
+  animation: show 1s linear;
 }
-
 .v-enter-from,
 .v-leave-to {
-  opacity: 0;
+  animation: show 1s linear reverse;
 }
 </style>

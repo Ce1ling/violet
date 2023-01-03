@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
-import { nanoid } from 'nanoid'
 import { Toast } from '../../../packages/components/Toast'
 
 

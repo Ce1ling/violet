@@ -4,26 +4,30 @@ import ToastVNode from './Toast.vue'
 export type Options = {
   type: 'primary' | 'success' | 'info' | 'warning' | 'danger'
   content: string
-  time: number
+  duration: number
 }
-
+let n = 0
 export const Toast = (ops: Options | string) => {
+  // 传递了配置对象
   if (typeof ops === 'object') {
-    const { type, content, time } = ops
+    const { content, duration } = ops
     const vNode = h(ToastVNode, {
-      innerText: content
+      innerText: content,
     })
     render(vNode, document.body)
     setTimeout(() => {
       render(null, document.body)
-    }, time ? 1500 : time);
+    }, duration ? 1500 : duration)
   } else {
+    // 仅传递一个字符串
     const vNode = h(ToastVNode, {
-      innerText: ops
+      innerText: ops,
+      yPosition: (n += 20) + 'px'
     })
     render(vNode, document.body)
     setTimeout(() => {
       render(null, document.body)
-    }, 1500);
+      n = 0
+    }, 1500)
   }
 }
