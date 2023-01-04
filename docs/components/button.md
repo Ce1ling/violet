@@ -4,7 +4,7 @@
 
 ## 基础用法
 
-您可以使用 `type` 属性来定义按钮类型、`round` 属性来定义圆角按钮、`circle` 属性来定义圆形按钮。
+使用 `type` 属性，来定义按钮类型，`round` 属性来定义圆角按钮、`circle` 属性来定义圆形按钮。
 
 ::: tip
 如果您的按钮 `type` 类型是 `primary`，则您可以省略 `type` 属性，因为它是默认值。
@@ -60,7 +60,7 @@
 
 ## 加载状态
 
-使用 `loading` 属性， 使按钮处于加载状态。您可以使用 `prefix` 属性来控制“加载图标”在左边还是右边。同时，您也可以自定义“加载图标”，分别使用 `prefix` 与 `suffix` 具名插槽。
+使用 `loading` 属性， 使按钮处于加载状态。您可以使用 `is-prefix` 属性来控制“加载图标”在左还是右。同时，您也可以自定义“加载图标”，分别使用 `prefix` 与 `suffix` 具名插槽。
 
 ::: warning
 注意：
@@ -71,14 +71,14 @@
 <div class="examples">
   <vi-row>
     <vi-button type="primary" loading> 加载状态1 </vi-button>
-    <vi-button type="success" loading :prefix="false"> 加载状态2 </vi-button>
+    <vi-button type="success" loading :is-prefix="false"> 加载状态2 </vi-button>
     <vi-button type="warning" loading> 
       加载状态3 
       <template #prefix>
         <vi-icon name="Close" size="16px" cursor="wait" loading />
       </template>
     </vi-button>
-    <vi-button type="danger" loading :prefix="false">
+    <vi-button type="danger" loading :is-prefix="false">
       加载状态4 
       <template #suffix>
         <vi-icon name="Close" size="16px" cursor="wait" loading />
@@ -91,14 +91,14 @@
 <template>
   <vi-row>
     <vi-button type="primary" loading> 加载状态1 </vi-button>
-    <vi-button type="success" loading :prefix="false"> 加载状态2 </vi-button>
+    <vi-button type="success" loading :is-prefix="false"> 加载状态2 </vi-button>
     <vi-button type="warning" loading> 
       加载状态3 
       <template #prefix>
         <vi-icon name="Close" size="16px" cursor="wait" loading />
       </template>
     </vi-button>
-    <vi-button type="danger" loading :prefix="false">
+    <vi-button type="danger" loading :is-prefix="false">
       加载状态4 
       <template #suffix>
         <vi-icon name="Close" size="16px" cursor="wait" loading />
@@ -222,4 +222,4 @@
 | loading | 是否为加载状态 | boolean | false |
 | bg-color | 定义按钮背景颜色 | string | —— |
 | color | 定义按钮文字颜色 | string | —— |
-| prefix | 加载时的图标是否在前面(左边) | boolean | true |
+| is-prefix | 加载时的图标是否在前面(左边) | boolean | true |

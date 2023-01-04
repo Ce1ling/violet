@@ -11,7 +11,7 @@ type Props = {
   loading?: boolean
   bgColor?: string
   color?: string
-  prefix?: boolean
+  isPrefix?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
   type: 'primary',
@@ -20,7 +20,7 @@ const props = withDefaults(defineProps<Props>(), {
   circle: false,
   disabled: false,
   loading: false,
-  prefix: true
+  isPrefix: true
 })
 const emit = defineEmits(['click'])
 
@@ -70,13 +70,13 @@ const handleClick = (e: MouseEvent) => !props.disabled ? emit('click', e) : null
     class="vi-button" 
     :class="buttonClass">
     <slot name="prefix">
-      <RenderIcon v-if="prefix" />
+      <RenderIcon v-if="isPrefix" />
     </slot>
     <span>
       <slot></slot>
     </span>
     <slot name="suffix">
-      <RenderIcon v-if="!prefix" />
+      <RenderIcon v-if="!isPrefix" />
     </slot>
   </button>
 </template>
