@@ -14,7 +14,7 @@ const props = withDefaults(defineProps<Props>(), {
 const type = {
   primary: 'var(--primary-color)',
   success: 'var(--success-color)',
-  info: 'var(--info-color)',
+  info: 'var(--toast-info-color)',
   warning: 'var(--warning-color)',
   danger: 'var(--danger-color)'
 }
@@ -55,12 +55,14 @@ const zIndex = computed(() => {
 .vi-toast {
   position: fixed;
   left: 50%;
+  transform: translateX(-50%);
   top: v-bind(getYPosition);
   background-color: v-bind(getBgColor);
   z-index: v-bind(zIndex);
   padding: 8px 28px;
   border-radius: var(--border-radius);
-  border: 1px solid #b9b9b9;
+  border: 1px solid var(--shadow-color);
+  box-shadow: 2px 2px 8px 0 var(--shadow-color);
 }
 .v-enter-active,
 .v-leave-active {
