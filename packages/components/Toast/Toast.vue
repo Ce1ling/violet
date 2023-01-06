@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, Transition } from 'vue'
 import type { Options } from './index'
+import { Icon as ViIcon } from '../index'
 
 type Props = {
   type: Options['type']
@@ -36,7 +37,7 @@ const zIndex = computed(() => {
   <Transition>
     <div class="vi-toast">
       <slot name="prefix">
-        <vi-icon name="WarningCircle"></vi-icon>
+        <vi-icon name="Warning" />
       </slot>
       <slot></slot>
     </div>

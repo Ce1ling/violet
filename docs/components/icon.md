@@ -188,7 +188,7 @@ const duration = ref(2)
   border-left: 1px solid var(--border-color);
   border-top: 1px solid var(--border-color);
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
+  grid-template-columns: repeat(8, 1fr);
   > li {
     display: flex;
     flex-direction: column;

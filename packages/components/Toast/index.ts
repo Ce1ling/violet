@@ -22,7 +22,7 @@ export const Toast = (ops: Options | string) => {
   } else {
     // 仅传递一个字符串
     const vNode = h(ToastComponent, {
-      innerText: ops,
+      // innerText: ops,
       yPosition: (n += 20) + 'px'
     })
     toastList.push(vNode)
