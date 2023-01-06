@@ -27,6 +27,7 @@ const emit = defineEmits(['click'])
 const color = reactive({
   primary: 'var(--primary-color)',
   success: 'var(--success-color)',
+  info: 'var(--info-color)',
   warning: 'var(--warning-color)',
   danger: 'var(--danger-color)'
 })
@@ -52,7 +53,7 @@ const getColor = computed(() => {
 })
 
 const RenderIcon = () => {
-  if (!props.loading) return null
+  if (!props.loading) { return null }
 
   return h(ViIcon, {
     name: 'Loading',

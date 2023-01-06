@@ -14,6 +14,7 @@
   <vi-row>
     <vi-button> 主要按钮 </vi-button>
     <vi-button type="success"> 成功按钮 </vi-button>
+    <vi-button type="info"> 信息按钮 </vi-button>
     <vi-button type="warning"> 警告按钮 </vi-button>
     <vi-button type="danger"> 危险按钮 </vi-button>
   </vi-row>
@@ -21,6 +22,7 @@
   <vi-row>
     <vi-button round> 主要按钮 </vi-button>
     <vi-button type="success" round> 成功按钮 </vi-button>
+    <vi-button type="info" round> 信息按钮 </vi-button>
     <vi-button type="warning" round> 警告按钮 </vi-button>
     <vi-button type="danger" round> 危险按钮 </vi-button>
   </vi-row>
@@ -28,6 +30,7 @@
   <vi-row>
     <vi-button circle> <vi-icon name="Home" /> </vi-button>
     <vi-button type="success" circle> <vi-icon name="Check" /> </vi-button>
+    <vi-button type="info" circle> <vi-icon name="Link" /> </vi-button>
     <vi-button type="warning" circle> <vi-icon name="Warning" /> </vi-button>
     <vi-button type="danger" circle> <vi-icon name="Delete" /> </vi-button>
   </vi-row>
@@ -38,6 +41,7 @@
   <vi-row>
     <vi-button> 主要按钮 </vi-button>
     <vi-button type="success"> 成功按钮 </vi-button>
+    <vi-button type="info"> 信息按钮 </vi-button>
     <vi-button type="warning"> 警告按钮 </vi-button>
     <vi-button type="danger"> 危险按钮 </vi-button>
   </vi-row>
@@ -45,6 +49,7 @@
   <vi-row>
     <vi-button round> 主要按钮 </vi-button>
     <vi-button type="success" round> 成功按钮 </vi-button>
+    <vi-button type="info" round> 信息按钮 </vi-button>
     <vi-button type="warning" round> 警告按钮 </vi-button>
     <vi-button type="danger" round> 危险按钮 </vi-button>
   </vi-row>
@@ -52,6 +57,7 @@
   <vi-row>
     <vi-button circle> <vi-icon name="Home" /> </vi-button>
     <vi-button type="success" circle> <vi-icon name="Check" /> </vi-button>
+    <vi-button type="info" circle> <vi-icon name="Link" /> </vi-button>
     <vi-button type="warning" circle> <vi-icon name="Warning" /> </vi-button>
     <vi-button type="danger" circle> <vi-icon name="Delete" /> </vi-button>
   </vi-row>
@@ -116,6 +122,7 @@
   <vi-row>
     <vi-button type="primary" disabled> 主要按钮 </vi-button>
     <vi-button type="success" disabled> 成功按钮 </vi-button>
+    <vi-button type="info" disabled> 信息按钮 </vi-button>
     <vi-button type="warning" disabled> 警告按钮 </vi-button>
     <vi-button type="danger" disabled> 危险按钮 </vi-button>
   </vi-row>
@@ -126,6 +133,7 @@
   <vi-row>
     <vi-button type="primary" disabled> 主要按钮 </vi-button>
     <vi-button type="success" disabled> 成功按钮 </vi-button>
+    <vi-button type="info" disabled> 信息按钮 </vi-button>
     <vi-button type="warning" disabled> 警告按钮 </vi-button>
     <vi-button type="danger" disabled> 危险按钮 </vi-button>
   </vi-row>
@@ -140,6 +148,7 @@
   <vi-row>
     <vi-button type="primary" text> 主要按钮 </vi-button>
     <vi-button type="success" text> 成功按钮 </vi-button>
+    <vi-button type="info" text> 信息按钮 </vi-button>
     <vi-button type="warning" text> 警告按钮 </vi-button>
     <vi-button type="danger" text> 危险按钮 </vi-button>
   </vi-row>
@@ -150,6 +159,7 @@
   <vi-row>
     <vi-button type="primary" text> 主要按钮 </vi-button>
     <vi-button type="success" text> 成功按钮 </vi-button>
+    <vi-button type="info" text> 信息按钮 </vi-button>
     <vi-button type="warning" text> 警告按钮 </vi-button>
     <vi-button type="danger" text> 危险按钮 </vi-button>
   </vi-row>
