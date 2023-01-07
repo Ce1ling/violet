@@ -6,8 +6,7 @@ export type Options = {
   content: string
   duration: number
 }
-let n = 0
-const toastList = []
+
 export const Toast = (ops: Options | string) => {
   // 传递了配置对象
   if (typeof ops === 'object') {
@@ -22,16 +21,15 @@ export const Toast = (ops: Options | string) => {
   } else {
     // 仅传递一个字符串
     const vNode = h(ToastComponent, {
-      // innerText: ops,
-      yPosition: (n += 20) + 'px'
+      innerText: ops,
+      yPosition: '20px'
     })
-    toastList.push(vNode)
-    console.log('list', toastList);
+    /**
+     * bug: TypeError: Failed to execute 'observe' on 'MutationObserver': parameter 1 is not of type 'Node'.
+     */
     render(vNode, document.body)
     setTimeout(() => {
-      // render(null, document.body)
-      n = 0
-      console.log('timeout list', toastList);
+      render(null, document.body)
     }, 1500)
   }
 }
