@@ -37,7 +37,7 @@ const zIndex = computed(() => {
   <Transition>
     <div class="vi-toast">
       <slot name="prefix">
-        <vi-icon name="Warning" />
+        <!-- <vi-icon name="Warning" /> -->
       </slot>
       <slot></slot>
     </div>

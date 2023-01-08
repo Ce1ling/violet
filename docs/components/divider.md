@@ -60,11 +60,11 @@
 
 <div class="examples">
   大风歌
-  <vi-divider position="center" gap="8px">窄</vi-divider>
+  <vi-divider position="center" gap="8px">窄边距</vi-divider>
   大风起兮云飞扬，
-  <vi-divider position="center" gap="58px">宽</vi-divider>
+  <vi-divider position="center" gap="58px">宽边距</vi-divider>
   威加海内兮归故乡，
-  <vi-divider position="center" gap="18px">正常</vi-divider>
+  <vi-divider position="center" gap="18px">正常边距</vi-divider>
   安得猛士兮守四方！
 </div>
 
@@ -82,7 +82,7 @@
 
 ## 定义厚度
 
-使用 `thick` 属性，定义线条厚度，不过我们不建议您设置的值非常大。
+使用 `thick` 属性，定义线条厚度，不过 Violet 不建议您设置的非常大(因为这可能导致一些 UI `bug`)。
 
 <div class="examples">
   大风歌
