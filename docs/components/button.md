@@ -166,6 +166,83 @@
 </template>
 ```
 
+## 自定义图标
+
+使用 `prefix`、`suffix` 插槽，来放置图标。
+
+<div class="examples">
+  <vi-row>
+    <vi-button>
+      <template #prefix> 
+        <vi-icon name="Plus" />
+      </template>
+      加
+    </vi-button>
+    <vi-button>
+      <template #suffix> 
+        <vi-icon name="Minus" />
+      </template>
+      减
+    </vi-button>
+    <vi-button type="warning">
+      <template #prefix> 
+        <vi-icon name="Apple" />
+      </template>
+      <template #suffix> 
+        <vi-icon name="Android" />
+      </template>
+    </vi-button>
+    <vi-button type="danger">
+      <template #prefix> 
+        <vi-icon name="Windows" />
+      </template>
+      <vi-icon name="Mac" />
+      <template #suffix> 
+        <vi-icon name="Linux" />
+      </template>
+    </vi-button>
+  </vi-row>
+</div>
+
+```vue
+<template>
+  <vi-row>
+    <vi-button>
+      <template #prefix> 
+        <vi-icon name="Plus" />
+      </template>
+      加
+    </vi-button>
+
+    <vi-button>
+      <template #suffix> 
+        <vi-icon name="Minus" />
+      </template>
+      减
+    </vi-button>
+
+    <vi-button type="warning">
+      <template #prefix> 
+        <vi-icon name="Apple" />
+      </template>
+      <template #suffix> 
+        <vi-icon name="Android" />
+      </template>
+    </vi-button>
+
+    <vi-button type="danger">
+      <template #prefix> 
+        <vi-icon name="Windows" />
+      </template>
+      <vi-icon name="Mac" />
+      <template #suffix> 
+        <vi-icon name="Linux" />
+      </template>
+    </vi-button>
+  </vi-row>
+</template>
+```
+
 ## 自定义背景颜色
 
 使用 `bg-color` 属性，来自定义按钮的背景颜色。
