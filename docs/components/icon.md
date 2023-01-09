@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { iconMaps } from '../../packages/components/Icon/iconMaps'
+import { Toast } from '../../packages/components/Toast/index'
+
 const isLoading = ref(false)
 const duration = ref(2)
 
 const copy = (name: string) => {
   navigator.clipboard.writeText(`<vi-icon name="${name}" />`)
-    .then(res => console.log('复制成功'))
-    .catch(err => console.log('复制失败'))
+    .then(res => Toast('复制成功'))
+    .catch(err => Toast('复制失败'))
 }
 </script>
 
@@ -21,24 +23,24 @@ const copy = (name: string) => {
 
 <div class="examples">
   <vi-row>
-    <vi-icon name="Windows" size="50px" />
-    <vi-icon name="Linux" size="50px" />
-    <vi-icon name="Mac" size="50px" />
-    <vi-icon name="Check" size="50px" />
-    <vi-icon name="Close" size="50px" />
-    <vi-icon name="Loading" size="50px" />
+    <vi-icon name="Windows" size="28px" />
+    <vi-icon name="Linux" size="28px" />
+    <vi-icon name="Mac" size="28px" />
+    <vi-icon name="Check" size="28px" />
+    <vi-icon name="Close" size="28px" />
+    <vi-icon name="Loading" size="28px" />
   </vi-row>
 </div>
 
 ```vue
 <template>
   <vi-row>
-    <vi-icon name="Windows" size="50px" />
-    <vi-icon name="Linux" size="50px" />
-    <vi-icon name="Mac" size="50px" />
-    <vi-icon name="Check" size="50px" />
-    <vi-icon name="Close" size="50px" />
-    <vi-icon name="Loading" size="50px" />
+    <vi-icon name="Windows" size="28px" />
+    <vi-icon name="Linux" size="28px" />
+    <vi-icon name="Mac" size="28px" />
+    <vi-icon name="Check" size="28px" />
+    <vi-icon name="Close" size="28px" />
+    <vi-icon name="Loading" size="28px" />
   </vi-row>
 </template>
 ```
@@ -53,8 +55,8 @@ Violet 为您提供了一个内置的加载动画，使用 `loading` 属性可�
 
 <div class="examples">
   <vi-row>
-    <vi-icon name="Loading" size="50px" loading />
-    <vi-icon name="Close" size="50px" :loading="isLoading" />
+    <vi-icon name="Loading" size="28px" loading />
+    <vi-icon name="Close" size="28px" :loading="isLoading" />
     <vi-button @click="isLoading = !isLoading">测试</vi-button>
   </vi-row>
 </div>
@@ -67,8 +69,8 @@ const isLoading = ref(false)
 
 <template>
   <vi-row>
-    <vi-icon name="Loading" size="50px" loading />
-    <vi-icon name="Close" size="50px" :loading="isLoading" />
+    <vi-icon name="Loading" size="28px" loading />
+    <vi-icon name="Close" size="28px" :loading="isLoading" />
     <vi-button @click="isLoading = !isLoading">测试</vi-button>
   </vi-row>
 </template>
@@ -80,7 +82,7 @@ const isLoading = ref(false)
 
 <div class="examples">
   <vi-row>
-    <vi-icon name="Loading" size="50px" loading :duration="duration" />
+    <vi-icon name="Loading" size="28px" loading :duration="duration" />
     <p>当前动画时间为：{{ duration }} 秒</p>
     <vi-button circle @click="duration ++"> <vi-icon name="Plus" title="增加" /> </vi-button>
     <vi-button circle @click="duration --"> <vi-icon name="Minus" title="减少" /> </vi-button>
@@ -95,7 +97,7 @@ const duration = ref(2)
 
 <template>
   <vi-row>
-    <vi-icon name="Loading" size="50px" loading :duration="duration" />
+    <vi-icon name="Loading" size="28px" loading :duration="duration" />
     <p>当前动画时间为：{{ duration }} 秒</p>
     <vi-button circle @click="duration ++"> <vi-icon name="Plus" title="增加" /> </vi-button>
     <vi-button circle @click="duration --"> <vi-icon name="Minus" title="减少" /> </vi-button>
@@ -109,18 +111,18 @@ const duration = ref(2)
 
 <div class="examples">
   <vi-row>
-    <vi-icon name="Check" size="50px" color="blueviolet" />
-    <vi-icon name="Close" size="50px" color="violet" />
-    <vi-icon name="Plus" size="50px" color="orange" />
+    <vi-icon name="Check" size="28px" color="blueviolet" />
+    <vi-icon name="Close" size="28px" color="violet" />
+    <vi-icon name="Plus" size="28px" color="orange" />
   </vi-row>
 </div>
 
 ```vue
 <template>
   <vi-row>
-    <vi-icon name="Check" size="50px" color="blueviolet" />
-    <vi-icon name="Close" size="50px" color="violet" />
-    <vi-icon name="Plus" size="50px" color="orange" />
+    <vi-icon name="Check" size="28px" color="blueviolet" />
+    <vi-icon name="Close" size="28px" color="violet" />
+    <vi-icon name="Plus" size="28px" color="orange" />
   </vi-row>
 </template>
 ```
@@ -131,18 +133,18 @@ const duration = ref(2)
 
 <div class="examples">
   <vi-row>
-    <vi-icon name="Check" size="50px" hover-color="blueviolet" />
-    <vi-icon name="Close" size="50px" hover-color="violet" />
-    <vi-icon name="Plus" size="50px" hover-color="orange" />
+    <vi-icon name="Check" size="28px" hover-color="blueviolet" />
+    <vi-icon name="Close" size="28px" hover-color="violet" />
+    <vi-icon name="Plus" size="28px" hover-color="orange" />
   </vi-row>
 </div>
 
 ```vue
 <template>
   <vi-row>
-    <vi-icon name="Check" size="50px" hover-color="blueviolet" />
-    <vi-icon name="Close" size="50px" hover-color="violet" />
-    <vi-icon name="Plus" size="50px" hover-color="orange" />
+    <vi-icon name="Check" size="28px" hover-color="blueviolet" />
+    <vi-icon name="Close" size="28px" hover-color="violet" />
+    <vi-icon name="Plus" size="28px" hover-color="orange" />
   </vi-row>
 </template>
 ```
@@ -153,18 +155,18 @@ const duration = ref(2)
 
 <div class="examples">
   <vi-row>
-    <vi-icon name="Check" size="50px" cursor="text" />
-    <vi-icon name="Close" size="50px" cursor="not-allowed" />
-    <vi-icon name="Plus" size="50px" cursor="move" />
+    <vi-icon name="Check" size="28px" cursor="text" />
+    <vi-icon name="Close" size="28px" cursor="not-allowed" />
+    <vi-icon name="Plus" size="28px" cursor="move" />
   </vi-row>
 </div>
 
 ```vue
 <template>
   <vi-row>
-    <vi-icon name="Check" size="50px" cursor="text" />
-    <vi-icon name="Close" size="50px" cursor="not-allowed" />
-    <vi-icon name="Plus" size="50px" cursor="move" />
+    <vi-icon name="Check" size="28px" cursor="text" />
+    <vi-icon name="Close" size="28px" cursor="not-allowed" />
+    <vi-icon name="Plus" size="28px" cursor="move" />
   </vi-row>
 </template>
 ```
