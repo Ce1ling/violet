@@ -8,6 +8,9 @@ export type Options = {
 }
 
 export const Toast = (ops: Options | string) => {
+  const defaultOps = {
+    duration: 3000,
+  }
   // 传递了配置对象
   if (typeof ops === 'object') {
     const { content, duration } = ops
@@ -22,14 +25,12 @@ export const Toast = (ops: Options | string) => {
     // 仅传递一个字符串
     const vNode = h(ToastComponent, {
       innerText: ops,
-      yPosition: '20px'
+      yPosition: '20px',
+      type: 'primary',
     })
-    /**
-     * bug: TypeError: Failed to execute 'observe' on 'MutationObserver': parameter 1 is not of type 'Node'.
-     */
     render(vNode, document.body)
     setTimeout(() => {
       render(null, document.body)
-    }, 1500)
+    }, defaultOps.duration + 300)
   }
 }
