@@ -1,6 +1,7 @@
 import { h, render, onUnmounted } from 'vue'
 import ToastComponent from './Toast.vue'
-import { types, Options } from './types'
+import { types } from './types'
+import type { Options } from './types'
 
 
 
