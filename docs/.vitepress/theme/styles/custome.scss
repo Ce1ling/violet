@@ -160,7 +160,6 @@
   
   // 文档底部
   .VPDocFooter {
-    // display: none !important;
     .prev,
     .next {
       border-radius: var(--border-radius);
@@ -178,6 +177,14 @@
       &::after {
         content: '>';
         right: 4px;
+      }
+    }
+    .pager-link {
+      border-radius: 0;
+      &:hover {
+        border-color: transparent;
+        border-bottom-color: var(--primary-color);
+        box-shadow: 0 2px 0 0 var(--primary-color);
       }
     }
   }
