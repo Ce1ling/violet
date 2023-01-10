@@ -1,17 +1,18 @@
 <script setup lang="ts">
 import { computed, onMounted, Transition, ref, onBeforeUnmount } from 'vue'
-import type { Options } from './index'
+import type { Options } from './types'
 import { Icon as ViIcon } from '../index'
 
 type Props = {
   type: Options['type']
+  content: string
+  duration?: number
   yPosition?: string
-  duration: number
 }
 const props = withDefaults(defineProps<Props>(), {
   type: 'info',
-  yPosition: '0px',
-  duration: 3000
+  duration: 3000,
+  yPosition: '20px'
 })
 
 const visible = ref(false)
@@ -27,13 +28,14 @@ const zIndex = computed(() => {
   return year
 })
 
-let timer: number
+let timer: number | null = null
 onMounted(() => {
   visible.value = true
   timer = setTimeout(() => visible.value = false, props.duration)
 })
 onBeforeUnmount(() => {
-  clearTimeout(timer)
+  clearTimeout(timer as number)
+  timer = null
 })
 
 </script>
@@ -44,7 +46,7 @@ onBeforeUnmount(() => {
       <slot name="prefix">
         <!-- <vi-icon name="Warning" /> -->
       </slot>
-      <slot></slot>
+      {{ content }}
     </div>
   </Transition>
 </template>

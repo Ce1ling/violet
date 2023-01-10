@@ -1,36 +1,35 @@
-import { h, render } from 'vue'
+import { h, render, onUnmounted } from 'vue'
 import ToastComponent from './Toast.vue'
+import { types, Options } from './types'
 
-export type Options = {
-  type: 'primary' | 'success' | 'info' | 'warning' | 'danger'
-  content: string
-  duration: number
-}
+
 
 export const Toast = (ops: Options | string) => {
-  const defaultOps = {
-    duration: 3000,
+  const renderToast = (ops: Options) => {
+    const vNode = h(ToastComponent, ops)
+    render(vNode, document.body)
+
+    const timer: NodeJS.Timer = setTimeout(() => {
+      render(null, document.body)
+    }, ops.duration ? (ops.duration + 300) : 3300)
+
+    onUnmounted(() => {
+      clearTimeout(timer)
+    })
   }
+
   // 传递了配置对象
   if (typeof ops === 'object') {
-    const { content, duration } = ops
-    const vNode = h(ToastComponent, {
-      innerText: content,
-    })
-    render(vNode, document.body)
-    setTimeout(() => {
-      render(null, document.body)
-    }, duration ? 1500 : duration)
+    renderToast(ops)
   } else {
     // 仅传递一个字符串
-    const vNode = h(ToastComponent, {
-      innerText: ops,
-      yPosition: '20px',
-      type: 'primary',
-    })
-    render(vNode, document.body)
-    setTimeout(() => {
-      render(null, document.body)
-    }, defaultOps.duration + 300)
+    renderToast({ type: 'info', content: ops })
   }
 }
+
+// 静态方法
+Object.values(types).forEach((type) => {
+  Toast[type] = (str: string) => {
+    Toast({ type: type as Options['type'], content: str })
+  }
+})

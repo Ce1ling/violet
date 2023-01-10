@@ -3,7 +3,8 @@ import { Toast } from '../../../packages/components/Toast'
 
 
 const click = () => {
-  Toast('hi toast')
+  // Toast('hi toast')
+  Toast.primary('some text')
 }
 </script>
 
