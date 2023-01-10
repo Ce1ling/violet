@@ -14,7 +14,6 @@ const props = withDefaults(defineProps<Props>(), {
   duration: 3000
 })
 
-const year = new Date().getFullYear()
 const visible = ref(false)
 
 const classList = computed(() => {
@@ -24,8 +23,10 @@ const getYPosition = computed(() => {
   return props.yPosition
 })
 const zIndex = computed(() => {
-  return year + 1
+  const year = new Date().getFullYear()
+  return year
 })
+
 let timer: number
 onMounted(() => {
   visible.value = true
@@ -51,24 +52,19 @@ onBeforeUnmount(() => {
 <style lang="scss">
 @keyframes show {
   from {
-    transform: translate(-50%, -100%) scale(.5);
-    // test
-    transform: translate(-50%, -100%);
+    transform: translate(-50%, -100%) scale(0.5);
   }
   to {
     transform: translate(-50%, 0%) scale(1);
-    // test
-    transform: translate(-50%, 0%);
   }
 }
-.vi-toast-enter-active,
-.vi-toast-leave-active {
+.vi-toast-enter-active {
   animation: show .3s ease;
 }
-.vi-toast-enter-from,
-.vi-toast-leave-to {
+.vi-toast-leave-active {
   animation: show .3s ease reverse;
 }
+
 .vi-toast {
   position: fixed;
   left: 50%;
