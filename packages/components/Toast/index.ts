@@ -10,7 +10,7 @@ export const Toast = (ops: Options | string) => {
     const vNode = h(ToastComponent, ops)
     render(vNode, document.body)
 
-    const timer: NodeJS.Timer = setTimeout(() => {
+    const timer = setTimeout(() => {
       render(null, document.body)
     }, ops.duration ? (ops.duration + 300) : 3300)
 
@@ -29,8 +29,6 @@ export const Toast = (ops: Options | string) => {
 }
 
 // 静态方法
-Object.values(types).forEach((type) => {
-  Toast[type] = (str: string) => {
-    Toast({ type: type as Options['type'], content: str })
-  }
+Object.values(types).forEach(type => {
+  Toast[type] = (str: string) => Toast({ type: type as Options['type'], content: str })
 })

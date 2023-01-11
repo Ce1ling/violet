@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, Transition, ref, onBeforeUnmount } from 'vue'
+import { computed, onMounted, Transition, ref, onBeforeUnmount, h } from 'vue'
 import type { Options } from './types'
 import { Icon as ViIcon } from '../index'
 
@@ -28,6 +28,19 @@ const zIndex = computed(() => {
   return year
 })
 
+const RenderIcon = () => {
+  const map = {
+    primary: 'CheckCircle',
+    success: 'CheckCircle',
+    info: 'InfoCircle',
+    warning: 'WarningCircle',
+    danger: 'CloseCircle'
+  }
+  return h(ViIcon, {
+    name: map[props.type]
+  })
+}
+
 let timer: number | null = null
 onMounted(() => {
   visible.value = true
@@ -44,15 +57,17 @@ onBeforeUnmount(() => {
   <Transition name="vi-toast">
     <div class="vi-toast" :class="classList" v-show="visible">
       <slot name="prefix">
-        <!-- <vi-icon name="Warning" /> -->
+        <RenderIcon />
       </slot>
-      {{ content }}
+      <span>{{ content }}</span>
+      <slot name="suffix">
+      </slot>
     </div>
   </Transition>
 </template>
 
 <style lang="scss">
-@keyframes show {
+@keyframes zoomIn {
   from {
     transform: translate(-50%, -100%) scale(0.5);
   }
@@ -61,10 +76,10 @@ onBeforeUnmount(() => {
   }
 }
 .vi-toast-enter-active {
-  animation: show .3s ease;
+  animation: zoomIn .3s ease;
 }
 .vi-toast-leave-active {
-  animation: show .3s ease reverse;
+  animation: zoomIn .3s ease reverse;
 }
 
 .vi-toast {
@@ -76,6 +91,9 @@ onBeforeUnmount(() => {
   padding: 8px 28px;
   border-radius: var(--border-radius);
   border: 1px solid var(--shadow-color);
+  display: flex;
+  align-items: center;
+  gap: 8px;
 
   &--primary {
     background-color: #f1e2ff;
