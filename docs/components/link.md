@@ -4,7 +4,7 @@
 
 ## 基础用法
 
-使用 `type` 属性可以定义一些基础类型。
+使用 `type` 属性，定义链接类别。默认为 `primary`。
 
 <div class="examples">
   <vi-row gap="28px">
@@ -28,7 +28,7 @@
 
 ## 下划线
 
-您可以将 `underline` 变为 `false`，来取消下划线，如 `type="success"`、`type="danger"` 所示。
+使用 `underline` 属性，改变链接下划线状态，`true` 为展示，`false` 不展示（如 `type="success"`、`type="danger"` 所示）。
 
 <div class="examples">
   <vi-row gap="28px">
@@ -52,7 +52,7 @@
 
 ## 禁用状态
 
-使用 `disabled` 属性来禁用链接。
+使用 `disabled` 属性，来禁用链接。
 
 <div class="examples">
   <vi-row gap="28px">
