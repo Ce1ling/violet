@@ -19,7 +19,7 @@ const copy = (name: string) => {
 
 ## 基础用法
 
-使用 `name` 属性来定义图标，它是必须的！
+使用 `name` 属性，来定义图标，它是必须的！
 
 <div class="examples">
   <vi-row>
@@ -47,7 +47,7 @@ const copy = (name: string) => {
 
 ## 加载动画
 
-Violet 为您提供了一个内置的加载动画，使用 `loading` 属性可以启用它。
+使用 `loading` 属性，来启用加载动画，这是 Violet 为您提供的一个加载动画。
 
 ::: tip
 `loading` 属性不一定非要加在 loading 图标上，它可以加在任意一个 `vi-icon` 上，您可以点击“测试”按钮查看效果。
@@ -78,7 +78,7 @@ const isLoading = ref(false)
 
 ## 自定义加载动画时长
 
-有时候可能您对动画的默认加载时长不满意，可以使用 `duration` 属性来自定义加载时间。通过下方“加”、“减”按钮查看效果。
+使用 `duration` 属性，定义加载时间，通过下方“加”、“减”按钮查看效果。
 
 <div class="examples">
   <vi-row>
@@ -107,7 +107,7 @@ const duration = ref(2)
 
 ## 自定义颜色
 
-图标的默认颜色是继承自父级的，您可以使用 `color` 属性手动定义颜色。
+使用 `color` 属性，定义图标颜色。
 
 <div class="examples">
   <vi-row>
@@ -129,7 +129,7 @@ const duration = ref(2)
 
 ## 自定义 hover 状态颜色
 
-使用 `hover-color` 属性，可以直接定义图标 `hover` 状态的颜色。
+使用 `hover-color` 属性，定义图标 `hover` 状态的颜色。
 
 <div class="examples">
   <vi-row>
@@ -151,7 +151,7 @@ const duration = ref(2)
 
 ## 自定义鼠标指针
 
-使用 `cursor` 属性来定义鼠标指针状态。此功能完全等同于 CSS 的 `cursor` 属性，考虑到图标大部分时候都是可以被点击的，所以它默认是 `pointer` 状态。
+使用 `cursor` 属性，定义鼠标指针状态。此功能完全等同于 CSS 的 `cursor` 属性，考虑到图标大部分时候都是可以被点击的，所以它默认是 `pointer` 状态。
 
 <div class="examples">
   <vi-row>
