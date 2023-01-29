@@ -51,7 +51,11 @@
 使用 `direction` 属性，设置分割线方向，它仅支持 `vertical` 或 `horizontal`。默认为 `horizontal`。
 
 <div class="examples">
-
+  大风起兮云飞扬
+  <vi-divider position="center" direction="vertical" />
+  威加海内兮归故乡
+  <vi-divider position="center" direction="vertical" />
+  安得猛士兮守四方！
 </div>
 
 ## 定义边距

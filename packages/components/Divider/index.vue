@@ -5,18 +5,20 @@ type Props = {
   color?: string
   borderStyle?: string
   position?: 'start' | 'center' | 'end'
+  direction?: 'vertical' | 'horizontal'
 }
 const props = withDefaults(defineProps<Props>(), {
   gap: '18px',
   thick: '1px',
   color: 'var(--primary-color)',
   borderStyle: 'solid',
-  position: 'start'
+  position: 'start',
+  direction: 'horizontal'
 })
 </script>
 
 <template>
-  <div class="vi-divider">
+  <div class="vi-divider" :class="props.direction">
     <span class="vi-divider__text" :class="props.position">
       <slot></slot>
     </span>
@@ -25,10 +27,6 @@ const props = withDefaults(defineProps<Props>(), {
 
 <style lang="scss">
 .vi-divider {
-  display: block;
-  width: 100%;
-  border-top: v-bind(thick) v-bind(borderStyle) v-bind(color);
-  margin: v-bind(gap) 0;
   position: relative;
   .vi-divider__text {
     position: absolute;
@@ -50,6 +48,19 @@ const props = withDefaults(defineProps<Props>(), {
       top: 0;
       right: 18px;
     }
+  }
+  &.horizontal {
+    display: block;
+    width: 100%;
+    margin: v-bind(gap) 0;
+    border-top: v-bind(thick) v-bind(borderStyle) v-bind(color);
+  }
+  &.vertical {
+    display: inline-block;
+    height: 1em;
+    margin: 0 v-bind(gap);
+    vertical-align: middle;
+    border-left: v-bind(thick) v-bind(borderStyle) v-bind(color);
   }
 }
 </style>
