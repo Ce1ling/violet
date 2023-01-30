@@ -8,8 +8,8 @@ const duration = ref(2)
 
 const copy = (name: string) => {
   navigator.clipboard.writeText(`<vi-icon name="${name}" />`)
-    .then(res => Toast('复制成功'))
-    .catch(err => Toast('复制失败'))
+    .then(res => Toast.success('复制成功'))
+    .catch(err => Toast.danger('复制失败'))
 }
 </script>
 
@@ -176,9 +176,9 @@ const duration = ref(2)
 点击图标即可复制。
 
 <ul class="icon-list">
-  <li v-for="icon in Object.keys(iconMaps)" :key="icon" @click="copy(icon)">
-    <vi-icon :name="icon" size="28px" />
-    <span> {{ icon }} </span>
+  <li v-for="iconName in Object.keys(iconMaps)" :key="iconName" @click="copy(iconName)">
+    <vi-icon :name="iconName" size="28px" />
+    <span> {{ iconName }} </span>
   </li>
 </ul>
 
@@ -200,9 +200,7 @@ const duration = ref(2)
     border-right: 1px solid var(--border-color);
     border-bottom: 1px solid var(--border-color);
     span { cursor: pointer }
-    &:hover {
-      color: var(--primary-color);
-    }
+    &:hover { color: var(--primary-color); }
   }
 }
 @media screen and (max-width: 1820px) {
