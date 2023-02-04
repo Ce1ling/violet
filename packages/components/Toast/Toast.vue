@@ -54,7 +54,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <Transition name="vi-toast">
+  <Transition name="vi-toast-fade">
     <div class="vi-toast" :class="classList" v-show="visible">
       <slot name="prefix">
         <RenderIcon />
@@ -75,10 +75,10 @@ onBeforeUnmount(() => {
     transform: translate(-50%, 0%) scale(1);
   }
 }
-.vi-toast-enter-active {
+.vi-toast-fade-enter-active {
   animation: zoomIn .3s ease;
 }
-.vi-toast-leave-active {
+.vi-toast-fade-leave-active {
   animation: zoomIn .3s ease reverse;
 }
 

@@ -1,29 +1,33 @@
-import { h, render, onUnmounted } from 'vue'
+import { createApp } from 'vue'
+import type { App } from 'vue'
 import ToastComponent from './Toast.vue'
 import { types } from './types'
 import type { Options } from './types'
 
 
-
 export const Toast = (ops: Options | string) => {
+  /** 渲染 Toast */
   const renderToast = (ops: Options) => {
-    const vNode = h(ToastComponent, ops)
-    render(vNode, document.body)
+    const app = createApp(ToastComponent, ops)
+    const fragment = document.createDocumentFragment()
+    app.mount(fragment)
+    document.body.appendChild(fragment)
 
-    const timer = setTimeout(() => {
-      render(null, document.body)
-    }, ops.duration ? (ops.duration + 300) : 3300)
-
-    onUnmounted(() => {
-      clearTimeout(timer)
-    })
+    removeToast(app, ops.duration)
   }
 
-  // 传递了配置对象
+  /** 移除 Toast */
+  const removeToast = (app: App<Element>, duration: number = 3300) => {
+    let timer: number | null = window.setTimeout(() => {
+      app.unmount()
+      clearTimeout(timer as number)
+      timer = null
+    }, duration);
+  }
+
   if (typeof ops === 'object') {
     renderToast(ops)
   } else {
-    // 仅传递一个字符串
     renderToast({ type: 'info', content: ops })
   }
 }
