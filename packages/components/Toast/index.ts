@@ -2,11 +2,8 @@ import { createApp, watch, ref } from 'vue'
 import type { App } from 'vue'
 import ToastComponent from './Toast.vue'
 import { types } from './types'
-import type { Options } from './types'
+import type { Options, Ins } from './types'
 
-type Ins = {
-  [k: string]: any
-}
 const instances = ref<Ins[]>([])
 
 export const Toast = (ops: Options | string) => {
@@ -45,11 +42,9 @@ export const Toast = (ops: Options | string) => {
     }, 0)
   }
 
-  if (typeof ops === 'object') {
-    renderToast(ops)
-  } else {
-    renderToast({ type: 'info', content: ops })
-  }
+  renderToast(typeof ops === 'object' 
+    ? ops 
+    : { type: 'info', content: ops })
 }
 
 // 静态方法

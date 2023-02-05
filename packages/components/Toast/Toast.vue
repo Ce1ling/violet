@@ -78,9 +78,11 @@ onBeforeUnmount(() => {
 @keyframes zoom-in {
   from {
     transform: translate(-50%, -100%) scale(0.5);
+    opacity: 0;
   }
   to {
     transform: translate(-50%, 0%) scale(1);
+    opacity: 1;
   }
 }
 .vi-toast-fade-enter-active {

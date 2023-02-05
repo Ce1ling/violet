@@ -11,3 +11,7 @@ export type Options = {
   content: string
   duration?: number
 }
+
+export type Ins = {
+  [k: string]: any
+}
