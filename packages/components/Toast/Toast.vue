@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, Transition, ref, onBeforeUnmount, h } from 'vue'
+import { computed, onMounted, Transition, ref, onBeforeUnmount, h, nextTick } from 'vue'
 import type { Options } from './types'
 import { Icon as ViIcon } from '../index'
 
@@ -7,25 +7,23 @@ type Props = {
   type: Options['type']
   content: string
   duration?: number
-  yPosition?: string
 }
 const props = withDefaults(defineProps<Props>(), {
   type: 'info',
   duration: 3000,
-  yPosition: '20px'
 })
 
+let timer: number | null = null
 const visible = ref(false)
+const toast = ref<HTMLElement>()
+const height = ref<number>()
+const offset = ref<string>('0px')
 
 const classList = computed(() => {
   return `vi-toast--${props.type}`
 })
-const getYPosition = computed(() => {
-  return props.yPosition
-})
-const zIndex = computed(() => {
-  const year = new Date().getFullYear()
-  return year
+const getZIndex = computed(() => {
+  return new Date().getFullYear()
 })
 
 const RenderIcon = () => {
@@ -40,11 +38,21 @@ const RenderIcon = () => {
     name: map[props.type]
   })
 }
+const setOffset = (value: number) => {
+  offset.value = value + 'px'
+}
 
-let timer: number | null = null
+defineExpose({
+  height,
+  setOffset
+})
+
 onMounted(() => {
   visible.value = true
   timer = setTimeout(() => visible.value = false, props.duration)
+  nextTick(() => {
+    height.value = toast.value!.offsetHeight
+  })
 })
 onBeforeUnmount(() => {
   clearTimeout(timer as number)
@@ -55,7 +63,7 @@ onBeforeUnmount(() => {
 
 <template>
   <Transition name="vi-toast-fade">
-    <div class="vi-toast" :class="classList" v-show="visible">
+    <div ref="toast" class="vi-toast" :class="classList" v-show="visible">
       <slot name="prefix">
         <RenderIcon />
       </slot>
@@ -67,7 +75,7 @@ onBeforeUnmount(() => {
 </template>
 
 <style lang="scss">
-@keyframes zoomIn {
+@keyframes zoom-in {
   from {
     transform: translate(-50%, -100%) scale(0.5);
   }
@@ -76,24 +84,25 @@ onBeforeUnmount(() => {
   }
 }
 .vi-toast-fade-enter-active {
-  animation: zoomIn .3s ease;
+  animation: zoom-in .3s ease;
 }
 .vi-toast-fade-leave-active {
-  animation: zoomIn .3s ease reverse;
+  animation: zoom-in .3s ease reverse;
 }
 
 .vi-toast {
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
-  top: v-bind(getYPosition);
-  z-index: v-bind(zIndex);
+  top: v-bind(offset);
+  z-index: v-bind(getZIndex);
   padding: 8px 28px;
   border-radius: var(--border-radius);
   border: 1px solid var(--shadow-color);
   display: flex;
   align-items: center;
   gap: 8px;
+  transition: top .3s ease;
 
   &--primary {
     background-color: #f1e2ff;
