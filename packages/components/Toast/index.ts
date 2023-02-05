@@ -37,8 +37,12 @@ export const Toast = (ops: Options | string) => {
   /** 设置偏移量 */
   const setOffset = (ins: Ins) => {
     const index = instances.value.indexOf(ins)
-    const result = (index * 60) + 20
-    ins.setOffset(result)
+    let timer: number | null = window.setTimeout(() => {
+      const { height, gap } = ins
+      ins.setOffset(index * (height + gap) + gap)
+      clearTimeout(timer as number)
+      timer = null
+    }, 0)
   }
 
   if (typeof ops === 'object') {

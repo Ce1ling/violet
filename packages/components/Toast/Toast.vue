@@ -10,14 +10,15 @@ type Props = {
 }
 const props = withDefaults(defineProps<Props>(), {
   type: 'info',
-  duration: 3000,
+  duration: 3000
 })
 
 let timer: number | null = null
 const visible = ref(false)
-const toast = ref<HTMLElement>()
+const toastEl = ref<HTMLElement>()
 const height = ref<number>()
 const offset = ref<string>('0px')
+const gap = ref<number>(20)
 
 const classList = computed(() => {
   return `vi-toast--${props.type}`
@@ -44,15 +45,14 @@ const setOffset = (value: number) => {
 
 defineExpose({
   height,
+  gap,
   setOffset
 })
 
 onMounted(() => {
   visible.value = true
   timer = setTimeout(() => visible.value = false, props.duration)
-  nextTick(() => {
-    height.value = toast.value!.offsetHeight
-  })
+  nextTick(() => height.value = toastEl.value!.offsetHeight)
 })
 onBeforeUnmount(() => {
   clearTimeout(timer as number)
@@ -63,7 +63,7 @@ onBeforeUnmount(() => {
 
 <template>
   <Transition name="vi-toast-fade">
-    <div ref="toast" class="vi-toast" :class="classList" v-show="visible">
+    <div ref="toastEl" class="vi-toast" :class="classList" v-show="visible">
       <slot name="prefix">
         <RenderIcon />
       </slot>
