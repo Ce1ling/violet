@@ -9,7 +9,7 @@ const instances = ref<Ins[]>([])
 export const Toast = (ops: Options | string) => {
   /** 渲染 Toast */
   const renderToast = (ops: Options) => {
-    const app = createApp(ToastComponent, ops)
+    const app = createApp(ToastComponent, { ...ops, instances })
     const fragment = document.createDocumentFragment()
     const ins = app.mount(fragment)
     instances.value.push(ins)

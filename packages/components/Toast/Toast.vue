@@ -1,16 +1,22 @@
 <script setup lang="ts">
 import { computed, onMounted, Transition, ref, onBeforeUnmount, h, nextTick } from 'vue'
-import type { Options } from './types'
+import type { Options, Ins } from './types'
 import { Icon as ViIcon } from '../index'
 
 type Props = {
   type: Options['type']
   content: string
   duration?: number
+  closable?: boolean
+  isHtmlStr?: boolean
+  /** private prop */
+  instances?: Ins[]
 }
 const props = withDefaults(defineProps<Props>(), {
   type: 'info',
-  duration: 3000
+  duration: 3000,
+  closable: false,
+  isHtmlStr: false
 })
 
 let timer: number | null = null
@@ -42,6 +48,9 @@ const RenderIcon = () => {
 const setOffset = (value: number) => {
   offset.value = value + 'px'
 }
+const handleClose = () => {
+  visible.value = false
+}
 
 defineExpose({
   height,
@@ -67,9 +76,9 @@ onBeforeUnmount(() => {
       <slot name="prefix">
         <RenderIcon />
       </slot>
-      <span>{{ content }}</span>
-      <slot name="suffix">
-      </slot>
+      <span v-if="isHtmlStr" v-html="content"></span>
+      <span v-else>{{ content }}</span>
+      <vi-icon name="Close" v-if="closable" @click="handleClose" />
     </div>
   </Transition>
 </template>
