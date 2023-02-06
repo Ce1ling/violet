@@ -22,7 +22,10 @@ const props = withDefaults(defineProps<Props>(), {
   loading: false,
   isPrefix: true
 })
-const emit = defineEmits(['click'])
+type Emits = {
+  (e: 'click', event: MouseEvent): void
+}
+const emit = defineEmits<Emits>()
 
 const color = reactive({
   primary: 'var(--primary-color)',
