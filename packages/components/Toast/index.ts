@@ -18,7 +18,10 @@ export const Toast = (ops: Options | string) => {
     setOffset(ins)
     /** 请勿在 setOffset 之前 watch */
     watch(instances.value, () => setOffset(ins))
-    removeToast(app, ins, ops.duration)
+    if (ops.duration !== 0) {
+      removeToast(app, ins, ops.duration)
+    }
+    return ins
   }
 
   /** 移除 Toast */
@@ -42,7 +45,7 @@ export const Toast = (ops: Options | string) => {
     }, 0)
   }
 
-  renderToast(typeof ops === 'object' 
+  return renderToast(typeof ops === 'object' 
     ? ops 
     : { type: 'info', content: ops })
 }

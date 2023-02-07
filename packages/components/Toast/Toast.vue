@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, Transition, ref, onBeforeUnmount, h, nextTick } from 'vue'
+import type { ComponentPublicInstance } from 'vue'
 import type { Options, Ins } from './types'
 import { Icon as ViIcon } from '../index'
 
@@ -55,12 +56,15 @@ const handleClose = () => {
 defineExpose({
   height,
   gap,
-  setOffset
+  setOffset,
+  close: handleClose
 })
 
 onMounted(() => {
   visible.value = true
-  timer = setTimeout(() => visible.value = false, props.duration)
+  if (props.duration !== 0) {
+    timer = setTimeout(() => visible.value = false, props.duration)
+  }
   nextTick(() => height.value = toastEl.value!.offsetHeight)
 })
 onBeforeUnmount(() => {

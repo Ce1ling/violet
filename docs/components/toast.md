@@ -117,4 +117,18 @@ const handleHtmlStr = () => {
 
 ### 属性
 
-### 事件
+| 属性名 | 属性说明 | 属性类型 | 属性默认值 |
+| :---: | :---: | :---: | :---: |
+| type | Toast 类型 | string | 'info' |
+| content | Toast 内容 | string | —— |
+| duration | Toast 存在时间，设置为 0 将不会自动关闭 | number | 3000 |
+| closable | 是否可手动关闭 | boolean | false |
+| isHtmlStr | 是否使用 HTML 字符串 | boolean | false |
+
+### 方法
+
+Toast 调用后会返回当前 Toast 实例，如果想手动关闭，可以调用实例的 `close` 方法。
+
+| 方法名 | 方法说明 |
+| :---: | :---: |
+| close | 手动关闭 Toast |
