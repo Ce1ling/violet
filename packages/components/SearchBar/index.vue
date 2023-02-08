@@ -2,13 +2,13 @@
 import { onMounted } from 'vue'
 import { useSearch } from '../../hooks/useSearch'
 
-const { show } = useSearch()
+const { open } = useSearch()
 
 onMounted(() => {
   window.addEventListener('keydown', (e) => {
     if (e.ctrlKey && (e.key === 'k')) {
       e.preventDefault()
-      show()
+      open()
     }
   })
 })
@@ -16,7 +16,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <button class="search-btn" @click="show">
+  <button class="search-btn" @click="open">
     <vi-icon name="Search" />
     <div class="keyboard"> + </div>
     <span> 唤起搜索 </span>

@@ -8,7 +8,7 @@ export const useSearch = () => {
   const handleSearchClose = (e: KeyboardEvent) => {
     if (e.key === 'Escape') { close() }
   }
-  const show = () => {
+  const open = () => {
     if (hasExist) { return }
     hasExist = true
     const vNode = h(SearchModal)
@@ -26,7 +26,7 @@ export const useSearch = () => {
   }
 
   return {
-    show,
+    open,
     close
   }
 }
