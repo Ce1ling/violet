@@ -1,8 +1,17 @@
 <script setup lang="ts">
-import { computed, onMounted, Transition, ref, onBeforeUnmount, h, nextTick } from 'vue'
-import type { ComponentPublicInstance } from 'vue'
-import type { Options, Ins } from './types'
+import { 
+  h, 
+  ref, 
+  nextTick, 
+  computed, 
+  onMounted, 
+  Transition, 
+} from 'vue'
 import { Icon as ViIcon } from '../index'
+import { useTimeout } from '../../hooks/useTimeout'
+
+import type { Options } from './types'
+
 
 type Props = {
   type: Options['type']
@@ -10,8 +19,9 @@ type Props = {
   duration?: number
   closable?: boolean
   isHtmlStr?: boolean
-  /** private prop */
-  instances?: Ins[]
+  /** private props */
+  _id: string
+  close: (id: string) => void
 }
 const props = withDefaults(defineProps<Props>(), {
   type: 'info',
@@ -20,7 +30,6 @@ const props = withDefaults(defineProps<Props>(), {
   isHtmlStr: false
 })
 
-let timer: number | null = null
 const visible = ref(false)
 const toastEl = ref<HTMLElement>()
 const height = ref<number>()
@@ -51,9 +60,12 @@ const setOffset = (value: number) => {
 }
 const handleClose = () => {
   visible.value = false
+  useTimeout(() => document.body.removeChild(toastEl.value!), 300)
+  props.close(props._id)
 }
 
 defineExpose({
+  _id: props._id,
   height,
   gap,
   setOffset,
@@ -63,13 +75,9 @@ defineExpose({
 onMounted(() => {
   visible.value = true
   if (props.duration !== 0) {
-    timer = setTimeout(() => visible.value = false, props.duration)
+    useTimeout(() => visible.value = false, props.duration)
   }
   nextTick(() => height.value = toastEl.value!.offsetHeight)
-})
-onBeforeUnmount(() => {
-  clearTimeout(timer as number)
-  timer = null
 })
 
 </script>
