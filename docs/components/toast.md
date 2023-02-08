@@ -1,11 +1,3 @@
-# Toast
-
-吐司轻提示组件
-
-## 基础用法
-
-从 Violet 中导入 `Toast` 方法，调用即可。
-
 <script setup lang="ts">
 import { Toast } from '../../packages/components/Toast'
 
@@ -26,7 +18,25 @@ const handleClose = () => {
     content: '可手动关闭'
   })
 }
+
+const handleUnclosed = () => {
+  Toast({
+    closable: true,
+    type: 'primary',
+    content: '不会自动关闭，不信你可以等，信了点这里 →',
+    duration: 0
+  })
+}
+
 </script>
+
+# Toast
+
+吐司轻提示组件
+
+## 基础用法
+
+从 Violet 中导入 `Toast` 方法，调用即可。
 
 <div class="examples">
   <vi-row>
@@ -110,6 +120,31 @@ const handleHtmlStr = () => {
     content: '<b>这是 HTML 字符串内容</b>'
   })
 }
+</script>
+```
+
+## 不会自动关闭
+
+设置 `duration` 属性为 `0`，Toast 就不会自动关闭。
+
+<div class="examples">
+  <vi-button @click="handleUnclosed">不自动关闭</vi-button>
+</div>
+
+```vue
+<template>
+  <vi-button @click="handleUnclosed">不自动关闭</vi-button>
+</template>
+
+<script>
+  const handleUnclosed = () => {
+    Toast({
+      closable: true,
+      type: 'primary',
+      content: '不会自动关闭，不信你可以等，信了点这里 →',
+      duration: 0
+    })
+  }
 </script>
 ```
 
