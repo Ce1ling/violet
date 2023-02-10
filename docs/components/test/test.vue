@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { Toast } from '../../../packages/components/Toast'
 
 
 </script>
 
 <template>
   <div class="test">
+    <vi-switch />
   </div>
 </template>
 
