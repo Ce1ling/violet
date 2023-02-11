@@ -1,17 +1,31 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 
-
-const checked = ref<boolean>(false)
-watch(checked, () => {
-  console.log('change');
+type Props = {
+  onColor: string
+  offColor: string
+  modelValue: boolean
+}
+const props = withDefaults(defineProps<Props>(), {
+  onColor: 'var(--primary-color)',
+  offColor: 'var(--shadow-color)'
 })
+type Emits = {
+  (e: 'update:modelValue', checked: boolean): void
+}
+const emit = defineEmits<Emits>()
+
+const checked = ref(props.modelValue)
+
+const toggleChecked = () => {
+  checked.value = !checked.value
+  emit('update:modelValue', checked.value)
+}
 
 </script>
 
 <template>
-  <div class="vi-switch" :class="{ 'is-checked': checked }" @click="checked = !checked">
-    <!-- <input type="checkbox" class="vi-switch__input" v-model="checked" /> -->
+  <div class="vi-switch" :class="{ 'is-checked': checked }" @click="toggleChecked">
     <div class="vi-switch__active"></div>
   </div>
 </template>
@@ -19,9 +33,9 @@ watch(checked, () => {
 <style lang="scss">
 .vi-switch {
   width: 40px;
-  // max-width: 40px;
+  max-width: 40px;
   height: 20px;
-  background-color: var(--shadow-color);
+  background-color: v-bind(offColor);
   cursor: pointer;
   position: relative;
   border-radius: 10px;
@@ -37,14 +51,14 @@ watch(checked, () => {
     left: 0;
     border-radius: 10px;
     transition: left .3s;
-    border: 2px solid var(--shadow-color);
+    border: 2px solid v-bind(offColor);
   }
 
   &.is-checked {
-    background-color: var(--primary-color);
+    background-color: v-bind(onColor);
     .vi-switch__active {
       left: calc(100% - 20px);
-      border-color: var(--primary-color);
+      border-color: v-bind(onColor);
     }
   }
 }
