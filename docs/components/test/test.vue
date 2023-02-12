@@ -1,16 +1,15 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 
-const checked = ref<boolean>(true)
-watch(checked, (n) => {
-  console.log('outside change', n);
-})
+const value = ref<boolean>(true)
 
 </script>
 
 <template>
   <div class="test">
-    <vi-switch v-model="checked" on-color="blue" off-color="red" />
+    <vi-switch v-model="value" on-color="blue" off-color="red" />
+    <vi-switch v-model="value" disabled />
+    <vi-switch v-model="value" loading />
   </div>
 </template>
 

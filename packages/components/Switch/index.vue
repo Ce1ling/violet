@@ -1,14 +1,19 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref, watch } from 'vue'
+import { Icon as ViIcon } from '../index'
 
 type Props = {
   onColor: string
   offColor: string
   modelValue: boolean
+  disabled: boolean
+  loading: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
   onColor: 'var(--primary-color)',
-  offColor: 'var(--shadow-color)'
+  offColor: 'var(--shadow-color)',
+  disabled: false,
+  loading: false
 })
 type Emits = {
   (e: 'update:modelValue', checked: boolean): void
@@ -17,7 +22,17 @@ const emit = defineEmits<Emits>()
 
 const checked = ref(props.modelValue)
 
+watch(() => props.modelValue, n => checked.value = n)
+
+const classObj = computed(() => {
+  return { 
+    'is-checked': checked.value,
+    'is-disabled': props.disabled || props.loading
+  }
+})
+
 const toggleChecked = () => {
+  if (props.disabled || props.loading) { return }
   checked.value = !checked.value
   emit('update:modelValue', checked.value)
 }
@@ -25,8 +40,16 @@ const toggleChecked = () => {
 </script>
 
 <template>
-  <div class="vi-switch" :class="{ 'is-checked': checked }" @click="toggleChecked">
-    <div class="vi-switch__active"></div>
+  <div class="vi-switch" :class="classObj" @click="toggleChecked">
+    <div class="vi-switch__active">
+      <vi-icon 
+        name="Loading" 
+        size="inherit" 
+        :color="checked ? onColor : offColor" 
+        loading 
+        v-if="loading"
+      />
+    </div>
   </div>
 </template>
 
@@ -43,6 +66,9 @@ const toggleChecked = () => {
     opacity: 0;
   }
   .vi-switch__active {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     width: 20px;
     height: 20px;
     background-color: #fff;
@@ -60,6 +86,10 @@ const toggleChecked = () => {
       left: calc(100% - 20px);
       border-color: v-bind(onColor);
     }
+  }
+  &.is-disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
   }
 }
 </style>
