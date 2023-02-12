@@ -8,12 +8,16 @@ type Props = {
   modelValue: boolean
   disabled: boolean
   loading: boolean
+  onContent: string
+  offContent: string
+  isInside: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
   onColor: 'var(--primary-color)',
   offColor: 'var(--shadow-color)',
   disabled: false,
-  loading: false
+  loading: false,
+  isInside: false
 })
 type Emits = {
   (e: 'update:modelValue', checked: boolean): void
@@ -40,32 +44,75 @@ const toggleChecked = () => {
 </script>
 
 <template>
-  <div class="vi-switch" :class="classObj" @click="toggleChecked">
-    <div class="vi-switch__active">
-      <vi-icon 
-        name="Loading" 
-        size="inherit" 
-        :color="checked ? onColor : offColor" 
-        loading 
-        v-if="loading"
-      />
+  <div class="vi-switch">
+    <div :class="{ 'is-active': !checked }" v-if="!isInside && onContent">{{ onContent }}</div>
+    <div class="vi-switch__inner" :class="classObj" @click="toggleChecked">
+      <span v-if="isInside" class="vi-switch__inner-text" :class="{ 'is-close': !checked }">
+        {{ checked ? onContent : offContent }}
+      </span>
+      <div class="vi-switch__active">
+        <vi-icon 
+          name="Loading" 
+          size="inherit" 
+          :color="checked ? onColor : offColor" 
+          loading 
+          v-if="loading"
+        />
+      </div>
     </div>
+    <div :class="{ 'is-active': checked }" v-if="!isInside && offContent">{{ offContent }}</div>
   </div>
 </template>
 
 <style lang="scss">
 .vi-switch {
-  width: 40px;
-  max-width: 40px;
-  height: 20px;
-  background-color: v-bind(offColor);
-  cursor: pointer;
-  position: relative;
-  border-radius: 10px;
-  .vi-switch__input {
-    opacity: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .is-active {
+    color: v-bind(onColor);
+    transition: color .3s;
   }
-  .vi-switch__active {
+
+  &__inner {
+    width: 40px;
+    max-width: 40px;
+    height: 20px;
+    background-color: v-bind(offColor);
+    cursor: pointer;
+    position: relative;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    
+    &-text {
+      width: 1.5em;
+      font-size: 12px;
+      color: #fff;
+      user-select: none;
+      margin-left: 6px;
+      transition: all .3s;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      &.is-close {
+        margin-left: 20px;
+      }
+    }
+    &.is-checked {
+      background-color: v-bind(onColor);
+      .vi-switch__active {
+        left: calc(100% - 20px);
+        border-color: v-bind(onColor);
+      }
+    }
+    &.is-disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
+  &__active {
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -78,18 +125,6 @@ const toggleChecked = () => {
     border-radius: 10px;
     transition: left .3s;
     border: 2px solid v-bind(offColor);
-  }
-
-  &.is-checked {
-    background-color: v-bind(onColor);
-    .vi-switch__active {
-      left: calc(100% - 20px);
-      border-color: v-bind(onColor);
-    }
-  }
-  &.is-disabled {
-    cursor: not-allowed;
-    opacity: 0.5;
   }
 }
 </style>
