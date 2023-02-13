@@ -10,7 +10,6 @@ import type { Options, Ins } from './types'
 const instances = ref<Ins[]>([])
 
 export const Toast = (ops: Options | string) => {
-  /** 渲染 Toast */
   const renderToast = (ops: Options) => {
     const app = createApp(ToastComponent, { 
       ...ops, 
@@ -32,13 +31,12 @@ export const Toast = (ops: Options | string) => {
     return ins
   }
 
-  /** 手动关闭 Toast */
+  /** 手动关闭方法 */
   const close = (id: string) => {
     const result = instances.value.findIndex(ins => ins._id === id)
     useTimeout(() => instances.value.splice(result, 1), 300)
   }
 
-  /** 移除 Toast */
   const removeToast = (app: App<Element>, ins: Ins, duration = 3300) => {
     useTimeout(() => {
       app.unmount()
@@ -46,7 +44,6 @@ export const Toast = (ops: Options | string) => {
     }, duration)
   }
 
-  /** 设置偏移量 */
   const setOffset = (ins: Ins) => {
     const index = instances.value.indexOf(ins)
     useTimeout(() => {
@@ -60,7 +57,7 @@ export const Toast = (ops: Options | string) => {
     : { type: 'info', content: ops })
 }
 
-// 静态方法
+/** 静态方法 */
 Object.values(types).forEach(type => {
   Toast[type] = (str: string) => Toast({ 
     type: type as Options['type'], 

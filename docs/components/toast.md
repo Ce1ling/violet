@@ -30,9 +30,9 @@ const handleUnclosed = () => {
 
 </script>
 
-# Toast
+# Toast 轻提示
 
-吐司轻提示组件
+轻提示组件，对于一些操作弹出轻型提示。
 
 ## 基础用法
 
