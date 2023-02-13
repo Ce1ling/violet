@@ -3,21 +3,27 @@ import { computed, ref, watch } from 'vue'
 import { Icon as ViIcon } from '../index'
 
 type Props = {
-  onColor: string
-  offColor: string
   modelValue: boolean
-  disabled: boolean
-  loading: boolean
-  onContent: string
-  offContent: string
-  isInside: boolean
+  disabled?: boolean
+  loading?: boolean
+  isInside?: boolean
+  onColor?: string
+  offColor?: string
+  onText?: string
+  offText?: string
+  onIcon?: string
+  offIcon?: string
 }
 const props = withDefaults(defineProps<Props>(), {
   onColor: 'var(--primary-color)',
   offColor: 'var(--shadow-color)',
   disabled: false,
   loading: false,
-  isInside: false
+  isInside: false,
+  onText: '',
+  offText: '',
+  onIcon: '',
+  offIcon: ''
 })
 type Emits = {
   (e: 'update:modelValue', checked: boolean): void
@@ -25,31 +31,47 @@ type Emits = {
 const emit = defineEmits<Emits>()
 
 const checked = ref(props.modelValue)
+const icons = ['onIcon', 'offIcon']
+const texts = ['onText', 'offText']
 
 watch(() => props.modelValue, n => checked.value = n)
 
-const classObj = computed(() => {
-  return { 
-    'is-checked': checked.value,
-    'is-disabled': props.disabled || props.loading
-  }
-})
+const classObj = computed(() => ({ 
+  'is-checked': checked.value,
+  'is-disabled': props.disabled || props.loading
+}))
 
 const toggleChecked = () => {
   if (props.disabled || props.loading) { return }
   checked.value = !checked.value
   emit('update:modelValue', checked.value)
 }
+/** 0 为 off，1 为 on */
+const getDescClass = (type: 0 | 1) => {
+  return { 'is-active': type ? checked.value : !checked.value }
+}
+const hasDesc = (arr: string[]) => (arr.map(item => props[item]).filter(item => item)).length 
 
 </script>
 
 <template>
   <div class="vi-switch">
-    <div :class="{ 'is-active': !checked }" v-if="!isInside && onContent">{{ onContent }}</div>
+    <template v-if="!isInside">
+      <vi-icon :name="offIcon" :class="getDescClass(0)" v-if="hasDesc(icons)" />
+      <div :class="getDescClass(0)" v-if="hasDesc(texts)">{{ offText }}</div>
+    </template>
     <div class="vi-switch__inner" :class="classObj" @click="toggleChecked">
-      <span v-if="isInside" class="vi-switch__inner-text" :class="{ 'is-close': !checked }">
-        {{ checked ? onContent : offContent }}
-      </span>
+      <template v-if="isInside">
+        <vi-icon 
+          class="vi-switch__inner-icon" 
+          :class="{ 'is-close': !checked }" 
+          :name="checked ? onIcon : offIcon" 
+          v-if="onIcon && offIcon" 
+        />
+        <span class="vi-switch__inner-text" :class="{ 'is-close': !checked }">
+          {{ checked ? onText : offText }}
+        </span>
+      </template>
       <div class="vi-switch__active">
         <vi-icon 
           name="Loading" 
@@ -60,7 +82,10 @@ const toggleChecked = () => {
         />
       </div>
     </div>
-    <div :class="{ 'is-active': checked }" v-if="!isInside && offContent">{{ offContent }}</div>
+    <template v-if="!isInside">
+      <vi-icon :name="onIcon" :class="getDescClass(1)" v-if="hasDesc(icons)" />
+      <div :class="getDescClass(1)" v-if="hasDesc(texts)">{{ onText }}</div>
+    </template>
   </div>
 </template>
 
@@ -98,6 +123,16 @@ const toggleChecked = () => {
       overflow: hidden;
       &.is-close {
         margin-left: 20px;
+      }
+    }
+    &-icon {
+      width: 2em;
+      margin-left: 2px;
+      color: #fff;
+      user-select: none;
+      transition: margin .3;
+      &.is-close {
+        margin-left: 18px;
       }
     }
     &.is-checked {
