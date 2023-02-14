@@ -8,6 +8,7 @@ import Link from './Link/index.vue'
 import Divider from './Divider/index.vue'
 import { Toast } from './Toast/index'
 import Switch from './Switch/index.vue'
+import Input from './Input/index.vue'
 
 export {
   Button,
@@ -20,4 +21,5 @@ export {
   Divider,
   Toast,
   Switch,
+  Input,
 }
