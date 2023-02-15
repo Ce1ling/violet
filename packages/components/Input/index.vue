@@ -44,7 +44,8 @@ const clearInput = () => {
   emit('update:modelValue', '')
   viInputEl.value?.focus()
 }
-const toggleShowPwd = () => {
+const toggleShowPwd = (e: MouseEvent) => {
+  (e.target as HTMLElement).style.userSelect = 'none'
   viInputEl.value!.type = isPwdInput.value ? 'text' : 'password'
   isPwdInput.value = !isPwdInput.value
   viInputEl.value!.focus()
@@ -115,7 +116,7 @@ onMounted(() => {
         color="var(--info-color)" 
         hover-color="var(--primary-color)" 
         @click="toggleShowPwd" 
-        v-if="isShowPwd" 
+        v-if="props.type === 'password' && isShowPwd" 
       />
       <render-limit v-if="limit.trim() && showLimit" />
     </template>
