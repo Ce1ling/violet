@@ -26,8 +26,8 @@ const loadingDuration = computed(() => props.duration + 's')
 </script>
 
 <template>
-  <i class="vi-icon" :title="props.name">
-    <Iconify class="icon" :icon="iconName" :class="{ 'icon-loading': loading }"/>
+  <i class="vi-icon">
+    <Iconify class="icon" :icon="iconName" :class="{ 'icon-loading': loading }" />
   </i>
 </template>
 
