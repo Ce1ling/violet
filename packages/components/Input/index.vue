@@ -89,6 +89,9 @@ onMounted(() => {
       <render-limit v-if="limit.trim() && showLimit" />
     </template>
     <template v-else>
+      <span class="vi-input__prefix-icon" v-if="$slots.prefix">
+        <slot name="prefix"></slot>
+      </span>
       <input 
         ref="viInputEl" 
         class="vi-input__input" 
@@ -100,6 +103,9 @@ onMounted(() => {
         @input="handleInput" 
         @focus="handleFocus" 
       />
+      <span class="vi-input__suffix-icon" v-if="$slots.suffix">
+        <slot name="suffix"></slot>
+      </span>
       <vi-icon 
         title="清除" 
         name="CloseCircle" 
@@ -135,7 +141,8 @@ onMounted(() => {
   align-items: center;
   overflow: hidden;
   position: relative;
-  
+  padding: 0 8px;
+
   &:hover {
     border-color: #808080;
   }
@@ -145,7 +152,7 @@ onMounted(() => {
   &__input {
     width: 100%;
     height: 100%;
-    padding: 6px 8px;
+    padding: 6px 0;
     border-radius: var(--border-radius);
   }
   &__limit {
@@ -166,6 +173,13 @@ onMounted(() => {
       margin-right: 8px;
     }
   }
+  &__prefix-icon,
+  &__suffix-icon {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    color: var(--info-color);
+  }
   &.is-disabled {
     background-color: #eeeeee;
     cursor: not-allowed;
@@ -178,6 +192,9 @@ onMounted(() => {
   }
   .vi-icon {
     margin-right: 8px;
+  }
+  > .vi-icon:last-child {
+    margin-right: 0;
   }
 }
 </style>
