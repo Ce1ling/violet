@@ -2,6 +2,7 @@
 import { computed, nextTick, onMounted, ref, watch, h } from 'vue'
 import { Icon as ViIcon } from '../index'
 
+type Icon = typeof ViIcon | string
 interface Props {
   modelValue: string
   type?: string
@@ -12,6 +13,8 @@ interface Props {
   rows?: string
   limit?: string
   showLimit?: boolean
+  preIcon?: Icon
+  sufIcon?: Icon
 }
 const props = withDefaults(defineProps<Props>(), {
   type: 'text',
@@ -57,6 +60,11 @@ const RenderLimit = () => h('span', {
   ],
   innerText: `${props.modelValue.length} / ${props.limit}`
 })
+const getIconAttrs = (type: Icon) => {
+  return typeof type === 'string' 
+    ? { name: type, size: 'inherit' }
+    : type
+}
 
 onMounted(() => {
   nextTick(() => isPwdInput.value = viInputEl.value!.type === 'password')
@@ -89,8 +97,9 @@ onMounted(() => {
       <render-limit v-if="limit.trim() && showLimit" />
     </template>
     <template v-else>
-      <span class="vi-input__prefix-icon" v-if="$slots.prefix">
-        <slot name="prefix"></slot>
+      <span class="vi-input__prefix-icon" v-if="$slots.prefix || preIcon">
+        <vi-icon v-bind="getIconAttrs(preIcon)" v-if="preIcon" />
+        <slot name="prefix" v-else></slot>
       </span>
       <input 
         ref="viInputEl" 
@@ -103,8 +112,9 @@ onMounted(() => {
         @input="handleInput" 
         @focus="handleFocus" 
       />
-      <span class="vi-input__suffix-icon" v-if="$slots.suffix">
-        <slot name="suffix"></slot>
+      <span class="vi-input__suffix-icon" v-if="$slots.suffix || sufIcon">
+        <vi-icon v-bind="getIconAttrs(sufIcon)" v-if="sufIcon" />
+        <slot name="suffix" v-else></slot>
       </span>
       <vi-icon 
         title="清除" 
@@ -142,6 +152,7 @@ onMounted(() => {
   overflow: hidden;
   position: relative;
   padding: 0 8px;
+  gap: 8px;
 
   &:hover {
     border-color: #808080;
@@ -189,12 +200,6 @@ onMounted(() => {
     .vi-input__input {
       cursor: not-allowed;
     }
-  }
-  .vi-icon {
-    margin-right: 8px;
-  }
-  > .vi-icon:last-child {
-    margin-right: 0;
   }
 }
 </style>

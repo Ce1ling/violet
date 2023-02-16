@@ -24,7 +24,11 @@ const val12 = ref('')
     <vi-input v-model="val5" placeholder="限制输入" limit="10" show-pwd clearable show-limit />
     <vi-input v-model="val6" type="textarea" placeholder="文本域" />
     <vi-input v-model="val7" type="textarea" placeholder="文本域--限制输入" limit="10" show-limit />
-    <vi-input v-model="val8" placeholder="自定义前后 icon"></vi-input>
+    <vi-input v-model="val8" placeholder="自定义前后 icon" pre-icon="Check" suf-icon="Close" />
+    <vi-input v-model="val10" placeholder="自定义前后 icon (对象式)" 
+      :pre-icon="{ name: 'Apple', size: '16px' }" 
+      :suf-icon="{ name: 'Mac', size: '16px' }" 
+    />
     <vi-input v-model="val9" placeholder="自定义前后 icon (插槽模式)" clearable show-pwd>
       <template #prefix>
         <vi-icon name="Search" size="16px" color="var(--info-color)" />
