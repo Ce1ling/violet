@@ -15,7 +15,7 @@ type RenderVNode = VNodeArrayChildren | undefined
 
 const props = withDefaults(defineProps<Props>(), {
   activeBgColor: 'var(--primary-color)',
-  bgColor: '#eeeeee',
+  bgColor: 'var(--tabs-header-bg-color)',
   ifMode: false
 })
 const emit = defineEmits<Emits>()
@@ -120,6 +120,8 @@ const RenderTabContent = (): RenderVNode => {
     border-radius: var(--border-radius) var(--border-radius) 0 0;
     background-color: v-bind(bgColor);
     position: relative;
+    border: 1px solid var(--border-color);
+    border-bottom: none;
     &-item {
       flex-shrink: 0;
       padding: 8px 18px;
