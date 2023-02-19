@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, nextTick, onMounted, ref, watch, h } from 'vue'
+import { computed, nextTick, onMounted, ref, watch, h, useSlots } from 'vue'
 import { Icon as ViIcon } from '../index'
 
 type Icon = typeof ViIcon | string
@@ -31,6 +31,7 @@ interface Emits {
 }
 const emit = defineEmits<Emits>()
 
+const slots = useSlots()
 const viInputEl = ref<HTMLInputElement>()
 const isShowClear = ref(false)
 const isShowPwd = ref(false)
@@ -38,7 +39,8 @@ const isPwdInput = ref(false)
 
 const classObj = computed(() => ({ 
   'is-disabled': props.disabled,
-  'vi-input-textarea': props.type === 'textarea'
+  'vi-input-textarea': props.type === 'textarea',
+  'vi-input-group': slots.prepend || slots.append
 }))
 
 const handleInput = ({ target }: Event) => {
@@ -95,10 +97,14 @@ onMounted(() => {
         :maxlength="limit" 
         @input="handleInput" 
         @focus="handleFocus" 
+        autocomplete="off"
       ></textarea>
       <render-limit v-if="limit.trim() && showLimit" />
     </template>
     <template v-else>
+      <div class="vi-input__prepend" v-if="$slots.prepend">
+        <slot name="prepend"></slot>
+      </div>
       <span class="vi-input__prefix-icon" v-if="$slots.prefix || preIcon">
         <vi-icon v-bind="getIconAttrs(preIcon)" v-if="preIcon" />
         <slot name="prefix" v-else></slot>
@@ -113,12 +119,14 @@ onMounted(() => {
         :maxlength="limit" 
         @input="handleInput" 
         @focus="handleFocus" 
+        autocomplete="off"
       />
       <span class="vi-input__suffix-icon" v-if="$slots.suffix || sufIcon">
         <vi-icon v-bind="getIconAttrs(sufIcon)" v-if="sufIcon" />
         <slot name="suffix" v-else></slot>
       </span>
       <vi-icon 
+        class="vi-input__input-clear"
         title="清除" 
         name="CloseCircle" 
         size="16px" 
@@ -128,6 +136,7 @@ onMounted(() => {
         v-if="isShowClear" 
       />
       <vi-icon 
+        class="vi-input__input-show-hidden"
         :title="isPwdInput ? '显示' : '隐藏'" 
         :name="isPwdInput ? 'VisibilityOff': 'Visibility'" 
         size="16px" 
@@ -137,6 +146,9 @@ onMounted(() => {
         v-if="props.type === 'password' && isShowPwd" 
       />
       <render-limit v-if="limit.trim() && showLimit" />
+      <div class="vi-input__append" v-if="$slots.append">
+        <slot name="append"></slot>
+      </div>
     </template>
   </div>
 </template>
@@ -150,7 +162,6 @@ onMounted(() => {
   border-radius: var(--border-radius);
   transition: all .3s;
   display: flex;
-  align-items: center;
   overflow: hidden;
   position: relative;
   padding: 0 8px;
@@ -158,9 +169,17 @@ onMounted(() => {
 
   &:hover {
     border-color: #808080;
+    .vi-input__prepend,
+    .vi-input__append {
+      border-color: #808080;
+    }
   }
   &:focus-within {
     border-color: var(--primary-color);
+    .vi-input__prepend,
+    .vi-input__append {
+      border-color: var(--primary-color);
+    }
   }
   &-textarea {
     padding: 0;
@@ -168,15 +187,25 @@ onMounted(() => {
       padding: 6px 8px;
     }
   }
+  &-group {
+    padding: 0;
+  }
   &__input {
     width: 100%;
     height: 100%;
     padding: 6px 0;
     border-radius: var(--border-radius);
+    &-clear,
+    &-show-hidden {
+      display: flex;
+      align-items: center;
+    }
   }
   &__limit {
     &-textarea,
     &-input {
+      display: flex;
+      align-items: center;
       font-size: 12px;
       color: var(--info-color);
       line-height: 12px;
@@ -198,6 +227,22 @@ onMounted(() => {
     align-items: center;
     flex-shrink: 0;
     color: var(--info-color);
+  }
+  &__prepend,
+  &__append {
+    color: #909399;
+    background-color: #f4ecfd;
+    padding: 0 16px;
+    border-width: 0;
+    border-style: solid;
+    border-color: var(--info-color);
+    transition: all .3s;
+  }
+  &__prepend {
+    border-right-width: 1px;
+  }
+  &__append {
+    border-left-width: 1px;
   }
   &.is-disabled {
     background-color: #eeeeee;

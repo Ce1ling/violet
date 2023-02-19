@@ -37,6 +37,10 @@ const val12 = ref('')
         <vi-icon name="Home" size="16px" />
       </template>
     </vi-input>
+    <vi-input v-model="val11" placeholder="添加前置与后置内容" pre-icon="Check" clearable>
+      <template #prepend>http://</template>
+      <template #append>.com</template>
+    </vi-input>
   </div>
 </template>
 
