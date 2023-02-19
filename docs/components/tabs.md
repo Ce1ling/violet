@@ -1,3 +1,13 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const active = ref('1')
+const change = () => {
+  const state = active.value <= 3 ? Number(active.value) + 1 : 1
+  active.value = state.toString()
+}
+</script>
+
 # Tabs 切换组件
 
 Tabs 选项卡切换组件，分隔展示不同类型的数据。
@@ -7,11 +17,11 @@ Tabs 选项卡切换组件，分隔展示不同类型的数据。
 简单的切换展示。
 
 ::: tip
-您必须为 `vi-tabs` 指定一个 `active` 属性，它用于指定当前展示的 tab，与 `vi-tab` 的 `name` 属性对应。所以您也必须为 `vi-tab` 指定 `label`、`name` 属性，前者用于渲染 tab 的头部，后者用于作为唯一标识符。
+您必须为 `vi-tabs` 指定一个 `active` 属性，它用于指定当前展示的 tab，与 `vi-tab` 的 `name` 属性对应。所以您也必须为 `vi-tab` 指定 `label`、`name` 属性，前者用于渲染 tab 的头部，后者作为唯一标识符。
 :::
 
 <div class="examples">
-  <vi-tabs active="1" bg-color="var(--border-color)">
+  <vi-tabs active="1">
     <vi-tab label="Vue" name="1">Vue，渐进式 JavaScript 框架</vi-tab>
     <vi-tab label="React" name="2">React，用于构建用户界面的 JavaScript 库</vi-tab>
     <vi-tab label="Svelte" name="3">Svelte，控制性增强的 Web 应用程序</vi-tab>
@@ -30,6 +40,42 @@ Tabs 选项卡切换组件，分隔展示不同类型的数据。
 </template>
 ```
 
+## 动态切换
+
+通过动态的 `active` 属性，来切换当前展示的 tab。如下所示：
+
+<div class="examples">
+  <vi-button @click="change">动态切换</vi-button>
+  <vi-tabs :active="active">
+    <vi-tab label="Vue" name="1">Vue，渐进式 JavaScript 框架</vi-tab>
+    <vi-tab label="React" name="2">React，用于构建用户界面的 JavaScript 库</vi-tab>
+    <vi-tab label="Svelte" name="3">Svelte，控制性增强的 Web 应用程序</vi-tab>
+    <vi-tab label="Solid" name="4">Solid，用于构建用户界面的简单且高性能的响应式</vi-tab>
+  </vi-tabs>
+</div>
+
+```vue
+<template>
+  <vi-button @click="change">动态切换</vi-button>
+  <vi-tabs :active="active">
+    <vi-tab label="Vue" name="1">Vue，渐进式 JavaScript 框架</vi-tab>
+    <vi-tab label="React" name="2">React，用于构建用户界面的 JavaScript 库</vi-tab>
+    <vi-tab label="Svelte" name="3">Svelte，控制性增强的 Web 应用程序</vi-tab>
+    <vi-tab label="Solid" name="4">Solid，用于构建用户界面的简单且高性能的响应式</vi-tab>
+  </vi-tabs>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const active = ref('1')
+const change = () => {
+  const state = active.value <= 3 ? Number(active.value) + 1 : 1
+  active.value = state.toString()
+}
+</script>
+```
+
 ## ifMode
 
 类似 Vue `v-if` 与 `v-show` 的区别，为了性能考虑，此模式默认为 `false`。如果您有需要，可以开启，开启后只有高亮的 Tab 会被渲染，其他 Tab 将被销毁！
@@ -39,7 +85,7 @@ Tabs 选项卡切换组件，分隔展示不同类型的数据。
 :::
 
 <div class="examples">
-  <vi-tabs active="1" bg-color="var(--border-color)" if-mode>
+  <vi-tabs active="1" if-mode>
     <vi-tab label="Vue" name="1">Vue，渐进式 JavaScript 框架</vi-tab>
     <vi-tab label="React" name="2">React，用于构建用户界面的 JavaScript 库</vi-tab>
     <vi-tab label="Svelte" name="3">Svelte，控制性增强的 Web 应用程序</vi-tab>
