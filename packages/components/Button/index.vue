@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { computed, h, reactive } from 'vue'
+import { computed, h } from 'vue'
 import { Icon as ViIcon } from '../index'
 
 type Props = {
-  type?: string
+  type?: 'primary' | 'success' | 'info' | 'warning' | 'danger'
   text?: boolean
   round?: boolean
   circle?: boolean
@@ -27,52 +27,43 @@ type Emits = {
 }
 const emit = defineEmits<Emits>()
 
-const color = reactive({
+const colorObj = {
   primary: 'var(--primary-color)',
   success: 'var(--success-color)',
   info: 'var(--info-color)',
   warning: 'var(--warning-color)',
   danger: 'var(--danger-color)'
-})
+}
 
-const buttonClass = computed(() => {
-  const classList: string[] = []
-
-  if (props.text) { classList.push('text-color') }
-  if (props.round) { classList.push('round') }
-  if (props.circle) { classList.push('circle') } 
-  if (props.disabled) { classList.push('disabled') }
-  if (props.loading) { classList.push('loading') }
-
-  return classList
-})
+const classObj = computed(() => ({
+  'text-color': props.text,
+  round: props.round,
+  circle: props.circle,
+  disabled: props.disabled,
+  loading: props.loading
+}))
 const getBgColor = computed(() => props.bgColor 
   ? props.bgColor 
-  : color[props.type as keyof typeof color]
-)
+  : colorObj[props.type])
 const getColor = computed(() => {
-  if (props.text && !props.color) { return color[props.type as keyof typeof color] }
+  if (props.text && !props.color) { return colorObj[props.type] }
   return props.color ? props.color : '#fff'
 })
 
-const RenderIcon = () => {
-  if (!props.loading) { return null }
-
-  return h(ViIcon, {
-    name: 'Loading',
-    size: '16px',
-    cursor: 'wait',
-    loading: true
-  })
-}
-const handleClick = (e: MouseEvent) => !props.disabled ? emit('click', e) : null
+const RenderIcon = () => !props.loading || h(ViIcon, { 
+  name: 'Loading', 
+  size: '16px', 
+  cursor: 'wait', 
+  loading: true 
+}) 
+const handleClick = (e: MouseEvent) => props.disabled || emit('click', e)
 </script>
 
 <template>
   <button 
     @click="handleClick"
     class="vi-button" 
-    :class="buttonClass">
+    :class="classObj">
     <slot name="prefix">
       <RenderIcon v-if="isPrefix" />
     </slot>
