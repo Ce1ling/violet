@@ -1,37 +1,33 @@
 <script setup lang="ts">
-import { ref, useSlots, h, watch, onMounted} from 'vue'
+import { ref, useSlots, h, watch } from 'vue'
 import type { VNode, VNodeArrayChildren } from 'vue'
 
-type Props = {
+interface Props {
   active: string
   activeBgColor?: string
   bgColor?: string
   ifMode?: boolean
 }
+interface Emits {
+  (e: 'tab-click', name: string, event: MouseEvent): void
+}
 type RenderVNode = VNodeArrayChildren | undefined
 
 const props = withDefaults(defineProps<Props>(), {
-  active: '',
   activeBgColor: 'var(--primary-color)',
   bgColor: '#eeeeee',
   ifMode: false
 })
-
-onMounted(() => {
-  console.log('props is ', props.ifMode);
-})
-const emit = defineEmits(['tab-click'])
+const emit = defineEmits<Emits>()
 const slots = useSlots()
 
-const defaultActive = ref<string>(props.active)
+const defaultActive = ref<typeof props.active>(props.active)
 
-watch(() => props.active, val => {
-  if (val) { defaultActive.value = val }
-})
+watch(() => props.active, val => defaultActive.value = val || '')
 
 const checkNodeType = (key: string) => {
   /**
-   * 此方法用于检查 DOM 类型，共以下几种：
+   * 用于检查 DOM 类型，共以下几种：
    *  1. normal: 正常节点
    *  2. fragment: v-for 产生的一个父节点片段
    *  3. comment: 注释节点
@@ -46,27 +42,23 @@ const checkNodeType = (key: string) => {
       return 'normal'
   }
 }
-const hRenderTabHeader = (node: string, vNode: VNode) => {
-  /**
-   * 此方法是对 Vue h函数 的封装，但仅用于渲染 Tab 的头部
-   */
-
-   return h(node, {
-    class: ['vi-tabs__header__item', {
-      'vi-tabs__active': defaultActive.value === vNode.props?.name
-    }],
-    innerHTML: vNode.props?.label,
-    onClick: (e: MouseEvent) => {
-      defaultActive.value = vNode.props?.name
-      emit('tab-click', vNode.props?.name, e)
-    }
-  })
-}
+/** 对 Vue h函数 的封装，仅用于渲染 Tab header */
+const hRenderTabHeader = (type: string, vNode: VNode) => h(type, {
+  class: ['vi-tabs__header-item', {
+    'vi-tab-active': defaultActive.value === vNode.props?.name
+  }],
+  innerText: vNode.props?.label,
+  onClick: (e: MouseEvent) => {
+    defaultActive.value = vNode.props?.name
+    emit('tab-click', vNode.props?.name, e)
+  }
+})
+/** 对 Vue h函数 的封装，仅用于渲染 Tab content */
+const hRenderTabContent = (vNode: VNode) => h(vNode, { style: { 
+  display: defaultActive.value === vNode.props?.name ? 'block' : 'none' 
+}})
+/** 筛选并渲染 Tab header */
 const RenderTabHeader = (): RenderVNode => {
-  /**
-   * 此方法用于筛选并渲染 Tab 头部
-   */
-
   return slots.default && slots.default().map(vNode => {
     const type = checkNodeType(vNode.type.toString())
     if (type === 'normal') {
@@ -79,19 +71,8 @@ const RenderTabHeader = (): RenderVNode => {
     }
   })
 }
-const hRenderTabContent = (vNode: VNode) => {
-  /**
-   * 此方法是对 Vue h函数 的封装，但仅用于渲染 Tab 的内容
-   */
-
-  return h(vNode, { style: { 
-    display: defaultActive.value === vNode.props?.name ? 'block' : 'none' 
-  }})
-}
+/** 筛选并渲染 Tab content */
 const RenderTabContent = (): RenderVNode => {
-  /**
-   * 此方法用于筛选并渲染 Tab 内容体
-   */
 
   if (!slots.default) { return }
 
@@ -119,8 +100,6 @@ const RenderTabContent = (): RenderVNode => {
         }
       })
 }
-
-
 </script>
 
 <template>
@@ -135,27 +114,23 @@ const RenderTabContent = (): RenderVNode => {
 </template>
 
 <style lang="scss">
-.vi-tabs__active {
-  color: #fff;
-  background-color: v-bind(activeBgColor);
-}
-
 .vi-tabs {
   .vi-tabs__header {
     display: flex;
     border-radius: var(--border-radius) var(--border-radius) 0 0;
-    user-select: none;
     background-color: v-bind(bgColor);
     position: relative;
-    z-index: 1;
-    // overflow: hidden;
-    &__item {
+    &-item {
       flex-shrink: 0;
       padding: 8px 18px;
       border-radius: var(--border-radius) var(--border-radius) 0 0;
       cursor: pointer;
       text-align: center;
       transition: background-color .3s;
+      &.vi-tab-active {
+        color: #fff;
+        background-color: v-bind(activeBgColor);
+      }
     }
   }
 }
