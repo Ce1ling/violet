@@ -36,7 +36,10 @@ const isShowClear = ref(false)
 const isShowPwd = ref(false)
 const isPwdInput = ref(false)
 
-const classObj = computed(() => ({ 'is-disabled': props.disabled }))
+const classObj = computed(() => ({ 
+  'is-disabled': props.disabled,
+  'vi-input-textarea': props.type === 'textarea'
+}))
 
 const handleInput = ({ target }: Event) => {
   emit('update:modelValue', (target as HTMLInputElement).value)
@@ -72,9 +75,8 @@ onMounted(() => {
   if (!props.clearable && !props.showPwd) { return }
 
   watch(() => props.modelValue, val => {
-    const state = val ? true : false
-    if (props.clearable) { isShowClear.value = state }
-    if (props.showPwd) { isShowPwd.value = state }
+    if (props.clearable) { isShowClear.value = !!val }
+    if (props.showPwd) { isShowPwd.value = !!val }
   })
 })
 
@@ -159,6 +161,12 @@ onMounted(() => {
   }
   &:focus-within {
     border-color: var(--primary-color);
+  }
+  &-textarea {
+    padding: 0;
+    .vi-input__input {
+      padding: 6px 8px;
+    }
   }
   &__input {
     width: 100%;
