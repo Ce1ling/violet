@@ -46,8 +46,6 @@ const classObj = computed(() => ({
 const handleInput = ({ target }: Event) => {
   emit('update:modelValue', (target as HTMLInputElement).value)
 }
-const handleFocus = () => {
-}
 const clearInput = () => {
   emit('update:modelValue', '')
   viInputEl.value?.focus()
@@ -96,7 +94,6 @@ onMounted(() => {
         :rows="rows" 
         :maxlength="limit" 
         @input="handleInput" 
-        @focus="handleFocus" 
         autocomplete="off"
       ></textarea>
       <render-limit v-if="limit.trim() && showLimit" />
@@ -118,7 +115,6 @@ onMounted(() => {
         :disabled="disabled" 
         :maxlength="limit" 
         @input="handleInput" 
-        @focus="handleFocus" 
         autocomplete="off"
       />
       <span class="vi-input__suffix-icon" v-if="$slots.suffix || sufIcon">
@@ -155,9 +151,7 @@ onMounted(() => {
 
 <style lang="scss">
 .vi-input {
-  // test
-  width: 400px;
-  // width: 100%;
+  width: 100%;
   border: 1px solid var(--info-color);
   border-radius: var(--border-radius);
   transition: all .3s;
