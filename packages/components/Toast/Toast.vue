@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { 
-  h, 
   ref, 
   nextTick, 
   computed, 
@@ -19,6 +18,7 @@ type Props = {
   duration?: number
   closable?: boolean
   isHtmlStr?: boolean
+  prefix?: string
   /** private props */
   _id: string
   close: (id: string) => void
@@ -27,7 +27,8 @@ const props = withDefaults(defineProps<Props>(), {
   type: 'info',
   duration: 3000,
   closable: false,
-  isHtmlStr: false
+  isHtmlStr: false,
+  prefix: ''
 })
 
 const visible = ref(false)
@@ -35,6 +36,13 @@ const toastEl = ref<HTMLElement>()
 const height = ref<number>()
 const offset = ref<string>('0px')
 const gap = ref<number>(20)
+const iconMap = {
+  primary: 'CheckCircle',
+  success: 'CheckCircle',
+  info: 'InfoCircle',
+  warning: 'WarningCircle',
+  danger: 'CloseCircle'
+}
 
 const classList = computed(() => {
   return `vi-toast--${props.type}`
@@ -43,18 +51,6 @@ const getZIndex = computed(() => {
   return new Date().getFullYear()
 })
 
-const RenderIcon = () => {
-  const map = {
-    primary: 'CheckCircle',
-    success: 'CheckCircle',
-    info: 'InfoCircle',
-    warning: 'WarningCircle',
-    danger: 'CloseCircle'
-  }
-  return h(ViIcon, {
-    name: map[props.type]
-  })
-}
 const setOffset = (value: number) => {
   offset.value = value + 'px'
 }
@@ -85,9 +81,7 @@ onMounted(() => {
 <template>
   <Transition name="vi-toast-fade">
     <div ref="toastEl" class="vi-toast" :class="classList" v-show="visible">
-      <slot name="prefix">
-        <RenderIcon />
-      </slot>
+      <vi-icon :name="prefix ? prefix : iconMap[type]" />
       <span v-if="isHtmlStr" v-html="content"></span>
       <span v-else>{{ content }}</span>
       <vi-icon name="Close" v-if="closable" @click="handleClose" />
@@ -96,7 +90,7 @@ onMounted(() => {
 </template>
 
 <style lang="scss">
-@keyframes zoom-in {
+@keyframes vi-toast-zoom-in {
   from {
     transform: translate(-50%, -100%) scale(0.5);
     opacity: 0;
@@ -107,10 +101,10 @@ onMounted(() => {
   }
 }
 .vi-toast-fade-enter-active {
-  animation: zoom-in .3s ease;
+  animation: vi-toast-zoom-in .3s ease;
 }
 .vi-toast-fade-leave-active {
-  animation: zoom-in .3s ease reverse;
+  animation: vi-toast-zoom-in .3s ease reverse;
 }
 
 .vi-toast {

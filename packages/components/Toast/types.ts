@@ -10,6 +10,7 @@ export type Options = {
   type: 'primary' | 'success' | 'info' | 'warning' | 'danger'
   content: string
   duration?: number
+  prefix?: string
 }
 
 export type Ins = {
