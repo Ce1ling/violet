@@ -136,3 +136,10 @@
 | href | 同 `a` 标签 `href` 属性 | string | —— |
 | underline | 是否需要下划线 | boolean | true |
 | disabled | 是否为禁用状态 | boolean | false |
+
+### 插槽
+
+| 插槽名 | 插槽说明 |
+| :---: | :---: |
+| prefix | 前置内容 |
+| suffix | 后置内容 |

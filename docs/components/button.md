@@ -310,3 +310,10 @@
 | bg-color | 定义按钮背景颜色 | string | —— |
 | color | 定义按钮文字颜色 | string | —— |
 | is-prefix | 加载时的图标是否在前面(左边) | boolean | true |
+
+### 插槽
+
+| 插槽名 | 插槽说明 |
+| :---: | :---: |
+| prefix | 前置内容 |
+| suffix | 后置内容 |

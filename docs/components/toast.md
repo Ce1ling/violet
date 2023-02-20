@@ -28,6 +28,13 @@ const handleUnclosed = () => {
   })
 }
 
+const custome = () => {
+  Toast({
+    type: 'primary',
+    content: '自定义 Icon',
+    prefix: 'Home'
+  })
+}
 </script>
 
 # Toast 轻提示
@@ -137,14 +144,42 @@ const handleHtmlStr = () => {
 </template>
 
 <script>
-  const handleUnclosed = () => {
-    Toast({
-      closable: true,
-      type: 'primary',
-      content: '不会自动关闭，不信你可以等，信了点这里 →',
-      duration: 0
-    })
-  }
+import { Toast } from 'violet'
+
+const handleUnclosed = () => {
+  Toast({
+    closable: true,
+    type: 'primary',
+    content: '不会自动关闭，不信你可以等，信了点这里 →',
+    duration: 0
+  })
+}
+</script>
+```
+
+## 自定义 Icon
+
+通过 `prefix`，自定义前置 Icon，目前仅能使用 Violet 提供的 Icon。
+
+<div class="examples">
+  <vi-button @click="custome">自定义 Icon</vi-button>
+</div>
+
+```vue
+<template>
+  <vi-button @click="custome">自定义 Icon</vi-button>
+</template>
+
+<script>
+import { Toast } from 'violet'
+
+const custome = () => {
+  Toast({
+    type: 'primary',
+    content: '自定义 Icon',
+    prefix: 'Home'
+  })
+}
 </script>
 ```
 
@@ -159,6 +194,7 @@ const handleHtmlStr = () => {
 | duration | Toast 存在时间，设置为 0 将不会自动关闭 | number | 3000 |
 | closable | 是否可手动关闭 | boolean | false |
 | isHtmlStr | 是否使用 HTML 字符串 | boolean | false |
+| prefix | 自定义 Icon | string | —— |
 
 ### 方法
 
