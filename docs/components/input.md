@@ -131,15 +131,15 @@ const val6 = ref('')
 
 <div class="examples">
   <vi-input v-model="val7" type="textarea" placeholder="文本域" /> <br />
-  <vi-input v-model="val8" type="textarea" placeholder="文本域——自定高度" rows="5" /> <br />
-  <vi-input v-model="val9" type="textarea" placeholder="文本域——限制输入" limit="30" show-limit />
+  <vi-input v-model="val8" type="textarea" placeholder="文本域（自定义高度）" rows="5" /> <br />
+  <vi-input v-model="val9" type="textarea" placeholder="文本域（限制输入）" limit="30" show-limit />
 </div>
 
 ```vue
 <template>
   <vi-input v-model="val7" type="textarea" placeholder="文本域" />
-  <vi-input v-model="val8" type="textarea" placeholder="文本域——自定高度" rows="5" />
-  <vi-input v-model="val9" type="textarea" placeholder="文本域——限制输入" limit="30" show-limit />
+  <vi-input v-model="val8" type="textarea" placeholder="文本域（自定义高度）" rows="5" />
+  <vi-input v-model="val9" type="textarea" placeholder="文本域（限制输入）" limit="30" show-limit />
 </template>
 
 <script setup lang="ts">
@@ -230,7 +230,7 @@ const val13 = ref('')
 | disabled | 禁用 Input | boolean | fasle |
 | clearable | 显示清空按钮 | boolean | false |
 | show-pwd | 切换显示密码 | boolean | false |
-| rows | textarea 的高度 | string | '2' |
+| rows | `type=textarea` 的高度 | string | '2' |
 | limit | 限制输入长度 | string | —— |
 | show-limit | 显示限制长度 | boolean | false |
 | pre-icon | 头部图标 | `vi-icon` / string | —— |
