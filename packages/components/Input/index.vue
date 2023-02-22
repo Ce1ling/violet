@@ -42,6 +42,7 @@ const classObj = computed(() => ({
   'vi-input-textarea': props.type === 'textarea',
   'vi-input-group': slots.prepend || slots.append
 }))
+const getLineHeight = computed(() => `${viInputEl.value!.offsetHeight - 1}px`)
 
 const handleInput = ({ target }: Event) => {
   emit('update:modelValue', (target as HTMLInputElement).value)
@@ -231,6 +232,7 @@ onMounted(() => {
     border-style: solid;
     border-color: var(--info-color);
     transition: all .3s;
+    line-height: v-bind(getLineHeight);
   }
   &__prepend {
     border-right-width: 1px;
