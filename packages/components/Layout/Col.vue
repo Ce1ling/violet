@@ -1,12 +1,22 @@
 <script setup lang="ts">
+interface Props {
+  span?: string | number
+}
+
+withDefaults(defineProps<Props>(), {
+  span: 1
+})
 
 </script>
 
 <template>
-  <div>
-    <slot></slot>
+  <div class="vi-col">
+    <slot />
   </div>
 </template>
 
-<style scoped>
+<style lang="scss">
+.vi-col {
+  flex: v-bind(span);
+}
 </style>

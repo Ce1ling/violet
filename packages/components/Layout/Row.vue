@@ -1,30 +1,28 @@
 <script setup lang="ts">
-
-
 type Props = {
   gap?: string
   justify?: string
-  padding?: string
+  align?: string
 }
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   gap: '10px',
   justify: 'flex-start',
-  padding: '10px'
+  align: 'flex-start'
 })
+
 </script>
 
 <template>
   <div class="vi-row">
-    <slot></slot>
+    <slot />
   </div>
 </template>
 
-<style>
+<style lang="scss">
 .vi-row {
   display: flex;
-  align-items: center;
+  align-items: v-bind(align);
   justify-content: v-bind(justify);
   gap: v-bind(gap);
-  padding: v-bind(padding);
 }
 </style>
