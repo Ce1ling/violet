@@ -1,13 +1,13 @@
 <script setup lang="ts">
 type Props = {
   gap?: string
-  justify?: string
-  align?: string
+  justify?: 'start' | 'center' | 'end' | 'space-between' | 'space-around' | 'space-evenly'
+  align?: 'start' | 'center' | 'end'
 }
 withDefaults(defineProps<Props>(), {
   gap: '10px',
-  justify: 'flex-start',
-  align: 'flex-start'
+  justify: 'start',
+  align: 'start'
 })
 
 </script>
