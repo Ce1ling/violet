@@ -13,14 +13,19 @@
   --animation-duration: 0.3s;
   --border-radius: 5px;
   --border-color: #dddddd;
-  --header-height: 80px;
   --font-color: #555555;
   --footer-height: 300px;
   --search-mask-color: #eeeeeeaa;
   --search-modal-shadow-color: #dddddd;
   --shadow-color: #dcd6e4;
-  --toast-info-color: #efe2ff;
-  --tabs-header-bg-color: #eeeeee;
+  /** 组件相关 */
+  --vi-toast-info-color: #efe2ff;
+  --vi-tabs-header-bg-color: #eeeeee;
+  --vi-header-height: 60px;
+  --vi-header-padding: 0 18px;
+  --vi-main-padding: 18px;
+  --vi-aside-width: 300px;
+  --vi-footer-padding: 0 18px;
 
   /* 定制 vitepress */
 

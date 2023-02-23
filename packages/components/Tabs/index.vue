@@ -15,7 +15,7 @@ type RenderVNode = VNodeArrayChildren | undefined
 
 const props = withDefaults(defineProps<Props>(), {
   activeBgColor: 'var(--primary-color)',
-  bgColor: 'var(--tabs-header-bg-color)',
+  bgColor: 'var(--vi-tabs-header-bg-color)',
   ifMode: false
 })
 const emit = defineEmits<Emits>()
