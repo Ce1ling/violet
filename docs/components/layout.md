@@ -20,9 +20,6 @@
     justify-content: center;
     align-items: center;
   }
-  &:not(:nth-child(1)) {
-    border: none;
-  }
 }
 </style>
 
@@ -116,6 +113,86 @@ violet 提供的布局组件包括：<br />
 </div>
 
 以上仅作示例，至于其他更多的布局方式，由您的需求而自由自定。
+
+```vue
+<template>
+  1. 仅有 “顶部” 与 “主体” 的布局。
+  <vi-flex class="vi-flex-demo" direction="column">
+    <vi-header>header</vi-header>
+    <vi-main>main</vi-main>
+  </vi-flex>
+  2. 包含三大主要元素的布局。
+  <vi-flex class="vi-flex-demo" direction="column">
+    <vi-header>header</vi-header>
+    <vi-main>main</vi-main>
+    <vi-footer>footer</vi-footer>
+  </vi-flex>
+  3. 包含 “侧边栏”，但没有 “底部” 的布局。
+  <vi-flex class="vi-flex-demo" direction="column">
+    <vi-header>header</vi-header>
+    <vi-flex class="vi-flex-demo">
+      <vi-aside>aside</vi-aside>
+      <vi-main>main</vi-main>
+    </vi-flex>
+  </vi-flex>
+  4. 完整的页面布局。
+  <vi-flex class="vi-flex-demo" direction="column">
+    <vi-header>header</vi-header>
+    <vi-flex class="vi-flex-demo">
+      <vi-aside>aside</vi-aside>
+      <vi-main>main</vi-main>
+    </vi-flex>
+    <vi-footer>footer</vi-footer>
+  </vi-flex>
+  5. “侧边栏” 贯穿 “底部” 的布局。
+  <vi-flex class="vi-flex-demo" direction="column">
+    <vi-header>header</vi-header>
+    <vi-flex class="vi-flex-demo">
+      <vi-aside>aside</vi-aside>
+      <vi-flex direction="column">
+        <vi-main>main</vi-main>
+        <vi-footer>footer</vi-footer>
+      </vi-flex>
+    </vi-flex>
+  </vi-flex>
+  6. “侧边栏” 为通栏的布局。
+  <vi-flex class="vi-flex-demo">
+    <vi-aside>aside</vi-aside>
+    <vi-flex class="vi-flex-demo" direction="column">
+      <vi-header>header</vi-header>
+      <vi-flex direction="column">
+        <vi-main>main</vi-main>
+        <vi-footer>footer</vi-footer>
+      </vi-flex>
+    </vi-flex>
+  </vi-flex>
+</template>
+
+<style lang="scss">
+.vi-flex-demo {
+  .vi-header,
+  .vi-footer { 
+    background-color: #e0cbf9;
+  }
+  .vi-main { 
+    padding: 100px 0;
+    background-color: #cba7f8; 
+  }
+  .vi-aside { 
+    padding: 100px 18px;
+    background-color: #d6c1ef;
+  }
+  .vi-header,
+  .vi-main,
+  .vi-aside,
+  .vi-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+</style>
+```
 
 ## APIs
 

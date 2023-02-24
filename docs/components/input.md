@@ -37,7 +37,6 @@ const val15 = ref('')
 
 <script setup lang="ts">
 import { ref } from 'vue'
-
 const val1 = ref('')
 </script>
 ```
@@ -57,7 +56,6 @@ const val1 = ref('')
 
 <script setup lang="ts">
 import { ref } from 'vue'
-
 const val2 = ref('')
 </script>
 ```
@@ -77,7 +75,6 @@ const val2 = ref('')
 
 <script setup lang="ts">
 import { ref } from 'vue'
-
 const val3 = ref('')
 </script>
 ```
@@ -97,7 +94,6 @@ const val3 = ref('')
 
 <script setup lang="ts">
 import { ref } from 'vue'
-
 const val4 = ref('')
 </script>
 ```
@@ -113,7 +109,7 @@ const val4 = ref('')
 
 ```vue
 <template>
-  <vi-input v-model="val5" placeholder="限制输入 10 个字符" limit="10" />
+  <vi-input v-model="val5" placeholder="限制输入 10 个字符" limit="10" /> <br />
   <vi-input v-model="val6" placeholder="显示限制输入" limit="10" show-limit />
 </template>
 
@@ -144,7 +140,6 @@ const val6 = ref('')
 
 <script setup lang="ts">
 import { ref } from 'vue'
-
 const val7 = ref('')
 const val8 = ref('')
 const val9 = ref('')
@@ -157,10 +152,12 @@ const val9 = ref('')
 
 <div class="examples">
   <vi-input v-model="val10" placeholder="自定义前后 icon" pre-icon="Search" suf-icon="Menu" /> <br />
+
   <vi-input v-model="val11" placeholder="自定义前后 icon（对象式）" 
     :pre-icon="{ name: 'Apple', size: '16px', hoverColor: 'var(--primary-color)' }" 
     :suf-icon="{ name: 'Windows', size: '16px', hoverColor: 'var(--primary-color)' }"  
-  />  <br />
+  /> <br />
+
   <vi-input v-model="val12" placeholder="自定义前后 icon (插槽模式)">
     <template #prefix>
       <vi-icon name="Plus" size="16px" color="var(--primary-color)" />
@@ -172,10 +169,12 @@ const val9 = ref('')
 ```vue
 <template>
   <vi-input v-model="val10" placeholder="自定义前后 icon" pre-icon="Search" suf-icon="Menu" /> <br />
+
   <vi-input v-model="val11" placeholder="自定义前后 icon（对象式）" 
     :pre-icon="{ name: 'Apple', size: '16px', hoverColor: 'var(--primary-color)' }" 
     :suf-icon="{ name: 'Windows', size: '16px', hoverColor: 'var(--primary-color)' }"  
-  />  <br />
+  /> <br />
+
   <vi-input v-model="val12" placeholder="自定义前后 icon (插槽模式)">
     <template #prefix>
       <vi-icon name="Plus" size="16px" color="var(--primary-color)" />
@@ -186,7 +185,6 @@ const val9 = ref('')
 
 <script setup lang="ts">
 import { ref } from 'vue'
-
 const val10 = ref('')
 const val11 = ref('')
 const val12 = ref('')
@@ -214,7 +212,6 @@ const val12 = ref('')
 
 <script setup lang="ts">
 import { ref } from 'vue'
-
 const val13 = ref('')
 </script>
 ```
@@ -230,7 +227,7 @@ const val13 = ref('')
 | disabled | 禁用 Input | boolean | fasle |
 | clearable | 显示清空按钮 | boolean | false |
 | show-pwd | 切换显示密码 | boolean | false |
-| rows | `type=textarea` 的高度 | string | '2' |
+| rows | `type="textarea"` 的高度 | string | '2' |
 | limit | 限制输入长度 | string | —— |
 | show-limit | 显示限制长度 | boolean | false |
 | pre-icon | 头部图标 | `vi-icon` / string | —— |

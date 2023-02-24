@@ -54,7 +54,7 @@ const copy = (name: string) => {
 :::
 
 <div class="examples">
-  <vi-row>
+  <vi-row align="center">
     <vi-icon name="Loading" size="28px" loading />
     <vi-icon name="Close" size="28px" :loading="isLoading" />
     <vi-button @click="isLoading = !isLoading">测试</vi-button>
@@ -68,7 +68,7 @@ const isLoading = ref(false)
 </script>
 
 <template>
-  <vi-row>
+  <vi-row align="center">
     <vi-icon name="Loading" size="28px" loading />
     <vi-icon name="Close" size="28px" :loading="isLoading" />
     <vi-button @click="isLoading = !isLoading">测试</vi-button>
@@ -81,7 +81,7 @@ const isLoading = ref(false)
 使用 `duration` 属性，定义加载时间，通过下方“加”、“减”按钮查看效果。
 
 <div class="examples">
-  <vi-row>
+  <vi-row align="center">
     <vi-icon name="Loading" size="28px" loading :duration="duration" />
     <p>当前动画时间为：{{ duration }} 秒</p>
     <vi-button circle @click="duration ++"> <vi-icon name="Plus" title="增加" /> </vi-button>
@@ -96,7 +96,7 @@ const duration = ref(2)
 </script>
 
 <template>
-  <vi-row>
+  <vi-row align="center">
     <vi-icon name="Loading" size="28px" loading :duration="duration" />
     <p>当前动画时间为：{{ duration }} 秒</p>
     <vi-button circle @click="duration ++"> <vi-icon name="Plus" title="增加" /> </vi-button>

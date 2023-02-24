@@ -28,13 +28,13 @@
 
 ## 下划线
 
-使用 `underline` 属性，改变链接下划线状态，`true` 为展示，`false` 不展示（如 `type="success"`、`type="danger"` 所示）。
+使用 `underline` 属性，改变下划线显示状态。
 
 <div class="examples">
   <vi-row gap="28px">
-    <vi-link href="#">violet</vi-link>
+    <vi-link href="#" :underline="false">violet</vi-link>
     <vi-link type="success" href="#" :underline="false">violet</vi-link>
-    <vi-link type="warning" href="#">violet</vi-link>
+    <vi-link type="warning" href="#" :underline="false">violet</vi-link>
     <vi-link type="danger" href="#" :underline="false">violet</vi-link>
   </vi-row>
 </div>
@@ -42,9 +42,9 @@
 ```vue
 <template>
   <vi-row gap="28px">
-    <vi-link href="#">violet</vi-link>
+    <vi-link href="#" :underline="false">violet</vi-link>
     <vi-link type="success" href="#" :underline="false">violet</vi-link>
-    <vi-link type="warning" href="#">violet</vi-link>
+    <vi-link type="warning" href="#" :underline="false">violet</vi-link>
     <vi-link type="danger" href="#" :underline="false">violet</vi-link>
   </vi-row>
 </template>
@@ -133,7 +133,7 @@
 | 属性名 | 属性说明 | 属性类型 | 属性默认值 |
 | :---: | :---: | :---: | :---: |
 | type | 定义链接类型 | string | primary |
-| href | 同 `a` 标签 `href` 属性 | string | —— |
+| href | 同原生 `a` 标签 `href` 属性 | string | —— |
 | underline | 是否需要下划线 | boolean | true |
 | disabled | 是否为禁用状态 | boolean | false |
 

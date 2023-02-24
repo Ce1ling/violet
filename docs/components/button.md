@@ -1,3 +1,11 @@
+<style lang="scss">
+.vi-button-demo {
+  .vi-row:not(:last-child) {
+    margin-bottom: 18px;
+  }
+}
+</style>
+
 # Button 按钮
 
 基础按钮组件，改善您的按钮。
@@ -10,7 +18,7 @@
 如果您的按钮 `type` 类型是 `primary`，则您可以省略 `type` 属性，因为它是默认值。
 :::
 
-<div class="examples">
+<div class="examples vi-button-demo">
   <vi-row>
     <vi-button> 主要按钮 </vi-button>
     <vi-button type="success"> 成功按钮 </vi-button>

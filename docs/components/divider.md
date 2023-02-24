@@ -24,15 +24,15 @@
 
 ## 添加标注
 
-`vi-divider` 标签的标签体内容将被认为是标注内容，使用 `position` 属性，定义标注位置，它的默认值是 `start`。
+`vi-divider` 的标签体内容被认为是标注内容。使用 `position` 属性，定义标注位置，默认为 `start`。
 
 <div class="examples">
   大风起兮云飞扬，
-  <vi-divider position="start">大风歌</vi-divider>
+  <vi-divider position="start">刘邦</vi-divider>
   威加海内兮归故乡，
-  <vi-divider position="center"> <vi-icon name="Home" /> </vi-divider>
+  <vi-divider position="center"> <vi-icon name="Star" /> </vi-divider>
   安得猛士兮守四方！
-  <vi-divider position="end">刘邦</vi-divider>
+  <vi-divider position="end">大风歌</vi-divider>
 </div>
 
 ```vue
@@ -40,7 +40,7 @@
   大风起兮云飞扬，
   <vi-divider position="start">大风歌</vi-divider>
   威加海内兮归故乡，
-  <vi-divider position="center"> <vi-icon name="Home" /> </vi-divider>
+  <vi-divider position="center"> <vi-icon name="Star" /> </vi-divider>
   安得猛士兮守四方！
   <vi-divider position="end">刘邦</vi-divider>
 </template>
@@ -48,15 +48,25 @@
 
 ## 设置方向
 
-使用 `direction` 属性，设置分割线方向，它仅支持 `vertical` 或 `horizontal`。默认为 `horizontal`。
+使用 `direction` 属性，设置分割线方向，它仅支持 `vertical` 与 `horizontal`。默认为 `horizontal`。
 
 <div class="examples">
   大风起兮云飞扬
-  <vi-divider position="center" direction="vertical" />
+  <vi-divider direction="vertical" />
   威加海内兮归故乡
-  <vi-divider position="center" direction="vertical" />
+  <vi-divider direction="vertical" />
   安得猛士兮守四方！
 </div>
+
+```vue
+<template>
+  大风起兮云飞扬
+  <vi-divider direction="vertical" />
+  威加海内兮归故乡
+  <vi-divider direction="vertical" />
+  安得猛士兮守四方！
+</template>
+```
 
 ## 定义边距
 
@@ -132,7 +142,7 @@
 
 ## 定义线条样式
 
-使用 `border-style` 属性，定义线条样式，它接收的值与 CSS `border-style` 接收的值完全相同！
+使用 `border-style` 属性，定义线条样式。它的值与 CSS `border-style` 接受的值完全相同！
 
 ::: tip
 因为它完全等于 CSS `border-style`，所以，完整取值请参见 [MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-style)。

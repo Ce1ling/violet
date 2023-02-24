@@ -31,7 +31,6 @@ const checked9 = ref(true)
 
 <script setup lang="ts">
 import { ref } from 'vue'
-
 const checked1 = ref(true)
 </script>
 ```
@@ -55,7 +54,6 @@ const checked1 = ref(true)
 
 <script setup lang="ts">
 import { ref } from 'vue'
-
 const checked2 = ref(true)
 const checked3 = ref(true)
 </script>
@@ -76,7 +74,6 @@ const checked3 = ref(true)
 
 <script setup lang="ts">
 import { ref } from 'vue'
-
 const checked4 = ref(true)
 </script>
 ```
@@ -96,7 +93,6 @@ const checked4 = ref(true)
 
 <script setup lang="ts">
 import { ref } from 'vue'
-
 const checked5 = ref(true)
 </script>
 ```
@@ -116,12 +112,11 @@ const checked5 = ref(true)
 
 <script setup lang="ts">
 import { ref } from 'vue'
-
 const checked6 = ref(true)
 </script>
 ```
 
-## icon 描述
+## Icon 描述
 
 使用 `on-icon`、`off-icon` 属性，来设置图标描述，所有 violet 内置的图标您都可以使用。
 
@@ -136,7 +131,6 @@ const checked6 = ref(true)
 
 <script setup lang="ts">
 import { ref } from 'vue'
-
 const checked7 = ref(true)
 </script>
 ```
@@ -160,7 +154,6 @@ const checked7 = ref(true)
 
 <script setup lang="ts">
 import { ref } from 'vue'
-
 const checked8 = ref(true)
 const checked9 = ref(true)
 </script>

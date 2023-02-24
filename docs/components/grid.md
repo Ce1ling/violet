@@ -180,7 +180,7 @@
 
 ## 对齐方式
 
-在 `vi-row` 上设置 `justify` 属性，来设置对齐方式。我们采用了 `flex` 布局，所以你可以设置 `flex` 所有的对齐属性。
+在 `vi-row` 上设置 `justify` 属性，来设置对齐方式。我们采用了 `flex` 布局，所以你可以设置 `flex` 布局的所有对齐属性。
 
 <div class="examples">
   默认对齐（flex-start）

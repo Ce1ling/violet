@@ -68,7 +68,6 @@ const custome = () => {
 
 <script setup lang="ts">
 import { Toast } from 'violet'
-
 const handleClick = (type) => Toast[type](`${type} toast 提示`)
 </script>
 ```
@@ -88,7 +87,6 @@ const handleClick = (type) => Toast[type](`${type} toast 提示`)
 
 <script>
 import { Toast } from 'violet'
-
 const handleClose = () => {
   Toast({
     closable: true,
@@ -119,7 +117,6 @@ const handleClose = () => {
 
 <script>
 import { Toast } from 'violet'
-
 const handleHtmlStr = () => {
   Toast({
     isHtmlStr: true,
@@ -145,7 +142,6 @@ const handleHtmlStr = () => {
 
 <script>
 import { Toast } from 'violet'
-
 const handleUnclosed = () => {
   Toast({
     closable: true,
@@ -172,7 +168,6 @@ const handleUnclosed = () => {
 
 <script>
 import { Toast } from 'violet'
-
 const custome = () => {
   Toast({
     type: 'primary',

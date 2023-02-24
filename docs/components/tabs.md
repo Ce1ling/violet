@@ -45,7 +45,7 @@ Tabs 选项卡切换组件，分隔展示不同类型的数据。
 通过动态的 `active` 属性，来切换当前展示的 tab。如下所示：
 
 <div class="examples">
-  <vi-button @click="change">动态切换</vi-button>
+  <vi-button @click="change">动态切换</vi-button>  <br />
   <vi-tabs :active="active">
     <vi-tab label="Vue" name="1">Vue，渐进式 JavaScript 框架</vi-tab>
     <vi-tab label="React" name="2">React，用于构建用户界面的 JavaScript 库</vi-tab>
@@ -56,7 +56,7 @@ Tabs 选项卡切换组件，分隔展示不同类型的数据。
 
 ```vue
 <template>
-  <vi-button @click="change">动态切换</vi-button>
+  <vi-button @click="change">动态切换</vi-button> <br />
   <vi-tabs :active="active">
     <vi-tab label="Vue" name="1">Vue，渐进式 JavaScript 框架</vi-tab>
     <vi-tab label="React" name="2">React，用于构建用户界面的 JavaScript 库</vi-tab>
@@ -67,7 +67,6 @@ Tabs 选项卡切换组件，分隔展示不同类型的数据。
 
 <script setup lang="ts">
 import { ref } from 'vue'
-
 const active = ref('1')
 const change = () => {
   const state = active.value <= 3 ? Number(active.value) + 1 : 1
@@ -81,7 +80,7 @@ const change = () => {
 类似 Vue `v-if` 与 `v-show` 的区别，为了性能考虑，此模式默认为 `false`。如果您有需要，可以开启，开启后只有高亮的 Tab 会被渲染，其他 Tab 将被销毁！
 
 ::: tip
-您可以打开“开发者工具”，并在 `Elements` 面板中来查看节点的渲染情况。如果您熟悉 Vue 的 `v-if` 与 `v-show`，相信您瞬间就能懂！
+您可以打开“开发者工具”，并在 `Elements` 面板中来查看节点的渲染情况。如果您熟悉 Vue `v-if` 与 `v-show` 指令的区别，相信您立马就能理解！
 :::
 
 <div class="examples">
