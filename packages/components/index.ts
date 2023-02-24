@@ -14,6 +14,8 @@ import Main from './Layout/Main.vue'
 import Aside from './Layout/Aside.vue'
 import Footer from './Layout/Footer.vue'
 import Flex from './Layout/Flex.vue'
+import Radio from './Radio/index.vue'
+import RadioBtn from './Radio/RadioBtn.vue'
 
 export {
   Button,
@@ -32,4 +34,6 @@ export {
   Aside,
   Footer,
   Flex,
+  Radio,
+  RadioBtn,
 }

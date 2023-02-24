@@ -10,7 +10,6 @@
   --scroll-bar-wh: 8px;
   --scroll-bar-color: #dbdbdb;
   --basic-font-size: 14px;
-  --animation-duration: 0.3s;
   --border-radius: 5px;
   --border-color: #dddddd;
   --font-color: #555555;
@@ -19,6 +18,11 @@
   --search-modal-shadow-color: #dddddd;
   --shadow-color: #dcd6e4;
   /** 组件相关 */
+  --vi-animation-duration: 0.3s;
+  --vi-opacity-half: 0.666667;
+  --vi-border-radius: 5px;
+  --vi-color-white: #fff;
+  --vi-font-color-white: #fff;
   --vi-toast-info-color: #efe2ff;
   --vi-tabs-header-bg-color: #eeeeee;
   --vi-header-height: 80px;
