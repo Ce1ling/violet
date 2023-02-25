@@ -32,12 +32,12 @@ const val4 = ref('1')
 
     <vi-flex align="center" gap="18px">
       按钮
-      <vi-radiobtn>
+      <vi-radio-btn>
         <vi-radio v-model="val4" label="1">radio 1</vi-radio>
         <vi-radio v-model="val4" label="2">radio 2</vi-radio>
         <vi-radio v-model="val4" label="3" disabled>radio 3</vi-radio>
         <vi-radio v-model="val4" label="4">radio 4</vi-radio>
-      </vi-radiobtn>
+      </vi-radio-btn>
     </vi-flex>
   </div>
 </template>
