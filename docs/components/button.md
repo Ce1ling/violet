@@ -39,7 +39,7 @@
     <vi-button circle> <vi-icon name="Home" /> </vi-button>
     <vi-button type="success" circle> <vi-icon name="Check" /> </vi-button>
     <vi-button type="info" circle> <vi-icon name="Link" /> </vi-button>
-    <vi-button type="warning" circle> <vi-icon name="Warning" /> </vi-button>
+    <vi-button type="warning" circle> <vi-icon name="WarningCircle" /> </vi-button>
     <vi-button type="danger" circle> <vi-icon name="Delete" /> </vi-button>
   </vi-row>
 </div>
