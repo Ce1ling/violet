@@ -14,8 +14,6 @@ const val10 = ref('')
 const val11 = ref('')
 const val12 = ref('')
 const val13 = ref('')
-const val14 = ref('')
-const val15 = ref('')
 </script>
 
 # Input 输入框
@@ -103,19 +101,22 @@ const val4 = ref('')
 通过 `limit` 属性，来限制输入内容长度。你也可以通过 `show-limit`，来展示具体限制数。
 
 <div class="examples">
-  <vi-input v-model="val5" placeholder="限制输入 10 个字符" limit="10" /> <br />
-  <vi-input v-model="val6" placeholder="显示限制输入" limit="10" show-limit />
+  <vi-flex direction="column" gap="18px">
+    <vi-input v-model="val5" placeholder="限制输入 10 个字符" limit="10" />
+    <vi-input v-model="val6" placeholder="显示限制输入" limit="10" show-limit />
+  </vi-flex>
 </div>
 
 ```vue
 <template>
-  <vi-input v-model="val5" placeholder="限制输入 10 个字符" limit="10" /> <br />
-  <vi-input v-model="val6" placeholder="显示限制输入" limit="10" show-limit />
+  <vi-flex direction="column" gap="18px">
+    <vi-input v-model="val5" placeholder="限制输入 10 个字符" limit="10" />
+    <vi-input v-model="val6" placeholder="显示限制输入" limit="10" show-limit />
+  </vi-flex>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-
 const val5 = ref('')
 const val6 = ref('')
 </script>
@@ -126,16 +127,20 @@ const val6 = ref('')
 将 `type` 属性设置为 `textarea`，启用文本域。你可以使用 `rows` 属性来控制高度，同时，文本域也支持限制输入。
 
 <div class="examples">
-  <vi-input v-model="val7" type="textarea" placeholder="文本域" /> <br />
-  <vi-input v-model="val8" type="textarea" placeholder="文本域（自定义高度）" rows="5" /> <br />
-  <vi-input v-model="val9" type="textarea" placeholder="文本域（限制输入）" limit="30" show-limit />
+  <vi-flex direction="column" gap="18px">
+    <vi-input v-model="val7" type="textarea" placeholder="文本域" />
+    <vi-input v-model="val8" type="textarea" placeholder="文本域（自定义高度）" rows="5" />
+    <vi-input v-model="val9" type="textarea" placeholder="文本域（限制输入）" limit="30" show-limit />
+  </vi-flex>
 </div>
 
 ```vue
 <template>
-  <vi-input v-model="val7" type="textarea" placeholder="文本域" />
-  <vi-input v-model="val8" type="textarea" placeholder="文本域（自定义高度）" rows="5" />
-  <vi-input v-model="val9" type="textarea" placeholder="文本域（限制输入）" limit="30" show-limit />
+  <vi-flex direction="column" gap="18px">
+    <vi-input v-model="val7" type="textarea" placeholder="文本域" />
+    <vi-input v-model="val8" type="textarea" placeholder="文本域（自定义高度）" rows="5" />
+    <vi-input v-model="val9" type="textarea" placeholder="文本域（限制输入）" limit="30" show-limit />
+  </vi-flex>
 </template>
 
 <script setup lang="ts">
@@ -151,36 +156,38 @@ const val9 = ref('')
 通过 `pre-icon`、`suf-icon` 属性，定义前后 Icon，它会使用 Violet 所提供的 Icon。如果你想对 Icon 做出一些设置，可以使用对象形式。对于更复杂的设置（或想自定义的不是 Icon），你可以使用 “插槽模式”，我们提供了 `prefix`、`suffix` 插槽。
 
 <div class="examples">
-  <vi-input v-model="val10" placeholder="自定义前后 icon" pre-icon="Search" suf-icon="Menu" /> <br />
-
-  <vi-input v-model="val11" placeholder="自定义前后 icon（对象式）" 
-    :pre-icon="{ name: 'Apple', size: '16px', hoverColor: 'var(--primary-color)' }" 
-    :suf-icon="{ name: 'Windows', size: '16px', hoverColor: 'var(--primary-color)' }"  
-  /> <br />
-
-  <vi-input v-model="val12" placeholder="自定义前后 icon (插槽模式)">
-    <template #prefix>
-      <vi-icon name="Plus" size="16px" color="var(--primary-color)" />
-    </template>
-    <template #suffix>suffix</template>
-  </vi-input>
+  <vi-flex direction="column" gap="18px">
+    <vi-input v-model="val10" placeholder="自定义前后 icon" pre-icon="Search" suf-icon="Menu" />
+    <vi-input v-model="val11" placeholder="自定义前后 icon（对象式）" 
+      :pre-icon="{ name: 'Apple', size: '16px', hoverColor: 'var(--primary-color)' }" 
+      :suf-icon="{ name: 'Windows', size: '16px', hoverColor: 'var(--primary-color)' }"  
+    />
+    <vi-input v-model="val12" placeholder="自定义前后 icon (插槽模式)">
+      <template #prefix>
+        <vi-icon name="Plus" size="16px" color="var(--primary-color)" />
+      </template>
+      <template #suffix>suffix</template>
+    </vi-input>
+  </vi-flex>
 </div>
 
 ```vue
 <template>
-  <vi-input v-model="val10" placeholder="自定义前后 icon" pre-icon="Search" suf-icon="Menu" /> <br />
+  <vi-flex direction="column" gap="18px">
+    <vi-input v-model="val10" placeholder="自定义前后 icon" pre-icon="Search" suf-icon="Menu" />
 
-  <vi-input v-model="val11" placeholder="自定义前后 icon（对象式）" 
-    :pre-icon="{ name: 'Apple', size: '16px', hoverColor: 'var(--primary-color)' }" 
-    :suf-icon="{ name: 'Windows', size: '16px', hoverColor: 'var(--primary-color)' }"  
-  /> <br />
-
-  <vi-input v-model="val12" placeholder="自定义前后 icon (插槽模式)">
-    <template #prefix>
-      <vi-icon name="Plus" size="16px" color="var(--primary-color)" />
-    </template>
-    <template #suffix>suffix</template>
-  </vi-input>
+    <vi-input v-model="val11" placeholder="自定义前后 icon（对象式）" 
+      :pre-icon="{ name: 'Apple', size: '16px', hoverColor: 'var(--primary-color)' }" 
+      :suf-icon="{ name: 'Windows', size: '16px', hoverColor: 'var(--primary-color)' }"  
+    />
+    
+    <vi-input v-model="val12" placeholder="自定义前后 icon (插槽模式)">
+      <template #prefix>
+        <vi-icon name="Plus" size="16px" color="var(--primary-color)" />
+      </template>
+      <template #suffix>suffix</template>
+    </vi-input>
+  </vi-flex>
 </template>
 
 <script setup lang="ts">
