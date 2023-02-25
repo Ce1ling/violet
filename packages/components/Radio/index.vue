@@ -123,7 +123,8 @@ const classObj = computed(() => ({
     }
     .vi-radio__dot {
       position: relative;
-      transform: translate(0);
+      transform: translateY(0);
+      top: 0;
     }
   }
   &.is-button {
