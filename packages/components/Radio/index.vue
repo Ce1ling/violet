@@ -21,7 +21,7 @@ defineEmits<Emits>()
 const classObj = computed(() => ({
   'is-checked': props.modelValue === props.label,
   'is-disabled': props.disabled,
-  'has-border': props.border,
+  'has-border': props.border && !props.isBtn,
   'is-button': props.isBtn
 }))
 
