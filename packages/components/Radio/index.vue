@@ -62,6 +62,11 @@ const classObj = computed(() => ({
   user-select: none;
   position: relative;
   
+  &:hover {
+    .vi-radio__dot {
+      border-color: var(--primary-color);
+    }
+  }
   &__input {
     opacity: 0;
     cursor: pointer;
@@ -111,6 +116,7 @@ const classObj = computed(() => ({
     border-radius: var(--vi-border-radius);
     &.is-checked {
       border-color: var(--primary-color);
+      color: var(--primary-color);
     }
     .vi-radio__input {
       position: absolute;
