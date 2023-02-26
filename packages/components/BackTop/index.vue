@@ -3,19 +3,13 @@ import { ref, onMounted, onUnmounted } from 'vue'
 
 const show = ref(false)
 
-const handleScroll = () => {
-  const halfHeight = window.innerHeight * 0.5
-  if (window.scrollY >= halfHeight) { show.value = true }
-  else { show.value = false }
-}
+const handleScroll = () => show.value = document.body.offsetWidth > 960
+  ? window.scrollY >= (window.innerHeight * 0.5)
+  : false
 const back = () => window.scrollTo({ top: 0 })
 
-onMounted(() => {
-  window.addEventListener('scroll', handleScroll)
-})
-onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll)
-})
+onMounted(() => window.addEventListener('scroll', handleScroll))
+onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 </script>
 
 <template>
@@ -34,9 +28,9 @@ onUnmounted(() => {
   border: 1px solid var(--primary-color);
   background-color: var(--vp-c-bg-alpha-with-backdrop);
   cursor: pointer;
-  &:hover { 
-    background-color: var(--vp-c-bg-alpha-with-backdrop); 
-    filter: brightness(0.8); 
+  &:hover {
+    background-color: var(--primary-color);
+    .vi-icon svg { color: #fff; }
   }
 }
 </style>
