@@ -27,30 +27,33 @@ const loadingDuration = computed(() => props.duration + 's')
 
 <template>
   <i class="vi-icon">
-    <Iconify class="icon" :icon="iconName" :class="{ 'icon-loading': loading }" />
+    <Iconify 
+      class="vi-icon__svg" 
+      :class="{ 'vi-icon-loading': loading }" 
+      :icon="iconName" 
+    />
   </i>
 </template>
 
 <style lang='scss'>
-@keyframes loading {
+@keyframes vi-icon-rotate {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
-.icon-loading {
-  animation: loading v-bind(loadingDuration) infinite linear;
-}
-
 .vi-icon {
   font-style: normal;
-  .icon {
+  &__svg {
     fill: currentColor;
-    transition: color .2s;
+    transition: color var(--vi-animation-duration);
     color: v-bind(color);
     width: v-bind(size);
     height: v-bind(size);
     cursor: v-bind(cursor);
     &:hover { color: v-bind(getHoverColor); }
+  }
+  &-loading {
+    animation: vi-icon-rotate v-bind(loadingDuration) infinite linear;
   }
 }
 </style>
