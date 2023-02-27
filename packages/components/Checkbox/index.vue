@@ -57,7 +57,7 @@ const classObj = computed(() => ({
   }
 }
 .vi-checkbox {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
