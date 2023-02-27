@@ -14,6 +14,10 @@ const val10 = ref(false)
 const val11 = ref(true)
 const val12 = ref(false)
 const val13 = ref(true)
+const val14 = ref(false)
+const val15 = ref(false)
+const val16 = ref(false)
+const val17 = ref(true)
 
 </script>
 
@@ -48,6 +52,16 @@ const val13 = ref(true)
         <vi-checkbox v-model="val12" label="checkbox3" disabled />
         <vi-checkbox v-model="val13" label="checkbox4">default slot</vi-checkbox>
       </vi-checkbox-btn>
+    </vi-flex>
+
+    <vi-flex align="center" gap="18px">
+      限制
+      <vi-checkbox-group :max="3" :min="1">
+        <vi-checkbox v-model="val14" label="checkbox1" />
+        <vi-checkbox v-model="val15" label="checkbox2" />
+        <vi-checkbox v-model="val16" label="checkbox3" />
+        <vi-checkbox v-model="val17" label="checkbox4">default slot</vi-checkbox>
+      </vi-checkbox-group>
     </vi-flex>
   </div>
 </template>

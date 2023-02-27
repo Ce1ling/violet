@@ -18,6 +18,7 @@ import Radio from './Radio/index.vue'
 import RadioBtn from './Radio/RadioBtn.vue'
 import Checkbox from './Checkbox/index.vue'
 import CheckboxBtn from './Checkbox/CheckboxBtn.vue'
+import CheckboxGroup from './Checkbox/CheckboxGroup.vue'
 
 export {
   Button,
@@ -39,5 +40,6 @@ export {
   Radio,
   RadioBtn,
   Checkbox,
-  CheckboxBtn
+  CheckboxBtn,
+  CheckboxGroup,
 }

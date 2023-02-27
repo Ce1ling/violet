@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed  } from 'vue'
 
-interface Props {
+export interface Props {
   modelValue: boolean
   label?: string
   disabled?: boolean
