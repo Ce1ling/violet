@@ -5,6 +5,7 @@ const val1 = ref('1')
 const val2 = ref('1')
 const val3 = ref('1')
 const val4 = ref('1')
+const val5 = ref('1')
 </script>
 
 # Radio 单选框
@@ -104,7 +105,7 @@ const val3 = ref('1')
 
 ## 按钮类型
 
-如需要使用按钮类型，请使用 `vi-radio-btn` 标签包裹，因为 Violet 需要使用此标签做特殊处理。
+如需使用按钮类型，必须使用 `vi-radio-group` 标签包裹并添加 `is-button` 属性。因为 Violet 需要使用此标签做特殊处理，而 `is-button` 属性则表示使用按钮类型。
 
 ::: tip
 注意：如果使用了按钮类型，`border` 属性将无效，因为按钮类型自带边框，您无需它。
@@ -113,12 +114,12 @@ const val3 = ref('1')
 <div class="examples">
   <vi-flex gap="18px">
     <span>你喜欢干什么？</span>
-    <vi-radio-btn>
+    <vi-radio-group is-button>
       <vi-radio v-model="val4" label="1">写代码</vi-radio>
       <vi-radio v-model="val4" label="2" disabled>删代码</vi-radio>
       <vi-radio v-model="val4" label="3">改代码</vi-radio>
       <vi-radio v-model="val4" label="4">看代码</vi-radio>
-    </vi-radio-btn>
+    </vi-radio-group>
   </vi-flex>
 </div>
 
@@ -126,12 +127,47 @@ const val3 = ref('1')
 <template>
   <vi-flex gap="18px">
     <span>你喜欢干什么？</span>
-    <vi-radio-btn>
+    <vi-radio-group is-button>
       <vi-radio v-model="val4" label="1">写代码</vi-radio>
       <vi-radio v-model="val4" label="2" disabled>删代码</vi-radio>
       <vi-radio v-model="val4" label="3">改代码</vi-radio>
       <vi-radio v-model="val4" label="4">看代码</vi-radio>
-    </vi-radio-btn>
+    </vi-radio-group>
+  </vi-flex>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+const val4 = ref('1')
+</script>
+```
+
+## Radio 组
+
+如需使用 Radio 组，请使用 `vi-radio-group` 标签包裹。它提供 `gap` 属性来定义间距。
+
+<div class="examples">
+  <vi-flex gap="18px">
+    <span>你喜欢干什么？</span>
+    <vi-radio-group gap="28px">
+      <vi-radio v-model="val5" label="1">写代码</vi-radio>
+      <vi-radio v-model="val5" label="2" disabled>删代码</vi-radio>
+      <vi-radio v-model="val5" label="3">改代码</vi-radio>
+      <vi-radio v-model="val5" label="4">看代码</vi-radio>
+    </vi-radio-group>
+  </vi-flex>
+</div>
+
+```vue
+<template>
+  <vi-flex gap="18px">
+    <span>你喜欢干什么？</span>
+    <vi-radio-group gap="28px">
+      <vi-radio v-model="val5" label="1">写代码</vi-radio>
+      <vi-radio v-model="val5" label="2" disabled>删代码</vi-radio>
+      <vi-radio v-model="val5" label="3">改代码</vi-radio>
+      <vi-radio v-model="val5" label="4">看代码</vi-radio>
+    </vi-radio-group>
   </vi-flex>
 </template>
 
@@ -143,7 +179,7 @@ const val4 = ref('1')
 
 ## APIs
 
-### 属性
+### Radio 属性
 
 | 属性名 | 属性说明 | 属性类型 | 属性默认值 |
 | :---: | :---: | :---: | :---: |
@@ -151,3 +187,10 @@ const val4 = ref('1')
 | label | 选中时的内容 | boolean | false |
 | disabled | 是否为禁用状态 | boolean | fasle |
 | border | 是否需要边框 | boolean | false |
+
+### RadioGroup 属性
+
+| 属性名 | 属性说明 | 属性类型 | 属性默认值 |
+| :---: | :---: | :---: | :---: |
+| is-button | 是否为按钮类型 | boolean | false |
+| gap | 间距 | string | '18px' |
