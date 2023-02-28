@@ -3,20 +3,28 @@ import { computed, h, useSlots } from 'vue'
 
 
 interface Props {
+  modelValue: string
   isButton?: boolean
   gap?: string
+}
+interface Emits {
+  (e: 'update:modelValue', label: string): void
 }
 const props = withDefaults(defineProps<Props>(), {
   isButton: false,
   gap: '18px'
 })
 const slots = useSlots()
+const emit = defineEmits<Emits>()
 
 const getGap = computed(() => !props.isButton ? props.gap : '0')
 
 const RenderSlots = () => slots.default && slots.default().map(v => h(v, { 
-  isBtn: props.isButton 
+  modelValue: props.modelValue,
+  isBtn: props.isButton,
+  'onUpdate:modelValue': (val: string) => emit('update:modelValue', val)
 }))
+
 </script>
 
 <template>
