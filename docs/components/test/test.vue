@@ -46,17 +46,17 @@ const val17 = ref(true)
 
     <vi-flex align="center" gap="18px">
       按钮
-      <vi-checkbox-btn>
+      <vi-checkbox-group is-button>
         <vi-checkbox v-model="val10" label="checkbox1" />
         <vi-checkbox v-model="val11" label="checkbox2" disabled />
         <vi-checkbox v-model="val12" label="checkbox3" disabled />
         <vi-checkbox v-model="val13" label="checkbox4">default slot</vi-checkbox>
-      </vi-checkbox-btn>
+      </vi-checkbox-group>
     </vi-flex>
 
     <vi-flex align="center" gap="18px">
       限制
-      <vi-checkbox-group :max="3" :min="1">
+      <vi-checkbox-group :max="3" :min="1" is-button>
         <vi-checkbox v-model="val14" label="checkbox1" />
         <vi-checkbox v-model="val15" label="checkbox2" />
         <vi-checkbox v-model="val16" label="checkbox3" />
