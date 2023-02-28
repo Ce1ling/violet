@@ -13,22 +13,15 @@ const val9 = ref(true)
 const val10 = ref(false)
 const val11 = ref(true)
 const val12 = ref(false)
-const val13 = ref(true)
-const val14 = ref(false)
-const val15 = ref(true)
-const val16 = ref(false)
-const val17 = ref(true)
-const val18 = ref(false)
-const val19 = ref(true)
-const val20 = ref(false)
-const val21 = ref(true)
-const val22 = ref(false)
-const val23 = ref(false)
-const val24 = ref(false)
+const val13 = ref(['AK-47'])
+const val14 = ref(['AK-47'])
+const val15 = ref(['AK-47'])
 </script>
 
 
 # Checkbox 复选框
+
+对一组内容进行多选。
 
 ## 基础用法
 
@@ -143,11 +136,11 @@ const val12 = ref(false)
 <div class="examples">
   <vi-flex gap="18px">
     <span>请选择你的武器</span>
-    <vi-checkbox-group is-button>
-      <vi-checkbox v-model="val13" label="AK-47" />
-      <vi-checkbox v-model="val14" label="AWP" />
-      <vi-checkbox v-model="val15" label="M4A4" disabled />
-      <vi-checkbox v-model="val16" label="M4A1-S" />
+    <vi-checkbox-group v-model="val13" is-button>
+      <vi-checkbox label="AK-47" />
+      <vi-checkbox label="AWP" />
+      <vi-checkbox label="M4A4" disabled />
+      <vi-checkbox label="M4A1-S" />
     </vi-checkbox-group>
   </vi-flex>
 </div>
@@ -156,21 +149,18 @@ const val12 = ref(false)
 <template>
   <vi-flex gap="18px">
     <span>请选择你的武器</span>
-    <vi-checkbox-group is-button>
-      <vi-checkbox v-model="val13" label="AK-47" />
-      <vi-checkbox v-model="val14" label="AWP" />
-      <vi-checkbox v-model="val15" label="M4A4" disabled />
-      <vi-checkbox v-model="val16" label="M4A1-S" />
+    <vi-checkbox-group v-model="val13" is-button>
+      <vi-checkbox label="AK-47" />
+      <vi-checkbox label="AWP" />
+      <vi-checkbox label="M4A4" disabled />
+      <vi-checkbox label="M4A1-S" />
     </vi-checkbox-group>
   </vi-flex>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-const val13 = ref(true)
-const val14 = ref(false)
-const val15 = ref(true)
-const val16 = ref(false)
+const val13 = ref(['AK-47'])
 </script>
 ```
 
@@ -181,11 +171,11 @@ const val16 = ref(false)
 <div class="examples">
   <vi-flex gap="18px">
     <span>请选择你的武器</span>
-    <vi-checkbox-group gap="28px">
-      <vi-checkbox v-model="val17" label="AK-47" border />
-      <vi-checkbox v-model="val18" label="AWP" border />
-      <vi-checkbox v-model="val19" label="M4A4" border disabled />
-      <vi-checkbox v-model="val20" label="M4A1-S" border />
+    <vi-checkbox-group v-model="val14" gap="28px">
+      <vi-checkbox label="AK-47" border />
+      <vi-checkbox label="AWP" border />
+      <vi-checkbox label="M4A4" border disabled />
+      <vi-checkbox label="M4A1-S" border />
     </vi-checkbox-group>
   </vi-flex>
 </div>
@@ -194,21 +184,18 @@ const val16 = ref(false)
 <template>
   <vi-flex gap="18px">
     <span>请选择你的武器</span>
-    <vi-checkbox-group gap="28px">
-      <vi-checkbox v-model="val17" label="AK-47" border />
-      <vi-checkbox v-model="val18" label="AWP" border />
-      <vi-checkbox v-model="val19" label="M4A4" border disabled />
-      <vi-checkbox v-model="val20" label="M4A1-S" border />
+    <vi-checkbox-group v-model="val14" gap="28px">
+      <vi-checkbox label="AK-47" border />
+      <vi-checkbox label="AWP" border />
+      <vi-checkbox label="M4A4" border disabled />
+      <vi-checkbox label="M4A1-S" border />
     </vi-checkbox-group>
   </vi-flex>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-const val17 = ref(true)
-const val18 = ref(false)
-const val19 = ref(true)
-const val20 = ref(false)
+const val14 = ref(['AK-47'])
 </script>
 ```
 
@@ -219,11 +206,11 @@ const val20 = ref(false)
 <div class="examples">
   <vi-flex gap="18px">
     <span>请选择你的武器</span>
-    <vi-checkbox-group :min="1" :max="3">
-      <vi-checkbox v-model="val21" label="AK-47" />
-      <vi-checkbox v-model="val22" label="AWP" />
-      <vi-checkbox v-model="val23" label="M4A4" />
-      <vi-checkbox v-model="val24" label="M4A1-S" />
+    <vi-checkbox-group v-model="val15" :min="1" :max="3">
+      <vi-checkbox label="AK-47" />
+      <vi-checkbox label="AWP" />
+      <vi-checkbox label="M4A4" />
+      <vi-checkbox label="M4A1-S" />
     </vi-checkbox-group>
   </vi-flex>
 </div>
@@ -232,21 +219,18 @@ const val20 = ref(false)
 <template>
   <vi-flex gap="18px">
     <span>请选择你的武器</span>
-    <vi-checkbox-group :min="1" :max="3">
-      <vi-checkbox v-model="val21" label="AK-47" />
-      <vi-checkbox v-model="val22" label="AWP" />
-      <vi-checkbox v-model="val23" label="M4A4" />
-      <vi-checkbox v-model="val24" label="M4A1-S" />
+    <vi-checkbox-group v-model="val15" :min="1" :max="3">
+      <vi-checkbox label="AK-47" />
+      <vi-checkbox label="AWP" />
+      <vi-checkbox label="M4A4" />
+      <vi-checkbox label="M4A1-S" />
     </vi-checkbox-group>
   </vi-flex>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-const val21 = ref(true)
-const val22 = ref(false)
-const val23 = ref(true)
-const val24 = ref(false)
+const val15 = ref(['AK-47'])
 </script>
 ```
 

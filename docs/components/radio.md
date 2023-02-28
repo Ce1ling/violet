@@ -10,6 +10,8 @@ const val5 = ref('1')
 
 # Radio 单选框
 
+对一组内容进行单选。
+
 ## 基础用法
 
 您必须绑定 `v-model` 与 `label` 属性，才能使 `vi-radio` 正常工作。`v-model` 用于绑定同一个变量，`lable` 是选中此 radio 时提供的内容。
