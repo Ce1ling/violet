@@ -1,14 +1,20 @@
 <script setup lang="ts">
 import { useSlots, h, computed } from 'vue'
 import type { VNode } from 'vue'
-import type { Props as CheckboxProps } from './index.vue'
+import type { 
+  Props as CheckboxProps, 
+  Emits as CheckboxEmits, 
+  ModelValue 
+} from './index.vue'
 
 interface Props {
+  modelValue: string[]
   gap?: string
   min?: number
   max?: number
   isButton?: boolean
 }
+interface Emits extends CheckboxEmits {}
 const props = withDefaults(defineProps<Props>(), {
   gap: '18px',
   min: 0,
@@ -16,6 +22,8 @@ const props = withDefaults(defineProps<Props>(), {
   isButton: false
 })
 const slots = useSlots()
+/** 不可将 CheckboxEmits 传入此泛型中，因为 Vue(3.2.41) 泛型暂不支持从其他文件引入的类型 */
+const emit = defineEmits<Emits>()
 
 const getGap = computed(() => !props.isButton ? props.gap : '0')
 
@@ -26,14 +34,19 @@ const getGap = computed(() => !props.isButton ? props.gap : '0')
  */
 const hRender = (vNode: VNode, disable?: boolean) => h(vNode, { 
   disabled: disable || (vNode.props as CheckboxProps).disabled,
-  isBtn: props.isButton
+  isBtn: props.isButton,
+  modelValue: props.modelValue,
+  'onUpdate:modelValue': (val: ModelValue) => emit('update:modelValue', val)
 })
 
 const RenderSlots = () => slots.default && slots.default().map(vNode => {
-  const nProps = vNode.props as CheckboxProps
-  const checkedTotal = slots.default!().filter(n => (n.props as CheckboxProps).modelValue).length
-  if (checkedTotal >= props.max) { return hRender(vNode, !nProps.modelValue) }
-  if (checkedTotal <= props.min) { return hRender(vNode, nProps.modelValue) }
+  const vProps = vNode.props as CheckboxProps
+  const checkedTotal = props.modelValue.length
+  const checked = props.modelValue.filter(v => v === vProps.label).length
+
+  if (checkedTotal >= props.max) { return hRender(vNode, !checked) }
+  if (checkedTotal <= props.min) { return hRender(vNode, !!checked) }
+
   return hRender(vNode)
 })
 

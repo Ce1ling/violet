@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import { computed  } from 'vue'
 
+export type ModelValue = boolean | string[]
 export interface Props {
-  modelValue: boolean
+  modelValue: ModelValue
   label?: string
   disabled?: boolean
   border?: boolean
   isBtn?: boolean
 }
-interface Emits {
-  (e: 'update:modelValue', label: string): void
+export interface Emits {
+  (e: 'update:modelValue', label: ModelValue): void
 }
 const props = withDefaults(defineProps<Props>(), {
   label: '',
@@ -17,10 +18,29 @@ const props = withDefaults(defineProps<Props>(), {
   border: false,
   isBtn: false
 })
-defineEmits<Emits>()
+const emit = defineEmits<Emits>()
 
+const updateModelValue = () => {
+  if (typeof props.modelValue === 'boolean') {
+    emit('update:modelValue', !props.modelValue)
+    return 
+  }
+
+  const arr = [...props.modelValue]
+  const i = arr.indexOf(props.label)
+
+  if (i === -1) { arr.push(props.label) } 
+  else { arr.splice(i, 1) }
+
+  emit('update:modelValue', arr)
+}
+
+const getChecked = computed(() => typeof props.modelValue !== 'boolean'
+  ? props.modelValue.find(v => v === props.label) === props.label
+  : props.modelValue
+)
 const classObj = computed(() => ({
-  'is-checked': props.modelValue,
+  'is-checked': getChecked.value,
   'is-disabled': props.disabled,
   'has-border': props.border && !props.isBtn,
   'is-button': props.isBtn
@@ -35,8 +55,8 @@ const classObj = computed(() => ({
       class="vi-checkbox__input"
       :name="label" 
       :value="label" 
-      :checked="modelValue"
-      @input="$emit('update:modelValue', !modelValue)" 
+      :checked="getChecked"
+      @input="updateModelValue" 
       :disabled="disabled"
     />
     <span class="vi-checkbox__square"></span>
