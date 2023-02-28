@@ -15,9 +15,8 @@ import Aside from './Layout/Aside.vue'
 import Footer from './Layout/Footer.vue'
 import Flex from './Layout/Flex.vue'
 import Radio from './Radio/index.vue'
-import RadioBtn from './Radio/RadioBtn.vue'
+import RadioGroup from './Radio/RadioGroup.vue'
 import Checkbox from './Checkbox/index.vue'
-import CheckboxBtn from './Checkbox/CheckboxBtn.vue'
 import CheckboxGroup from './Checkbox/CheckboxGroup.vue'
 
 export {
@@ -38,8 +37,7 @@ export {
   Footer,
   Flex,
   Radio,
-  RadioBtn,
+  RadioGroup,
   Checkbox,
-  CheckboxBtn,
   CheckboxGroup,
 }
