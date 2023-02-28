@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useSlots, h } from 'vue'
+import type { VNode } from 'vue'
 import type { Props as CheckboxProps } from './index.vue'
 
 interface Props {
@@ -14,15 +15,21 @@ const props = withDefaults(defineProps<Props>(), {
 })
 const slots = useSlots()
 
+/**
+ * `disable` 参数为 `true` 返回一个禁用的 vNode，`false` 返回未禁用的。
+ * @param {Object} vNode Vue 虚拟 DOM
+ * @param {Boolean} disable 是否为禁用节点
+ */
+const renderDisabled = (vNode: VNode, disable: boolean) => disable 
+  ? h(vNode, { disabled: true }) 
+  : h(vNode)
+
 const RenderSlots = () => slots.default && slots.default().map(vNode => {
+  console.log('vnode', vNode);
   const nProps = vNode.props as CheckboxProps
-  const count = slots.default!().filter(n => (n.props as CheckboxProps).modelValue).length
-  if (count >= props.max) {
-    return !nProps.modelValue ? h(vNode, { disabled: true }) : h(vNode)
-  }
-  if (count <= props.min) {
-    return nProps.modelValue ? h(vNode, { disabled: true }) : h(vNode)
-  }
+  const checkedTotal = slots.default!().filter(n => (n.props as CheckboxProps).modelValue).length
+  if (checkedTotal >= props.max) { return renderDisabled(vNode, !nProps.modelValue) }
+  if (checkedTotal <= props.min) { return renderDisabled(vNode, nProps.modelValue) }
   return h(vNode)
 })
 </script>
