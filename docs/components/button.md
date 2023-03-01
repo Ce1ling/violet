@@ -146,6 +146,10 @@
 
 使用 `text` 属性，来定义文本类型按钮。
 
+::: tip
+如果您不想要鼠标移入时的背景颜色，何不尝试一下 [Link](./link.md#下划线) 组件的去下划线写法呢？
+:::
+
 <div class="examples">
   <vi-row>
     <vi-button type="primary" text> 主要按钮 </vi-button>
