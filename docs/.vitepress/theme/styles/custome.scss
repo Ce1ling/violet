@@ -1,4 +1,5 @@
 :root {
+  /** 文档相关 */
   --doc-bg-color: #ffffff;
   --doc-padding: 18px;
   --doc-scroll-bar-wh: 8px;
@@ -11,44 +12,28 @@
   --doc-search-modal-shadow-color: #dddddd;
   --doc-shadow-color: #dcd6e4;
 
-  /* 首页 Homepage */
-  // brand 按钮边框
+  /** vitepress 首页 */
   --vp-button-brand-border: var(--vi-color-primary);
-  // brand 按钮 hover 状态
   --vp-button-brand-hover-border: var(--vi-color-primary);
-  // brand 按钮 hover 文字颜色
   --vp-button-brand-hover-text: var(--vi-color-primary);
-  // brand 按钮 hover 背景色
   --vp-button-brand-hover-bg: transparent;
-  // brand 按钮背景色
   --vp-button-brand-bg: var(--vi-color-primary);
   --vp-home-hero-name-color: transparent;
   --vp-home-hero-name-background: -webkit-linear-gradient(120deg, var(--vi-color-primary), #4d2ae8, violet);
 
-  /* 侧边栏 aside */
-  // 高亮色
+  /** vitepress 侧边栏 */
   --vp-c-brand: #802ae8;
-  // 区块色
   --vp-c-bg-alt: unset;
-  // 分割线
   --vp-c-divider-light: transparent;
-  // 宽度
   --vp-sidebar-width: 300px;
 
-  /* 内容区 content */
-  // 代码块背景色
+  /** vitepress 内容区 */
   --vp-code-block-bg: #f9f9f9;
-  // 复制成功提示文字
   --vp-code-copy-code-active-text: 000;
-  // 代码块语言文字
   --vp-c-text-dark-3: 000;
-  // 
   --vp-c-brand-dark: var(--vi-color-primary);
-  // TIP 片段背景颜色
   --vp-custom-block-tip-bg: #892be211;
-  // TIP 片段文字颜色
   --vp-custom-block-tip-text: var(--vi-color-secondary);
-  // TIP 片段边框颜色
   --vp-custom-block-tip-border: var(--vi-color-primary);
 }
 
@@ -145,10 +130,10 @@
   // 侧边栏
   .VPSidebar {
     border-right: 1px solid #dddddd;
-    overflow-y: hidden !important;
+    overflow-y: hidden;
     width: unset;
     padding-left: 32px;
-    &:hover { overflow-y: auto !important; }
+    &:hover { overflow-y: auto; }
     .nav {
       margin-top: 24px;
       .title .title-text { font-size: 18px; }
