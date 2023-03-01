@@ -36,7 +36,7 @@ const colorObj = {
 }
 
 const classObj = computed(() => ({
-  'text-color': props.text,
+  'text-btn': props.text,
   round: props.round,
   circle: props.circle,
   disabled: props.disabled,
@@ -92,20 +92,19 @@ const handleClick = (e: MouseEvent) => props.disabled || emit('click', e)
   transition: none;
   color: v-bind(getColor);
   background-color: v-bind(getBgColor);
-  transition: opacity 0.1s;
-  &:hover { opacity: 0.677777; }
+  transition: all var(--vi-button-animation-duration);
+  &:hover { opacity: var(--vi-opacity-half); }
   &:active { opacity: 1; }
 
-  // 文字按钮
-  &.text-color {
+  &.text-btn {
     background-color: transparent;
     color: v-bind(getColor);
+    &:hover { background-color: var(--vi-button-text-color); }
+    &:active { background-color: transparent; }
   }
-  // 圆角按钮
   &.round {
     border-radius: 20px;
   }
-  // 圆形按钮
   &.circle {
     width: 38px;
     height: 38px;
@@ -114,12 +113,10 @@ const handleClick = (e: MouseEvent) => props.disabled || emit('click', e)
     line-height: 0;
     border-radius: 50%;
   }
-  // 加载状态
   &.loading {
     opacity: 0.5;
     cursor: wait;
   }
-  // 禁用状态
   &.disabled {
     opacity: 0.5;
     cursor: not-allowed;
