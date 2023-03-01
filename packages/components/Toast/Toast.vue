@@ -114,8 +114,8 @@ onMounted(() => {
   top: v-bind(offset);
   z-index: v-bind(getZIndex);
   padding: 8px 28px;
-  border-radius: var(--border-radius);
-  border: 1px solid var(--shadow-color);
+  border-radius: var(--vi-base-radius);
+  border: 1px solid var(--vi-color-shadow);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -123,12 +123,12 @@ onMounted(() => {
 
   &--primary {
     background-color: #f1e2ff;
-    color: var(--primary-color);
+    color: var(--vi-color-primary);
     box-shadow: 2px 2px 8px 0 #f1e2ff;
   }
   &--success {
     background-color: #eaffe0;
-    color: var(--success-color);
+    color: var(--vi-color-success);
     box-shadow: 2px 2px 8px 0 #eaffe0;
   }
   &--info {
@@ -138,12 +138,12 @@ onMounted(() => {
   }
   &--warning {
     background-color: #fff8e0;
-    color: var(--warning-color);
+    color: var(--vi-color-warning);
     box-shadow: 2px 2px 8px 0 #fff8e0;
   }
   &--danger {
     background-color: #ffe4da;
-    color: var(--danger-color);
+    color: var(--vi-color-danger);
     box-shadow: 2px 2px 8px 0 #ffe4da;
   }
 }

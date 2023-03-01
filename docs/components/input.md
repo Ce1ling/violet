@@ -159,12 +159,12 @@ const val9 = ref('')
   <vi-flex direction="column" gap="18px">
     <vi-input v-model="val10" placeholder="自定义前后 icon" pre-icon="Search" suf-icon="Menu" />
     <vi-input v-model="val11" placeholder="自定义前后 icon（对象式）" 
-      :pre-icon="{ name: 'Apple', size: '16px', hoverColor: 'var(--primary-color)' }" 
-      :suf-icon="{ name: 'Windows', size: '16px', hoverColor: 'var(--primary-color)' }"  
+      :pre-icon="{ name: 'Apple', size: '16px', hoverColor: 'var(--vi-color-primary)' }" 
+      :suf-icon="{ name: 'Windows', size: '16px', hoverColor: 'var(--vi-color-primary)' }"  
     />
     <vi-input v-model="val12" placeholder="自定义前后 icon (插槽模式)">
       <template #prefix>
-        <vi-icon name="Plus" size="16px" color="var(--primary-color)" />
+        <vi-icon name="Plus" size="16px" color="var(--vi-color-primary)" />
       </template>
       <template #suffix>suffix</template>
     </vi-input>
@@ -177,13 +177,13 @@ const val9 = ref('')
     <vi-input v-model="val10" placeholder="自定义前后 icon" pre-icon="Search" suf-icon="Menu" />
 
     <vi-input v-model="val11" placeholder="自定义前后 icon（对象式）" 
-      :pre-icon="{ name: 'Apple', size: '16px', hoverColor: 'var(--primary-color)' }" 
-      :suf-icon="{ name: 'Windows', size: '16px', hoverColor: 'var(--primary-color)' }"  
+      :pre-icon="{ name: 'Apple', size: '16px', hoverColor: 'var(--vi-color-primary)' }" 
+      :suf-icon="{ name: 'Windows', size: '16px', hoverColor: 'var(--vi-color-primary)' }"  
     />
     
     <vi-input v-model="val12" placeholder="自定义前后 icon (插槽模式)">
       <template #prefix>
-        <vi-icon name="Plus" size="16px" color="var(--primary-color)" />
+        <vi-icon name="Plus" size="16px" color="var(--vi-color-primary)" />
       </template>
       <template #suffix>suffix</template>
     </vi-input>

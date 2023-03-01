@@ -14,7 +14,7 @@ interface Emits {
 type RenderVNode = VNodeArrayChildren | undefined
 
 const props = withDefaults(defineProps<Props>(), {
-  activeBgColor: 'var(--primary-color)',
+  activeBgColor: 'var(--vi-color-primary)',
   bgColor: 'var(--vi-tabs-header-bg-color)',
   ifMode: false
 })
@@ -117,15 +117,15 @@ const RenderTabContent = (): RenderVNode => {
 .vi-tabs {
   .vi-tabs__header {
     display: flex;
-    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    border-radius: var(--vi-base-radius) var(--vi-base-radius) 0 0;
     background-color: v-bind(bgColor);
     position: relative;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--vi-color-gray);
     border-bottom: none;
     &-item {
       flex-shrink: 0;
       padding: 8px 18px;
-      border-radius: var(--border-radius) var(--border-radius) 0 0;
+      border-radius: var(--vi-base-radius) var(--vi-base-radius) 0 0;
       cursor: pointer;
       text-align: center;
       transition: background-color .3s;

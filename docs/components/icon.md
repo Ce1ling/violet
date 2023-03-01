@@ -187,8 +187,8 @@ const duration = ref(2)
   padding: 0;
   margin: 0;
   list-style: none;
-  border-left: 1px solid var(--border-color);
-  border-top: 1px solid var(--border-color);
+  border-left: 1px solid var(--doc-border-color);
+  border-top: 1px solid var(--doc-border-color);
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   > li {
@@ -197,10 +197,10 @@ const duration = ref(2)
     align-items: center;
     margin: 0;
     padding: 10px;
-    border-right: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--doc-border-color);
+    border-bottom: 1px solid var(--doc-border-color);
     span { cursor: pointer }
-    &:hover { color: var(--primary-color); }
+    &:hover { color: var(--vi-color-primary); }
   }
 }
 @media screen and (max-width: 1820px) {

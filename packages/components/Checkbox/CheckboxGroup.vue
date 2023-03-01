@@ -64,13 +64,13 @@ const RenderSlots = () => slots.default && slots.default().map(vNode => {
   gap: v-bind(getGap);
   &.is-button .vi-checkbox {
     &:first-child {
-      border-radius: var(--vi-border-radius) 0 0 var(--vi-border-radius);
+      border-radius: var(--vi-base-radius) 0 0 var(--vi-base-radius);
     }
     &:last-child {
-      border-radius: 0 var(--vi-border-radius) var(--vi-border-radius) 0;
-      border-right: 1px solid var(--info-color);
+      border-radius: 0 var(--vi-base-radius) var(--vi-base-radius) 0;
+      border-right: 1px solid var(--vi-color-info);
       &.is-checked {
-        border-color: var(--primary-color);
+        border-color: var(--vi-color-primary);
       }
     }
   }

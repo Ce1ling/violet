@@ -14,10 +14,10 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits(['click'])
 
 const color = reactive({
-  primary: 'var(--primary-color)',
-  success: 'var(--success-color)',
-  warning: 'var(--warning-color)',
-  danger: 'var(--danger-color)'
+  primary: 'var(--vi-color-primary)',
+  success: 'var(--vi-color-success)',
+  warning: 'var(--vi-color-warning)',
+  danger: 'var(--vi-color-danger)'
 })
 
 const getColor = computed(() => color[props.type])

@@ -22,11 +22,11 @@ const links = [
 
 <style scoped lang="scss">
 .footer-wrap {
-  max-height: var(--footer-height);
+  max-height: var(--doc-footer-height);
   padding: 50px;
   background-color: var(--vp-c-bg-alpha-with-backdrop);
   filter: brightness(0.9);
-  width: calc(100vw - var(--vp-sidebar-width) - var(--scroll-bar-wh));
+  width: calc(100vw - var(--vp-sidebar-width) - var(--doc-scroll-bar-wh));
   position: absolute;
   left: -32px;
   bottom: 0;
@@ -40,9 +40,9 @@ const links = [
     .footer-item {
       margin: 8px 0;
       a { 
-        color: var(--font-color);
+        color: var(--doc-font-color);
         &:hover {
-          color: var(--primary-color);
+          color: var(--vi-color-primary);
         }
       }
     }

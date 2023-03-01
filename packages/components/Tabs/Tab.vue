@@ -9,15 +9,15 @@ defineProps<Props>()
 
 <template>
   <div class="vi-tab-plane">
-    <slot></slot>
+    <slot />
   </div>
 </template>
 
 <style scoped>
 .vi-tab-plane {
-  padding: var(--default-padding);
-  border: 1px solid var(--border-color);
+  padding: var(--vi-base-padding);
+  border: 1px solid var(--vi-color-gray);
   border-top: none;
-  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  border-radius: 0 0 var(--vi-base-radius) var(--vi-base-radius);
 }
 </style>

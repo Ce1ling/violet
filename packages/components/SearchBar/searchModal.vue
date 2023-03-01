@@ -52,11 +52,11 @@ nextTick(() => searchInp.value?.focus())
           <vi-icon 
             v-if="isSearching"
             name="Loading" size="30px" 
-            color="var(--primary-color)" loading />
+            color="var(--vi-color-primary)" loading />
           <vi-icon 
             v-else
             name="Search" size="30px" 
-            color="var(--primary-color)" 
+            color="var(--vi-color-primary)" 
             @click="handleSearch"/>
         </label>
         <input 
@@ -67,7 +67,7 @@ nextTick(() => searchInp.value?.focus())
         <vi-icon 
           v-show="showClearBtn" 
           name="Close" size="30px" 
-          hover-color="var(--primary-color)"
+          hover-color="var(--vi-color-primary)"
           @click="searchVal = ''"
         />
       </header>
@@ -102,7 +102,7 @@ nextTick(() => searchInp.value?.focus())
 .search-modal {
   width: 100vw;
   height: 100vh;
-  background-color: var(--search-mask-color);
+  background-color: var(--doc-search-mask-color);
   position: fixed;
   top: 0;
   left: 0;
@@ -112,8 +112,8 @@ nextTick(() => searchInp.value?.focus())
     max-width: 500px;
     padding: 20px;
     background-color: var(--vp-c-bg);
-    border-radius: var(--border-radius);
-    box-shadow: 0 0 10px var(--search-modal-shadow-color);
+    border-radius: var(--vi-base-radius);
+    box-shadow: 0 0 10px var(--doc-search-modal-shadow-color);
     position: fixed;
     top: 10%;
     left: 50%;
@@ -126,8 +126,8 @@ nextTick(() => searchInp.value?.focus())
       align-items: center;
       padding: 0 5px;
       padding-right: 10px;
-      border: 2px solid var(--primary-color);
-      border-radius: var(--border-radius);
+      border: 2px solid var(--vi-color-primary);
+      border-radius: var(--vi-base-radius);
       background-color: var(--vp-c-bg);
       overflow: hidden;
       #search-inp {
@@ -157,20 +157,20 @@ nextTick(() => searchInp.value?.focus())
           margin: 10px;
           font-size: 18px;
           background-color: var(--vp-c-bg);
-          box-shadow: 2px 2px 5px 2px var(--search-modal-shadow-color);
-          border-radius: var(--border-radius);
+          box-shadow: 2px 2px 5px 2px var(--doc-search-modal-shadow-color);
+          border-radius: var(--vi-base-radius);
           transition: all .2s;
           cursor: pointer;
           &:hover {
             color: #fff;
-            background-color: var(--primary-color);
+            background-color: var(--vi-color-primary);
           }
         }
       }
     }
     .search-footer {
       text-align: right;  
-      > a { color: var(--primary-color) }
+      > a { color: var(--vi-color-primary) }
     }
   }
 }

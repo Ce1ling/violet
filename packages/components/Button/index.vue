@@ -28,11 +28,11 @@ type Emits = {
 const emit = defineEmits<Emits>()
 
 const colorObj = {
-  primary: 'var(--primary-color)',
-  success: 'var(--success-color)',
-  info: 'var(--info-color)',
-  warning: 'var(--warning-color)',
-  danger: 'var(--danger-color)'
+  primary: 'var(--vi-color-primary)',
+  success: 'var(--vi-color-success)',
+  info: 'var(--vi-color-info)',
+  warning: 'var(--vi-color-warning)',
+  danger: 'var(--vi-color-danger)'
 }
 
 const classObj = computed(() => ({
@@ -86,7 +86,7 @@ const handleClick = (e: MouseEvent) => props.disabled || emit('click', e)
   font-size: 14px;
   padding: 6px 18px;
   border: none;
-  border-radius: var(--border-radius);
+  border-radius: var(--vi-base-radius);
   text-align: center;
   cursor: pointer;
   transition: none;

@@ -14,7 +14,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 
 <template>
   <div title="返回顶部" class="back-top-wrap" v-show="show" @click="back">
-    <vi-icon name="Top" size="44px" color="var(--primary-color)" />
+    <vi-icon name="Top" size="44px" color="var(--vi-color-primary)" />
   </div>
 </template>
 
@@ -25,11 +25,11 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   right: 100px;
   bottom: 100px;
   z-index: 999999999;
-  border: 1px solid var(--primary-color);
+  border: 1px solid var(--vi-color-primary);
   background-color: var(--vp-c-bg-alpha-with-backdrop);
   cursor: pointer;
   &:hover {
-    background-color: var(--primary-color);
+    background-color: var(--vi-color-primary);
     .vi-icon svg { color: #fff; }
   }
 }

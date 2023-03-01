@@ -1,3 +1,57 @@
+:root {
+  --doc-bg-color: #ffffff;
+  --doc-padding: 18px;
+  --doc-scroll-bar-wh: 8px;
+  --doc-scroll-bar-color: #dbdbdb;
+  --doc-basic-font-size: 14px;
+  --doc-border-color: #dddddd;
+  --doc-font-color: #555555;
+  --doc-footer-height: 300px;
+  --doc-search-mask-color: #eeeeeeaa;
+  --doc-search-modal-shadow-color: #dddddd;
+  --doc-shadow-color: #dcd6e4;
+
+  /* 首页 Homepage */
+  // brand 按钮边框
+  --vp-button-brand-border: var(--vi-color-primary);
+  // brand 按钮 hover 状态
+  --vp-button-brand-hover-border: var(--vi-color-primary);
+  // brand 按钮 hover 文字颜色
+  --vp-button-brand-hover-text: var(--vi-color-primary);
+  // brand 按钮 hover 背景色
+  --vp-button-brand-hover-bg: transparent;
+  // brand 按钮背景色
+  --vp-button-brand-bg: var(--vi-color-primary);
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, var(--vi-color-primary), #4d2ae8, violet);
+
+  /* 侧边栏 aside */
+  // 高亮色
+  --vp-c-brand: #802ae8;
+  // 区块色
+  --vp-c-bg-alt: unset;
+  // 分割线
+  --vp-c-divider-light: transparent;
+  // 宽度
+  --vp-sidebar-width: 300px;
+
+  /* 内容区 content */
+  // 代码块背景色
+  --vp-code-block-bg: #f9f9f9;
+  // 复制成功提示文字
+  --vp-code-copy-code-active-text: 000;
+  // 代码块语言文字
+  --vp-c-text-dark-3: 000;
+  // 
+  --vp-c-brand-dark: var(--vi-color-primary);
+  // TIP 片段背景颜色
+  --vp-custom-block-tip-bg: #892be211;
+  // TIP 片段文字颜色
+  --vp-custom-block-tip-text: var(--vi-color-secondary);
+  // TIP 片段边框颜色
+  --vp-custom-block-tip-border: var(--vi-color-primary);
+}
+
 #app {
   > .Layout {
     position: relative;
@@ -6,7 +60,7 @@
   // 标题的链接(#)
   .vp-doc .header-anchor {
     font-size: 28px;
-    &:hover { color: var(--primary-color); }
+    &:hover { color: var(--vi-color-primary); }
   }
   
   // 头部
@@ -105,11 +159,11 @@
           white-space: nowrap;
           transition: color 0s, background-color .3s;
           padding: 8px 14px !important;
-          border-radius: var(--border-radius);
+          border-radius: var(--vi-base-radius);
           &:hover { background-color: #ddd; }
           &.active {
             color: #fff;
-            background-color: var(--primary-color);
+            background-color: var(--vi-color-primary);
           }
         }
       }
@@ -121,7 +175,7 @@
     padding-left: var(--vp-sidebar-width);
     .VPDoc {
       .content {
-        padding-bottom: var(--footer-height);
+        padding-bottom: var(--doc-footer-height);
         .content-container {
           margin: 0;
           max-width: unset;
@@ -131,12 +185,12 @@
             width: 100%;
             tr, th, td { border: none; }
             th:not(:last-child), td:not(:last-child) {
-              border-right: 1px solid var(--border-color);
+              border-right: 1px solid var(--doc-border-color);
             }
           }
           // tip 区块
           .tip.custom-block {
-            border-radius: var(--border-radius);
+            border-radius: var(--vi-base-radius);
           }
         }
       }
@@ -146,13 +200,13 @@
   // 示例区域
   .VPDoc .content {
     .examples {
-      border: 1px solid var(--border-color);
-      border-radius: var(--border-radius);
-      padding: var(--default-padding);
+      border: 1px solid var(--doc-border-color);
+      border-radius: var(--vi-base-radius);
+      padding: var(--doc-padding);
     }
     [class*="language-"] {
-      border: 1px solid var(--border-color);
-      border-radius: var(--border-radius);
+      border: 1px solid var(--doc-border-color);
+      border-radius: var(--vi-base-radius);
       // height: 0px;
       // height: unset;
     }
@@ -162,11 +216,11 @@
   .VPDocFooter {
     .prev,
     .next {
-      border-radius: var(--border-radius);
+      border-radius: var(--vi-base-radius);
       position: relative;
       &::after {
         content: '<';
-        color: var(--primary-color);
+        color: var(--vi-color-primary);
         position: absolute;
         left: 4px;
         top: 50%;
@@ -183,8 +237,8 @@
       border-radius: 0;
       &:hover {
         border-color: transparent;
-        border-bottom-color: var(--primary-color);
-        box-shadow: 0 2px 0 0 var(--primary-color);
+        border-bottom-color: var(--vi-color-primary);
+        box-shadow: 0 2px 0 0 var(--vi-color-primary);
       }
     }
   }
@@ -194,11 +248,11 @@
 html.dark {
   &:root {
     --scroll-bar-color: #555555;
-    --border-color: #555555;
+    --doc-border-color: #555555;
     --vp-code-block-bg: #3c3841;
     --search-mask-color: #000000aa;
     --search-modal-shadow-color: #000000;
-    --bg-color: #242424;
+    --doc-bg-color: #242424;
     --toast-info-color: #202121;
     --shadow-color: #1a1a1a;
   }
@@ -216,7 +270,7 @@ html.dark {
       .nav .items > a {
         &:hover { background-color: #555555; }
         &.active {
-          background-color: var(--primary-color);
+          background-color: var(--vi-color-primary);
         }
       }
     }

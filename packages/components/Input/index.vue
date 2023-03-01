@@ -127,8 +127,8 @@ onMounted(() => {
         title="清除" 
         name="CloseCircle" 
         size="16px" 
-        color="var(--info-color)" 
-        hover-color="var(--primary-color)" 
+        color="var(--vi-color-info)" 
+        hover-color="var(--vi-color-primary)" 
         @click="clearInput" 
         v-if="isShowClear" 
       />
@@ -137,8 +137,8 @@ onMounted(() => {
         :title="isPwdInput ? '显示' : '隐藏'" 
         :name="isPwdInput ? 'VisibilityOff': 'Visibility'" 
         size="16px" 
-        color="var(--info-color)" 
-        hover-color="var(--primary-color)" 
+        color="var(--vi-color-info)" 
+        hover-color="var(--vi-color-primary)" 
         @click="toggleShowPwd" 
         v-if="props.type === 'password' && isShowPwd" 
       />
@@ -153,8 +153,8 @@ onMounted(() => {
 <style lang="scss">
 .vi-input {
   width: 100%;
-  border: 1px solid var(--info-color);
-  border-radius: var(--border-radius);
+  border: 1px solid var(--vi-color-info);
+  border-radius: var(--vi-base-radius);
   transition: all .3s;
   display: flex;
   overflow: hidden;
@@ -170,10 +170,10 @@ onMounted(() => {
     }
   }
   &:focus-within {
-    border-color: var(--primary-color);
+    border-color: var(--vi-color-primary);
     .vi-input__prepend,
     .vi-input__append {
-      border-color: var(--primary-color);
+      border-color: var(--vi-color-primary);
     }
   }
   &-textarea {
@@ -189,7 +189,7 @@ onMounted(() => {
     width: 100%;
     height: 100%;
     padding: 6px 0;
-    border-radius: var(--border-radius);
+    border-radius: var(--vi-base-radius);
     &-clear,
     &-show-hidden {
       display: flex;
@@ -202,9 +202,9 @@ onMounted(() => {
       display: flex;
       align-items: center;
       font-size: 12px;
-      color: var(--info-color);
+      color: var(--vi-color-info);
       line-height: 12px;
-      &.tip { color: var(--danger-color); }
+      &.tip { color: var(--vi-color-danger); }
     }
     &-textarea {
       position: absolute;
@@ -221,7 +221,7 @@ onMounted(() => {
     display: flex;
     align-items: center;
     flex-shrink: 0;
-    color: var(--info-color);
+    color: var(--vi-color-info);
   }
   &__prepend,
   &__append {
@@ -230,7 +230,7 @@ onMounted(() => {
     padding: 0 16px;
     border-width: 0;
     border-style: solid;
-    border-color: var(--info-color);
+    border-color: var(--vi-color-info);
     transition: all .3s;
     line-height: v-bind(getLineHeight);
   }
@@ -244,7 +244,7 @@ onMounted(() => {
     background-color: #eeeeee;
     cursor: not-allowed;
     &:hover {
-      border-color: var(--info-color);
+      border-color: var(--vi-color-info);
     }
     .vi-input__input {
       cursor: not-allowed;

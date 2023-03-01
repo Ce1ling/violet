@@ -15,8 +15,8 @@ type Props = {
   offIcon?: string
 }
 const props = withDefaults(defineProps<Props>(), {
-  onColor: 'var(--primary-color)',
-  offColor: 'var(--shadow-color)',
+  onColor: 'var(--vi-color-primary)',
+  offColor: 'var(--vi-color-shadow)',
   disabled: false,
   loading: false,
   isInside: false,

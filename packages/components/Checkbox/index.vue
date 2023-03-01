@@ -86,7 +86,7 @@ const classObj = computed(() => ({
   
   &:hover {
     .vi-checkbox__square {
-      border-color: var(--primary-color);
+      border-color: var(--vi-color-primary);
     }
   }
   &__input {
@@ -96,7 +96,7 @@ const classObj = computed(() => ({
   &__square {
     width: 14px;
     height: 14px;
-    border: 1px solid var(--info-color);
+    border: 1px solid var(--vi-color-info);
     position: absolute;
     left: 0;
     top: 50%;
@@ -106,8 +106,8 @@ const classObj = computed(() => ({
   }
   &.is-checked {
     .vi-checkbox__square {
-      background-color: var(--primary-color);
-      border-color: var(--primary-color);
+      background-color: var(--vi-color-primary);
+      border-color: var(--vi-color-primary);
       &::before {
         content: '';
         width: 4px;
@@ -128,18 +128,18 @@ const classObj = computed(() => ({
     opacity: var(--vi-opacity-half);
     cursor: not-allowed;
     .vi-checkbox__square {
-      background-color: var(--info-color);
-      border-color: var(--info-color);
+      background-color: var(--vi-color-info);
+      border-color: var(--vi-color-info);
     }
   }
   &.has-border {
     display: flex;
     align-items: center;
-    border: 1px solid var(--info-color);
+    border: 1px solid var(--vi-color-info);
     padding: 2px 8px;
-    border-radius: var(--vi-border-radius);
+    border-radius: var(--vi-base-radius);
     &.is-checked:not(.is-disabled) {
-      border-color: var(--primary-color);
+      border-color: var(--vi-color-primary);
     }
     .vi-checkbox__input {
       position: absolute;
@@ -152,18 +152,18 @@ const classObj = computed(() => ({
   }
   &.is-button {
     padding: 2px 12px;
-    border: 1px solid var(--info-color);
+    border: 1px solid var(--vi-color-info);
     border-right: none;
     transition: all var(--vi-animation-duration);
     box-shadow: 1px 0 0 0 transparent;
     &:hover:not(.is-disabled, .is-checked) {
-      color: var(--primary-color);
+      color: var(--vi-color-primary);
     }
     &.is-checked {
-      background-color: var(--primary-color);
-      color: var(--vi-font-color-white);
-      border-color: var(--primary-color);
-      box-shadow: 1px 0 0 0 var(--primary-color);
+      background-color: var(--vi-color-primary);
+      color: var(--vi-color-white);
+      border-color: var(--vi-color-primary);
+      box-shadow: 1px 0 0 0 var(--vi-color-primary);
       z-index: 1;
     }
     .vi-checkbox__square {

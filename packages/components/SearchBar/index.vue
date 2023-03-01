@@ -30,14 +30,14 @@ onMounted(() => {
   padding: 4px 8px;
   padding-right: 12px;
   border: 2px solid transparent;
-  border-radius: var(--border-radius);
+  border-radius: var(--vi-base-radius);
   cursor: pointer;
   background-color: var(--vp-c-bg-alpha-with-backdrop);
   color: #666;
   transition: all .3s;
   &:hover { 
     background-color: var(--vp-c-bg-alpha-with-backdrop); 
-    border-color: var(--primary-color); 
+    border-color: var(--vi-color-primary); 
   }
   .keyboard {
     margin: 0 4px;
