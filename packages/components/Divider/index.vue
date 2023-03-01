@@ -10,7 +10,7 @@ type Props = {
 const props = withDefaults(defineProps<Props>(), {
   gap: '18px',
   thick: '1px',
-  color: 'var(--primary-color)',
+  color: 'var(--vi-color-primary)',
   borderStyle: 'solid',
   position: 'start',
   direction: 'horizontal'
@@ -19,8 +19,8 @@ const props = withDefaults(defineProps<Props>(), {
 
 <template>
   <div class="vi-divider" :class="props.direction">
-    <span class="vi-divider__text" :class="props.position">
-      <slot></slot>
+    <span class="vi-divider__desc" :class="props.position">
+      <slot />
     </span>
   </div>
 </template>
@@ -28,10 +28,10 @@ const props = withDefaults(defineProps<Props>(), {
 <style lang="scss">
 .vi-divider {
   position: relative;
-  .vi-divider__text {
+  .vi-divider__desc {
     position: absolute;
     transform: translateY(calc(-50% - (v-bind(thick) / 2)));
-    background-color: var(--bg-color);
+    background-color: var(--vi-color-white);
     padding: 0 10px;
 
     &.start {
