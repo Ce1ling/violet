@@ -1,18 +1,12 @@
 <script setup lang="ts">
-import { 
-  ref, 
-  nextTick, 
-  computed, 
-  onMounted, 
-  Transition, 
-} from 'vue'
+import { ref, nextTick, computed, onMounted, Transition } from 'vue'
 import { Icon as ViIcon } from '../index'
 import { useTimeout } from '../../hooks/useTimeout'
 
 import type { Options } from './types'
 
 
-type Props = {
+interface Props {
   type: Options['type']
   content: string
   duration?: number
@@ -31,7 +25,7 @@ const props = withDefaults(defineProps<Props>(), {
   prefix: ''
 })
 
-const visible = ref(false)
+const visible = ref<boolean>(false)
 const toastEl = ref<HTMLElement>()
 const height = ref<number>()
 const offset = ref<string>('0px')
@@ -44,9 +38,7 @@ const iconMap = {
   danger: 'CloseCircle'
 }
 
-const classList = computed(() => {
-  return `vi-toast--${props.type}`
-})
+const classType = computed(() => `vi-toast--${props.type}`)
 const getZIndex = computed(() => {
   return new Date().getFullYear()
 })
@@ -80,7 +72,7 @@ onMounted(() => {
 
 <template>
   <Transition name="vi-toast-fade">
-    <div ref="toastEl" class="vi-toast" :class="classList" v-show="visible">
+    <div ref="toastEl" class="vi-toast" :class="classType" v-show="visible">
       <vi-icon :name="prefix ? prefix : iconMap[type]" />
       <span v-if="isHtmlStr" v-html="content"></span>
       <span v-else>{{ content }}</span>
