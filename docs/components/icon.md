@@ -5,9 +5,12 @@ import { Toast } from '../../packages/components/Toast/index'
 
 const isLoading = ref(false)
 const duration = ref(2)
+const selfClosing = ref(true)
 
 const copy = (name: string) => {
-  navigator.clipboard.writeText(`<vi-icon name="${name}" />`)
+  const selfClosingTag = `<vi-icon name="${name}" />`
+  const completeTag = `<vi-icon name="${name}"></vi-icon>`
+  navigator.clipboard.writeText(selfClosing.value ? selfClosingTag : completeTag)
     .then(res => Toast.success('复制成功'))
     .catch(err => Toast.danger('复制失败'))
 }
@@ -175,17 +178,21 @@ const duration = ref(2)
 
 点击图标即可复制。
 
-<ul class="icon-list">
+<vi-flex>
+  <span>复制模式：</span>
+  <vi-switch v-model="selfClosing" on-text="自闭合标签" off-text="完整标签" />
+</vi-flex>
+
+<ul class="doc-icon-list">
   <li v-for="iconName in Object.keys(iconMaps)" :key="iconName" @click="copy(iconName)">
     <vi-icon :name="iconName" size="28px" />
-    <span> {{ iconName }} </span>
+    <span>{{ iconName }}</span>
   </li>
 </ul>
 
 <style scoped lang="scss">
-.icon-list {
+.doc-icon-list {
   padding: 0;
-  margin: 0;
   list-style: none;
   border-left: 1px solid var(--doc-border-color);
   border-top: 1px solid var(--doc-border-color);
@@ -204,7 +211,7 @@ const duration = ref(2)
   }
 }
 @media screen and (max-width: 1820px) {
-  .icon-list { grid-template-columns: repeat(5, 1fr); }
+  .doc-icon-list { grid-template-columns: repeat(5, 1fr); }
 }
 </style>
 
