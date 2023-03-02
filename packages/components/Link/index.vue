@@ -1,37 +1,25 @@
 <script setup lang="ts">
-import { computed, reactive } from 'vue'
+import { computed } from 'vue'
 
-type Props = {
+interface Props {
   type?: string
-  underline?: boolean
   disabled?: boolean
+  underline?: boolean
+}
+interface Emits {
+  (e: 'click', event: MouseEvent): void
 }
 const props = withDefaults(defineProps<Props>(), {
   type: 'primary',
-  underline: true,
-  disabled: false
+  disabled: false,
+  underline: true
 })
-const emit = defineEmits(['click'])
+const emit = defineEmits<Emits>()
 
-const color = reactive({
-  primary: 'var(--vi-color-primary)',
-  success: 'var(--vi-color-success)',
-  warning: 'var(--vi-color-warning)',
-  danger: 'var(--vi-color-danger)'
-})
-
-const getColor = computed(() => color[props.type])
-const classList = computed(() => {
-  const list: string[] = []
-  if (props.underline) {
-    list.push('has-underline')
-  }
-  if (props.disabled) {
-    list.push('disabled')
-    list.splice(list.indexOf('has-underline'), 1)
-  }
-  return list
-})
+const classList = computed(() => [`vi-link--${props.type}`, {
+  'is-disabled': props.disabled,
+  'has-underline': props.underline
+}])
 
 const handleClick = (e: MouseEvent) => props.disabled 
   ? e.preventDefault() 
@@ -39,26 +27,25 @@ const handleClick = (e: MouseEvent) => props.disabled
 </script>
 
 <template>
-  <a class="vi-link" :class="classList" 
-    v-bind="$attrs" @click="handleClick">
-    <span class="vi-link__text">
-      <slot name="prefix"></slot>
-      <slot></slot>
-      <slot name="suffix"></slot>
+  <a class="vi-link" :class="classList" v-bind="$attrs" @click="handleClick">
+    <span class="vi-link__inner">
+      <slot name="prefix" />
+      <slot />
+      <slot name="suffix" />
     </span>
   </a>
 </template>
 
 <style lang="scss">
+$types: primary, success, warning, danger;
+
 .vi-link {
   display: inline-block;
-  color: v-bind(getColor);
+  color: var(--vi-color-primary);
   text-decoration: none;
   position: relative;
 
-  .vi-link__text {
-    font-size: inherit;
-    color: v-bind(getColor);
+  .vi-link__inner {
     display: flex;
     align-items: center;
   }
@@ -67,17 +54,24 @@ const handleClick = (e: MouseEvent) => props.disabled
     width: 0%;
     height: 2px;
     display: inline-block;
-    background-color: v-bind(getColor);
     position: absolute;
     left: 0;
     bottom: -2px;
-    transition: width .3s;
+    transition: width var(--vi-animation-duration);
   }
-  &:hover { opacity: 0.677777; }
+  &:hover { opacity: var(--vi-opacity-half); }
   &.has-underline:hover::after { width: 100%; }
-  &.disabled { 
+  &.is-disabled { 
     cursor: not-allowed;
-    opacity: 0.5;
+    opacity: var(--vi-opacity-half);
+    &.has-underline:hover::after { width: 0%; }
+  }
+  @each $type in $types {
+    &--#{$type} {
+      color: var(--vi-color-#{$type});
+      &::after { background-color: var(--vi-color-#{$type}); }
+      .vi-link__inner { color: var(--vi-color-#{$type}); }
+    }
   }
 }
 </style>
