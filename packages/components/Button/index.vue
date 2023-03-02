@@ -9,9 +9,9 @@ interface Props {
   circle?: boolean
   disabled?: boolean
   loading?: boolean
+  isPrefix?: boolean
   bgColor?: string
   color?: string
-  isPrefix?: boolean
 }
 interface Emits {
   (e: 'click', event: MouseEvent): void
@@ -35,6 +35,10 @@ const classList = computed(() => [`vi-button--${props.type}`, {
   'is-disabled': props.disabled,
   'is-loading': props.loading
 }])
+const customColor = computed(() => ({ 
+  color: props.color, 
+  backgroundColor: props.bgColor
+}))
 
 const RenderIcon = () => !props.loading || h(ViIcon, { 
   name: 'Loading', 
@@ -46,7 +50,11 @@ const handleClick = (e: MouseEvent) => props.disabled || emit('click', e)
 </script>
 
 <template>
-  <button class="vi-button" :class="classList" @click="handleClick">
+  <button 
+    class="vi-button" 
+    :class="classList" 
+    :style="customColor"
+    @click="handleClick">
     <slot name="prefix">
       <RenderIcon v-if="isPrefix" />
     </slot>
@@ -64,15 +72,14 @@ const handleClick = (e: MouseEvent) => props.disabled || emit('click', e)
   display: flex;
   justify-content: center;
   align-items: center;
-  width: auto;
   gap: 4px;
-  font-size: 14px;
-  padding: 6px 18px;
-  border: none;
-  border-radius: var(--vi-base-radius);
+  width: auto;
   text-align: center;
   cursor: pointer;
-  transition: none;
+  border: none;
+  font-size: 14px;
+  padding: 6px var(--vi-base-padding);
+  border-radius: var(--vi-base-radius);
   color: var(--vi-color-black);
   background-color: var(--vi-color-white);
   transition: all var(--vi-button-animation-duration);
