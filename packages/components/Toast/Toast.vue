@@ -101,10 +101,10 @@ onMounted(() => {
   }
 }
 .vi-toast-fade-enter-active {
-  animation: vi-toast-zoom-in .3s ease;
+  animation: vi-toast-zoom-in var(--vi-animation-duration) ease;
 }
 .vi-toast-fade-leave-active {
-  animation: vi-toast-zoom-in .3s ease reverse;
+  animation: vi-toast-zoom-in var(--vi-animation-duration) ease reverse;
 }
 
 .vi-toast {
@@ -119,32 +119,32 @@ onMounted(() => {
   display: flex;
   align-items: center;
   gap: 8px;
-  transition: top .3s ease;
+  transition: top var(--vi-animation-duration) ease;
 
   &--primary {
-    background-color: #f1e2ff;
+    background-color: var(--vi-color-primary-weak);
     color: var(--vi-color-primary);
-    box-shadow: 2px 2px 8px 0 #f1e2ff;
+    box-shadow: 2px 2px 8px 0 var(--vi-color-primary-weak);
   }
   &--success {
-    background-color: #eaffe0;
+    background-color: var(--vi-color-success-weak);
     color: var(--vi-color-success);
-    box-shadow: 2px 2px 8px 0 #eaffe0;
+    box-shadow: 2px 2px 8px 0 var(--vi-color-success-weak);
   }
   &--info {
-    background-color: #ececec;
-    color: #666666;
-    box-shadow: 2px 2px 8px 0 #ececec;
+    background-color: var(--vi-color-info-weak);
+    color: var(--vi-color-font-black-weak);
+    box-shadow: 2px 2px 8px 0 var(--vi-color-info-weak);
   }
   &--warning {
-    background-color: #fff8e0;
+    background-color: var(--vi-color-warning-weak);
     color: var(--vi-color-warning);
-    box-shadow: 2px 2px 8px 0 #fff8e0;
+    box-shadow: 2px 2px 8px 0 var(--vi-color-warning-weak);
   }
   &--danger {
-    background-color: #ffe4da;
+    background-color: var(--vi-color-danger-weak);
     color: var(--vi-color-danger);
-    box-shadow: 2px 2px 8px 0 #ffe4da;
+    box-shadow: 2px 2px 8px 0 var(--vi-color-danger-weak);
   }
 }
 </style>

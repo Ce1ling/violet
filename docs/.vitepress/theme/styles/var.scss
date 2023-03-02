@@ -1,13 +1,18 @@
 :root {
   --vi-color-primary: #802ae8;
-  --vi-color-secondary: #6e25db;
+  --vi-color-primary-weak: #f1e2ff;
   --vi-color-success: #72d342;
+  --vi-color-success-weak: #eaffe0;
   --vi-color-info: #c2c2c2;
+  --vi-color-info-weak: #ececec;
   --vi-color-warning: #e2b72b;
+  --vi-color-warning-weak: #fff8e0;
   --vi-color-danger: #e25f2b;
+  --vi-color-danger-weak: #ffe4da;
   --vi-color-white: #fff;
   --vi-color-gray: #dddddd;
   --vi-color-shadow: #dcd6e4;
+  --vi-color-black-weak: #666;
 
   --vi-base-padding: 18px;
   --vi-base-font-size: 14px;
@@ -16,10 +21,11 @@
   --vi-animation-duration: 0.3s;
   --vi-opacity-half: 0.666667;
 
+  /** vi-button */
   --vi-button-animation-duration: 0.1s;
-  --vi-button-text-color: #f5f5f5;
-  --vi-toast-info-color: #efe2ff;
-  --vi-tabs-header-bg-color: #eeeeee;
+  --vi-button-text-bg-color: #f5f5f5;
+
+  /** vi-header、vi-main、vi-aside、vi-footer */
   --vi-header-height: 80px;
   --vi-header-padding: 0 18px;
   --vi-main-padding: 18px;

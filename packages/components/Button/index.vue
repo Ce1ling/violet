@@ -99,7 +99,7 @@ const handleClick = (e: MouseEvent) => props.disabled || emit('click', e)
   &.text-btn {
     background-color: transparent;
     color: v-bind(getColor);
-    &:hover { background-color: var(--vi-button-text-color); }
+    &:hover { background-color: var(--vi-button-text-bg-color); }
     &:active { background-color: transparent; }
   }
   &.round {
