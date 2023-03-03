@@ -118,7 +118,7 @@ const checked6 = ref(true)
 
 ## Icon 描述
 
-使用 `on-icon`、`off-icon` 属性，来设置图标描述，所有 violet 内置的图标您都可以使用。
+使用 `on-icon`、`off-icon` 属性，来设置图标描述，所有 Violet 内置的图标您都可以使用。
 
 <div class="examples">
   <vi-switch v-model="checked7" on-icon="Check" off-icon="Close" />

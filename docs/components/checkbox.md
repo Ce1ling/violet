@@ -125,11 +125,50 @@ const val12 = ref(false)
 </script>
 ```
 
+## Ckeckbox 组
+
+如需使用 Ckeckbox 组，请使用 `vi-checkbox-group` 标签包裹。它提供 `gap` 属性来定义间距。
+
+::: tip
+使用了 `vi-checkbox-group`后，直接将 `v-model` 给 `vi-checkbox-group` 绑定即可，无需给每个 `vi-checkbox` 绑定。
+:::
+
+<div class="examples">
+  <vi-flex gap="18px">
+    <span>请选择你的武器</span>
+    <vi-checkbox-group v-model="val14" gap="18px">
+      <vi-checkbox label="AK-47" border />
+      <vi-checkbox label="AWP" border />
+      <vi-checkbox label="M4A4" border disabled />
+      <vi-checkbox label="M4A1-S" border />
+    </vi-checkbox-group>
+  </vi-flex>
+</div>
+
+```vue
+<template>
+  <vi-flex gap="18px">
+    <span>请选择你的武器</span>
+    <vi-checkbox-group v-model="val14" gap="18px">
+      <vi-checkbox label="AK-47" border />
+      <vi-checkbox label="AWP" border />
+      <vi-checkbox label="M4A4" border disabled />
+      <vi-checkbox label="M4A1-S" border />
+    </vi-checkbox-group>
+  </vi-flex>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+const val14 = ref(['AK-47'])
+</script>
+```
+
 ## 按钮类型
 
 如需使用按钮类型，请使用 `vi-checkbox-group` 标签包裹并添加 `is-button` 属性。因为 Violet 需要使用此标签做特殊处理，，而 `is-button` 属性则表示使用按钮类型。
 
-::: tip
+::: warning
 注意：如果使用了按钮类型，border 属性将无效，因为按钮类型自带边框，您无需它。
 :::
 
@@ -161,41 +200,6 @@ const val12 = ref(false)
 <script setup lang="ts">
 import { ref } from 'vue'
 const val13 = ref(['AK-47'])
-</script>
-```
-
-## Ckeckbox 组
-
-如需使用 Ckeckbox 组，请使用 `vi-checkbox-group` 标签包裹。它提供 `gap` 属性来定义间距。
-
-<div class="examples">
-  <vi-flex gap="18px">
-    <span>请选择你的武器</span>
-    <vi-checkbox-group v-model="val14" gap="28px">
-      <vi-checkbox label="AK-47" border />
-      <vi-checkbox label="AWP" border />
-      <vi-checkbox label="M4A4" border disabled />
-      <vi-checkbox label="M4A1-S" border />
-    </vi-checkbox-group>
-  </vi-flex>
-</div>
-
-```vue
-<template>
-  <vi-flex gap="18px">
-    <span>请选择你的武器</span>
-    <vi-checkbox-group v-model="val14" gap="28px">
-      <vi-checkbox label="AK-47" border />
-      <vi-checkbox label="AWP" border />
-      <vi-checkbox label="M4A4" border disabled />
-      <vi-checkbox label="M4A1-S" border />
-    </vi-checkbox-group>
-  </vi-flex>
-</template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-const val14 = ref(['AK-47'])
 </script>
 ```
 
