@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { computed } from 'vue'
 import { Icon as ViIcon } from '../index'
 
-type Props = {
+interface Props {
   modelValue: boolean
   disabled?: boolean
   loading?: boolean
@@ -13,6 +13,9 @@ type Props = {
   offText?: string
   onIcon?: string
   offIcon?: string
+}
+interface Emits {
+  (e: 'update:modelValue', checked: boolean): void
 }
 const props = withDefaults(defineProps<Props>(), {
   onColor: 'var(--vi-color-primary)',
@@ -25,32 +28,28 @@ const props = withDefaults(defineProps<Props>(), {
   onIcon: '',
   offIcon: ''
 })
-type Emits = {
-  (e: 'update:modelValue', checked: boolean): void
-}
 const emit = defineEmits<Emits>()
 
-const checked = ref(props.modelValue)
 const icons = ['onIcon', 'offIcon']
 const texts = ['onText', 'offText']
 
-watch(() => props.modelValue, n => checked.value = n)
-
 const classObj = computed(() => ({ 
-  'is-checked': checked.value,
+  'is-checked': props.modelValue,
   'is-disabled': props.disabled || props.loading
 }))
 
 const toggleChecked = () => {
   if (props.disabled || props.loading) { return }
-  checked.value = !checked.value
-  emit('update:modelValue', checked.value)
+  emit('update:modelValue', !props.modelValue)
 }
-/** 0 为 off，1 为 on */
-const getDescClass = (type: 0 | 1) => {
-  return { 'is-active': type ? checked.value : !checked.value }
-}
-const hasDesc = (arr: string[]) => (arr.map(item => props[item]).filter(item => item)).length 
+/** 
+ * 添加激活状态类名
+ * @param {Number} type 0 为 off，1 为 on。
+ **/
+const getDescClass = (type: 0 | 1) => ({ 
+  'is-active': type ? props.modelValue : !props.modelValue
+})
+const hasDesc = (arr: string[]) => (arr.map(v => props[v]).filter(v => v)).length
 
 </script>
 
@@ -64,19 +63,19 @@ const hasDesc = (arr: string[]) => (arr.map(item => props[item]).filter(item => 
       <template v-if="isInside">
         <vi-icon 
           class="vi-switch__inner-icon" 
-          :class="{ 'is-close': !checked }" 
-          :name="checked ? onIcon : offIcon" 
+          :class="{ 'is-close': !modelValue }" 
+          :name="modelValue ? onIcon : offIcon" 
           v-if="onIcon && offIcon" 
         />
-        <span class="vi-switch__inner-text" :class="{ 'is-close': !checked }">
-          {{ checked ? onText : offText }}
+        <span class="vi-switch__inner-text" :class="{ 'is-close': !modelValue }">
+          {{ modelValue ? onText : offText }}
         </span>
       </template>
       <div class="vi-switch__active">
         <vi-icon 
           name="Loading" 
           size="inherit" 
-          :color="checked ? onColor : offColor" 
+          :color="modelValue ? onColor : offColor" 
           loading 
           v-if="loading"
         />
@@ -97,7 +96,7 @@ const hasDesc = (arr: string[]) => (arr.map(item => props[item]).filter(item => 
 
   .is-active {
     color: v-bind(onColor);
-    transition: color .3s;
+    transition: color var(--vi-animation-duration);
   }
 
   &__inner {
@@ -117,13 +116,11 @@ const hasDesc = (arr: string[]) => (arr.map(item => props[item]).filter(item => 
       color: #fff;
       user-select: none;
       margin-left: 6px;
-      transition: all .3s;
+      transition: all var(--vi-animation-duration);
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
-      &.is-close {
-        margin-left: 20px;
-      }
+      &.is-close { margin-left: 20px; }
     }
     &-icon {
       width: 2em;
@@ -158,7 +155,7 @@ const hasDesc = (arr: string[]) => (arr.map(item => props[item]).filter(item => 
     top: 0;
     left: 0;
     border-radius: 10px;
-    transition: left .3s;
+    transition: left var(--vi-animation-duration);
     border: 2px solid v-bind(offColor);
   }
 }
