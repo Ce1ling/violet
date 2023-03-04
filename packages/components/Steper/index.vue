@@ -58,7 +58,7 @@ onMounted(() => updateModelValue())
 
 <template>
   <div class="vi-steper" :class="classObj">
-    <div class="vi-steper__prepend">
+    <div class="vi-steper__decrement">
       <vi-icon name="Minus" @click="mathOperation('decrement')" />
     </div>
     <input 
@@ -72,7 +72,7 @@ onMounted(() => updateModelValue())
       @input="handleInput" 
       autocomplete="off"
     />
-    <div class="vi-steper__append">
+    <div class="vi-steper__increment">
       <vi-icon name="Plus" @click="mathOperation('increment')" />
     </div>
   </div>
@@ -83,7 +83,7 @@ onMounted(() => updateModelValue())
   width: 100%;
   width: 150px;
   padding: 0;
-  border: 1px solid var(--vi-color-info);
+  border: 1px solid var(--vi-color-gray);
   border-radius: var(--vi-base-radius);
   transition: all var(--vi-animation-duration);
   display: flex;
@@ -92,16 +92,16 @@ onMounted(() => updateModelValue())
   user-select: none;
 
   &:hover {
-    border-color: var(--vi-color-black-weak);
-    .vi-steper__prepend,
-    .vi-steper__append {
-      border-color: #808080;
+    border-color: var(--vi-color-info);
+    .vi-steper__decrement,
+    .vi-steper__increment {
+      border-color: var(--vi-color-info);
     }
   }
   &:focus-within {
     border-color: var(--vi-color-primary);
-    .vi-steper__prepend,
-    .vi-steper__append {
+    .vi-steper__decrement,
+    .vi-steper__increment {
       border-color: var(--vi-color-primary);
     }
   }
@@ -112,15 +112,15 @@ onMounted(() => updateModelValue())
     border-radius: var(--vi-base-radius);
     text-align: center;
   }
-  &__prepend,
-  &__append {
+  &__decrement,
+  &__increment {
     color: var(--vi-color-black-weak);
-    background-color: var(--vi-color-primary-weak);
+    background-color: #f6f6f6;
     padding: 0 var(--vi-base-padding);
     padding: 0 8px;
     border-width: 0;
     border-style: solid;
-    border-color: var(--vi-color-info);
+    border-color: var(--vi-color-gray);
     transition: all var(--vi-animation-duration);
     display: flex;
     align-items: center;
@@ -129,24 +129,24 @@ onMounted(() => updateModelValue())
       &:hover { color: var(--vi-color-primary); }
     }
   }
-  &__prepend {
+  &__decrement {
     border-right-width: 1px;
   }
-  &__append {
+  &__increment {
     border-left-width: 1px;
   }
   &.is-disabled {
     background-color: #eeeeee;
     cursor: not-allowed;
-    &:hover { border-color: var(--vi-color-info); }
+    &:hover { border-color: var(--vi-color-gray); }
     .vi-steper__input { 
       cursor: not-allowed;
       color: var(--vi-color-black-weak);
     }
-    .vi-steper__prepend,
-    .vi-steper__append {
+    .vi-steper__decrement,
+    .vi-steper__increment {
       background-color: var(--vi-color-info-weak);
-      border-color: var(--vi-color-info);
+      border-color: var(--vi-color-gray);
       pointer-events: none;
     } 
   }
