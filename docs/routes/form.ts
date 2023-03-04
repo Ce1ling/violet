@@ -16,12 +16,16 @@ export const form = [
     link: '/components/switch.md'
   },
   {
-    text: 'Date Picker 日期选择器',
-    link: '/components/date-picker.md'
+    text: 'Steper 步进器',
+    link: '/components/steper.md'
   },
   {
     text: 'Time Picker 时间选择器',
     link: '/components/time-picker.md'
+  },
+  {
+    text: 'Date Picker 日期选择器',
+    link: '/components/date-picker.md'
   },
   {
     text: 'DateTime Picker 日期时间选择器',

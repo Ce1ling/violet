@@ -18,6 +18,7 @@ import Radio from './Radio/index.vue'
 import RadioGroup from './Radio/RadioGroup.vue'
 import Checkbox from './Checkbox/index.vue'
 import CheckboxGroup from './Checkbox/CheckboxGroup.vue'
+import Steper from './Steper/index.vue'
 
 export {
   Button,
@@ -40,4 +41,5 @@ export {
   RadioGroup,
   Checkbox,
   CheckboxGroup,
+  Steper,
 }
