@@ -13,7 +13,7 @@ type Props = {
   duration?: number
 }
 const props = withDefaults(defineProps<Props>(), {
-  size: '20px',
+  size: '14px',
   color: 'inherit',
   cursor: 'pointer',
   loading: false,
