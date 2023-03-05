@@ -6,18 +6,18 @@ interface Props {
   modelValue: number
   disabled?: boolean
   step?: number
-  min?: number
   max?: number
+  min?: number
   toFixed?: number
 }
 interface Emits {
-  (e: 'update:modelValue', num: number): void
+  (e: 'update:modelValue', n: number): void
 }
 const props = withDefaults(defineProps<Props>(), {
   disabled: false,
   step: 1,
-  min: -Infinity,
-  max: Infinity
+  max: Infinity,
+  min: -Infinity
 })
 const emit = defineEmits<Emits>()
 
@@ -26,8 +26,8 @@ const classObj = computed(() => ({
 }))
 
 /** 
- * 更新 v-model 的值，但此方法会判断是否超过了 最大/最小 限制。
- * @param {Number} num 如果传递了此参数，则根据此参数判断是否超过了 最大/最小 限制。
+ * 更新 v-model，但此方法会判断是否超过了 最大/最小 限制。
+ * @param {Number} num 如果传递了此参数，则根据此参数判断是否超过了限制。
  * @return {Boolean} 返回 true 则超过了限制，false 未超过。
  **/
 const updateModelValue = (num?: number): boolean => {
@@ -59,7 +59,12 @@ onMounted(() => updateModelValue())
 <template>
   <div class="vi-steper" :class="classObj">
     <div class="vi-steper__decrement">
-      <vi-icon name="Minus" @click="mathOperation('decrement')" />
+      <vi-icon 
+        name="Minus" 
+        class="vi-steper__icon" 
+        size="18px"
+        @click="mathOperation('decrement')" 
+      />
     </div>
     <input 
       class="vi-steper__input" 
@@ -67,13 +72,18 @@ onMounted(() => updateModelValue())
       title=""
       :value="toFixed ? modelValue.toFixed(toFixed) : modelValue" 
       :disabled="disabled" 
-      :min="props.min"
       :max="props.max"
+      :min="props.min"
       @input="handleInput" 
       autocomplete="off"
     />
     <div class="vi-steper__increment">
-      <vi-icon name="Plus" @click="mathOperation('increment')" />
+      <vi-icon 
+        name="Plus" 
+        class="vi-steper__icon" 
+        size="18px"
+        @click="mathOperation('increment')" 
+      />
     </div>
   </div>
 </template>
@@ -124,7 +134,7 @@ onMounted(() => updateModelValue())
     transition: all var(--vi-animation-duration);
     display: flex;
     align-items: center;
-    > .vi-icon { 
+    > .vi-steper__icon { 
       transition: none;
       &:hover { color: var(--vi-color-primary); }
     }
