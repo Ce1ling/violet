@@ -21,7 +21,7 @@ const val5 = ref(1)
       步数3：<vi-steper v-model="val2" :step="3" />
     </vi-row>
     <vi-row>
-      最小0，最大5：<vi-steper v-model="val3" :min="0" :max="5" />
+      最小1，最大5：<vi-steper v-model="val3" :min="1" :max="5" />
     </vi-row>
     <vi-row>
       最小1，最大10，步数2：<vi-steper v-model="val4" :min="1" :max="10" :step="2" />

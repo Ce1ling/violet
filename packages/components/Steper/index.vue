@@ -25,34 +25,24 @@ const classObj = computed(() => ({
   'is-disabled': props.disabled,
 }))
 
-/** 
- * 更新 v-model，但此方法会判断是否超过了 最大/最小 限制。
- * @param {Number} num 如果传递了此参数，则根据此参数判断是否超过了限制。
- * @return {Boolean} 返回 true 则超过了限制，false 未超过。
- **/
-const updateModelValue = (num?: number): boolean => {
-  const val = num ?? props.modelValue
-  if ((val > props.max) || (val < props.min)) {
-    emit('update:modelValue', val > props.max ? props.max : props.min)
-    return true
-  }
-  emit('update:modelValue', val)
-  return false
-}
-const handleInput = ({ target }: Event) => {
-  updateModelValue(Number((target as HTMLInputElement).value))
+const handleInputBlur = ({ target }: Event) => {
+  emit('update:modelValue', Number((target as HTMLInputElement).value))
 }
 type MathType = 'increment' | 'decrement'
 const mathOperation = (type: MathType) => {
   if (props.disabled) { return }
-  updateModelValue(type === 'increment' 
+  emit('update:modelValue', type === 'increment' 
     ? props.modelValue + props.step 
     : props.modelValue - props.step)
 }
 
-watch(() => props.modelValue, val => updateModelValue(val))
+watch(() => props.modelValue, val => {
+  if ((val > props.max) || (val < props.min)) {
+    emit('update:modelValue', val > props.max ? props.max : props.min)
+  }
+})
 
-onMounted(() => updateModelValue())
+onMounted(() => emit('update:modelValue', props.modelValue))
 
 </script>
 
@@ -72,9 +62,8 @@ onMounted(() => updateModelValue())
       title=""
       :value="toFixed ? modelValue.toFixed(toFixed) : modelValue" 
       :disabled="disabled" 
-      :max="props.max"
-      :min="props.min"
-      @input="handleInput" 
+      @input="handleInputBlur"
+      @blur="handleInputBlur" 
       autocomplete="off"
     />
     <div class="vi-steper__increment">
