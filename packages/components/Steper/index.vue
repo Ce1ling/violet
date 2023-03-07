@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, watch } from 'vue'
+import { computed, onMounted, watch, ref, nextTick } from 'vue'
 import { Icon as ViIcon } from '../index'
 
 interface Props {
@@ -9,6 +9,8 @@ interface Props {
   max?: number
   min?: number
   toFixed?: number
+  position?: 'normal' | 'left' | 'right'
+  iconSize?: string
 }
 interface Emits {
   (e: 'update:modelValue', n: number): void
@@ -17,13 +19,22 @@ const props = withDefaults(defineProps<Props>(), {
   disabled: false,
   step: 1,
   max: Infinity,
-  min: -Infinity
+  min: -Infinity,
+  position: 'normal'
 })
 const emit = defineEmits<Emits>()
 
-const classObj = computed(() => ({ 
-  'is-disabled': props.disabled,
-}))
+const decrementEl = ref<HTMLDivElement>()
+const inputWidth = ref<string>('0px')
+
+const classObj = computed(() => ({ 'is-disabled': props.disabled }))
+const iconClass = computed(() => props.position === 'normal' || `is-${props.position}`)
+const incrementClass = computed(() => ({ 'is-disabled': props.modelValue >= props.max }))
+const decrementClass = computed(() => ({ 'is-disabled': props.modelValue <= props.min }))
+const getIconSize = computed(() => props.iconSize 
+  ? props.iconSize 
+  : props.position === 'normal' ? '18px' : '12px'
+)
 
 const handleInputBlur = ({ target }: Event) => {
   emit('update:modelValue', Number((target as HTMLInputElement).value))
@@ -42,18 +53,27 @@ watch(() => props.modelValue, val => {
   }
 })
 
-onMounted(() => emit('update:modelValue', props.modelValue))
+onMounted(() => {
+  emit('update:modelValue', props.modelValue)
+  if (props.position !== 'normal') {
+    nextTick(() => inputWidth.value = decrementEl.value?.offsetWidth + 'px')
+  }
+})
 
 </script>
 
 <template>
-  <div class="vi-steper" :class="classObj">
-    <div class="vi-steper__decrement">
+  <div class="vi-steper" :class="[iconClass, classObj]">
+    <div 
+      ref="decrementEl" 
+      class="vi-steper__decrement" 
+      :class="[iconClass, decrementClass]" 
+      @click="mathOperation('decrement')">
       <vi-icon 
         name="Minus" 
         class="vi-steper__icon" 
-        size="18px"
-        @click="mathOperation('decrement')" 
+        :size="getIconSize"
+        :cursor="modelValue <= min ? 'not-allowed' : 'pointer'"
       />
     </div>
     <input 
@@ -66,12 +86,15 @@ onMounted(() => emit('update:modelValue', props.modelValue))
       @blur="handleInputBlur" 
       autocomplete="off"
     />
-    <div class="vi-steper__increment">
+    <div 
+      class="vi-steper__increment" 
+      :class="[iconClass, incrementClass]" 
+      @click="mathOperation('increment')">
       <vi-icon 
         name="Plus" 
         class="vi-steper__icon" 
-        size="18px"
-        @click="mathOperation('increment')" 
+        :size="getIconSize"
+        :cursor="modelValue >= max ? 'not-allowed' : 'pointer'"
       />
     </div>
   </div>
@@ -79,7 +102,6 @@ onMounted(() => emit('update:modelValue', props.modelValue))
 
 <style lang="scss">
 .vi-steper {
-  width: 100%;
   width: 150px;
   padding: 0;
   border: 1px solid var(--vi-color-gray);
@@ -105,7 +127,7 @@ onMounted(() => emit('update:modelValue', props.modelValue))
     }
   }
   &__input {
-    width: 100%;
+    width: calc(100% - v-bind(inputWidth));
     height: 100%;
     padding: 6px 0;
     border-radius: var(--vi-base-radius);
@@ -123,9 +145,35 @@ onMounted(() => emit('update:modelValue', props.modelValue))
     transition: all var(--vi-animation-duration);
     display: flex;
     align-items: center;
-    > .vi-steper__icon { 
+    cursor: pointer;
+    .vi-steper__icon { 
       transition: none;
       &:hover { color: var(--vi-color-primary); }
+    }
+    &.is-left {
+      position: absolute;
+      top: auto;
+      right: auto;
+      bottom: 0;
+      left: 0;
+      border: none;
+      border-right: 1px solid var(--vi-color-gray);
+      height: 50%;
+    }
+    &.is-right {
+      position: absolute;
+      top: auto;
+      right: 0;
+      bottom: 0;
+      left: auto;
+      border: none;
+      border-left: 1px solid var(--vi-color-gray);
+      height: 50%;
+    }
+    &.is-disabled {
+      color: var(--vi-color-info);
+      cursor: not-allowed;
+      .vi-steper__icon:hover { color: var(--vi-color-info); }
     }
   }
   &__decrement {
@@ -133,6 +181,20 @@ onMounted(() => emit('update:modelValue', props.modelValue))
   }
   &__increment {
     border-left-width: 1px;
+    &.is-left {
+      top: 0;
+      right: auto;
+      bottom: auto;
+      left: 0;
+      border-bottom: 1px solid var(--vi-color-gray);
+    }
+    &.is-right {
+      top: 0;
+      right: 0;
+      bottom: auto;
+      left: auto;
+      border-bottom: 1px solid var(--vi-color-gray);
+    }
   }
   &.is-disabled {
     background-color: #eeeeee;
@@ -148,6 +210,12 @@ onMounted(() => emit('update:modelValue', props.modelValue))
       border-color: var(--vi-color-gray);
       pointer-events: none;
     } 
+  }
+  &.is-left {
+    justify-content: flex-end;
+  }
+  &.is-right {
+    justify-content: flex-start;
   }
 }
 </style>
