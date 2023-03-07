@@ -16,8 +16,8 @@ export const form = [
     link: '/components/switch.md'
   },
   {
-    text: 'Steper 步进器',
-    link: '/components/steper.md'
+    text: 'Stepper 步进器',
+    link: '/components/stepper.md'
   },
   {
     text: 'Time Picker 时间选择器',

@@ -63,21 +63,21 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="vi-steper" :class="[iconClass, classObj]">
+  <div class="vi-stepper" :class="[iconClass, classObj]">
     <div 
       ref="decrementEl" 
-      class="vi-steper__decrement" 
+      class="vi-stepper__decrement" 
       :class="[iconClass, decrementClass]" 
       @click="mathOperation('decrement')">
       <vi-icon 
         name="Minus" 
-        class="vi-steper__icon" 
+        class="vi-stepper__icon" 
         :size="getIconSize"
         :cursor="modelValue <= min ? 'not-allowed' : 'pointer'"
       />
     </div>
     <input 
-      class="vi-steper__input" 
+      class="vi-stepper__input" 
       type="number" 
       title=""
       :value="toFixed ? modelValue.toFixed(toFixed) : modelValue" 
@@ -87,12 +87,12 @@ onMounted(() => {
       autocomplete="off"
     />
     <div 
-      class="vi-steper__increment" 
+      class="vi-stepper__increment" 
       :class="[iconClass, incrementClass]" 
       @click="mathOperation('increment')">
       <vi-icon 
         name="Plus" 
-        class="vi-steper__icon" 
+        class="vi-stepper__icon" 
         :size="getIconSize"
         :cursor="modelValue >= max ? 'not-allowed' : 'pointer'"
       />
@@ -101,7 +101,7 @@ onMounted(() => {
 </template>
 
 <style lang="scss">
-.vi-steper {
+.vi-stepper {
   width: 150px;
   padding: 0;
   border: 1px solid var(--vi-color-gray);
@@ -114,15 +114,15 @@ onMounted(() => {
 
   &:hover {
     border-color: var(--vi-color-info);
-    .vi-steper__decrement,
-    .vi-steper__increment {
+    .vi-stepper__decrement,
+    .vi-stepper__increment {
       border-color: var(--vi-color-info);
     }
   }
   &:focus-within {
     border-color: var(--vi-color-primary);
-    .vi-steper__decrement,
-    .vi-steper__increment {
+    .vi-stepper__decrement,
+    .vi-stepper__increment {
       border-color: var(--vi-color-primary);
     }
   }
@@ -146,7 +146,7 @@ onMounted(() => {
     display: flex;
     align-items: center;
     cursor: pointer;
-    .vi-steper__icon { 
+    .vi-stepper__icon { 
       transition: none;
       &:hover { color: var(--vi-color-primary); }
     }
@@ -173,7 +173,7 @@ onMounted(() => {
     &.is-disabled {
       color: var(--vi-color-info);
       cursor: not-allowed;
-      .vi-steper__icon:hover { color: var(--vi-color-info); }
+      .vi-stepper__icon:hover { color: var(--vi-color-info); }
     }
   }
   &__decrement {
@@ -200,12 +200,12 @@ onMounted(() => {
     background-color: #eeeeee;
     cursor: not-allowed;
     &:hover { border-color: var(--vi-color-gray); }
-    .vi-steper__input { 
+    .vi-stepper__input { 
       cursor: not-allowed;
       color: var(--vi-color-black-weak);
     }
-    .vi-steper__decrement,
-    .vi-steper__increment {
+    .vi-stepper__decrement,
+    .vi-stepper__increment {
       background-color: var(--vi-color-info-weak);
       border-color: var(--vi-color-gray);
       pointer-events: none;
