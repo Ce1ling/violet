@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, watch, ref, nextTick } from 'vue'
+import { computed, onMounted, watch, ref, nextTick, defineSSRCustomElement } from 'vue'
 import { Icon as ViIcon } from '../index'
 
 interface Props {
@@ -37,28 +37,33 @@ const getIconSize = computed(() => props.iconSize
   : props.position === 'normal' ? '18px' : '12px'
 )
 
+const updateModelValue = (n: number) => {
+  if ((n > props.max) || (n < props.min)) {
+    emit('update:modelValue', n > props.max ? props.max : props.min)
+    return
+  }
+  emit('update:modelValue', n)
+}
 const handleInputBlur = ({ target }: Event) => {
+  /** 此处不能使用 updateModelValue 更新，否则可输入大于限制的数值 */ 
   emit('update:modelValue', Number((target as HTMLInputElement).value))
 }
 type MathType = 'increment' | 'decrement'
 const mathOperation = (type: MathType) => {
   if (props.disabled) { return }
-  emit('update:modelValue', type === 'increment' 
+  updateModelValue(type === 'increment' 
     ? props.modelValue + props.step 
     : props.modelValue - props.step)
 }
 
-watch(() => props.modelValue, val => {
-  if ((val > props.max) || (val < props.min)) {
-    emit('update:modelValue', val > props.max ? props.max : props.min)
-  }
-})
+watch(() => props.modelValue, val => updateModelValue(val))
 
-onMounted(() => {
-  emit('update:modelValue', props.modelValue)
-  if (props.position !== 'normal') {
-    nextTick(() => inputWidth.value = decrementEl.value?.offsetWidth + 'px')
-  }
+onMounted(async () => {
+  updateModelValue(props.modelValue)
+
+  if (props.position === 'normal') { return }
+  await nextTick()
+  inputWidth.value = decrementEl.value?.offsetWidth + 'px'
 })
 
 </script>
@@ -80,12 +85,13 @@ onMounted(() => {
     <input 
       class="vi-stepper__input" 
       type="number" 
+      autocomplete="off"
       title=""
       :value="modelValue.toFixed(toFixed)" 
       :disabled="disabled" 
       @input="handleInputBlur"
       @blur="handleInputBlur" 
-      autocomplete="off"
+      v-bind="$attrs"
     />
     <div 
       class="vi-stepper__increment" 
