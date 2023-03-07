@@ -45,7 +45,6 @@ const loadingDuration = computed(() => props.duration + 's')
   font-style: normal;
   &__svg {
     fill: currentColor;
-    transition: color var(--vi-animation-duration);
     color: v-bind(color);
     width: v-bind(size);
     height: v-bind(size);
