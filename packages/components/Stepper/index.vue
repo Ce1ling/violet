@@ -20,6 +20,7 @@ const props = withDefaults(defineProps<Props>(), {
   step: 1,
   max: Infinity,
   min: -Infinity,
+  toFixed: 0,
   position: 'normal'
 })
 const emit = defineEmits<Emits>()
@@ -80,7 +81,7 @@ onMounted(() => {
       class="vi-stepper__input" 
       type="number" 
       title=""
-      :value="toFixed ? modelValue.toFixed(toFixed) : modelValue" 
+      :value="modelValue.toFixed(toFixed)" 
       :disabled="disabled" 
       @input="handleInputBlur"
       @blur="handleInputBlur" 
