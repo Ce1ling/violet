@@ -1,18 +1,18 @@
 ---
 layout: home
 title: Violet
-titleTemplate: 一个快速的网站开发工具
+titleTemplate: 一款快速的网站 UI 开发工具
 head:
   - - meta
     - name: description
-      content: 一个快速的网站开发 UI 组件库工具，帮助你快速开发。
+      content: 一款快速的网站开发 UI 组件库工具，帮助你快速开发。
   - - meta
     - name: keywords
-      content: UI 组件库 快速开发 Vue组件库
+      content: UI 组件库 快速开发 Vue 组件库
 hero:
   name: Violet
-  text: 一个基于 Vue3 的 UI 组件库
-  tagline: 点击 “开始” 按钮，开始预览 Violet 的组件吧！
+  text: 一款基于 Vue3 的 UI 组件库
+  tagline: 点击 “开始” 按钮，预览 Violet UI 组件。
   actions:
     - theme: brand
       text: 开始

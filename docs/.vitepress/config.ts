@@ -1,4 +1,10 @@
-import { basic, layout, form, navigation, message } from '../routes/index'
+import { 
+  basic, 
+  layout, 
+  form, 
+  navigation, 
+  message 
+} from '../routes/index'
 
 const author = '<a href="https://github.com/Ce1ling" target="_blank">L1en</a>'
 
@@ -42,7 +48,7 @@ export default {
     // 底部信息。注意：当 sidebar 显示时，footer 则不会显示
     footer: {
       message: `Powered by ❤️ ${author}`,
-      copyright: `Copyright © 2021-${new Date().getFullYear()} ${author}`
+      copyright: `Copyright © 2021-Present`
     }
   },
 }

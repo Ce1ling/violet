@@ -4,7 +4,6 @@ import { nanoid } from 'nanoid'
 const links = [
   { id: nanoid(), title: 'GitHub 地址', link: 'https://github.com/Ce1ling/violet' },
   { id: nanoid(), title: '作者 GitHub', link: 'https://github.com/Ce1ling' },
-  { id: nanoid(), title: '更新日志', link: '' },
   { id: nanoid(), title: '参与贡献', link: 'https://github.com/Ce1ling/violet' },
 ]
 </script>
@@ -13,8 +12,8 @@ const links = [
 <footer class="footer-wrap">
   <ul class="footer-list">
     <h1>链接</h1>
-    <li class="footer-item" v-for="item in links" :key="item.id">
-      <a :href="item.link" target="_blank">{{ item.title }}</a>
+    <li class="footer-item" v-for="link in links" :key="link.id">
+      <a :href="link.link" target="_blank">{{ link.title }}</a>
     </li>
   </ul>
 </footer>
