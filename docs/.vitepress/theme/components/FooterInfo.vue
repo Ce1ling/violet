@@ -11,7 +11,7 @@ const links = [
 <template>
 <footer class="footer-wrap">
   <ul class="footer-list">
-    <h1>链接</h1>
+    <li> <h2>链接</h2> </li>
     <li class="footer-item" v-for="link in links" :key="link.id">
       <a :href="link.link" target="_blank">{{ link.title }}</a>
     </li>
