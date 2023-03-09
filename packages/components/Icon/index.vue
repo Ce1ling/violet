@@ -42,6 +42,7 @@ const loadingDuration = computed(() => props.duration + 's')
 }
 
 .vi-icon {
+  display: inline-block;
   font-style: normal;
   &__svg {
     fill: currentColor;
