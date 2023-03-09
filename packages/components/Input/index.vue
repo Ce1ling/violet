@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { computed, nextTick, onMounted, ref, watch, h, useSlots } from 'vue'
+import { computed, ref, watch, h, useSlots } from 'vue'
 import { Icon as ViIcon } from '../index'
 
 type Icon = typeof ViIcon | string
 interface Props {
   modelValue: string
   type?: string
-  placeholder?: string
   disabled?: boolean
   clearable?: boolean
   showPwd?: boolean
@@ -18,7 +17,6 @@ interface Props {
 }
 const props = withDefaults(defineProps<Props>(), {
   type: 'text',
-  placeholder: '',
   disabled: false,
   clearable: false,
   showPwd: false,
@@ -35,7 +33,7 @@ const slots = useSlots()
 const viInputEl = ref<HTMLInputElement>()
 const isShowClear = ref(false)
 const isShowPwd = ref(false)
-const isPwdInput = ref(false)
+const isPwdInput = ref(props.type === 'password')
 
 const classObj = computed(() => ({ 
   'is-disabled': props.disabled,
@@ -51,34 +49,27 @@ const clearInput = () => {
   emit('update:modelValue', '')
   viInputEl.value?.focus()
 }
-const toggleShowPwd = (e: MouseEvent) => {
-  (e.target as HTMLElement).style.userSelect = 'none'
-  viInputEl.value!.type = isPwdInput.value ? 'text' : 'password'
+const toggleShowPwd = () => {
+  const el = viInputEl.value!
+  el.type = isPwdInput.value ? 'text' : 'password'
   isPwdInput.value = !isPwdInput.value
-  viInputEl.value!.focus()
+  el.focus()
 }
 const RenderLimit = () => h('span', {
   class: [
     `vi-input__limit-${props.type === 'textarea' ? props.type : 'input'}`, 
-    { 'tip': props.modelValue.length >= Number(props.limit) }
+    { 'is-max': props.modelValue.length >= Number(props.limit) }
   ],
-  innerText: `${props.modelValue.length} / ${props.limit}`
-})
+}, `${props.modelValue.length} / ${props.limit}`)
 const getIconAttrs = (type: Icon) => {
   return typeof type === 'string' 
     ? { name: type, size: 'inherit' }
     : type
 }
 
-onMounted(() => {
-  nextTick(() => isPwdInput.value = viInputEl.value!.type === 'password')
-
-  if (!props.clearable && !props.showPwd) { return }
-
-  watch(() => props.modelValue, val => {
-    if (props.clearable) { isShowClear.value = !!val }
-    if (props.showPwd) { isShowPwd.value = !!val }
-  })
+watch(() => props.modelValue, val => {
+  if (props.clearable) { isShowClear.value = !!val }
+  if (props.showPwd) { isShowPwd.value = !!val }
 })
 
 </script>
@@ -89,38 +80,38 @@ onMounted(() => {
       <textarea 
         ref="viInputEl" 
         class="vi-input__input" 
-        :placeholder="placeholder" 
+        autocomplete="off"
         :value="modelValue" 
         :disabled="disabled" 
         :rows="rows" 
         :maxlength="limit" 
         @input="handleInput" 
-        autocomplete="off"
+        v-bind="$attrs"
       ></textarea>
       <render-limit v-if="limit.trim() && showLimit" />
     </template>
     <template v-else>
       <div class="vi-input__prepend" v-if="$slots.prepend">
-        <slot name="prepend"></slot>
+        <slot name="prepend" />
       </div>
       <span class="vi-input__prefix-icon" v-if="$slots.prefix || preIcon">
         <vi-icon v-bind="getIconAttrs(preIcon)" v-if="preIcon" />
-        <slot name="prefix" v-else></slot>
+        <slot name="prefix" v-else />
       </span>
       <input 
         ref="viInputEl" 
         class="vi-input__input" 
+        autocomplete="off"
         :type="type" 
-        :placeholder="placeholder" 
         :value="modelValue" 
         :disabled="disabled" 
         :maxlength="limit" 
         @input="handleInput" 
-        autocomplete="off"
+        v-bind="$attrs"
       />
       <span class="vi-input__suffix-icon" v-if="$slots.suffix || sufIcon">
         <vi-icon v-bind="getIconAttrs(sufIcon)" v-if="sufIcon" />
-        <slot name="suffix" v-else></slot>
+        <slot name="suffix" v-else />
       </span>
       <vi-icon 
         class="vi-input__input-clear"
@@ -144,7 +135,7 @@ onMounted(() => {
       />
       <render-limit v-if="limit.trim() && showLimit" />
       <div class="vi-input__append" v-if="$slots.append">
-        <slot name="append"></slot>
+        <slot name="append" />
       </div>
     </template>
   </div>
@@ -192,6 +183,7 @@ onMounted(() => {
     border-radius: var(--vi-base-radius);
     &-clear,
     &-show-hidden {
+      user-select: none;
       display: flex;
       align-items: center;
     }
@@ -204,7 +196,7 @@ onMounted(() => {
       font-size: 12px;
       color: var(--vi-color-info);
       line-height: 12px;
-      &.tip { color: var(--vi-color-danger); }
+      &.is-max { color: var(--vi-color-danger); }
     }
     &-textarea {
       position: absolute;
