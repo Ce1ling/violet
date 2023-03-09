@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import { ref, useSlots, h, watch } from 'vue'
+import { useSlots, h } from 'vue'
 import type { VNode, VNodeArrayChildren } from 'vue'
 
 interface Props {
-  active: string
+  modelValue: string
   activeBgColor?: string
   bgColor?: string
   ifMode?: boolean
 }
 interface Emits {
+  (e: 'update:modelValue', val: string): void
   (e: 'tab-click', name: string, event: MouseEvent): void
 }
-type RenderVNode = VNodeArrayChildren | undefined
 
 const props = withDefaults(defineProps<Props>(), {
   activeBgColor: 'var(--vi-color-primary)',
@@ -21,18 +21,13 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits<Emits>()
 const slots = useSlots()
 
-const defaultActive = ref<typeof props.active>(props.active)
-
-watch(() => props.active, val => defaultActive.value = val || '')
-
+/**
+ * 用于检查 DOM 类型，共以下几种：
+ *  1. `normal`: 正常节点
+ *  2. `fragment`: `v-for` 产生的一个片段节点
+ *  3. `comment`: 注释节点
+ */
 const checkNodeType = (key: string) => {
-  /**
-   * 用于检查 DOM 类型，共以下几种：
-   *  1. normal: 正常节点
-   *  2. fragment: v-for 产生的一个父节点片段
-   *  3. comment: 注释节点
-   */
-  
   switch (key) {
     case 'Symbol(Comment)':
       return 'comment'
@@ -42,21 +37,24 @@ const checkNodeType = (key: string) => {
       return 'normal'
   }
 }
-/** 对 Vue h函数 的封装，仅用于渲染 Tab header */
+
+/** 渲染 Tab header */
 const hRenderTabHeader = (type: string, vNode: VNode) => h(type, {
   class: ['vi-tabs__header-item', {
-    'vi-tab-active': defaultActive.value === vNode.props?.name
+    'vi-tab-active': props.modelValue === vNode.props?.name
   }],
-  innerText: vNode.props?.label,
   onClick: (e: MouseEvent) => {
-    defaultActive.value = vNode.props?.name
+    emit('update:modelValue', vNode.props?.name)
     emit('tab-click', vNode.props?.name, e)
   }
-})
-/** 对 Vue h函数 的封装，仅用于渲染 Tab content */
+}, [vNode.props?.label])
+
+/** 渲染 Tab content */
 const hRenderTabContent = (vNode: VNode) => h(vNode, { style: { 
-  display: defaultActive.value === vNode.props?.name ? 'block' : 'none' 
+  display: props.modelValue === vNode.props?.name ? 'block' : 'none' 
 }})
+
+type RenderVNode = VNodeArrayChildren | undefined
 /** 筛选并渲染 Tab header */
 const RenderTabHeader = (): RenderVNode => {
   return slots.default && slots.default().map(vNode => {
@@ -65,12 +63,13 @@ const RenderTabHeader = (): RenderVNode => {
       return hRenderTabHeader('div', vNode)
     }
     if (type === 'fragment') {
-      return vNode.children && (vNode.children as VNodeArrayChildren).map(child => {
-        return hRenderTabHeader('div', child as VNode)
+      return vNode.children && (vNode.children as VNodeArrayChildren).map(n => {
+        return hRenderTabHeader('div', n as VNode)
       })
     }
   })
 }
+
 /** 筛选并渲染 Tab content */
 const RenderTabContent = (): RenderVNode => {
 
@@ -80,13 +79,13 @@ const RenderTabContent = (): RenderVNode => {
     ? slots.default().map(vNode => {
         const type = checkNodeType(vNode.type.toString())
         if (type === 'normal') {
-          return vNode.props?.name === defaultActive.value 
-            ? slots.default!().find(normalVNode => normalVNode.props?.name === defaultActive.value)
+          return vNode.props?.name === props.modelValue 
+            ? slots.default!().find(n => n.props?.name === props.modelValue)
             : null
         } 
         if (type === 'fragment') {
-          return (vNode.children as VNodeArrayChildren)?.find(childNode => {
-            return (childNode as VNode).props?.name === defaultActive.value
+          return (vNode.children as VNodeArrayChildren)?.find(n => {
+            return (n as VNode).props?.name === props.modelValue
           })
         }
       })
@@ -94,12 +93,13 @@ const RenderTabContent = (): RenderVNode => {
         const type = checkNodeType(vNode.type.toString())
         if (type === 'normal') { return hRenderTabContent(vNode) }
         if (type === 'fragment') {
-          return (vNode.children as VNodeArrayChildren).map(childNode => {
-            return hRenderTabContent(childNode as VNode)
+          return (vNode.children as VNodeArrayChildren).map(n => {
+            return hRenderTabContent(n as VNode)
           })
         }
       })
 }
+
 </script>
 
 <template>
@@ -122,15 +122,15 @@ const RenderTabContent = (): RenderVNode => {
     position: relative;
     border: 1px solid var(--vi-color-gray);
     border-bottom: none;
+    overflow: hidden;
     &-item {
       flex-shrink: 0;
-      padding: 8px 18px;
-      border-radius: var(--vi-base-radius) var(--vi-base-radius) 0 0;
+      padding: 8px var(--vi-base-padding);
       cursor: pointer;
       text-align: center;
-      transition: background-color .3s;
+      transition: background-color var(--vi-animation-duration);
       &.vi-tab-active {
-        color: #fff;
+        color: var(--vi-color-white);
         background-color: v-bind(activeBgColor);
       }
     }
