@@ -28,6 +28,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   border: 1px solid var(--vi-color-primary);
   background-color: var(--vp-c-bg-alpha-with-backdrop);
   cursor: pointer;
+  .vi-icon { display: block; }
   &:hover {
     background-color: var(--vi-color-primary);
     .vi-icon svg { color: #fff; }
