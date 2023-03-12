@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { useSlots, h, watch } from 'vue'
-import type { VNode, VNodeArrayChildren } from 'vue'
 import { Icon as ViIcon } from '../index'
+
+import type { VNode, VNodeArrayChildren } from 'vue'
 
 interface Props {
   modelValue: string

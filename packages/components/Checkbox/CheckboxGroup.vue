@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useSlots, h, computed } from 'vue'
+
 import type { VNode } from 'vue'
 import type { 
   Props as CheckboxProps, 
