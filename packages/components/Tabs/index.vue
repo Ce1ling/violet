@@ -8,7 +8,7 @@ interface Props {
   activeBgColor?: string
   bgColor?: string
   ifMode?: boolean
-  closable?: boolean
+  removable?: boolean
 }
 interface Emits {
   (e: 'update:modelValue', val: string): void
@@ -21,7 +21,7 @@ const props = withDefaults(defineProps<Props>(), {
   activeBgColor: 'var(--vi-color-primary)',
   bgColor: 'var(--vi-color-info-weak)',
   ifMode: false,
-  closable: false
+  removable: false
 })
 const emit = defineEmits<Emits>()
 const slots = useSlots()
@@ -54,16 +54,12 @@ const hRenderTabHeader = (type: string, vNode: VNode) => h(type, {
   },
 }, [
   h('span', vNode.props?.label), 
-  props.closable && h(ViIcon, { 
+  props.removable && h(ViIcon, { 
     name: 'Close', 
     class: 'vi-tabs__close-icon',
     onClick: (e: MouseEvent) => {
       e.stopPropagation()
       emit('tab-remove', vNode.props?.name, e)
-      // 当前展示的 Tab 被关闭则更新到下一个 Tab
-      if (props.modelValue === vNode.props?.name) {
-        emit('update:modelValue', `${Number(props.modelValue) + 1}`)
-      }
     }
   })
 ])

@@ -34,7 +34,7 @@ const change = (val: string, oVal: string) => {
 <template>
   <div class="test">
     <vi-button @click="reset">重置数据</vi-button>
-    <vi-tabs v-model="val1" closable @tab-remove="remove" @change="change">
+    <vi-tabs v-model="val1" removable @tab-remove="remove" @change="change">
       <vi-tab 
         v-for="tab in tabs"
         :name="tab.name"
