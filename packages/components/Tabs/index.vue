@@ -59,6 +59,10 @@ const hRenderTabHeader = (type: string, vNode: VNode) => h(type, {
     onClick: (e: MouseEvent) => {
       e.stopPropagation()
       emit('tab-remove', vNode.props?.name, e)
+      // 当前展示的 Tab 被关闭则更新到下一个 Tab
+      if (props.modelValue === vNode.props?.name) {
+        emit('update:modelValue', `${Number(props.modelValue) + 1}`)
+      }
     }
   })
 ])
