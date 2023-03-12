@@ -1,22 +1,26 @@
 <script setup lang="ts">
 import { useSlots, h } from 'vue'
 import type { VNode, VNodeArrayChildren } from 'vue'
+import { Icon as ViIcon } from '../index'
 
 interface Props {
   modelValue: string
   activeBgColor?: string
   bgColor?: string
   ifMode?: boolean
+  closable?: boolean
 }
 interface Emits {
   (e: 'update:modelValue', val: string): void
   (e: 'tab-click', name: string, event: MouseEvent): void
+  (e: 'tab-remove', name: string, event: MouseEvent): void
 }
 
 const props = withDefaults(defineProps<Props>(), {
   activeBgColor: 'var(--vi-color-primary)',
   bgColor: 'var(--vi-color-info-weak)',
-  ifMode: false
+  ifMode: false,
+  closable: false
 })
 const emit = defineEmits<Emits>()
 const slots = useSlots()
@@ -41,18 +45,23 @@ const checkNodeType = (key: string) => {
 /** 渲染 Tab header */
 const hRenderTabHeader = (type: string, vNode: VNode) => h(type, {
   class: ['vi-tabs__header-item', {
-    'vi-tab-active': props.modelValue === vNode.props?.name
+    'is-active': props.modelValue === vNode.props?.name
   }],
   onClick: (e: MouseEvent) => {
     emit('update:modelValue', vNode.props?.name)
     emit('tab-click', vNode.props?.name, e)
-  }
-}, [vNode.props?.label])
-
-/** 渲染 Tab content */
-const hRenderTabContent = (vNode: VNode) => h(vNode, { style: { 
-  display: props.modelValue === vNode.props?.name ? 'block' : 'none' 
-}})
+  },
+}, [
+  h('span', vNode.props?.label), 
+  props.closable && h(ViIcon, { 
+    name: 'Close', 
+    class: 'vi-tabs__close-icon',
+    onClick: (e: MouseEvent) => {
+      e.stopPropagation()
+      emit('tab-remove', vNode.props?.name, e)
+    }
+  })
+])
 
 type RenderVNode = VNodeArrayChildren | undefined
 /** 筛选并渲染 Tab header */
@@ -69,6 +78,11 @@ const RenderTabHeader = (): RenderVNode => {
     }
   })
 }
+
+/** 渲染 Tab content */
+const hRenderTabContent = (vNode: VNode) => h(vNode, { style: { 
+  display: props.modelValue === vNode.props?.name ? 'block' : 'none'
+}})
 
 /** 筛选并渲染 Tab content */
 const RenderTabContent = (): RenderVNode => {
@@ -124,12 +138,35 @@ const RenderTabContent = (): RenderVNode => {
     border-bottom: none;
     overflow: hidden;
     &-item {
+      display: flex;
+      align-items: center;
       flex-shrink: 0;
       padding: 8px var(--vi-base-padding);
       cursor: pointer;
       text-align: center;
-      transition: background-color var(--vi-animation-duration);
-      &.vi-tab-active {
+      transition: all var(--vi-animation-duration);
+      border-radius: var(--vi-base-radius) var(--vi-base-radius) 0 0;
+      &:hover {
+        color: var(--vi-color-primary);
+      }
+      .vi-tabs__close-icon {
+        border-radius: 50%;
+        transition: all var(--vi-animation-duration);
+        margin-left: 4px;
+        &:hover {
+          color: var(--vi-color-white);
+          background-color: var(--vi-color-primary);
+          user-select: none;
+        }
+      }
+      &.is-active {
+        .vi-tabs__close-icon:hover {
+          border-radius: 50%;
+          color: var(--vi-color-primary);
+          background-color: var(--vi-color-primary-weak);
+        }
+      }
+      &.is-active {
         color: var(--vi-color-white);
         background-color: v-bind(activeBgColor);
       }
