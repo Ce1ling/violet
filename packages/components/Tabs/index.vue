@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useSlots, h } from 'vue'
+import { useSlots, h, watch } from 'vue'
 import type { VNode, VNodeArrayChildren } from 'vue'
 import { Icon as ViIcon } from '../index'
 
@@ -14,6 +14,7 @@ interface Emits {
   (e: 'update:modelValue', val: string): void
   (e: 'tab-click', name: string, event: MouseEvent): void
   (e: 'tab-remove', name: string, event: MouseEvent): void
+  (e: 'change', newVal: string, oldVal: string): void
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -117,6 +118,8 @@ const RenderTabContent = (): RenderVNode => {
         }
       })
 }
+
+watch(() => props.modelValue, (val, oVal) => emit('change', val, oVal))
 
 </script>
 

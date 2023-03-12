@@ -26,12 +26,15 @@ const reset = () => {
     { name: '6', label: 'tab6', content: 'content 6' },
   ]
 }
+const change = (val: string, oVal: string) => {
+  console.log('change', val, oVal)
+}
 </script>
 
 <template>
   <div class="test">
     <vi-button @click="reset">重置数据</vi-button>
-    <vi-tabs v-model="val1" closable @tab-remove="remove">
+    <vi-tabs v-model="val1" closable @tab-remove="remove" @change="change">
       <vi-tab 
         v-for="tab in tabs"
         :name="tab.name"
