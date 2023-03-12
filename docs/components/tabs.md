@@ -125,16 +125,16 @@ const val2 = ref('1')
 </script>
 ```
 
-## 可被关闭
+## 可被移除
 
-使用 `closable` 属性，设置标签可被关闭。点击关闭按钮后触发 `tab-remove` 事件。
+使用 `removable` 属性，设置标签可被移除。点击移除按钮后触发 `tab-remove` 事件。
 
 ::: warning
-请注意！关闭按钮仅触发 `tab-remove` 事件并传入相应参数，您需要自己编写删除逻辑。这样做是因为 Violet 并不知道您的数据结构，而如果操作 DOM 结构的话，效率会非常低！
+请注意！移除按钮仅触发 `tab-remove` 事件并传入相应参数，您需要自己编写移除逻辑。因为 Violet 并不知道您的数据结构，而如果操作 DOM 的话，效率会非常低！同样的，移除后当前 Tab 也需要您手动更新，因为 Violet 同样不知道您的更新后的数据！
 :::
 
 <div class="examples">
-  <vi-tabs v-model="val3" closable @tab-remove="handleRemove">
+  <vi-tabs v-model="val3" removable @tab-remove="handleRemove">
     <vi-tab 
       v-for="item in list"
       :key="item.name"
@@ -147,7 +147,7 @@ const val2 = ref('1')
 
 ```vue
 <template>
-  <vi-tabs v-model="val3" closable @tab-remove>
+  <vi-tabs v-model="val3" removable @tab-remove>
   </vi-tabs>
 </template>
 
@@ -174,16 +174,16 @@ const handleRemove = (name: string) => {
 | :---: | :---: | :---: | :---: |
 | `v-model` | 当前展示的 Tab | string | —— |
 | active-bg-color | 当前展示的 Tab 的背景颜色 | string | '#802ae8' |
-| bg-color | Tabs 头部背景颜色 | string | #eeeeee |
-| ifMode | Tab 的展示是否为类似 `v-if` 的模式 | boolean | false |
-| closable | 是否可被关闭 | boolean | false |
+| bg-color | 标题背景颜色 | string | #eeeeee |
+| ifMode | 是否为类似 `v-if` 的模式 | boolean | false |
+| removable | 是否可被移除 | boolean | false |
 
 ### Tabs 事件
 
 | 事件名 | 事件触发时机 | 事件参数 |
 | :---: | :---: | :---: |
 | tab-click | Tab 标题点击时触发 | (name: `string`, event: `MouseEvent`) |
-| tab-remove | 点击关闭按钮触发 | (name: `string`, event: `MouseEvent`) |
+| tab-remove | 点击移除按钮触发 | (name: `string`, event: `MouseEvent`) |
 | change | `v-model` 值改变后触发 | (newVal: `string`, oldVal: `string`) |
 
 ### Tab 属性
