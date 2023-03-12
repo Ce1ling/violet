@@ -8,6 +8,16 @@ const change = () => {
   const state = active.value <= 3 ? Number(active.value) + 1 : 1
   active.value = state.toString()
 }
+const list = ref([
+  { name: '1', label: 'Vue', content: 'Vue，渐进式 JavaScript 框架' },
+  { name: '2', label: 'React', content: 'React，用于构建用户界面的 JavaScript 库' },
+  { name: '3', label: 'Svelte', content: 'Svelte，控制性增强的 Web 应用程序' },
+  { name: '4', label: 'Solid', content: 'Solid，用于构建用户界面的简单且高性能的响应式' }
+])
+const val3 = ref('1')
+const handleRemove = (name: string) => {
+  list.value = list.value.filter(v => v.name !== name)
+}
 </script>
 
 # Tabs 切换组件
@@ -115,26 +125,69 @@ const val2 = ref('1')
 </script>
 ```
 
+## 可被关闭
+
+使用 `closable` 属性，设置标签可被关闭。点击关闭按钮后触发 `tab-remove` 事件。
+
+::: warning
+请注意！关闭按钮仅触发 `tab-remove` 事件并传入相应参数，您需要自己编写删除逻辑。这样做是因为 Violet 并不知道您的数据结构，而如果操作 DOM 结构的话，效率会非常低！
+:::
+
+<div class="examples">
+  <vi-tabs v-model="val3" closable @tab-remove="handleRemove">
+    <vi-tab 
+      v-for="item in list"
+      :key="item.name"
+      :name="item.name"
+      :label="item.label">
+      {{ item.content }}
+    </vi-tab>
+  </vi-tabs>
+</div>
+
+```vue
+<template>
+  <vi-tabs v-model="val3" closable @tab-remove>
+  </vi-tabs>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+const list = ref([
+  { name: '1', label: 'Vue', content: 'Vue，渐进式 JavaScript 框架' },
+  { name: '2', label: 'React', content: 'React，用于构建用户界面的 JavaScript 库' },
+  { name: '3', label: 'Svelte', content: 'Svelte，控制性增强的 Web 应用程序' },
+  { name: '4', label: 'Solid', content: 'Solid，用于构建用户界面的简单且高性能的响应式' }
+])
+const val3 = ref('1')
+const handleRemove = (name: string) => {
+  list.value = list.value.filter(v => v.name !== name)
+}
+</script>
+```
+
 ## APIs
 
 ### Tabs 属性
 
 | 属性名 | 属性说明 | 属性类型 | 属性默认值 |
 | :---: | :---: | :---: | :---: |
-| active | 当前展示的 Tab | string | —— |
-| active-bg-color | 当前展示的 Tab 的背景颜色 | string | #802ae8 |
+| v-model | 当前展示的 Tab | string | —— |
+| active-bg-color | 当前展示的 Tab 的背景颜色 | string | '#802ae8' |
 | bg-color | Tabs 头部背景颜色 | string | #eeeeee |
 | ifMode | Tab 的展示是否为类似 `v-if` 的模式 | boolean | false |
+| closable | 是否可被关闭 | boolean | false |
 
 ### Tabs 事件
 
 | 事件名 | 事件触发时机 | 事件参数 |
 | :---: | :---: | :---: |
-| tab-click | Tab 标题点击时触发 | (name: 当前点击的 Tab, event: 默认事件对象) |
+| tab-click | Tab 标题点击时触发 | (name: `string`, event: `MouseEvent`) |
+| tab-remove | 点击关闭按钮触发 | (name: `string`, event: `MouseEvent`) |
 
 ### Tab 属性
 
 | 属性名 | 属性说明 | 属性类型 | 属性默认值 |
 | :---: | :---: | :---: | :---: |
 | label | Tab 标题 | string | —— |
-| name | 唯一标识符，Tabs 的 `active` 根据此属性辨别当前展示的 Tab | string | —— |
+| name | 唯一标识符，Tabs 的 `v-model` 根据此属性辨别当前展示的 Tab | string | —— |
