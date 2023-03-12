@@ -172,7 +172,7 @@ const handleRemove = (name: string) => {
 
 | 属性名 | 属性说明 | 属性类型 | 属性默认值 |
 | :---: | :---: | :---: | :---: |
-| v-model | 当前展示的 Tab | string | —— |
+| `v-model` | 当前展示的 Tab | string | —— |
 | active-bg-color | 当前展示的 Tab 的背景颜色 | string | '#802ae8' |
 | bg-color | Tabs 头部背景颜色 | string | #eeeeee |
 | ifMode | Tab 的展示是否为类似 `v-if` 的模式 | boolean | false |
@@ -184,6 +184,7 @@ const handleRemove = (name: string) => {
 | :---: | :---: | :---: |
 | tab-click | Tab 标题点击时触发 | (name: `string`, event: `MouseEvent`) |
 | tab-remove | 点击关闭按钮触发 | (name: `string`, event: `MouseEvent`) |
+| change | `v-model` 值改变后触发 | (newVal: `string`, oldVal: `string`) |
 
 ### Tab 属性
 
