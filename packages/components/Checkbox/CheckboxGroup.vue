@@ -3,9 +3,9 @@ import { useSlots, h, computed } from 'vue'
 
 import type { VNode } from 'vue'
 import type { 
+  ModelValue, 
   Props as CheckboxProps, 
-  Emits as CheckboxEmits, 
-  ModelValue 
+  Emits as CheckboxEmits
 } from './index.vue'
 
 interface Props {

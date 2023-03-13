@@ -6,13 +6,13 @@ export const types = {
   danger: 'danger'
 }
 
-export type Options = {
+export interface Options {
   type: 'primary' | 'success' | 'info' | 'warning' | 'danger'
   content: string
   duration?: number
   prefix?: string
 }
 
-export type Ins = {
+export interface Ins {
   [k: string]: any
 }

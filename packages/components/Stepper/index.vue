@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, watch, ref, nextTick, defineSSRCustomElement } from 'vue'
+import { computed, onMounted, watch, ref, nextTick } from 'vue'
 import { Icon as ViIcon } from '../index'
 
 interface Props {
@@ -48,10 +48,10 @@ const handleInputBlur = ({ target }: Event) => {
   /** 此处不能使用 updateModelValue 更新，否则可输入大于限制的数值 */ 
   emit('update:modelValue', Number((target as HTMLInputElement).value))
 }
-type MathType = 'increment' | 'decrement'
-const mathOperation = (type: MathType) => {
+type Action = 'increment' | 'decrement'
+const calcStep = (action: Action) => {
   if (props.disabled) { return }
-  updateModelValue(type === 'increment' 
+  updateModelValue(action === 'increment' 
     ? props.modelValue + props.step 
     : props.modelValue - props.step)
 }
@@ -74,7 +74,7 @@ onMounted(async () => {
       ref="decrementEl" 
       class="vi-stepper__decrement" 
       :class="[iconClass, decrementClass]" 
-      @click="mathOperation('decrement')">
+      @click="calcStep('decrement')">
       <vi-icon 
         name="Minus" 
         class="vi-stepper__icon" 
@@ -96,7 +96,7 @@ onMounted(async () => {
     <div 
       class="vi-stepper__increment" 
       :class="[iconClass, incrementClass]" 
-      @click="mathOperation('increment')">
+      @click="calcStep('increment')">
       <vi-icon 
         name="Plus" 
         class="vi-stepper__icon" 

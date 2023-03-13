@@ -92,7 +92,7 @@ const RenderTabContent = (): RenderVNode => {
   if (!slots.default) { return }
 
   return props.ifMode 
-    ? slots.default().map(vNode => {
+    ? slots.default().map((vNode: VNode) => {
         const type = checkNodeType(vNode.type.toString())
         if (type === 'normal') {
           return vNode.props?.name === props.modelValue 

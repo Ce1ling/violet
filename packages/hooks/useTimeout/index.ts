@@ -2,7 +2,7 @@
 export const useTimeout = (handler: Function, time: number): void => {
   let timer: number | null = window.setTimeout(() => {
     handler()
-    window.clearTimeout(timer as number)
+    if (typeof timer === 'number') window.clearTimeout(timer)
     timer = null
   }, time)
 }
