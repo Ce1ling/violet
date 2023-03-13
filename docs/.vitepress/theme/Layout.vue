@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import DefaultTheme from 'vitepress/theme'
 import FooterInfo from './components/FooterInfo.vue'
-import BackTop from '../../../packages/components/BackTop/index.vue'
 import SearchBar from '../../../packages/components/SearchBar/index.vue'
 
 const { Layout } = DefaultTheme
@@ -16,7 +15,8 @@ const { Layout } = DefaultTheme
       <SearchBar class="search-bar-wrap" />
     </template>
   </Layout>
-  <BackTop />
+  <vi-backtop>
+  </vi-backtop>
 </template>
 
 <style scoped lang="scss">

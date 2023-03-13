@@ -1,37 +1,62 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
+
+interface Props {
+  showHeight?: number
+  hideWidth?: number
+  right?: number
+  bottom?: number
+  zIndex?: number
+}
+const props = withDefaults(defineProps<Props>(), {
+  showHeight: 500,
+  hideWidth: -Infinity,
+  right: 50,
+  bottom: 50,
+  zIndex: 99
+})
 
 const show = ref(false)
 
-const handleScroll = () => show.value = document.body.offsetWidth > 960
-  ? window.scrollY >= (window.innerHeight * 0.5)
+const customStyle = computed(() => ({ 
+  right: props.right + 'px', 
+  bottom: props.bottom + 'px',
+  zIndex: props.zIndex,
+}))
+
+const handleScroll = () => show.value = document.body.offsetWidth > props.hideWidth
+  ? window.scrollY >= props.showHeight
   : false
-const back = () => window.scrollTo({ top: 0 })
+const backtop = () => window.scrollTo({ top: 0 })
 
 onMounted(() => window.addEventListener('scroll', handleScroll))
 onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 </script>
 
 <template>
-  <div title="返回顶部" class="back-top-wrap" v-show="show" @click="back">
-    <vi-icon name="Top" size="44px" color="var(--vi-color-primary)" />
+  <div class="vi-backtop" v-if="show" @click="backtop" :style="customStyle">
+    <slot>
+      <vi-icon 
+        name="Top" 
+        size="44px" 
+        color="var(--vi-color-primary)" 
+        class="vi-backtop__icon"
+      />
+    </slot>
   </div>
 </template>
 
 <style lang="scss">
-.back-top-wrap {
+.vi-backtop {
   user-select: none;
   position: fixed;
-  right: 100px;
-  bottom: 100px;
-  z-index: 999999999;
   border: 1px solid var(--vi-color-primary);
-  background-color: var(--vp-c-bg-alpha-with-backdrop);
+  background-color: var(--vi-color-white);
   cursor: pointer;
-  .vi-icon { display: block; }
   &:hover {
     background-color: var(--vi-color-primary);
-    .vi-icon svg { color: #fff; }
+    .vi-backtop__icon svg { color: #fff; }
   }
+  &__icon { display: block; }
 }
 </style>
