@@ -15,8 +15,7 @@ const { Layout } = DefaultTheme
       <SearchBar class="search-bar-wrap" />
     </template>
   </Layout>
-  <vi-backtop>
-  </vi-backtop>
+  <vi-backtop :right="100" :bottom="100" />
 </template>
 
 <style scoped lang="scss">
