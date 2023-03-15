@@ -11,4 +11,8 @@ export const navigation = [
     text: 'Pagination 分页器',
     link: '/components/pagination.md'
   },
+  {
+    text: 'Backtop 返回顶部',
+    link: '/components/backtop.md'
+  },
 ]
