@@ -6,7 +6,7 @@ let hasExist = false
 
 export const useSearch = () => {
   const handleSearchClose = (e: KeyboardEvent) => {
-    if (e.key === 'Escape') { close() }
+    if (e.key === 'Escape') close()
   }
   const open = () => {
     if (hasExist) { return }
