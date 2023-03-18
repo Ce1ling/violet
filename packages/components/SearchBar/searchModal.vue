@@ -152,7 +152,7 @@ nextTick(() => searchInp.value?.focus())
         display: flex;
         align-items: center;
         width: 100%;
-        ::v-deep .vi-icon svg { transition: all .3s; }
+        :deep(.vi-icon svg) { transition: all .3s; }
       }
       .search-input {
         width: 100%;
