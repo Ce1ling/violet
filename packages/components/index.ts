@@ -20,6 +20,7 @@ import Checkbox from './Checkbox/index.vue'
 import CheckboxGroup from './Checkbox/CheckboxGroup.vue'
 import Stepper from './Stepper/index.vue'
 import Backtop from './Backtop/index.vue'
+import Alert from './Alert/index.vue'
 
 export {
   Button,
@@ -44,4 +45,5 @@ export {
   CheckboxGroup,
   Stepper,
   Backtop,
+  Alert,
 }
