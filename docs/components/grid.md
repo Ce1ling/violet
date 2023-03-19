@@ -221,12 +221,12 @@
 
 | 属性名 | 属性说明 | 属性类型 | 属性默认值 |
 | :---: | :---: | :---: | :---: |
-| gap | 列间距 | string | '10px' |
-| justify | 垂直对齐方式 | 'start' / 'center' / 'end' / 'space-between' / 'space-around' / 'space-evenly' | 'start' |
-| align | 水平对齐方式 | 'start' / 'center' / 'end' | 'start' |
+| gap | 列间距 | `string` | `'10px'` |
+| justify | 垂直对齐方式 | `'start'` / `'center'` / `'end'` / `'space-between'` / `'space-around'` / `'space-evenly'` | `'start'` |
+| align | 水平对齐方式 | `'start'` / `'center'` / `'end'` | `'start'` |
 
 ### Col 属性
 
 | 属性名 | 属性说明 | 属性类型 | 属性默认值 |
 | :---: | :---: | :---: | :---: |
-| span | 宽度占比 | string / number | 1 |
+| span | 宽度占比 | `string` / `number` | `1` |

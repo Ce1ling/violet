@@ -172,23 +172,23 @@ const handleRemove = (name: string) => {
 
 | 属性名 | 属性说明 | 属性类型 | 属性默认值 |
 | :---: | :---: | :---: | :---: |
-| `v-model` | 当前展示的 Tab | string | —— |
-| active-bg-color | 当前展示的 Tab 的背景颜色 | string | '#802ae8' |
-| bg-color | 标题背景颜色 | string | #eeeeee |
-| ifMode | 是否为类似 `v-if` 的模式 | boolean | false |
-| removable | 是否可被移除 | boolean | false |
+| `v-model` | 当前展示的 `Tab` | `string` | —— |
+| active-bg-color | 当前展示的 `Tab` 的背景颜色 | `string` | `'#802ae8'` |
+| bg-color | 标题背景颜色 | `string` | `#eeeeee` |
+| ifMode | 是否为类似 `v-if` 的模式 | `boolean` | `false` |
+| removable | 是否可被移除 | `boolean` | `false` |
 
 ### Tabs 事件
 
 | 事件名 | 事件触发时机 | 事件参数 |
 | :---: | :---: | :---: |
-| tab-click | Tab 标题点击时触发 | (name: `string`, event: `MouseEvent`) |
-| tab-remove | 点击移除按钮触发 | (name: `string`, event: `MouseEvent`) |
-| change | `v-model` 值改变后触发 | (newVal: `string`, oldVal: `string`) |
+| tab-click | `Tab` 标题点击时触发 | `(name: string, e: MouseEvent) => void` |
+| tab-remove | 点击移除按钮触发 | `(name: string, e: MouseEvent) => void` |
+| change | `v-model` 值改变后触发 | `(newVal: string, oldVal: string) => void` |
 
 ### Tab 属性
 
 | 属性名 | 属性说明 | 属性类型 | 属性默认值 |
 | :---: | :---: | :---: | :---: |
-| label | Tab 标题 | string | —— |
-| name | 唯一标识符，Tabs 的 `v-model` 根据此属性辨别当前展示的 Tab | string | —— |
+| label | `Tab` 标题 | `string` | —— |
+| name | 唯一标识符，`Tabs` 的 `v-model` 根据此属性辨别当前展示的 `Tab` | `string` | —— |

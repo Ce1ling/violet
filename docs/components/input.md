@@ -229,16 +229,16 @@ const val13 = ref('')
 
 | 属性名 | 属性说明 | 属性类型 | 属性默认值 |
 | :---: | :---: | :---: | :---: |
-| type | Input 类型 | string | 'text' |
-| placeholder | 同原生属性 | string | —— |
-| disabled | 禁用 Input | boolean | fasle |
-| clearable | 显示清空按钮 | boolean | false |
-| show-pwd | 切换显示密码 | boolean | false |
-| rows | `type="textarea"` 的高度 | string | '2' |
-| limit | 限制输入长度 | string | —— |
-| show-limit | 显示限制长度 | boolean | false |
-| pre-icon | 头部图标 | `vi-icon` / string | —— |
-| suf-icon | 尾部图标 | `vi-icon` / string | —— |
+| type | Input 类型 | `string` | `'text'` |
+| placeholder | 同原生属性 | `string` | —— |
+| disabled | 禁用 Input | `boolean` | `false` |
+| clearable | 显示清空按钮 | `boolean` | `false` |
+| show-pwd | 切换显示密码 | `boolean` | `false` |
+| rows | `type="textarea"` 的高度 | `string` | `'2'` |
+| limit | 限制输入长度 | `string` | —— |
+| show-limit | 显示限制长度 | `boolean` | `false` |
+| pre-icon | 头部图标 | `vi-icon` / `string` | —— |
+| suf-icon | 尾部图标 | `vi-icon` / `string` | —— |
 
 ### 插槽
 

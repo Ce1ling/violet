@@ -165,13 +165,13 @@ const checked9 = ref(true)
 
 | 属性名 | 属性说明 | 属性类型 | 属性默认值 |
 | :---: | :---: | :---: | :---: |
-| v-model | 开关状态值 | boolean | —— |
-| disabled | 禁用状态 | boolean | false |
-| loading | 加载状态 | boolean | false |
-| is-inside | 是否为内部模式 | boolean | false |
-| on-color | 定义“开”状态的颜色 | string | —— |
-| off-color | 定义“关”状态的颜色 | string | —— |
-| on-text | 定义“开”状态描述文字 | string | —— |
-| off-text | 定义“关”状态描述文字 | string | —— |
-| on-icon | 定义“开”状态描述图标 | string | —— |
-| off-icon | 定义“关”状态描述图标 | string | —— |
+| v-model | 开关状态值 | `boolean` | —— |
+| disabled | 禁用状态 | `boolean` | `false` |
+| loading | 加载状态 | `boolean` | `false` |
+| is-inside | 是否为内部模式 | `boolean` | `false` |
+| on-color | 定义“开”状态的颜色 | `string` | —— |
+| off-color | 定义“关”状态的颜色 | `string` | —— |
+| on-text | 定义“开”状态描述文字 | `string` | —— |
+| off-text | 定义“关”状态描述文字 | `string` | —— |
+| on-icon | 定义“开”状态描述图标 | `string` | —— |
+| off-icon | 定义“关”状态描述图标 | `string` | —— |

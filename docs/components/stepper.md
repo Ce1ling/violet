@@ -202,11 +202,11 @@ const val11 = ref(1)
 
 | 属性名 | 属性说明 | 属性类型 | 属性默认值 |
 | :---: | :---: | :---: | :---: |
-| `v-model` | 绑定步进器的值 | number | —— |
-| disabled | 是否为禁用状态 | boolean | false |
-| step | 步数 | number | 1 |
-| max | 最大值 | number | Infinity |
-| min | 最小值 | number | -Infinity |
-| to-fixed | 保留小数 | number | —— |
-| position | 按钮位置 | 'normal' / 'left' / 'right' | 'normal' |
-| icon-size | icon 大小 | string | —— |
+| `v-model` | 绑定步进器的值 | `number` | —— |
+| disabled | 是否为禁用状态 | `boolean` | `false` |
+| step | 步数 | `number` | 1 |
+| max | 最大值 | `number` | `Infinity` |
+| min | 最小值 | `number` | `-Infinity` |
+| to-fixed | 保留小数 | `number` | —— |
+| position | 按钮位置 | `'normal'` / `'left'` / `'right'` | `'normal'` |
+| icon-size | icon 大小 | `string` | —— |

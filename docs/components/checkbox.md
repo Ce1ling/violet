@@ -244,16 +244,16 @@ const val15 = ref(['AK-47'])
 
 | 属性名 | 属性说明 | 属性类型 | 属性默认值 |
 | :---: | :---: | :---: | :---: |
-| `v-model` | 绑定值 | string | —— |
-| label | 选中时的内容 | boolean | false |
-| disabled | 是否为禁用状态 | boolean | fasle |
-| border | 是否需要边框 | boolean | false |
+| `v-model` | 绑定值 | `string` | —— |
+| label | 选中时的内容 | `boolean` | `false` |
+| disabled | 是否为禁用状态 | `boolean` | `fasle` |
+| border | 是否需要边框 | `boolean` | `false` |
 
 ### CheckboxGroup 属性
 
 | 属性名 | 属性说明 | 属性类型 | 属性默认值 |
 | :---: | :---: | :---: | :---: |
-| gap | 间距 | string | '18px' |
-| min | 限制最少选中 | number | 0 |
-| max | 限制最多选中 | number | Infinity |
-| is-button | 是否为按钮类型 | boolean | false |
+| gap | 间距 | `string` | `'18px'` |
+| min | 限制最少选中 | `number` | `0` |
+| max | 限制最多选中 | `number` | `Infinity` |
+| is-button | 是否为按钮类型 | `boolean` | `false` |

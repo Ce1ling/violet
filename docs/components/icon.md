@@ -221,10 +221,10 @@ const duration = ref(2)
 
 | 属性名 | 属性说明 | 属性类型 | 属性默认值 |
 | :---: | :---: | :---: | :---: |
-| name | 图标名称 | string | —— |
-| size | 图标大小 | string | '20px' |
-| color | 图标颜色 | string | inherit |
-| cursor | 移入时的鼠标指针 | string | 'pointer' |
-| hover-color | 鼠标移入时的颜色（CSS `hover` 状态） | string | —— |
-| loading | 是否需要加载动画 | boolean | false |
-| duration | 加载动画时长 | number | 2 |
+| name | 图标名称 | `string` | —— |
+| size | 图标大小 | `string` | `'20px'` |
+| color | 图标颜色 | `string` | `'inherit'` |
+| cursor | 移入时的鼠标指针 | `string` | `'pointer' `|
+| hover-color | 鼠标移入时的颜色（CSS `hover` 状态） | `string` | —— |
+| loading | 是否需要加载动画 | `boolean` | `false` |
+| duration | 加载动画时长 | `number` | `2` |

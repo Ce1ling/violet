@@ -200,33 +200,33 @@ violet 提供的布局组件包括：<br />
 
 | 属性名 | 属性说明 | 属性类型 | 属性默认值 |
 | :---: | :---: | :---: | :---: |
-| direction | 同原生 `flex` 布局的 `flex-direction` | 'row' / 'column' / 'row-reverse' / 'column-reverse' | 'row' |
-| justify | 同原生 `flex` 布局的 `justify-content` | 'start' / 'center' / 'end' / 'space-between' / 'space-around' / 'space-evenly' | —— |
-| align | 同原生 `flex` 布局的 `align-items` | 'start' / 'center' / 'end' | —— |
-| flex | 同原生 `flex` 布局的 `flex` | string | '1' |
+| direction | 同原生 `flex` 布局的 `flex-direction` | `'row'` / `'column'` / `'row-reverse'` / `'column-reverse'` | `'row'` |
+| justify | 同原生 `flex` 布局的 `justify-content` | `'start'` / `'center'` / `'end'` / `'space-between'` / `'space-around'` / `'space-evenly'` | —— |
+| align | 同原生 `flex` 布局的 `align-items` | `'start'` / `'center'` / `'end'` | —— |
+| flex | 同原生 `flex` 布局的 `flex` | `string` | `'1'` |
 
 ### Header 属性
 
 | 属性名 | 属性说明 | 属性类型 | 属性默认值 |
 | :---: | :---: | :---: | :---: |
-| padding | 内边距 | string | '0 18px' |
-| height | 高度 | string | '80px' |
+| padding | 内边距 | `string` | `'0 18px'` |
+| height | 高度 | `string` | `'80px'` |
 
 ### Main 属性
 
 | 属性名 | 属性说明 | 属性类型 | 属性默认值 |
 | :---: | :---: | :---: | :---: |
-| padding | 内边距 | string | '18px' |
+| padding | 内边距 | `string` | `'18px'` |
 
 ### Aside 属性
 
 | 属性名 | 属性说明 | 属性类型 | 属性默认值 |
 | :---: | :---: | :---: | :---: |
-| width | 宽度 | string | '300px' |
+| width | 宽度 | `string` | `'300px'` |
 
 ### Footer 属性
 
 | 属性名 | 属性说明 | 属性类型 | 属性默认值 |
 | :---: | :---: | :---: | :---: |
-| padding | 内边距 | string | '0 18px' |
-| height | 高度 | string | '80px' |
+| padding | 内边距 | `string` | `'0 18px'` |
+| height | 高度 | `string` | `'80px'` |

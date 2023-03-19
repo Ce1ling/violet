@@ -170,9 +170,9 @@
 
 | 属性名 | 属性说明 | 属性类型 | 属性默认值 |
 | :---: | :---: | :---: | :---: |
-| gap | 分割线边距 | string | '18px' |
-| thick | 分割线厚度 | string | '1px' |
-| color | 分割线颜色 | string | —— |
-| border-style | 分割线样式 | string | 'solid' |
-| position | 标注内容的位置 | start / center / end | 'start' |
-| direction | 分割线方向 | horizontal / vertival | 'horizontal' |
+| gap | 分割线边距 | `string` | `'18px'` |
+| thick | 分割线厚度 | `string` | `'1px'` |
+| color | 分割线颜色 | `string` | —— |
+| border-style | 分割线样式 | `string` | `'solid'` |
+| position | 标注内容的位置 | `start` / `center` / `end` | `'start'` |
+| direction | 分割线方向 | `horizontal` / `vertival` | `'horizontal'` |

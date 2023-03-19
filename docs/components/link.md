@@ -132,10 +132,10 @@
 
 | 属性名 | 属性说明 | 属性类型 | 属性默认值 |
 | :---: | :---: | :---: | :---: |
-| type | 定义链接类型 | string | primary |
-| href | 同原生 `a` 标签 `href` 属性 | string | —— |
-| underline | 是否需要下划线 | boolean | true |
-| disabled | 是否为禁用状态 | boolean | false |
+| type | 定义链接类型 | `string` | `'primary'` |
+| href | 同原生 `a` 标签 `href` 属性 | `string` | —— |
+| underline | 是否需要下划线 | `boolean` | `true` |
+| disabled | 是否为禁用状态 | `boolean` | `false` |
 
 ### 插槽
 
