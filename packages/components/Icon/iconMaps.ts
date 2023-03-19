@@ -38,7 +38,7 @@ export const iconMaps = {
   WarningTriangle: 'material-symbols:warning-outline-rounded',
   WarningOctagon: 'material-symbols:report-outline-rounded',
   CloseCircle: 'mingcute:close-circle-line',
-  CloseCircleFill: 'mingcute:close-circle',
+  CloseCircleFill: 'mingcute:close-circle-fill',
   ZoomIn: 'material-symbols:zoom-in-rounded',
   ZoomOut: 'material-symbols:zoom-out-rounded',
   Premium: 'material-symbols:workspace-premium-outline-rounded',
