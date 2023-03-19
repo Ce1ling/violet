@@ -18,6 +18,19 @@
     <vi-alert pre-icon closable center="all"> 123 </vi-alert>
     <span>自定图标：</span>
     <vi-alert pre-icon closable :custom-pre-icon="{ 'primary': 'Check' }"> 123 </vi-alert>
+    <span>自定关闭：</span>
+    <vi-alert pre-icon closable> 
+      123 
+      <template #close> Got It! </template>
+    </vi-alert>
+    <span>带标题：</span>
+    <vi-alert closable title="has title"> 123 </vi-alert>
+    <span>带标题 + 图标：</span>
+    <vi-alert pre-icon closable title="has title"> 123 </vi-alert>
+    <span>仅标题：</span>
+    <vi-alert pre-icon closable title="only title" />
+    <span>自闭合：</span>
+    <vi-alert pre-icon closable title="title" content="content" />
   </div>
 </template>
 
