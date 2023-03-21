@@ -17,9 +17,15 @@ const onClose = (val: boolean) => {
   <div class="test">
     <span>基础：</span>
     <vi-button @click="show = true">open</vi-button>
-    <vi-dialog v-model="show" title="tip" :show-close-btn="false" @open="onOpen" @close="onClose">
+    <vi-dialog 
+      v-model="show" 
+      title="tip" 
+      :show-close-btn="false" 
+      @open="onOpen" 
+      @close="onClose"
+      center>
       <template #header> 
-        <div> i am header </div>
+        <span> i am header </span>
         <vi-button @click="show = false">close</vi-button>
       </template>
       <vi-tabs v-model="val">
@@ -35,6 +41,7 @@ const onClose = (val: boolean) => {
         append-to-body 
         @open="onOpen" 
         @close="onClose" 
+        box-center
       />
       <template #footer>
         <vi-button @click="show = false">confirm</vi-button>
@@ -42,7 +49,6 @@ const onClose = (val: boolean) => {
         <vi-button type="warning" @click="show2 = true">nested dialog</vi-button>
       </template>
     </vi-dialog>
-    
   </div>
 </template>
 

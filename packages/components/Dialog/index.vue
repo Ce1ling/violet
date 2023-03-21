@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { watch } from 'vue'
+import { computed, watch } from 'vue'
 import { Icon as ViIcon } from '../index'
 
 interface Props {
@@ -9,6 +9,9 @@ interface Props {
   width?: string
   showCloseBtn?: boolean
   appendToBody?: boolean
+  zIndex?: number
+  center?: boolean
+  boxCenter?: boolean
 }
 interface Emits {
   (e: 'update:modelValue', val: boolean): void
@@ -22,6 +25,11 @@ const props = withDefaults(defineProps<Props>(), {
 })
 const emit = defineEmits<Emits>()
 
+const classObj = computed(() => ({
+  'is-center': props.center,
+  'is-box-center': props.boxCenter
+}))
+
 const handleClose = () => emit('update:modelValue', false)
 
 watch(() => props.modelValue, val => val ? emit('open', val) : emit('close', val))
@@ -30,10 +38,16 @@ watch(() => props.modelValue, val => val ? emit('open', val) : emit('close', val
 <template>
   <Teleport to="body" :disabled="!appendToBody">
     <Transition name="vi-dialog-fade">
-      <div class="vi-dialog vi-dialog-mask" v-show="modelValue" @click="handleClose">
+      <div 
+        class="vi-dialog vi-dialog-mask" 
+        v-show="modelValue" 
+        @click="handleClose" 
+        :style="{ zIndex }"
+        :class="classObj">
         <div class="vi-dialog-content" @click.stop="void" :style="{ width }">
           <header class="vi-dialog__header">
-            <slot name="header">{{ title }}</slot>
+            <template v-if="$slots.header"> <slot name="header" /> </template>
+            <span class="vi-dialog__header-title" v-else> {{ title }} </span>
             <button class="vi-dialog__header-close-btn" @click="handleClose" v-if="showCloseBtn">
               <vi-icon 
                 name="Close" 
@@ -115,9 +129,25 @@ watch(() => props.modelValue, val => val ? emit('open', val) : emit('close', val
     .vi-dialog__footer {
       display: flex;
       align-items: center;
+      justify-content: flex-end;
       gap: 18px;
       padding: var(--vi-base-padding);
     }
+  }
+  &.is-center {
+    text-align: center;
+    .vi-dialog__header {
+      justify-content: center;
+      &-title { flex-grow: 1; }
+    }
+    .vi-dialog__footer {
+      justify-content: center;
+    }
+  }
+  &.is-box-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 </style>
