@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { computed, watch } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { Icon as ViIcon } from '../index'
+import { useMovable } from '../../hooks/useMovable'
 
 interface Props {
   modelValue: boolean
@@ -12,6 +13,7 @@ interface Props {
   zIndex?: number
   center?: boolean
   boxCenter?: boolean
+  mask?: boolean
 }
 interface Emits {
   (e: 'update:modelValue', val: boolean): void
@@ -21,13 +23,18 @@ interface Emits {
 const props = withDefaults(defineProps<Props>(), {
   width: '50%',
   showCloseBtn: true,
-  appendToBody: false
+  appendToBody: false,
+  mask: true,
 })
 const emit = defineEmits<Emits>()
 
+const dialogRef = ref<HTMLElement>()
+const headerRef = ref<HTMLElement>()
+
 const classObj = computed(() => ({
   'is-center': props.center,
-  'is-box-center': props.boxCenter
+  'is-box-center': props.boxCenter,
+  'has-mask': props.mask,
 }))
 
 const handleClose = () => emit('update:modelValue', false)
@@ -44,8 +51,8 @@ watch(() => props.modelValue, val => val ? emit('open', val) : emit('close', val
         @click="handleClose" 
         :style="{ zIndex }"
         :class="classObj">
-        <div class="vi-dialog-content" @click.stop="void" :style="{ width }">
-          <header class="vi-dialog__header">
+        <div class="vi-dialog-content" ref="dialogRef" @click.stop="void" :style="{ width }">
+          <header class="vi-dialog__header" ref="headerRef">
             <template v-if="$slots.header"> <slot name="header" /> </template>
             <span class="vi-dialog__header-title" v-else> {{ title }} </span>
             <button class="vi-dialog__header-close-btn" @click="handleClose" v-if="showCloseBtn">
@@ -107,7 +114,6 @@ watch(() => props.modelValue, val => val ? emit('open', val) : emit('close', val
     bottom: 0;
     left: 0;
     z-index: 2023;
-    background-color: var(--vi-color-mask-black);
   }
   &-content {
     margin: 10vh auto;
@@ -148,6 +154,15 @@ watch(() => props.modelValue, val => val ? emit('open', val) : emit('close', val
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  &.has-mask {
+    background-color: var(--vi-color-mask-black);
+  }
+  &.is-movable {
+    .vi-dialog__header {
+      cursor: move;
+      user-select: none;
+    }
   }
 }
 </style>
