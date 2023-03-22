@@ -14,6 +14,7 @@ interface Props {
   center?: boolean
   boxCenter?: boolean
   mask?: boolean
+  movable?: boolean
 }
 interface Emits {
   (e: 'update:modelValue', val: boolean): void
@@ -25,6 +26,7 @@ const props = withDefaults(defineProps<Props>(), {
   showCloseBtn: true,
   appendToBody: false,
   mask: true,
+  movable: false
 })
 const emit = defineEmits<Emits>()
 
@@ -35,11 +37,13 @@ const classObj = computed(() => ({
   'is-center': props.center,
   'is-box-center': props.boxCenter,
   'has-mask': props.mask,
+  'is-movable': props.movable
 }))
 
 const handleClose = () => emit('update:modelValue', false)
 
 watch(() => props.modelValue, val => val ? emit('open', val) : emit('close', val))
+useMovable(dialogRef, headerRef, props.movable)
 </script>
 
 <template>
@@ -79,11 +83,11 @@ watch(() => props.modelValue, val => val ? emit('open', val) : emit('close', val
 @keyframes vi-dialog-fade {
   from {
     opacity: 0;
-    transform: translate3d(0, -50%, 0);
+    transform: translate3d(auto, -50%, auto);
   }
   to {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
+    transform: translate3d(auto, 0, auto);
   }
 }
 @keyframes vi-dialog-mask-fade {

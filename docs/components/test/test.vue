@@ -23,7 +23,8 @@ const onClose = (val: boolean) => {
       :show-close-btn="false" 
       @open="onOpen" 
       @close="onClose"
-      center>
+      movable
+    >
       <template #header> 
         <span> i am header </span>
         <vi-button @click="show = false">close</vi-button>
@@ -42,6 +43,8 @@ const onClose = (val: boolean) => {
         @open="onOpen" 
         @close="onClose" 
         box-center
+        :mask="false"
+        movable
       />
       <template #footer>
         <vi-button @click="show = false">confirm</vi-button>
