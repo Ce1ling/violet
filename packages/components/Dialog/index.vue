@@ -126,7 +126,11 @@ useMovable(dialogRef, headerRef, props.movable)
     z-index: 2023;
   }
   &__content-wrapper {
-    width: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
   }
   &__content {
     margin: 10vh auto;
@@ -167,6 +171,10 @@ useMovable(dialogRef, headerRef, props.movable)
     display: flex;
     justify-content: center;
     align-items: center;
+    .vi-dialog__content-wrapper {
+      display: flex;
+      .vi-dialog__content { margin: auto; }
+    }
   }
   &.has-mask {
     background-color: var(--vi-color-mask-black);
