@@ -55,24 +55,30 @@ useMovable(dialogRef, headerRef, props.movable)
         @click="handleClose" 
         :style="{ zIndex }"
         :class="classObj">
-        <div class="vi-dialog-content" ref="dialogRef" @click.stop="void" :style="{ width }">
-          <header class="vi-dialog__header" ref="headerRef">
-            <template v-if="$slots.header"> <slot name="header" /> </template>
-            <span class="vi-dialog__header-title" v-else> {{ title }} </span>
-            <button class="vi-dialog__header-close-btn" @click="handleClose" v-if="showCloseBtn">
-              <vi-icon 
-                name="Close" 
-                size="18px"
-                hover-color="var(--vi-color-primary)" 
-              />
-            </button>
-          </header>
-          <section class="vi-dialog__body">
-            <slot>{{ content }}</slot>
-          </section>
-          <footer class="vi-dialog__footer">
-            <slot name="footer" />
-          </footer>
+        <div class="vi-dialog__content-wrapper">
+          <div class="vi-dialog__content" ref="dialogRef" @click.stop="void" :style="{ width }">
+            <header class="vi-dialog__header" ref="headerRef">
+              <template v-if="$slots.header"> 
+                <slot name="header" /> 
+              </template>
+              <span class="vi-dialog__header-title" v-else> 
+                {{ title }} 
+              </span>
+              <button class="vi-dialog__header-close-btn" @click="handleClose" v-if="showCloseBtn">
+                <vi-icon 
+                  name="Close" 
+                  size="18px"
+                  hover-color="var(--vi-color-primary)" 
+                />
+              </button>
+            </header>
+            <section class="vi-dialog__body">
+              <slot>{{ content }}</slot>
+            </section>
+            <footer class="vi-dialog__footer">
+              <slot name="footer" />
+            </footer>
+          </div>
         </div>
       </div>
     </Transition>
@@ -83,11 +89,11 @@ useMovable(dialogRef, headerRef, props.movable)
 @keyframes vi-dialog-fade {
   from {
     opacity: 0;
-    transform: translate3d(auto, -50%, auto);
+    transform: translate3d(0, -50%, 0);
   }
   to {
     opacity: 1;
-    transform: translate3d(auto, 0, auto);
+    transform: translate3d(0, 0, 0);
   }
 }
 @keyframes vi-dialog-mask-fade {
@@ -97,13 +103,13 @@ useMovable(dialogRef, headerRef, props.movable)
 
 .vi-dialog-fade-enter-active {
   animation: vi-dialog-mask-fade var(--vi-animation-duration);
-  .vi-dialog-content {
+  .vi-dialog__content-wrapper {
     animation: vi-dialog-fade var(--vi-animation-duration);
   }
 }
 .vi-dialog-fade-leave-active {
   animation: vi-dialog-mask-fade var(--vi-animation-duration) reverse;
-  .vi-dialog-content {
+  .vi-dialog__content-wrapper {
     animation: vi-dialog-fade var(--vi-animation-duration) reverse;
   }
 }
@@ -119,7 +125,10 @@ useMovable(dialogRef, headerRef, props.movable)
     left: 0;
     z-index: 2023;
   }
-  &-content {
+  &__content-wrapper {
+    width: 100%;
+  }
+  &__content {
     margin: 10vh auto;
     background-color: var(--vi-color-white);
     border-radius: var(--vi-base-radius);

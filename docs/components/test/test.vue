@@ -37,7 +37,7 @@ const onClose = (val: boolean) => {
       <vi-dialog 
         v-model="show2" 
         title="is nest" 
-        content="nested dialog contnet"
+        content="nested dialog contnet(not mask)"
         width="30%" 
         append-to-body 
         @open="onOpen" 
