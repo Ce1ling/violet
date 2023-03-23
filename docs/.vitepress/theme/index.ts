@@ -5,6 +5,7 @@ import { format } from '../../../packages/utils/compNameFormat'
 import './styles/var.scss'
 import './styles/global.scss'
 import './styles/custome.scss'
+import './styles/common.scss'
 
 export default {
   Layout: customeLayout,

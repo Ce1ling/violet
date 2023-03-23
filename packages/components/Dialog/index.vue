@@ -15,6 +15,7 @@ interface Props {
   boxCenter?: boolean
   mask?: boolean
   movable?: boolean
+  lockScroll?: boolean
 }
 interface Emits {
   (e: 'update:modelValue', val: boolean): void
@@ -26,12 +27,14 @@ const props = withDefaults(defineProps<Props>(), {
   showCloseBtn: true,
   appendToBody: false,
   mask: true,
-  movable: false
+  movable: false,
+  lockScroll: true,
 })
 const emit = defineEmits<Emits>()
 
 const dialogRef = ref<HTMLElement>()
 const headerRef = ref<HTMLElement>()
+const scrollHideClass = ref<string>('vi-common--scroll-hide')
 
 const classObj = computed(() => ({
   'is-center': props.center,
@@ -41,8 +44,21 @@ const classObj = computed(() => ({
 }))
 
 const handleClose = () => emit('update:modelValue', false)
+const handleScrollHide = (action: 'add' | 'remove') => {
+  if (props.lockScroll) {
+    document.body.classList[action](scrollHideClass.value)
+  }
+}
 
-watch(() => props.modelValue, val => val ? emit('open', val) : emit('close', val))
+watch(() => props.modelValue, val => {
+  if (val) {
+    emit('open', val)
+    handleScrollHide('add')
+  } else {
+    emit('close', val)
+    handleScrollHide('remove')
+  }
+})
 useMovable(dialogRef, headerRef, props.movable)
 </script>
 
