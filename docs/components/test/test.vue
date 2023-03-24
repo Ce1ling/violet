@@ -5,11 +5,9 @@ const show = ref(false)
 const show2 = ref(false)
 const val = ref('tab1')
 
-const onOpen = (val: boolean) => {
-  console.log('open', val)
+const onOpen = () => {
 }
-const onClose = (val: boolean) => {
-  console.log('close', val)
+const onClose = () => {
 }
 </script>
 

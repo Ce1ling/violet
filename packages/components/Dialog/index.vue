@@ -105,7 +105,7 @@ useMovable(dialogRef, headerRef, props.movable)
 @keyframes vi-dialog-fade {
   from {
     opacity: 0;
-    transform: translate3d(0, -50%, 0);
+    transform: translate3d(0, -10%, 0);
   }
   to {
     opacity: 1;
