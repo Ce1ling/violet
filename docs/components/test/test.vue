@@ -22,6 +22,8 @@ const onClose = () => {
       @open="onOpen" 
       @close="onClose"
       movable
+      :click-mask-close="false"
+      destroy
     >
       <template #header> 
         <span> i am header </span>

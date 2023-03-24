@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, nextTick } from 'vue'
 import { Icon as ViIcon } from '../index'
 import { useMovable } from '../../hooks/useMovable'
+import { useTimeout } from '../../hooks/useTimeout'
 
 interface Props {
   modelValue: boolean
@@ -16,6 +17,8 @@ interface Props {
   mask?: boolean
   movable?: boolean
   lockScroll?: boolean
+  clickMaskClose?: boolean
+  destroy?: boolean
 }
 interface Emits {
   (e: 'update:modelValue', val: boolean): void
@@ -29,12 +32,15 @@ const props = withDefaults(defineProps<Props>(), {
   mask: true,
   movable: false,
   lockScroll: true,
+  clickMaskClose: true,
+  destroy: false
 })
 const emit = defineEmits<Emits>()
 
 const dialogRef = ref<HTMLElement>()
 const headerRef = ref<HTMLElement>()
 const scrollHideClass = ref<string>('vi-common--scroll-hide')
+const needDestroy = ref<boolean>(false)
 
 const classObj = computed(() => ({
   'is-center': props.center,
@@ -44,9 +50,18 @@ const classObj = computed(() => ({
 }))
 
 const handleClose = () => emit('update:modelValue', false)
+const handleMaskClick = () => {
+  if (props.clickMaskClose) { handleClose() }
+}
 const handleScrollHide = (action: 'add' | 'remove') => {
   if (props.lockScroll) {
     document.body.classList[action](scrollHideClass.value)
+  }
+}
+const handleDestory = () => {
+  if (props.destroy) { 
+    const duration = getComputedStyle(document.body).getPropertyValue('--vi-animation-duration')
+    useTimeout(() => needDestroy.value = true, parseFloat(duration) * 1000)
   }
 }
 
@@ -54,12 +69,15 @@ watch(() => props.modelValue, val => {
   if (val) {
     emit('open', val)
     handleScrollHide('add')
+    needDestroy.value = false
+    nextTick(() => useMovable(dialogRef, headerRef, props.movable))
   } else {
     emit('close', val)
     handleScrollHide('remove')
+    handleDestory()
   }
 })
-useMovable(dialogRef, headerRef, props.movable)
+
 </script>
 
 <template>
@@ -68,10 +86,10 @@ useMovable(dialogRef, headerRef, props.movable)
       <div 
         class="vi-dialog vi-dialog-mask" 
         v-show="modelValue" 
-        @click="handleClose" 
+        @click="handleMaskClick" 
         :style="{ zIndex }"
         :class="classObj">
-        <div class="vi-dialog__content-wrapper">
+        <div class="vi-dialog__content-wrapper" v-if="!needDestroy">
           <div class="vi-dialog__content" ref="dialogRef" @click.stop="void" :style="{ width }">
             <header class="vi-dialog__header" ref="headerRef">
               <template v-if="$slots.header"> 
@@ -159,8 +177,10 @@ useMovable(dialogRef, headerRef, props.movable)
       align-items: center;
       justify-content: space-between;
       padding: var(--vi-base-padding);
-      font-size: var(--vi-font-size-18);
-      font-weight: bolder;
+      &-title {
+        font-size: var(--vi-font-size-18);
+        font-weight: bolder;
+      }
     }
     .vi-dialog__body {
       padding: var(--vi-base-padding);
