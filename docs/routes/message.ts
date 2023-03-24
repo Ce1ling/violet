@@ -7,10 +7,10 @@ export const message = [
     text: 'Toast 轻提示',
     link: '/components/toast.md'
   },
-  // {
-  //   text: 'Dialog 对话框',
-  //   link: '/components/dialog.md'
-  // },
+  {
+    text: 'Dialog 对话框',
+    link: '/components/dialog.md'
+  },
   // {
   //   text: 'Tooltip 提示文字',
   //   link: '/components/tooltip.md'
