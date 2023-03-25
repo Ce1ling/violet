@@ -10,10 +10,12 @@
   &::-webkit-scrollbar {
     width: var(--doc-scroll-bar-wh);
     height: var(--doc-scroll-bar-wh);
+    background-color: transparent;
   }
   &::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background-color: var(--doc-scroll-bar-color);
+    &:hover { background-color: var(--doc-scroll-bar-color-deep); }
   }
 }
 
