@@ -3,6 +3,7 @@ import { ref, computed, watch, nextTick } from 'vue'
 import { Icon as ViIcon } from '../index'
 import { useMovable } from '../../hooks/useMovable'
 import { useTimeout } from '../../hooks/useTimeout'
+import { getScrollWidth } from '../../utils/dom/scroll'
 
 interface Props {
   modelValue: boolean
@@ -39,7 +40,7 @@ const emit = defineEmits<Emits>()
 
 const dialogRef = ref<HTMLElement>()
 const headerRef = ref<HTMLElement>()
-const scrollHideClass = ref<string>('vi-common--scroll-hide')
+const scrollHideClass = ref<string>('vi-scroll-hide')
 const needDestroy = ref<boolean>(false)
 
 const classObj = computed(() => ({
@@ -48,6 +49,10 @@ const classObj = computed(() => ({
   'has-mask': props.mask,
   'is-movable': props.movable
 }))
+const animationDuration = computed(() => {
+  const duration = getComputedStyle(document.body).getPropertyValue('--vi-animation-duration')
+  return parseFloat(duration) * 1000
+})
 
 const handleClose = () => emit('update:modelValue', false)
 const handleMaskClick = () => {
@@ -55,13 +60,20 @@ const handleMaskClick = () => {
 }
 const handleScrollHide = (action: 'add' | 'remove') => {
   if (props.lockScroll) {
-    document.body.classList[action](scrollHideClass.value)
+    document.body.classList.add(scrollHideClass.value)
+    document.body.style.width = `calc(100% - ${getScrollWidth('px')})`
+    if (action === 'remove') {
+      useTimeout(() => {
+        document.body.classList.remove(scrollHideClass.value)
+        document.body.style.width = ''
+      }, animationDuration.value)
+    }
+    
   }
 }
 const handleDestory = () => {
   if (props.destroy) { 
-    const duration = getComputedStyle(document.body).getPropertyValue('--vi-animation-duration')
-    useTimeout(() => needDestroy.value = true, parseFloat(duration) * 1000)
+    useTimeout(() => needDestroy.value = true, animationDuration.value)
   }
 }
 
