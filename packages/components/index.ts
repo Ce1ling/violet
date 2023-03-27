@@ -22,6 +22,8 @@ import Stepper from './Stepper/index.vue'
 import Backtop from './Backtop/index.vue'
 import Alert from './Alert/index.vue'
 import Dialog from './Dialog/index.vue'
+import Drawer from './Drawer/index.vue'
+import Mask from './Mask/index.vue'
 
 export {
   Button,
@@ -48,4 +50,6 @@ export {
   Backtop,
   Alert,
   Dialog,
+  Drawer,
+  Mask,
 }
