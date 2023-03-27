@@ -59,16 +59,16 @@ const handleMaskClick = () => {
   if (props.clickMaskClose) { handleClose() }
 }
 const handleScrollHide = (action: 'add' | 'remove') => {
-  if (props.lockScroll) {
-    document.body.classList.add(scrollHideClass.value)
-    document.body.style.width = `calc(100% - ${getScrollWidth('px')})`
-    if (action === 'remove') {
-      useTimeout(() => {
-        document.body.classList.remove(scrollHideClass.value)
-        document.body.style.width = ''
-      }, animationDuration.value)
-    }
-    
+  if (!props.lockScroll) { return }
+  
+  document.body.classList.add(scrollHideClass.value)
+  document.body.style.width = `calc(100% - ${getScrollWidth('px')})`
+
+  if (action === 'remove') {
+    useTimeout(() => {
+      document.body.classList.remove(scrollHideClass.value)
+      document.body.style.width = ''
+    }, animationDuration.value)
   }
 }
 const handleDestory = () => {
