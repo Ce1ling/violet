@@ -1,14 +1,23 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+
 
 interface Props {
   visible: boolean
+  disabled?: boolean
 }
-defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  disabled: false
+})
+
+const getStyles = computed(() => ({
+  backgroundColor: props.disabled ? 'transparent' : undefined
+}))
 
 </script>
 
 <template>
-  <div class="vi-mask" v-show="visible">
+  <div class="vi-mask" v-show="visible" :style="getStyles">
     <slot />
   </div>
 </template>
