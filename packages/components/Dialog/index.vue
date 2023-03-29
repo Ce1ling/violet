@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { ref, computed, watch, nextTick } from 'vue'
-import { Icon as ViIcon } from '../index'
+import { 
+  Icon as ViIcon,
+  Mask as ViMask
+} from '../index'
 import { useMovable } from '../../hooks/useMovable'
 import { useTimeout } from '../../hooks/useTimeout'
 import { getScrollWidth } from '../../utils/dom/scroll'
@@ -43,10 +46,9 @@ const headerRef = ref<HTMLElement>()
 const scrollHideClass = ref<string>('vi-scroll-hide')
 const needDestroy = ref<boolean>(false)
 
-const classObj = computed(() => ({
+const getClasses = computed(() => ({
   'is-center': props.center,
   'is-box-center': props.boxCenter,
-  'has-mask': props.mask,
   'is-movable': props.movable
 }))
 const animationDuration = computed(() => {
@@ -95,14 +97,9 @@ watch(() => props.modelValue, val => {
 <template>
   <Teleport to="body" :disabled="!appendToBody">
     <Transition name="vi-dialog-fade">
-      <div 
-        class="vi-dialog vi-dialog-mask" 
-        v-show="modelValue" 
-        @click="handleMaskClick" 
-        :style="{ zIndex }"
-        :class="classObj">
-        <div class="vi-dialog__content-wrapper" v-if="!needDestroy">
-          <div class="vi-dialog__content" ref="dialogRef" @click.stop="void" :style="{ width }">
+      <vi-mask :visible="modelValue" :disabled="!mask" @click="handleMaskClick">
+        <div class="vi-dialog" :class="getClasses" v-if="!needDestroy">
+          <div class="vi-dialog__content" ref="dialogRef" :style="{ width }" @click.stop="void">
             <header class="vi-dialog__header" ref="headerRef">
               <template v-if="$slots.header"> 
                 <slot name="header" /> 
@@ -126,58 +123,18 @@ watch(() => props.modelValue, val => {
             </footer>
           </div>
         </div>
-      </div>
+      </vi-mask>
     </Transition>
   </Teleport>
 </template>
 
 <style lang="scss">
-@keyframes vi-dialog-fade {
-  from {
-    opacity: 0;
-    transform: translate3d(0, -10%, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-@keyframes vi-dialog-mask-fade {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.vi-dialog-fade-enter-active {
-  animation: vi-dialog-mask-fade var(--vi-animation-duration);
-  .vi-dialog__content-wrapper {
-    animation: vi-dialog-fade var(--vi-animation-duration);
-  }
-}
-.vi-dialog-fade-leave-active {
-  animation: vi-dialog-mask-fade var(--vi-animation-duration) reverse;
-  .vi-dialog__content-wrapper {
-    animation: vi-dialog-fade var(--vi-animation-duration) reverse;
-  }
-}
-
 .vi-dialog {
-  &-mask {
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 2023;
-  }
-  &__content-wrapper {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-  }
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   &__content {
     margin: 10vh auto;
     background-color: var(--vi-color-white);
@@ -219,18 +176,38 @@ watch(() => props.modelValue, val => {
     display: flex;
     justify-content: center;
     align-items: center;
-    .vi-dialog__content-wrapper {
-      display: flex;
-      .vi-dialog__content { margin: auto; }
-    }
-  }
-  &.has-mask {
-    background-color: var(--vi-color-mask-black);
   }
   &.is-movable {
     .vi-dialog__header {
       cursor: move;
       user-select: none;
+    }
+  }
+}
+
+@keyframes vi-dialog-fade {
+  from {
+    transform: translate3d(0, -10%, 0);
+    opacity: 0;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+.vi-dialog-fade {
+  &-enter-active {
+    transition: all var(--vi-animation-duration);
+    .vi-dialog {
+      animation: vi-dialog-fade var(--vi-animation-duration);
+    }
+  }
+  &-leave-active {
+    transition: all var(--vi-animation-duration);
+    opacity: 0;
+    .vi-dialog {
+      animation: vi-dialog-fade var(--vi-animation-duration) reverse;
     }
   }
 }
