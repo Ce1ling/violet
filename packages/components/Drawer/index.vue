@@ -7,7 +7,7 @@ import {
 
 interface Props {
   modelValue: boolean
-  disabled?: boolean
+  appendToBody?: boolean
   title?: string
   direction?: 'l-r' | 'r-l' | 't-b' | 'b-t'
   width?: string
@@ -19,7 +19,7 @@ interface Emits {
   (e: 'update:modelValue', val: boolean): void
 }
 const props = withDefaults(defineProps<Props>(), {
-  disabled: true,
+  appendToBody: false,
   direction: 'r-l',
   width: '30%',
   height: '30%',
@@ -54,7 +54,7 @@ watch(() => props.modelValue, val => {
 </script>
 
 <template>
-  <Teleport to="body" :disabled="disabled">
+  <Teleport to="body" :disabled="!appendToBody">
     <Transition name="vi-drawer-fade">
       <vi-mask :visible="modelValue" @click="handleMaskClose">
         <div class="vi-drawer" :class="getClasses" @click.stop="void" :style="getStyles">
