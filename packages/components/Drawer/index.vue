@@ -14,9 +14,12 @@ interface Props {
   height?: string
   showClose?: boolean
   clickMaskClose?: boolean
+  mask?: boolean
+  zIndex?: number
 }
 interface Emits {
   (e: 'update:modelValue', val: boolean): void
+  (e: 'open' | 'close', val: boolean): void
 }
 const props = withDefaults(defineProps<Props>(), {
   appendToBody: false,
@@ -24,14 +27,17 @@ const props = withDefaults(defineProps<Props>(), {
   width: '30%',
   height: '30%',
   showClose: true,
-  clickMaskClose: true
+  clickMaskClose: true,
+  mask: true,
+  zIndex: new Date().getFullYear()
 })
 const emit = defineEmits<Emits>()
 
 const getClasses = computed(() => [`vi-drawer--${props.direction}`])
 const getStyles = computed(() => ({ 
   width: getWHByDirection('width'),
-  height: getWHByDirection('height')
+  height: getWHByDirection('height'),
+  zIndex: props.zIndex
 }))
 
 const handleClose = () => emit('update:modelValue', false)
@@ -42,7 +48,7 @@ const handleMaskClose = () => {
 const getWHByDirection = (target: 'width' | 'height') => {
   const x = ['l-r', 'r-l']
   const y = ['t-b', 'b-t']
-  
+
   return target === 'width'
     ? x.includes(props.direction) ? props.width : undefined
     : y.includes(props.direction) ? props.height : undefined
@@ -50,13 +56,14 @@ const getWHByDirection = (target: 'width' | 'height') => {
 
 watch(() => props.modelValue, val => {
   emit('update:modelValue', val)
+  emit(val ? 'open' : 'close', val)
 })
 </script>
 
 <template>
   <Teleport to="body" :disabled="!appendToBody">
     <Transition name="vi-drawer-fade">
-      <vi-mask :visible="modelValue" @click="handleMaskClose">
+      <vi-mask :visible="modelValue" :disabled="!mask" @click="handleMaskClose">
         <div class="vi-drawer" :class="getClasses" @click.stop="void" :style="getStyles">
           <header class="vi-drawer__header" v-if="$slots.header || title">
             <div class="vi-drawer__header-title">
