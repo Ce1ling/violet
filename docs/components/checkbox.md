@@ -138,11 +138,11 @@ const val12 = ref(false)
 <div class="examples">
   <vi-flex gap="18px">
     <span>请选择你的武器</span>
-    <vi-checkbox-group v-model="val14" gap="18px">
-      <vi-checkbox label="AK-47" border />
-      <vi-checkbox label="AWP" border />
-      <vi-checkbox label="M4A4" border disabled />
-      <vi-checkbox label="M4A1-S" border />
+    <vi-checkbox-group v-model="val14" gap="18px" border>
+      <vi-checkbox label="AK-47" />
+      <vi-checkbox label="AWP" />
+      <vi-checkbox label="M4A4" disabled />
+      <vi-checkbox label="M4A1-S" />
     </vi-checkbox-group>
   </vi-flex>
 </div>
@@ -151,11 +151,11 @@ const val12 = ref(false)
 <template>
   <vi-flex gap="18px">
     <span>请选择你的武器</span>
-    <vi-checkbox-group v-model="val14" gap="18px">
-      <vi-checkbox label="AK-47" border />
-      <vi-checkbox label="AWP" border />
-      <vi-checkbox label="M4A4" border disabled />
-      <vi-checkbox label="M4A1-S" border />
+    <vi-checkbox-group v-model="val14" gap="18px" border>
+      <vi-checkbox label="AK-47" />
+      <vi-checkbox label="AWP" />
+      <vi-checkbox label="M4A4" disabled />
+      <vi-checkbox label="M4A1-S" />
     </vi-checkbox-group>
   </vi-flex>
 </template>

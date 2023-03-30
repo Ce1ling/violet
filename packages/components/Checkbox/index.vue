@@ -20,6 +20,17 @@ const props = withDefaults(defineProps<Props>(), {
 })
 const emit = defineEmits<Emits>()
 
+const getChecked = computed(() => typeof props.modelValue !== 'boolean'
+  ? props.modelValue.find(v => v === props.label) === props.label
+  : props.modelValue
+)
+const getClasses = computed(() => ({
+  'is-checked': getChecked.value,
+  'is-disabled': props.disabled,
+  'has-border': props.border && !props.isBtn,
+  'is-button': props.isBtn
+}))
+
 const updateModelValue = () => {
   if (typeof props.modelValue === 'boolean') {
     emit('update:modelValue', !props.modelValue)
@@ -35,21 +46,10 @@ const updateModelValue = () => {
   emit('update:modelValue', arr)
 }
 
-const getChecked = computed(() => typeof props.modelValue !== 'boolean'
-  ? props.modelValue.find(v => v === props.label) === props.label
-  : props.modelValue
-)
-const classObj = computed(() => ({
-  'is-checked': getChecked.value,
-  'is-disabled': props.disabled,
-  'has-border': props.border && !props.isBtn,
-  'is-button': props.isBtn
-}))
-
 </script>
 
 <template>
-  <label class="vi-checkbox" :class="classObj">
+  <label class="vi-checkbox" :class="getClasses">
     <input 
       type="checkbox" 
       class="vi-checkbox__input"
@@ -68,14 +68,6 @@ const classObj = computed(() => ({
 </template>
 
 <style lang="scss">
-@keyframes vi-checkbox-zoom {
-  from {
-    transform: rotate(45deg) scale(0);
-  }
-  to {
-    transform: rotate(45deg) scale(1);
-  }
-}
 .vi-checkbox {
   display: inline-flex;
   align-items: center;
@@ -172,6 +164,15 @@ const classObj = computed(() => ({
     .vi-checkbox__input {
       position: absolute;
     }
+  }
+}
+
+@keyframes vi-checkbox-zoom {
+  from {
+    transform: rotate(45deg) scale(0);
+  }
+  to {
+    transform: rotate(45deg) scale(1);
   }
 }
 </style>
