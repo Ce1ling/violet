@@ -5,35 +5,36 @@ import {
   Icon as ViIcon
 } from '../index'
 import { useScrollVisible } from '../../hooks/useScrollVisible'
-import { useTimeout } from '../../hooks/useTimeout';
+import { useTimeout } from '../../hooks/useTimeout'
+import { getAnimationDurationByVariable } from '../../utils/dom/animation'
 
 interface Props {
   modelValue: boolean
-  appendToBody?: boolean
   title?: string
-  direction?: 'l-r' | 'r-l' | 't-b' | 'b-t'
   width?: string
   height?: string
-  showClose?: boolean
-  clickMaskClose?: boolean
-  mask?: boolean
+  direction?: 'l-r' | 'r-l' | 't-b' | 'b-t'
   zIndex?: number
+  showClose?: boolean
+  appendToBody?: boolean
+  mask?: boolean
   lockScroll?: boolean
+  clickMaskClose?: boolean
 }
 interface Emits {
   (e: 'update:modelValue', val: boolean): void
   (e: 'open' | 'close', val: boolean): void
 }
 const props = withDefaults(defineProps<Props>(), {
-  appendToBody: false,
-  direction: 'r-l',
   width: '30%',
   height: '30%',
-  showClose: true,
-  clickMaskClose: true,
-  mask: true,
   zIndex: new Date().getFullYear(),
-  lockScroll: true
+  direction: 'r-l',
+  showClose: true,
+  appendToBody: false,
+  mask: true,
+  lockScroll: true,
+  clickMaskClose: true
 })
 const emit = defineEmits<Emits>()
 
@@ -46,14 +47,9 @@ const getStyles = computed(() => ({
   zIndex: props.zIndex
 }))
 const animationDuration = computed(() => {
-  const duration = getComputedStyle(document.body).getPropertyValue('--vi-animation-duration')
-  return parseFloat(duration) * 1000
+  return getAnimationDurationByVariable(document.body, '--vi-animation-duration', 1000)
 })
 
-const handleClose = () => emit('update:modelValue', false)
-const handleMaskClose = () => {
-  if (props.clickMaskClose) { handleClose() }
-}
 /** 通过方位获取 "宽度" 或 "高度" */
 const getWHByDirection = (target: 'width' | 'height') => {
   const x = ['l-r', 'r-l']
@@ -63,14 +59,22 @@ const getWHByDirection = (target: 'width' | 'height') => {
     ? x.includes(props.direction) ? props.width : undefined
     : y.includes(props.direction) ? props.height : undefined
 }
+const handleClose = () => emit('update:modelValue', false)
+const handleMaskClose = () => {
+  if (props.clickMaskClose) { handleClose() }
+}
+const handleScrollVisible = (visible: boolean) => {
+  if (!props.lockScroll) { return }
+  if (visible) { return hide() }
+
+  useTimeout(() => show(), animationDuration.value)
+}
 
 watch(() => props.modelValue, val => {
   emit('update:modelValue', val)
   emit(val ? 'open' : 'close', val)
 
-  if (props.lockScroll) {
-    val ? hide() : useTimeout(() => show(), animationDuration.value)
-  }
+  handleScrollVisible(val)
 })
 </script>
 

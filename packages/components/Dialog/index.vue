@@ -6,7 +6,8 @@ import {
 } from '../index'
 import { useMovable } from '../../hooks/useMovable'
 import { useTimeout } from '../../hooks/useTimeout'
-import { getScrollWidth } from '../../utils/dom/scroll'
+import { useScrollVisible } from '../../hooks/useScrollVisible'
+import { getAnimationDurationByVariable } from '../../utils/dom/animation'
 
 interface Props {
   modelValue: boolean
@@ -42,8 +43,9 @@ const emit = defineEmits<Emits>()
 
 const dialogRef = ref<HTMLElement>()
 const headerRef = ref<HTMLElement>()
-const scrollHideClass = ref<string>('vi-scroll-hide')
 const needDestroy = ref<boolean>(false)
+
+const { show, hide } = useScrollVisible(document.body, 'vi-scroll-hide')
 
 const getClasses = computed(() => ({
   'is-center': props.center,
@@ -51,30 +53,31 @@ const getClasses = computed(() => ({
   'is-movable': props.movable
 }))
 const animationDuration = computed(() => {
-  const duration = getComputedStyle(document.body).getPropertyValue('--vi-animation-duration')
-  return parseFloat(duration) * 1000
+  return getAnimationDurationByVariable(document.body, '--vi-animation-duration', 1000)
 })
 
 const handleClose = () => emit('update:modelValue', false)
 const handleMaskClick = () => {
   if (props.clickMaskClose) { handleClose() }
 }
-const handleScrollHide = (action: 'add' | 'remove') => {
+const handleScrollVisible = (visible: boolean) => {
   if (!props.lockScroll) { return }
+  if (visible) { return hide() }
   
-  document.body.classList.add(scrollHideClass.value)
-  document.body.style.width = `calc(100% - ${getScrollWidth('px')})`
-
-  if (action === 'remove') {
-    useTimeout(() => {
-      document.body.classList.remove(scrollHideClass.value)
-      document.body.style.width = ''
-    }, animationDuration.value)
-  }
+  useTimeout(() => show(), animationDuration.value)
 }
-const handleDestory = () => {
-  if (props.destroy) { 
-    useTimeout(() => needDestroy.value = true, animationDuration.value)
+const handleDestory = (visible: boolean) => {
+  if (props.destroy) { return }
+  if (visible) {
+    needDestroy.value = false
+    return
+  }
+  
+  useTimeout(() => needDestroy.value = true, animationDuration.value)
+}
+const handleMovable = (visible: boolean) => {
+  if (visible) {
+    nextTick(() => useMovable(dialogRef, headerRef, props.movable))
   }
 }
 
@@ -82,14 +85,9 @@ watch(() => props.modelValue, val => {
   emit('update:modelValue', val)
   emit(val ? 'open' : 'close', val)
 
-  if (val) {
-    handleScrollHide('add')
-    needDestroy.value = false
-    nextTick(() => useMovable(dialogRef, headerRef, props.movable))
-  } else {
-    handleScrollHide('remove')
-    handleDestory()
-  }
+  handleScrollVisible(val)
+  handleDestory(val)
+  handleMovable(val)
 })
 
 </script>
