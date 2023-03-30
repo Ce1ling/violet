@@ -5,13 +5,16 @@ import { computed } from 'vue'
 interface Props {
   visible: boolean
   disabled?: boolean
+  zIndex?: number
 }
 const props = withDefaults(defineProps<Props>(), {
-  disabled: false
+  disabled: false,
+  zIndex: new Date().getFullYear()
 })
 
 const getStyles = computed(() => ({
-  backgroundColor: props.disabled ? 'transparent' : undefined
+  backgroundColor: props.disabled ? 'transparent' : undefined,
+  zIndex: props.zIndex
 }))
 
 </script>
@@ -30,6 +33,5 @@ const getStyles = computed(() => ({
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 9999;
 }
 </style>
