@@ -1,19 +1,27 @@
 <script setup lang="ts">
-type Props = {
+import { computed } from 'vue'
+
+interface Props {
   gap?: string
-  justify?: 'start' | 'center' | 'end' | 'space-between' | 'space-around' | 'space-evenly'
-  align?: 'start' | 'center' | 'end'
+  justify?: 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around' | 'space-evenly'
+  align?: 'flex-start' | 'center' | 'flex-end'
 }
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   gap: '10px',
-  justify: 'start',
-  align: 'start'
+  justify: 'flex-start',
+  align: 'flex-start'
 })
+
+const getStyles = computed(() => ({
+  gap: props.gap,
+  justifyContent: props.justify,
+  alignItems: props.align
+}))
 
 </script>
 
 <template>
-  <div class="vi-row">
+  <div class="vi-row" :style="getStyles">
     <slot />
   </div>
 </template>
@@ -21,8 +29,5 @@ withDefaults(defineProps<Props>(), {
 <style lang="scss">
 .vi-row {
   display: flex;
-  align-items: v-bind(align);
-  justify-content: v-bind(justify);
-  gap: v-bind(gap);
 }
 </style>

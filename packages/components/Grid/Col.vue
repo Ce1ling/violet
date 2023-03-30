@@ -10,13 +10,10 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <div class="vi-col">
+  <div class="vi-col" :style="{ flex: span }">
     <slot />
   </div>
 </template>
 
 <style lang="scss">
-.vi-col {
-  flex: v-bind(span);
-}
 </style>
