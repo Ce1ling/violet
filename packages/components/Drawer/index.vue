@@ -4,6 +4,8 @@ import {
   Mask as ViMask,
   Icon as ViIcon
 } from '../index'
+import { useScrollVisible } from '../../hooks/useScrollVisible'
+import { useTimeout } from '../../hooks/useTimeout';
 
 interface Props {
   modelValue: boolean
@@ -16,6 +18,7 @@ interface Props {
   clickMaskClose?: boolean
   mask?: boolean
   zIndex?: number
+  lockScroll?: boolean
 }
 interface Emits {
   (e: 'update:modelValue', val: boolean): void
@@ -29,9 +32,12 @@ const props = withDefaults(defineProps<Props>(), {
   showClose: true,
   clickMaskClose: true,
   mask: true,
-  zIndex: new Date().getFullYear()
+  zIndex: new Date().getFullYear(),
+  lockScroll: true
 })
 const emit = defineEmits<Emits>()
+
+const { show, hide } = useScrollVisible(document.body, 'vi-scroll-hide')
 
 const getClasses = computed(() => [`vi-drawer--${props.direction}`])
 const getStyles = computed(() => ({ 
@@ -39,6 +45,10 @@ const getStyles = computed(() => ({
   height: getWHByDirection('height'),
   zIndex: props.zIndex
 }))
+const animationDuration = computed(() => {
+  const duration = getComputedStyle(document.body).getPropertyValue('--vi-animation-duration')
+  return parseFloat(duration) * 1000
+})
 
 const handleClose = () => emit('update:modelValue', false)
 const handleMaskClose = () => {
@@ -57,6 +67,10 @@ const getWHByDirection = (target: 'width' | 'height') => {
 watch(() => props.modelValue, val => {
   emit('update:modelValue', val)
   emit(val ? 'open' : 'close', val)
+
+  if (props.lockScroll) {
+    val ? hide() : useTimeout(() => show(), animationDuration.value)
+  }
 })
 </script>
 
