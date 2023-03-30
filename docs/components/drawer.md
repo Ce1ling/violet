@@ -6,13 +6,7 @@ const show2 = ref(false)
 const show3 = ref(false)
 const show4 = ref(false)
 const show5 = ref(false)
-const show6 = ref(false)
-const show7 = ref(false)
-const show8 = ref(false)
-const show9 = ref(false)
-const show10 = ref(false)
 const direction = ref('l-r')
-
 </script>
 
 # Drawer 抽屉
