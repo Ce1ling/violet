@@ -3,13 +3,13 @@ import { computed } from 'vue'
 
 interface Props {
   gap?: string
-  justify?: 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around' | 'space-evenly'
-  align?: 'flex-start' | 'center' | 'flex-end'
+  justify?: 'start' | 'center' | 'end' | 'space-between' | 'space-around' | 'space-evenly'
+  align?: 'start' | 'center' | 'end'
 }
 const props = withDefaults(defineProps<Props>(), {
   gap: '10px',
-  justify: 'flex-start',
-  align: 'flex-start'
+  justify: 'start',
+  align: 'start'
 })
 
 const getStyles = computed(() => ({
