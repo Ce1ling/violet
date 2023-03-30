@@ -26,8 +26,7 @@ interface Props {
 }
 interface Emits {
   (e: 'update:modelValue', val: boolean): void
-  (e: 'open', val: boolean): void
-  (e: 'close', val: boolean): void
+  (e: 'open' | 'close', val: boolean): void
 }
 const props = withDefaults(defineProps<Props>(), {
   width: '50%',
@@ -80,13 +79,14 @@ const handleDestory = () => {
 }
 
 watch(() => props.modelValue, val => {
+  emit('update:modelValue', val)
+  emit(val ? 'open' : 'close', val)
+
   if (val) {
-    emit('open', val)
     handleScrollHide('add')
     needDestroy.value = false
     nextTick(() => useMovable(dialogRef, headerRef, props.movable))
   } else {
-    emit('close', val)
     handleScrollHide('remove')
     handleDestory()
   }
