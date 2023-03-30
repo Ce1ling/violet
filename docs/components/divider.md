@@ -145,7 +145,9 @@
 使用 `border-style` 属性，定义线条样式。它的值与 CSS `border-style` 接受的值完全相同！
 
 ::: tip
+
 因为它完全等于 CSS `border-style`，所以，完整取值请参见 [MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-style)。
+
 :::
 
 <div class="examples">

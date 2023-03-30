@@ -102,8 +102,10 @@ const handleClose = () => {
 设置 `isHtmlStr` 属性为 `true`，可以在内容中写入 HTML 元素并渲染。
 
 ::: warning
+
 请注意，在网站上动态的渲染 HTML 是非常危险的行为。所以，请确保此 HTML 渲染绝对的安全，否则请勿使用 HTML 渲染。<br />
 二次注意，一个原则是：永远不要相信用户的输入。所以，你不该在任何情况下将用户的输入作为 Toast HTML 渲染。
+
 :::
 
 <div class="examples">

@@ -109,7 +109,9 @@ const val3 = ref(0)
 使用 `to-fixed` 属性，保留小数。根据 `to-fixed` 的值保留小数位数。
 
 ::: tip
+
 使用了 `to-fixed`，您就可以将 `step` 设置为小数进行 加/减 了。
+
 :::
 
 <div class="examples">
@@ -168,7 +170,9 @@ const val10 = ref(1)
 使用 `icon-size` 属性，自定义 Icon 大小。
 
 ::: tip
+
 一般您不需要此属性，因为 Violet 设置的 Icon 大小正好合适。但如您有特殊需求，可以使用此属性自定义。
+
 :::
 
 <div class="examples">

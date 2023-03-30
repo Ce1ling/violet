@@ -23,7 +23,7 @@ const close = () => {
 }
 </script>
 
-# Dialog
+# Dialog 对话框
 
 在不影响当前页面的情况下，进行一些页面相关操作。
 
@@ -65,12 +65,16 @@ const show1 = ref(false)
 使用 `content` 属性，定义主体内容。通过 `show-close-btn`，来隐藏默认的关闭按钮。通过 `z-index` 可自定义 Dialog 的 CSS `z-index`。
 
 ::: tip
+
 1. 如果您的 Dialog 仅包含简单的文本，可以直接使用 `title` + `content` 的形式进行简写，使代码更加简洁！
 2. 如果您需要自定义的内容比较多，可以使用 `header`、`default`、`footer` 插槽，任意定义！
+
 :::
 
 ::: warning
+
 不过请注意，`title` 与 `header` 插槽不能一起使用，`content` 与 `default` 插槽也是如此。
+
 :::
 
 <div class="examples">
@@ -148,7 +152,9 @@ const show3 = ref(false)
 有时您可能需要在一个 Dialog 中再打开一个 Dialog，此时，请尽量给子级 Dialog 加上 `append-to-body` 属性，即使未出现问题。
 
 ::: warning
+
 一般来说，我们并不推荐嵌套，但如果确实存在此需求，请最好给子级 Dialog 加上 `append-to-body` 属性。
+
 :::
 
 <div class="examples">
@@ -190,7 +196,9 @@ const show5 = ref(false)
 我们提供的居中一共分为两种：内容居中、整体居中。使用 `center` 将内容居中，`box-center` 将整体居中。
 
 ::: tip
+
 两种居中可以一起使用，如果使有嵌套的话，子级会继承父级的居中。
+
 :::
 
 <div class="examples">
@@ -242,7 +250,9 @@ const show7 = ref(false)
 我们提供的居中一共分为两种：内容居中、整体居中。使用 `center` 将内容居中，`box-center` 将整体居中。
 
 ::: tip
+
 两种居中可以一起使用，如果使有嵌套的话，子级会继承父级的居中。
+
 :::
 
 <div class="examples">
@@ -321,7 +331,9 @@ const show10 = ref(false)
 通过 `click-mask-close` 属性，设置点击遮罩层时不可以关闭。默认可关闭。
 
 ::: tip
+
 对了，Dialog 在打开和关闭时都会触发事件，分别是：`open`、`close`。
+
 :::
 
 <div class="examples">

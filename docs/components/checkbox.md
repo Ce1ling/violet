@@ -130,7 +130,9 @@ const val12 = ref(false)
 如需使用 Ckeckbox 组，请使用 `vi-checkbox-group` 标签包裹。它提供 `gap` 属性来定义间距。
 
 ::: tip
+
 使用了 `vi-checkbox-group`后，直接将 `v-model` 给 `vi-checkbox-group` 绑定即可，无需给每个 `vi-checkbox` 绑定。
+
 :::
 
 <div class="examples">
@@ -169,7 +171,9 @@ const val14 = ref(['AK-47'])
 如需使用按钮类型，请使用 `vi-checkbox-group` 标签包裹并添加 `is-button` 属性。因为 Violet 需要使用此标签做特殊处理，，而 `is-button` 属性则表示使用按钮类型。
 
 ::: warning
+
 注意：如果使用了按钮类型，border 属性将无效，因为按钮类型自带边框，您无需它。
+
 :::
 
 <div class="examples">

@@ -7,7 +7,9 @@
 使用 `type` 属性，来定义按钮类型，`round` 属性来定义圆角按钮、`circle` 属性来定义圆形按钮。
 
 ::: tip
+
 如果您的按钮 `type` 类型是 `primary`，则您可以省略 `type` 属性，因为它是默认值。
+
 :::
 
 <div class="examples vi-button-demo">
@@ -71,9 +73,11 @@
 使用 `loading` 属性， 使按钮处于加载状态。您可以使用 `is-prefix` 属性来控制“加载图标”在左还是右。同时，您也可以自定义“加载图标”，分别使用 `prefix` 与 `suffix` 具名插槽。
 
 ::: warning
+
 注意：
   1. 如果您使用了“自定义图标”，那么 Violet 将认为您需要自定义加载时图标动画，若您不需要自定义，您可以在“自定义图标”上加上 `loading` 属性。
   2. 如果您使用了 `suffix` 插槽，请将 `vi-button` 的 `prefix` 属性设置为 `false` (如 加载状态4 所示)，否则您将得到左右两个图标。
+
 :::
 
 <div class="examples">
@@ -147,7 +151,9 @@
 使用 `text` 属性，来定义文本类型按钮。
 
 ::: tip
+
 如果您不想要鼠标移入时的背景颜色，何不尝试一下 [Link](./link.md#下划线) 组件的去下划线写法呢？
+
 :::
 
 <div class="examples">
@@ -254,7 +260,9 @@
 使用 `bg-color` 属性，来自定义按钮的背景颜色。
 
 ::: tip
+
 按钮的 `active` 和 `hover` 状态 Violet 将会为您自动计算。
+
 :::
 
 <div class="examples">

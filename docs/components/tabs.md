@@ -20,7 +20,7 @@ const handleRemove = (name: string) => {
 }
 </script>
 
-# Tabs 切换组件
+# Tabs 标签
 
 Tabs 选项卡切换组件，分隔展示不同类型的数据。
 
@@ -29,7 +29,9 @@ Tabs 选项卡切换组件，分隔展示不同类型的数据。
 简单的切换展示。
 
 ::: tip
+
 您必须为 `vi-tabs` 指定一个 `active` 属性，它用于指定当前展示的 tab，与 `vi-tab` 的 `name` 属性对应。所以您也必须为 `vi-tab` 指定 `label`、`name` 属性，前者用于渲染 tab 的头部，后者作为唯一标识符。
+
 :::
 
 <div class="examples">
@@ -97,7 +99,9 @@ const change = () => {
 类似 Vue `v-if` 与 `v-show` 的区别，为了性能考虑，此模式默认为 `false`。如果您有需要，可以开启，开启后只有高亮的 Tab 会被渲染，其他 Tab 将被销毁！
 
 ::: tip
+
 您可以打开“开发者工具”，并在 `Elements` 面板中来查看节点的渲染情况。如果您熟悉 Vue `v-if` 与 `v-show` 指令的区别，相信您立马就能理解！
+
 :::
 
 <div class="examples">
@@ -130,7 +134,9 @@ const val2 = ref('1')
 使用 `removable` 属性，设置标签可被移除。点击移除按钮后触发 `tab-remove` 事件。
 
 ::: warning
+
 请注意！移除按钮仅触发 `tab-remove` 事件并传入相应参数，您需要自己编写移除逻辑。因为 Violet 并不知道您的数据结构，而如果操作 DOM 的话，效率会非常低！同样的，移除后当前 Tab 也需要您手动更新，因为 Violet 同样不知道您的更新后的数据！
+
 :::
 
 <div class="examples">

@@ -53,7 +53,9 @@ const copy = (name: string) => {
 使用 `loading` 属性，来启用加载动画，这是 Violet 为您提供的一个加载动画。
 
 ::: tip
+
 `loading` 属性不一定非要加在 loading 图标上，它可以加在任意一个 `vi-icon` 上，您可以点击“测试”按钮查看效果。
+
 :::
 
 <div class="examples">

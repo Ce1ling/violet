@@ -2,7 +2,7 @@
 const close = () => window.alert('Closing')
 </script>
 
-# Alert
+# Alert 提示
 
 对一些状态进行友好提示。
 
@@ -167,7 +167,9 @@ const close = () => window.alert('Closing')
 将 `close` 插槽，您可以将关闭图标设置为任何内容。
 
 ::: tip
+
 对了，Alert 在关闭时会先触发一个 `close` 事件，你可以在此做一些事。
+
 :::
 
 <div class="examples">
@@ -205,7 +207,9 @@ const close = () => window.alert('Closing')
 使用 `title` 属性，设置标题。它同样可以携带图标。
 
 ::: tip
+
 如果您的 Alert 仅包含文本，可以使用简化的自闭合形式，因为 Violet 提供了 `content` 属性让您放置文本内容。
+
 :::
 
 <div class="examples">

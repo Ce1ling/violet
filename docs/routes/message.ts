@@ -11,6 +11,10 @@ export const message = [
     text: 'Dialog 对话框',
     link: '/components/dialog.md'
   },
+  {
+    text: 'Drawer 抽屉',
+    link: '/components/drawer.md'
+  },
   // {
   //   text: 'Tooltip 提示文字',
   //   link: '/components/tooltip.md'
@@ -26,9 +30,5 @@ export const message = [
   // {
   //   text: 'Notification 通知',
   //   link: '/components/notification.md'
-  // },
-  // {
-  //   text: 'Drawer 抽屉',
-  //   link: '/components/drawer.md'
   // },
 ]
