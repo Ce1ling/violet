@@ -49,4 +49,8 @@
   --vi-icon-color: 'inherit';
   --vi-icon-hover-color: var(--vi-icon-color);
   --vi-icon-loading-duration: 2s;
+
+  /** vi-switch */
+  --vi-switch-off-bg-color: var(--vi-color-shadow);
+  --vi-switch-on-bg-color: var(--vi-color-primary);
 }

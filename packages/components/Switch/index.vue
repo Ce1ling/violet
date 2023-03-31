@@ -33,21 +33,32 @@ const emit = defineEmits<Emits>()
 const icons = ['onIcon', 'offIcon']
 const texts = ['onText', 'offText']
 
-const classObj = computed(() => ({ 
+const getClasses = computed(() => ({ 
   'is-checked': props.modelValue,
   'is-disabled': props.disabled || props.loading
+}))
+const getStyles = computed(() => ({
+  '--vi-switch-off-bg-color': props.offColor,
+  '--vi-switch-on-bg-color': props.modelValue ? props.onColor : '',
+  '--vi-switch-active-circle-color': props.modelValue ? props.onColor : props.offColor
 }))
 
 const toggleChecked = () => {
   if (props.disabled || props.loading) { return }
   emit('update:modelValue', !props.modelValue)
 }
+type State = 0 | 1
 /** 
- * 添加激活状态类名
- * @param {Number} type 0 为 off，1 为 on。
+ * 为不同的状态添加激活状态类名
+ * @param {Number} state 0 为 off 状态，1 为 on 状态。
  **/
-const getDescClass = (type: 0 | 1) => ({ 
-  'is-active': type ? props.modelValue : !props.modelValue
+const getDescClasses = (state: State) => ({ 
+  'is-active': state ? props.modelValue : !props.modelValue
+})
+const getDescStyles = (state: State) => ({
+  color: state 
+    ? props.modelValue ? props.onColor : ''
+    : !props.modelValue ? props.onColor : ''
 })
 const hasDesc = (arr: string[]) => (arr.map(v => props[v]).filter(v => v)).length
 
@@ -56,10 +67,20 @@ const hasDesc = (arr: string[]) => (arr.map(v => props[v]).filter(v => v)).lengt
 <template>
   <div class="vi-switch">
     <template v-if="!isInside">
-      <vi-icon :name="offIcon" :class="getDescClass(0)" v-if="hasDesc(icons)" />
-      <div :class="getDescClass(0)" v-if="hasDesc(texts)">{{ offText }}</div>
+      <vi-icon 
+        :name="offIcon" 
+        :class="getDescClasses(0)" 
+        :style="getDescStyles(0)" 
+        v-if="hasDesc(icons)" 
+      />
+      <div 
+        :class="getDescClasses(0)" 
+        :style="getDescStyles(0)" 
+        v-if="hasDesc(texts)">
+        {{ offText }}
+      </div>
     </template>
-    <div class="vi-switch__inner" :class="classObj" @click="toggleChecked">
+    <div class="vi-switch__inner" :class="getClasses" :style="getStyles" @click="toggleChecked">
       <template v-if="isInside">
         <vi-icon 
           class="vi-switch__inner-icon" 
@@ -71,7 +92,7 @@ const hasDesc = (arr: string[]) => (arr.map(v => props[v]).filter(v => v)).lengt
           {{ modelValue ? onText : offText }}
         </span>
       </template>
-      <div class="vi-switch__active">
+      <div class="vi-switch__active" >
         <vi-icon 
           name="Loading" 
           size="inherit" 
@@ -82,8 +103,18 @@ const hasDesc = (arr: string[]) => (arr.map(v => props[v]).filter(v => v)).lengt
       </div>
     </div>
     <template v-if="!isInside">
-      <vi-icon :name="onIcon" :class="getDescClass(1)" v-if="hasDesc(icons)" />
-      <div :class="getDescClass(1)" v-if="hasDesc(texts)">{{ onText }}</div>
+      <vi-icon 
+        :name="onIcon" 
+        :class="getDescClasses(1)" 
+        :style="getDescStyles(1)" 
+        v-if="hasDesc(icons)" 
+      />
+      <div 
+        :class="getDescClasses(1)" 
+        :style="getDescStyles(1)" 
+        v-if="hasDesc(texts)">
+        {{ onText }}
+      </div>
     </template>
   </div>
 </template>
@@ -95,7 +126,6 @@ const hasDesc = (arr: string[]) => (arr.map(v => props[v]).filter(v => v)).lengt
   gap: 8px;
 
   .is-active {
-    color: v-bind(onColor);
     transition: color var(--vi-animation-duration);
   }
 
@@ -103,7 +133,7 @@ const hasDesc = (arr: string[]) => (arr.map(v => props[v]).filter(v => v)).lengt
     width: 40px;
     max-width: 40px;
     height: 20px;
-    background-color: v-bind(offColor);
+    background-color: var(--vi-switch-off-bg-color);
     cursor: pointer;
     position: relative;
     border-radius: 10px;
@@ -133,10 +163,10 @@ const hasDesc = (arr: string[]) => (arr.map(v => props[v]).filter(v => v)).lengt
       }
     }
     &.is-checked {
-      background-color: v-bind(onColor);
+      background-color: var(--vi-switch-on-bg-color);
       .vi-switch__active {
         left: calc(100% - 20px);
-        border-color: v-bind(onColor);
+        border-color: var(--vi-switch-active-circle-color);
       }
     }
     &.is-disabled {
@@ -156,7 +186,7 @@ const hasDesc = (arr: string[]) => (arr.map(v => props[v]).filter(v => v)).lengt
     left: 0;
     border-radius: 10px;
     transition: left var(--vi-animation-duration);
-    border: 2px solid v-bind(offColor);
+    border: 2px solid var(--vi-switch-active-circle-color);
   }
 }
 </style>
