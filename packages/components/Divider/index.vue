@@ -1,6 +1,9 @@
 <script setup lang="ts">
-type Props = {
-  gap?: string
+import { computed } from 'vue'
+
+
+interface Props {
+  margin?: string
   thick?: string
   color?: string
   borderStyle?: string
@@ -8,18 +11,42 @@ type Props = {
   direction?: 'vertical' | 'horizontal'
 }
 const props = withDefaults(defineProps<Props>(), {
-  gap: '18px',
+  margin: '18px',
   thick: '1px',
   color: 'var(--vi-color-primary)',
   borderStyle: 'solid',
   position: 'start',
   direction: 'horizontal'
 })
+
+const getClasses = computed(() => `vi-divider--${props.direction}`)
+const getStyles = computed(() => {
+  const borderStyle = `${props.thick} ${props.borderStyle} ${props.color}`
+
+  if (props.direction === 'horizontal') {
+    return {
+      margin: `${props.margin} 0`,
+      borderTop: borderStyle
+    }
+  }
+
+  return {
+    margin: `0 ${props.margin}`,
+    borderLeft: borderStyle
+  }
+})
+const getPositionClass = computed(() => `is-${props.position}`)
+const getDescStyles = computed(() => ({
+  transform: props.position === 'center' 
+    ? `translate(-50%, calc(-50% - (${props.thick} / 2)))`
+    : `translateY(calc(-50% - (${props.thick} / 2)))`,
+}))
+
 </script>
 
 <template>
-  <div class="vi-divider" :class="props.direction">
-    <span class="vi-divider__desc" :class="props.position">
+  <div class="vi-divider" :class="getClasses" :style="getStyles">
+    <span class="vi-divider__desc" :class="getPositionClass" :style="getDescStyles">
       <slot />
     </span>
   </div>
@@ -30,37 +57,31 @@ const props = withDefaults(defineProps<Props>(), {
   position: relative;
   .vi-divider__desc {
     position: absolute;
-    transform: translateY(calc(-50% - (v-bind(thick) / 2)));
     background-color: var(--vi-color-white);
     padding: 0 10px;
 
-    &.start {
+    &.is-start {
       top: 0;
       left: 18px;
     }
-    &.center {
+    &.is-center {
       top: 0;
       left: 50%;
-      transform: translate(-50%, calc(-50% - (v-bind(thick) / 2)));
     }
-    &.end {
+    &.is-end {
       left: unset;
       top: 0;
       right: 18px;
     }
   }
-  &.horizontal {
+  &--horizontal {
     display: block;
     width: 100%;
-    margin: v-bind(gap) 0;
-    border-top: v-bind(thick) v-bind(borderStyle) v-bind(color);
   }
-  &.vertical {
+  &--vertical {
     display: inline-block;
     height: 1em;
-    margin: 0 v-bind(gap);
     vertical-align: middle;
-    border-left: v-bind(thick) v-bind(borderStyle) v-bind(color);
   }
 }
 </style>
