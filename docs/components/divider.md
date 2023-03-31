@@ -70,26 +70,26 @@
 
 ## 定义边距
 
-使用 `gap` 属性，自定义外边距。
+使用 `margin` 属性，自定义外边距。
 
 <div class="examples">
   大风歌
-  <vi-divider position="center" gap="8px">窄边距</vi-divider>
+  <vi-divider position="center" margin="8px">窄边距</vi-divider>
   大风起兮云飞扬，
-  <vi-divider position="center" gap="58px">宽边距</vi-divider>
+  <vi-divider position="center" margin="58px">宽边距</vi-divider>
   威加海内兮归故乡，
-  <vi-divider position="center" gap="18px">正常边距</vi-divider>
+  <vi-divider position="center" margin="18px">正常边距</vi-divider>
   安得猛士兮守四方！
 </div>
 
 ```vue
 <template>
   大风歌
-  <vi-divider position="center" gap="8px">窄</vi-divider>
+  <vi-divider position="center" margin="8px">窄</vi-divider>
   大风起兮云飞扬，
-  <vi-divider position="center" gap="58px">宽</vi-divider>
+  <vi-divider position="center" margin="58px">宽</vi-divider>
   威加海内兮归故乡，
-  <vi-divider position="center" gap="18px">正常</vi-divider>
+  <vi-divider position="center" margin="18px">正常</vi-divider>
   安得猛士兮守四方！
 </template>
 ```
@@ -172,9 +172,9 @@
 
 | 属性名 | 属性说明 | 属性类型 | 属性默认值 |
 | :---: | :---: | :---: | :---: |
-| gap | 分割线边距 | `string` | `'18px'` |
-| thick | 分割线厚度 | `string` | `'1px'` |
-| color | 分割线颜色 | `string` | —— |
-| border-style | 分割线样式 | `string` | `'solid'` |
+| margin | 边距 | `string` | `'18px'` |
+| thick | 厚度 | `string` | `'1px'` |
+| color | 颜色 | `string` | —— |
+| border-style | 样式 | `string` | `'solid'` |
 | position | 标注内容的位置 | `start` / `center` / `end` | `'start'` |
-| direction | 分割线方向 | `horizontal` / `vertival` | `'horizontal'` |
+| direction | 方向 | `horizontal` / `vertival` | `'horizontal'` |
