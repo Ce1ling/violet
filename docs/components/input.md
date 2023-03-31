@@ -98,12 +98,13 @@ const val4 = ref('')
 
 ## 限制输入
 
-通过 `limit` 属性，来限制输入内容长度。你也可以通过 `show-limit`，来展示具体限制数。
+通过 `limit` 属性，来限制输入内容长度。你也可以通过 `show-limit`，来展示限制数。分隔符您也可以自定义，它默认是 `' / '`。
 
 <div class="examples">
   <vi-flex direction="column" gap="18px">
     <vi-input v-model="val5" placeholder="限制输入 10 个字符" limit="10" />
     <vi-input v-model="val6" placeholder="显示限制输入" limit="10" show-limit />
+    <vi-input v-model="val13" placeholder="自定义分隔符" limit="10" show-limit limit-separator=" - " />
   </vi-flex>
 </div>
 
@@ -112,6 +113,7 @@ const val4 = ref('')
   <vi-flex direction="column" gap="18px">
     <vi-input v-model="val5" placeholder="限制输入 10 个字符" limit="10" />
     <vi-input v-model="val6" placeholder="显示限制输入" limit="10" show-limit />
+    <vi-input v-model="val13" placeholder="自定义分隔符" limit="10" show-limit limit-separator=" - " />
   </vi-flex>
 </template>
 
@@ -119,6 +121,7 @@ const val4 = ref('')
 import { ref } from 'vue'
 const val5 = ref('')
 const val6 = ref('')
+const val13 = ref('')
 </script>
 ```
 
