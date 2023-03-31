@@ -6,11 +6,14 @@ interface Props {
 }
 const props = defineProps<Props>()
 
-const getWidth = computed(() => props.width || 'var(--vi-aside-width)')
+const getStyles = computed(() => ({
+  width: props.width || 'var(--vi-aside-width)'
+}))
+
 </script>
 
 <template>
-  <aside class="vi-aside">
+  <aside class="vi-aside" :style="getStyles">
     <slot />
   </aside>
 </template>
@@ -20,6 +23,5 @@ const getWidth = computed(() => props.width || 'var(--vi-aside-width)')
   display: block;
   box-sizing: border-box;
   overflow: auto;
-  width: v-bind(getWidth);
 }
 </style>

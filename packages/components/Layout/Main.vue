@@ -6,11 +6,14 @@ interface Props {
 }
 const props = defineProps<Props>()
 
-const getPadding = computed(() => props.padding || 'var(--vi-main-padding)')
+const getStyles = computed(() => ({
+  padding: props.padding || 'var(--vi-main-padding)'
+}))
+
 </script>
 
 <template>
-  <main class="vi-main">
+  <main class="vi-main" :style="getStyles">
     <slot />
   </main>
 </template>
@@ -21,6 +24,5 @@ const getPadding = computed(() => props.padding || 'var(--vi-main-padding)')
   box-sizing: border-box;
   overflow: auto;
   flex: 1;
-  padding: v-bind(getPadding);
 }
 </style>

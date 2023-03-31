@@ -7,12 +7,15 @@ interface Props {
 }
 const props = defineProps<Props>()
 
-const getHeight = computed(() => props.height || 'var(--vi-footer-height)')
-const getPadding = computed(() => props.padding || 'var(--vi-footer-padding)')
+const getStyles = computed(() => ({
+  height: props.height || 'var(--vi-footer-height)',
+  padding: props.padding || 'var(--vi-footer-padding)'
+}))
+
 </script>
 
 <template>
-  <footer class="vi-footer">
+  <footer class="vi-footer" :style="getStyles">
     <slot />
   </footer>
 </template>
@@ -21,7 +24,5 @@ const getPadding = computed(() => props.padding || 'var(--vi-footer-padding)')
 .vi-footer {
   display: block;
   box-sizing: border-box;
-  height: v-bind(getHeight);
-  padding: v-bind(getPadding);
 }
 </style>

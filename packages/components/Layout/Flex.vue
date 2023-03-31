@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+
 interface Props {
   direction?: 'row' | 'column' | 'row-reverse' | 'column-reverse'
   justify?: 'start' | 'center' | 'end' | 'space-between' | 'space-around' | 'space-evenly'
@@ -6,15 +8,24 @@ interface Props {
   flex?: string
   gap?: string
 }
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   direction: 'row',
   flex: '1',
   gap: '0'
 })
+
+const getStyles = computed(() => ({
+  flexDirection: props.direction,
+  justifyContent: props.justify,
+  alignItems: props.align,
+  flex: props.flex,
+  gap: props.gap
+}))
+
 </script>
 
 <template>
-  <div class="vi-flex">
+  <div class="vi-flex" :style="getStyles">
     <slot />
   </div>
 </template>
@@ -22,10 +33,5 @@ withDefaults(defineProps<Props>(), {
 <style lang="scss">
 .vi-flex {
   display: flex;
-  flex-direction: v-bind(direction);
-  justify-content: v-bind(justify);
-  align-items: v-bind(align);
-  flex: v-bind(flex);
-  gap: v-bind(gap);
 }
 </style>

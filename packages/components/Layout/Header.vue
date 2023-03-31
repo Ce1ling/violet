@@ -7,12 +7,15 @@ interface Props {
 }
 const props = defineProps<Props>()
 
-const getHeight = computed(() => props.height || 'var(--vi-header-height)')
-const getPadding = computed(() => props.padding || 'var(--vi-header-padding)')
+const getStyles = computed(() => ({
+  height: props.height || 'var(--vi-header-height)',
+  padding: props.padding || 'var(--vi-header-padding)'
+}))
+
 </script>
 
 <template>
-  <header class="vi-header">
+  <header class="vi-header" :style="getStyles">
     <slot />
   </header>
 </template>
@@ -21,7 +24,5 @@ const getPadding = computed(() => props.padding || 'var(--vi-header-padding)')
 .vi-header {
   display: block;
   box-sizing: border-box;
-  height: v-bind(getHeight);
-  padding: v-bind(getPadding);
 }
 </style>
