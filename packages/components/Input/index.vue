@@ -12,6 +12,7 @@ interface Props {
   rows?: string
   limit?: string
   showLimit?: boolean
+  limitSeparator?: string
   prefixIcon?: Icon
   suffixIcon?: Icon
 }
@@ -22,7 +23,8 @@ const props = withDefaults(defineProps<Props>(), {
   showPwd: false,
   rows: '2',
   limit: '',
-  showLimit: false
+  showLimit: false,
+  limitSeparator: ' / '
 })
 interface Emits {
   (e: 'update:modelValue', value: string): void
@@ -59,12 +61,17 @@ const toggleShowPwd = () => {
 const getIconAttrs = (type: Icon) => typeof type === 'string' 
   ? { name: type, size: 'inherit' }
   : type
-const RenderLimit = () => h('span', {
-  class: [
-    `vi-input__limit-${props.type === 'textarea' ? props.type : 'input'}`, 
-    { 'is-max': props.modelValue.length >= Number(props.limit) }
-  ],
-}, `${props.modelValue.length} / ${props.limit}`)
+const RenderLimit = () => {
+  const currentLen = props.modelValue.length
+  const limit = Number(props.limit)
+
+  return h('span', {
+    class: [
+      `vi-input__limit-${props.type === 'textarea' ? props.type : 'input'}`, 
+      { 'is-max': currentLen >= limit } 
+    ],
+  }, `${currentLen}${props.limitSeparator}${limit}`) 
+}
 
 watch(() => props.modelValue, val => {
   if (props.clearable) { isShowClear.value = !!val }
