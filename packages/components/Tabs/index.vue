@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useSlots, h, watch } from 'vue'
+import { useSlots, h, watch, computed } from 'vue'
 import { Icon as ViIcon } from '../index'
 
 import type { VNode, VNodeArrayChildren } from 'vue'
@@ -27,6 +27,10 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits<Emits>()
 const slots = useSlots()
 
+const getHeaderStyles = computed(() => ({
+  backgroundColor: props.bgColor
+}))
+
 /**
  * 用于检查 DOM 类型，共以下几种：
  *  1. `normal`: 正常节点
@@ -43,19 +47,10 @@ const checkNodeType = (key: string) => {
       return 'normal'
   }
 }
+const renderRemoveIcon = (vNode: VNode) => {
+  if (!props.removable) { return }
 
-/** 渲染 Tab header */
-const hRenderTabHeader = (type: string, vNode: VNode) => h(type, {
-  class: ['vi-tabs__header-item', {
-    'is-active': props.modelValue === vNode.props?.name
-  }],
-  onClick: (e: MouseEvent) => {
-    emit('update:modelValue', vNode.props?.name)
-    emit('tab-click', vNode.props?.name, e)
-  },
-}, [
-  h('span', vNode.props?.label), 
-  props.removable && h(ViIcon, { 
+  return h(ViIcon, { 
     name: 'Close', 
     class: 'vi-tabs__close-icon',
     onClick: (e: MouseEvent) => {
@@ -63,8 +58,27 @@ const hRenderTabHeader = (type: string, vNode: VNode) => h(type, {
       emit('tab-remove', vNode.props?.name, e)
     }
   })
-])
+}
+/** 渲染 Tab header */
+const hRenderTabHeader = (type: string, vNode: VNode) => {
+  const isActive = props.modelValue === vNode.props?.name
 
+  return h(type, {
+    class: ['vi-tabs__header-item', {
+      'is-active': isActive
+    }],
+    style: {
+      backgroundColor: isActive ? props.activeBgColor : ''
+    },
+    onClick: (e: MouseEvent) => {
+      emit('update:modelValue', vNode.props?.name)
+      emit('tab-click', vNode.props?.name, e)
+    },
+  }, [
+    h('span', vNode.props?.label), 
+    renderRemoveIcon(vNode)
+  ])
+}
 type RenderVNode = VNodeArrayChildren | undefined
 /** 筛选并渲染 Tab header */
 const RenderTabHeader = (): RenderVNode => {
@@ -80,12 +94,10 @@ const RenderTabHeader = (): RenderVNode => {
     }
   })
 }
-
 /** 渲染 Tab content */
 const hRenderTabContent = (vNode: VNode) => h(vNode, { style: { 
   display: props.modelValue === vNode.props?.name ? 'block' : 'none'
 }})
-
 /** 筛选并渲染 Tab content */
 const RenderTabContent = (): RenderVNode => {
 
@@ -122,7 +134,7 @@ watch(() => props.modelValue, (val, oVal) => emit('change', val, oVal))
 
 <template>
   <div class="vi-tabs">
-    <div class="vi-tabs__header">
+    <div class="vi-tabs__header" :style="getHeaderStyles">
       <RenderTabHeader />
     </div>
     <div class="vi-tabs__content">
@@ -136,7 +148,6 @@ watch(() => props.modelValue, (val, oVal) => emit('change', val, oVal))
   .vi-tabs__header {
     display: flex;
     border-radius: var(--vi-base-radius) var(--vi-base-radius) 0 0;
-    background-color: v-bind(bgColor);
     position: relative;
     border: 1px solid var(--vi-color-gray);
     border-bottom: none;
@@ -172,7 +183,6 @@ watch(() => props.modelValue, (val, oVal) => emit('change', val, oVal))
       }
       &.is-active {
         color: var(--vi-color-white);
-        background-color: v-bind(activeBgColor);
       }
     }
   }
