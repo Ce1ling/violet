@@ -153,20 +153,26 @@ const val9 = ref('')
 
 ## 自定义 Icon
 
-通过 `pre-icon`、`suf-icon` 属性，定义前后 Icon，它会使用 Violet 所提供的 Icon。如果你想对 Icon 做出一些设置，可以使用对象形式。对于更复杂的设置（或想自定义的不是 Icon），你可以使用 “插槽模式”，我们提供了 `prefix`、`suffix` 插槽。
+通过 `prefix-icon`、`suffix-icon` 属性，定义前后 `Icon`，它会使用 Violet 所提供的 `Icon`。如果你想对 `Icon` 做出一些设置，可以使用对象形式。对于更复杂的设置（或想自定义的不是 `Icon`），你可以使用 “插槽式”，我们提供了 `prefix`、`suffix` 插槽。
 
 <div class="examples">
   <vi-flex direction="column" gap="18px">
-    <vi-input v-model="val10" placeholder="自定义前后 icon" pre-icon="Search" suf-icon="Menu" />
-    <vi-input v-model="val11" placeholder="自定义前后 icon（对象式）" 
-      :pre-icon="{ name: 'Apple', size: '16px', hoverColor: 'var(--vi-color-primary)' }" 
-      :suf-icon="{ name: 'Windows', size: '16px', hoverColor: 'var(--vi-color-primary)' }"  
+    <vi-input 
+      v-model="val10" 
+      placeholder="自定义前后 icon" 
+      prefix-icon="Search" 
+      suffix-icon="Menu" 
     />
-    <vi-input v-model="val12" placeholder="自定义前后 icon (插槽模式)">
+    <vi-input 
+      v-model="val11" placeholder="自定义前后 icon（对象式）" 
+      :prefix-icon="{ name: 'Apple', size: '16px', hoverColor: 'var(--vi-color-primary)' }" 
+      :suffix-icon="{ name: 'Windows', size: '16px', hoverColor: 'var(--vi-color-primary)' }"  
+    />
+    <vi-input v-model="val12" placeholder="自定义前后 icon (插槽式)">
       <template #prefix>
         <vi-icon name="Plus" size="16px" color="var(--vi-color-primary)" />
       </template>
-      <template #suffix>suffix</template>
+      <template #suffix>suffix but not Icon</template>
     </vi-input>
   </vi-flex>
 </div>
@@ -174,18 +180,23 @@ const val9 = ref('')
 ```vue
 <template>
   <vi-flex direction="column" gap="18px">
-    <vi-input v-model="val10" placeholder="自定义前后 icon" pre-icon="Search" suf-icon="Menu" />
-
-    <vi-input v-model="val11" placeholder="自定义前后 icon（对象式）" 
-      :pre-icon="{ name: 'Apple', size: '16px', hoverColor: 'var(--vi-color-primary)' }" 
-      :suf-icon="{ name: 'Windows', size: '16px', hoverColor: 'var(--vi-color-primary)' }"  
+    <vi-flex direction="column" gap="18px">
+    <vi-input 
+      v-model="val10" 
+      placeholder="自定义前后 icon" 
+      prefix-icon="Search" 
+      suffix-icon="Menu" 
     />
-    
-    <vi-input v-model="val12" placeholder="自定义前后 icon (插槽模式)">
+    <vi-input 
+      v-model="val11" placeholder="自定义前后 icon（对象式）" 
+      :prefix-icon="{ name: 'Apple', size: '16px', hoverColor: 'var(--vi-color-primary)' }" 
+      :suffix-icon="{ name: 'Windows', size: '16px', hoverColor: 'var(--vi-color-primary)' }"  
+    />
+    <vi-input v-model="val12" placeholder="自定义前后 icon (插槽式)">
       <template #prefix>
         <vi-icon name="Plus" size="16px" color="var(--vi-color-primary)" />
       </template>
-      <template #suffix>suffix</template>
+      <template #suffix>suffix but not Icon</template>
     </vi-input>
   </vi-flex>
 </template>
@@ -237,8 +248,8 @@ const val13 = ref('')
 | rows | `type="textarea"` 的高度 | `string` | `'2'` |
 | limit | 限制输入长度 | `string` | —— |
 | show-limit | 显示限制长度 | `boolean` | `false` |
-| pre-icon | 头部图标 | `vi-icon` / `string` | —— |
-| suf-icon | 尾部图标 | `vi-icon` / `string` | —— |
+| prefix-icon | 头部图标 | `vi-icon` / `string` | —— |
+| suffix-icon | 尾部图标 | `vi-icon` / `string` | —— |
 
 ### 插槽
 
