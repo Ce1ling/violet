@@ -2,7 +2,7 @@
 import { ref, nextTick, computed, onMounted, Transition } from 'vue'
 import { Icon as ViIcon } from '../index'
 import { useTimeout } from '../../hooks/useTimeout'
-import { getAnimationDurationByVariable } from '../../utils/dom/animation'
+import { getADByVar } from '../../utils/dom/animation'
 
 import type { Options } from './types'
 
@@ -41,7 +41,7 @@ const iconMap = {
   danger: 'CloseCircle'
 }
 /** 'ad' 是 'animation duration' 缩写 */
-const ad = getAnimationDurationByVariable(document.body, '--vi-animation-duration', 1000)
+const ad = getADByVar(document.body, '--vi-animation-duration', 1000)
 
 const getClasses = computed(() => `vi-toast--${props.type}`)
 const getStyles = computed(() => ({

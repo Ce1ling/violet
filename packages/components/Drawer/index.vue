@@ -6,7 +6,7 @@ import {
 } from '../index'
 import { useScrollVisible } from '../../hooks/useScrollVisible'
 import { useTimeout } from '../../hooks/useTimeout'
-import { getAnimationDurationByVariable } from '../../utils/dom/animation'
+import { getADByVar } from '../../utils/dom/animation'
 
 interface Props {
   modelValue: boolean
@@ -47,7 +47,7 @@ const getStyles = computed(() => ({
   zIndex: props.zIndex
 }))
 const animationDuration = computed(() => {
-  return getAnimationDurationByVariable(document.body, '--vi-animation-duration', 1000)
+  return getADByVar(document.body, '--vi-animation-duration', 1000)
 })
 
 /** 通过方位获取 "宽度" 或 "高度" */

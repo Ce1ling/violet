@@ -7,7 +7,7 @@ import {
 import { useMovable } from '../../hooks/useMovable'
 import { useTimeout } from '../../hooks/useTimeout'
 import { useScrollVisible } from '../../hooks/useScrollVisible'
-import { getAnimationDurationByVariable } from '../../utils/dom/animation'
+import { getADByVar } from '../../utils/dom/animation'
 
 interface Props {
   modelValue: boolean
@@ -53,7 +53,7 @@ const getClasses = computed(() => ({
   'is-movable': props.movable
 }))
 const animationDuration = computed(() => {
-  return getAnimationDurationByVariable(document.body, '--vi-animation-duration', 1000)
+  return getADByVar(document.body, '--vi-animation-duration', 1000)
 })
 
 const handleClose = () => emit('update:modelValue', false)
