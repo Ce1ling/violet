@@ -17,7 +17,12 @@ const props = withDefaults(defineProps<Props>(), {
 const slots = useSlots()
 const emit = defineEmits<Emits>()
 
-const getGap = computed(() => !props.isButton ? props.gap : '0')
+const getClasses = computed(() => ({
+  'is-button': props.isButton
+}))
+const getStyles = computed(() => ({
+  gap: !props.isButton ? props.gap : '0'
+}))
 
 const RenderSlots = () => slots.default && slots.default().map(v => h(v, { 
   modelValue: props.modelValue,
@@ -28,7 +33,7 @@ const RenderSlots = () => slots.default && slots.default().map(v => h(v, {
 </script>
 
 <template>
-  <div class="vi-radio-btn" :class="{ 'is-button': props.isButton }">
+  <div class="vi-radio-btn" :class="getClasses" :style="getStyles">
     <RenderSlots />
   </div>
 </template>
@@ -36,7 +41,6 @@ const RenderSlots = () => slots.default && slots.default().map(v => h(v, {
 <style lang="scss">
 .vi-radio-btn {
   display: inline-flex;
-  gap: v-bind(getGap);
 
   &.is-button .vi-radio {
     &:first-child {
