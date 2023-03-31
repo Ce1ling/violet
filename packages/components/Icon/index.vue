@@ -3,7 +3,8 @@ import { computed } from "vue"
 import { Icon as Iconify } from '@iconify/vue'
 import { iconMaps } from './iconMaps'
 
-type Props = {
+
+interface Props {
   name: string
   size?: string
   color?: string
@@ -20,40 +21,46 @@ const props = withDefaults(defineProps<Props>(), {
   duration: 2
 })
 
-const getHoverColor = computed(() => props.hoverColor ? props.hoverColor : props.color)
 const iconName = computed(() => iconMaps[props.name])
-const loadingDuration = computed(() => props.duration + 's')
+const getClasses = computed(() => ({ 'is-loading': props.loading }))
+const getStyles = computed(() => ({
+  width: props.size,
+  height: props.size,
+  cursor: props.cursor,
+  '--vi-icon-color': props.color,
+  '--vi-icon-hover-color': props.hoverColor ? props.hoverColor : props.color,
+  '--vi-icon-loading-duration': props.duration + 's'
+}))
+
 </script>
 
 <template>
   <i class="vi-icon">
     <Iconify 
       class="vi-icon__svg" 
-      :class="{ 'vi-icon-loading': loading }" 
+      :class="getClasses" 
+      :style="getStyles"
       :icon="iconName" 
     />
   </i>
 </template>
 
 <style lang='scss'>
-@keyframes vi-icon-rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
 .vi-icon {
   display: block;
   font-style: normal;
   &__svg {
     fill: currentColor;
-    color: v-bind(color);
-    width: v-bind(size);
-    height: v-bind(size);
-    cursor: v-bind(cursor);
-    &:hover { color: v-bind(getHoverColor); }
+    color: var(--vi-icon-color);
+    &:hover { color: var(--vi-icon-hover-color); }
   }
-  &-loading {
-    animation: vi-icon-rotate v-bind(loadingDuration) infinite linear;
+  .is-loading {
+    animation: vi-icon-rotate var(--vi-icon-loading-duration) infinite linear;
   }
+}
+
+@keyframes vi-icon-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 </style>

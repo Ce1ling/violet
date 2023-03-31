@@ -44,4 +44,9 @@
 
   /** vi-dialog */
   --vi-dialog-shadow: 0 0 18px rgba(0, 0, 0, 0.2);
+
+  /** vi-icon */
+  --vi-icon-color: 'inherit';
+  --vi-icon-hover-color: var(--vi-icon-color);
+  --vi-icon-loading-duration: 2s;
 }
