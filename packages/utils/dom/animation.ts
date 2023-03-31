@@ -1,6 +1,6 @@
 import { computed } from 'vue'
 
-interface AnimationDuration {
+interface GetADByVar {
   (target: HTMLElement, variable: string, unit?: number): number
 }
 
@@ -11,7 +11,7 @@ interface AnimationDuration {
  * @param {Number} unit 可选。将结果与此参数做"乘法"，以便移动小数点获得各种单位
  * @return {Number} 返回结果
  */
-export const getAnimationDurationByVariable: AnimationDuration = (target, variable, unit) => computed(() => {
+export const getADByVar: GetADByVar = (target, variable, unit) => computed(() => {
   const d = window.getComputedStyle(target).getPropertyValue(variable)
   const r = window.parseFloat(d)
   return unit ? r * unit : r
