@@ -13,7 +13,7 @@ interface Props {
   gap?: string
   min?: number
   max?: number
-  isBtn?: boolean
+  isButton?: boolean
   border?: boolean
 }
 interface Emits extends CheckboxEmits {}
@@ -21,7 +21,7 @@ const props = withDefaults(defineProps<Props>(), {
   gap: '18px',
   min: 0,
   max: Infinity,
-  isBtn: false,
+  isButton: false,
   border: false
 })
 const slots = useSlots()
@@ -29,10 +29,10 @@ const slots = useSlots()
 const emit = defineEmits<Emits>()
 
 const getClasses = computed(() => ({ 
-  'is-button': props.isBtn 
+  'is-button': props.isButton 
 }))
 const getStyles = computed(() => ({
-  gap: !props.isBtn ? props.gap : '0'
+  gap: !props.isButton ? props.gap : '0'
 }))
 
 /**
@@ -43,7 +43,7 @@ const getStyles = computed(() => ({
 const hRender = (vNode: VNode, disable?: boolean) => h(vNode, { 
   disabled: disable || (vNode.props as CheckboxProps).disabled,
   modelValue: props.modelValue,
-  isBtn: props.isBtn,
+  isBtn: props.isButton,
   border: props.border,
   'onUpdate:modelValue': (val: ModelValue) => emit('update:modelValue', val)
 })
