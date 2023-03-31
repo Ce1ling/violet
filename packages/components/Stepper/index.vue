@@ -28,7 +28,7 @@ const emit = defineEmits<Emits>()
 const decrementEl = ref<HTMLDivElement>()
 const inputWidth = ref<string>('0px')
 
-const classObj = computed(() => ({ 'is-disabled': props.disabled }))
+const getClasses = computed(() => ({ 'is-disabled': props.disabled }))
 const iconClass = computed(() => props.position === 'normal' || `is-${props.position}`)
 const incrementClass = computed(() => ({ 'is-disabled': props.modelValue >= props.max }))
 const decrementClass = computed(() => ({ 'is-disabled': props.modelValue <= props.min }))
@@ -36,6 +36,9 @@ const getIconSize = computed(() => props.iconSize
   ? props.iconSize 
   : props.position === 'normal' ? '18px' : '12px'
 )
+const getInputStyles = computed(() => ({
+  width: `calc(100% - ${inputWidth.value})`
+}))
 
 const updateModelValue = (n: number) => {
   if ((n > props.max) || (n < props.min)) {
@@ -55,21 +58,24 @@ const calcStep = (action: Action) => {
     ? props.modelValue + props.step 
     : props.modelValue - props.step)
 }
+const getInputWidth = async () => {
+  // normal 无需获取宽度
+  if (props.position = 'normal') { return }
+  await nextTick()
+  inputWidth.value = decrementEl.value?.offsetWidth + 'px'
+}
 
 watch(() => props.modelValue, val => updateModelValue(val))
 
-onMounted(async () => {
+onMounted(() => {
   updateModelValue(props.modelValue)
-
-  if (props.position === 'normal') { return }
-  await nextTick()
-  inputWidth.value = decrementEl.value?.offsetWidth + 'px'
+  getInputWidth()
 })
 
 </script>
 
 <template>
-  <div class="vi-stepper" :class="[iconClass, classObj]">
+  <div class="vi-stepper" :class="[iconClass, getClasses]">
     <div 
       ref="decrementEl" 
       class="vi-stepper__decrement" 
@@ -89,6 +95,7 @@ onMounted(async () => {
       title=""
       :value="modelValue.toFixed(toFixed)" 
       :disabled="disabled" 
+      :style="getInputStyles"
       @input="handleInputBlur"
       @blur="handleInputBlur" 
       v-bind="$attrs"
@@ -134,7 +141,6 @@ onMounted(async () => {
     }
   }
   &__input {
-    width: calc(100% - v-bind(inputWidth));
     height: 100%;
     padding: 6px 0;
     border-radius: var(--vi-base-radius);
