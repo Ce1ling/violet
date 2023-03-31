@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, watch, h, useSlots } from 'vue'
+import { computed, ref, watch, h, useSlots, nextTick } from 'vue'
 import { Icon as ViIcon } from '../index'
 
 type Icon = typeof ViIcon | string
@@ -34,13 +34,14 @@ const viInputEl = ref<HTMLInputElement>()
 const isShowClear = ref(false)
 const isShowPwd = ref(false)
 const isPwdInput = ref(props.type === 'password')
+const lineHeight = ref('')
 
-const classObj = computed(() => ({ 
+const getClasses = computed(() => ({ 
   'is-disabled': props.disabled,
   'vi-input-textarea': props.type === 'textarea',
   'vi-input-group': slots.prepend || slots.append
 }))
-const getLineHeight = computed(() => `${viInputEl.value!.offsetHeight - 1}px`)
+const getMixedStyles = computed(() => ({ lineHeight: lineHeight.value }))
 
 const handleInput = ({ target }: Event) => {
   emit('update:modelValue', (target as HTMLInputElement).value)
@@ -55,27 +56,29 @@ const toggleShowPwd = () => {
   isPwdInput.value = !isPwdInput.value
   el.focus()
 }
+const getIconAttrs = (type: Icon) => typeof type === 'string' 
+  ? { name: type, size: 'inherit' }
+  : type
 const RenderLimit = () => h('span', {
   class: [
     `vi-input__limit-${props.type === 'textarea' ? props.type : 'input'}`, 
     { 'is-max': props.modelValue.length >= Number(props.limit) }
   ],
 }, `${props.modelValue.length} / ${props.limit}`)
-const getIconAttrs = (type: Icon) => {
-  return typeof type === 'string' 
-    ? { name: type, size: 'inherit' }
-    : type
-}
 
 watch(() => props.modelValue, val => {
   if (props.clearable) { isShowClear.value = !!val }
   if (props.showPwd) { isShowPwd.value = !!val }
 })
 
+nextTick(() => {
+  lineHeight.value = `${viInputEl.value!.offsetHeight - 1}px`
+})
+
 </script>
 
 <template>
-  <div class="vi-input" :class="classObj">
+  <div class="vi-input" :class="getClasses">
     <template v-if="type === 'textarea'">
       <textarea 
         ref="viInputEl" 
@@ -91,7 +94,7 @@ watch(() => props.modelValue, val => {
       <render-limit v-if="limit.trim() && showLimit" />
     </template>
     <template v-else>
-      <div class="vi-input__prepend" v-if="$slots.prepend">
+      <div class="vi-input__prepend" :style="getMixedStyles" v-if="$slots.prepend">
         <slot name="prepend" />
       </div>
       <span class="vi-input__prefix-icon" v-if="$slots.prefix || preIcon">
@@ -134,7 +137,7 @@ watch(() => props.modelValue, val => {
         v-if="props.type === 'password' && isShowPwd" 
       />
       <render-limit v-if="limit.trim() && showLimit" />
-      <div class="vi-input__append" v-if="$slots.append">
+      <div class="vi-input__append" :style="getMixedStyles" v-if="$slots.append">
         <slot name="append" />
       </div>
     </template>
@@ -146,7 +149,7 @@ watch(() => props.modelValue, val => {
   width: 100%;
   border: 1px solid var(--vi-color-info);
   border-radius: var(--vi-base-radius);
-  transition: all .3s;
+  transition: all var(--vi-animation-duration);
   display: flex;
   overflow: hidden;
   position: relative;
@@ -205,7 +208,6 @@ watch(() => props.modelValue, val => {
     }
     &-input {
       flex-shrink: 0;
-      margin-right: 8px;
     }
   }
   &__prefix-icon,
@@ -223,8 +225,7 @@ watch(() => props.modelValue, val => {
     border-width: 0;
     border-style: solid;
     border-color: var(--vi-color-info);
-    transition: all .3s;
-    line-height: v-bind(getLineHeight);
+    transition: all var(--vi-animation-duration);
   }
   &__prepend {
     border-right-width: 1px;
