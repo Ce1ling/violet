@@ -2,6 +2,7 @@
 import { ref, nextTick, computed, onMounted, Transition } from 'vue'
 import { Icon as ViIcon } from '../index'
 import { useTimeout } from '../../hooks/useTimeout'
+import { getAnimationDurationByVariable } from '../../utils/dom/animation'
 
 import type { Options } from './types'
 
@@ -13,6 +14,7 @@ interface Props {
   closable?: boolean
   isHtmlStr?: boolean
   prefix?: string
+  zIndex?: number
   /** private props */
   _id: string
   close: (id: string) => void
@@ -22,7 +24,8 @@ const props = withDefaults(defineProps<Props>(), {
   duration: 3000,
   closable: false,
   isHtmlStr: false,
-  prefix: ''
+  prefix: '',
+  zIndex: new Date().getFullYear()
 })
 
 const visible = ref<boolean>(false)
@@ -37,18 +40,21 @@ const iconMap = {
   warning: 'WarningCircle',
   danger: 'CloseCircle'
 }
+/** 'ad' 是 'animation duration' 缩写 */
+const ad = getAnimationDurationByVariable(document.body, '--vi-animation-duration', 1000)
 
-const classType = computed(() => `vi-toast--${props.type}`)
-const getZIndex = computed(() => {
-  return new Date().getFullYear()
-})
+const getClasses = computed(() => `vi-toast--${props.type}`)
+const getStyles = computed(() => ({
+  top: offset.value,
+  zIndex: props.zIndex
+}))
 
 const setOffset = (value: number) => {
   offset.value = value + 'px'
 }
 const handleClose = () => {
   visible.value = false
-  useTimeout(() => document.body.removeChild(toastEl.value!), 300)
+  useTimeout(() => document.body.removeChild(toastEl.value!), ad)
   props.close(props._id)
 }
 
@@ -72,7 +78,7 @@ onMounted(() => {
 
 <template>
   <Transition name="vi-toast-fade">
-    <div ref="toastEl" class="vi-toast" :class="classType" v-show="visible">
+    <div ref="toastEl" class="vi-toast" :class="getClasses" :style="getStyles" v-show="visible">
       <vi-icon :name="prefix ? prefix : iconMap[type]" />
       <span v-if="isHtmlStr" v-html="content"></span>
       <span v-else>{{ content }}</span>
@@ -82,29 +88,10 @@ onMounted(() => {
 </template>
 
 <style lang="scss">
-@keyframes vi-toast-zoom-in {
-  from {
-    transform: translate(-50%, -100%) scale(0.5);
-    opacity: 0;
-  }
-  to {
-    transform: translate(-50%, 0%) scale(1);
-    opacity: 1;
-  }
-}
-.vi-toast-fade-enter-active {
-  animation: vi-toast-zoom-in var(--vi-animation-duration) ease;
-}
-.vi-toast-fade-leave-active {
-  animation: vi-toast-zoom-in var(--vi-animation-duration) ease reverse;
-}
-
 .vi-toast {
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
-  top: v-bind(offset);
-  z-index: v-bind(getZIndex);
   padding: 8px 28px;
   border-radius: var(--vi-base-radius);
   border: 1px solid var(--vi-color-shadow);
@@ -137,6 +124,26 @@ onMounted(() => {
     background-color: var(--vi-color-danger-weak);
     color: var(--vi-color-danger);
     box-shadow: 2px 2px 8px 0 var(--vi-color-danger-weak);
+  }
+}
+
+@keyframes vi-toast-zoom-in {
+  from {
+    transform: translate(-50%, -100%) scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 0%) scale(1);
+    opacity: 1;
+  }
+}
+
+.vi-toast-fade {
+  &-enter-active {
+    animation: vi-toast-zoom-in var(--vi-animation-duration) ease;
+  }
+  &-leave-active {
+    animation: vi-toast-zoom-in var(--vi-animation-duration) ease reverse;
   }
 }
 </style>
