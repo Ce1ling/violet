@@ -12,8 +12,8 @@ interface Props {
   rows?: string
   limit?: string
   showLimit?: boolean
-  preIcon?: Icon
-  sufIcon?: Icon
+  prefixIcon?: Icon
+  suffixIcon?: Icon
 }
 const props = withDefaults(defineProps<Props>(), {
   type: 'text',
@@ -97,8 +97,8 @@ nextTick(() => {
       <div class="vi-input__prepend" :style="getMixedStyles" v-if="$slots.prepend">
         <slot name="prepend" />
       </div>
-      <span class="vi-input__prefix-icon" v-if="$slots.prefix || preIcon">
-        <vi-icon v-bind="getIconAttrs(preIcon)" v-if="preIcon" />
+      <span class="vi-input__prefix-icon" v-if="$slots.prefix || prefixIcon">
+        <vi-icon v-bind="getIconAttrs(prefixIcon)" v-if="prefixIcon" />
         <slot name="prefix" v-else />
       </span>
       <input 
@@ -112,8 +112,8 @@ nextTick(() => {
         @input="handleInput" 
         v-bind="$attrs"
       />
-      <span class="vi-input__suffix-icon" v-if="$slots.suffix || sufIcon">
-        <vi-icon v-bind="getIconAttrs(sufIcon)" v-if="sufIcon" />
+      <span class="vi-input__suffix-icon" v-if="$slots.suffix || suffixIcon">
+        <vi-icon v-bind="getIconAttrs(suffixIcon)" v-if="suffixIcon" />
         <slot name="suffix" v-else />
       </span>
       <vi-icon 
