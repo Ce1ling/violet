@@ -111,7 +111,8 @@ const val3 = ref('1')
 
 ::: tip
 
-使用了 `vi-radio-group`后，直接将 `v-model` 给 `vi-radio-group` 绑定即可，无需给每个 `vi-radio` 绑定。
+**强烈建议**您使用 `vi-radio-group`，因为它可以更好的组织结构。  
+使用了 `vi-radio-group` 后，可直接将 `v-model` 绑定在 `vi-radio-group` 上，无需绑定给每个 `vi-radio`。
 
 :::
 
@@ -152,7 +153,13 @@ const val4 = ref('1')
 
 ::: warning
 
-注意：如果使用了按钮类型，`border` 属性将无效，因为按钮类型自带边框，您无需它。
+**注意**：如果使用了按钮类型，`border` 属性将无效，因为按钮类型自带边框，您无需它。
+
+:::
+
+::: danger
+
+**警告**：在单独使用 `vi-radio` 时(没有被 `vi-radio-group` 包裹的情况下)，请勿单独在 `vi-radio` 上添加 `is-btn` 属性，否则会导致 UI 错乱！
 
 :::
 

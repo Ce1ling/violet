@@ -131,7 +131,8 @@ const val12 = ref(false)
 
 ::: tip
 
-使用了 `vi-checkbox-group`后，直接将 `v-model` 给 `vi-checkbox-group` 绑定即可，无需给每个 `vi-checkbox` 绑定。
+**强烈建议**您使用 `vi-radio-group`，因为它可以更好的组织结构。  
+使用了 `vi-checkbox-group`后，可直接将 `v-model` 绑定在 `vi-checkbox-group` 上，无需绑定给每个 `vi-checkbox`。
 
 :::
 
@@ -172,7 +173,13 @@ const val14 = ref(['AK-47'])
 
 ::: warning
 
-注意：如果使用了按钮类型，border 属性将无效，因为按钮类型自带边框，您无需它。
+**注意**：如果使用了按钮类型，`border` 属性将无效，因为按钮类型自带边框，您无需它。
+
+:::
+
+::: danger
+
+**警告**：在单独使用 `vi-checkbox` 时(没有被 `vi-checkbox-group` 包裹的情况下)，请勿单独在 `vi-checkbox` 上添加 `is-btn` 属性，否则会导致 UI 错乱！
 
 :::
 

@@ -29,11 +29,21 @@
       <vi-button type="danger" round> 危险按钮 </vi-button>
     </vi-row>
     <vi-row>
-      <vi-button circle> <vi-icon name="Home" /> </vi-button>
-      <vi-button type="success" circle> <vi-icon name="Check" /> </vi-button>
-      <vi-button type="info" circle> <vi-icon name="Link" /> </vi-button>
-      <vi-button type="warning" circle> <vi-icon name="WarningCircle" /> </vi-button>
-      <vi-button type="danger" circle> <vi-icon name="Delete" /> </vi-button>
+      <vi-button circle>
+        <vi-icon name="Home" size="18px" />
+      </vi-button>
+      <vi-button type="success" circle>
+        <vi-icon name="Check" size="18px" />
+      </vi-button>
+      <vi-button type="info" circle>
+        <vi-icon name="Link" size="18px" />
+      </vi-button>
+      <vi-button type="warning" circle>
+        <vi-icon name="WarningCircle" size="18px" />
+      </vi-button>
+      <vi-button type="danger" circle>
+        <vi-icon name="Delete" size="18px" />
+      </vi-button>
     </vi-row>
   </vi-flex>
 </div>
@@ -48,7 +58,6 @@
       <vi-button type="warning"> 警告按钮 </vi-button>
       <vi-button type="danger"> 危险按钮 </vi-button>
     </vi-row>
-
     <vi-row>
       <vi-button round> 主要按钮 </vi-button>
       <vi-button type="success" round> 成功按钮 </vi-button>
@@ -56,13 +65,22 @@
       <vi-button type="warning" round> 警告按钮 </vi-button>
       <vi-button type="danger" round> 危险按钮 </vi-button>
     </vi-row>
-
     <vi-row>
-      <vi-button circle> <vi-icon name="Home" /> </vi-button>
-      <vi-button type="success" circle> <vi-icon name="Check" /> </vi-button>
-      <vi-button type="info" circle> <vi-icon name="Link" /> </vi-button>
-      <vi-button type="warning" circle> <vi-icon name="WarningCircle" /> </vi-button>
-      <vi-button type="danger" circle> <vi-icon name="Delete" /> </vi-button>
+      <vi-button circle>
+        <vi-icon name="Home" size="18px" />
+      </vi-button>
+      <vi-button type="success" circle>
+        <vi-icon name="Check" size="18px" />
+      </vi-button>
+      <vi-button type="info" circle>
+        <vi-icon name="Link" size="18px" />
+      </vi-button>
+      <vi-button type="warning" circle>
+        <vi-icon name="WarningCircle" size="18px" />
+      </vi-button>
+      <vi-button type="danger" circle>
+        <vi-icon name="Delete" size="18px" />
+      </vi-button>
     </vi-row>
   </vi-flex>
 </template>
@@ -75,8 +93,8 @@
 ::: warning
 
 注意：
-  1. 如果您使用了“自定义图标”，那么 Violet 将认为您需要自定义加载时图标动画，若您不需要自定义，您可以在“自定义图标”上加上 `loading` 属性。
-  2. 如果您使用了 `suffix` 插槽，请将 `vi-button` 的 `prefix` 属性设置为 `false` (如 加载状态4 所示)，否则您将得到左右两个图标。
+1. 如果您使用了“自定义图标”，那么 Violet 将认为您需要自定义加载时图标动画，若您不需要自定义，您可以在“自定义图标”上加上 `loading` 属性。
+2. 如果您使用了 `suffix` 插槽，请将 `vi-button` 的 `prefix` 属性设置为 `false` (如 加载状态4 所示)，否则您将得到左右两个图标。
 
 :::
 
@@ -184,34 +202,17 @@
 
 <div class="examples">
   <vi-row>
-    <vi-button>
+    <vi-button type="success">
       <template #prefix> 
-        <vi-icon name="Plus" />
+        <vi-icon name="Plus" size="24px" />
       </template>
-      加
-    </vi-button>
-    <vi-button>
-      <template #suffix> 
-        <vi-icon name="Minus" />
-      </template>
-      减
-    </vi-button>
-    <vi-button type="warning">
-      <template #prefix> 
-        <vi-icon name="Apple" />
-      </template>
-      <template #suffix> 
-        <vi-icon name="Android" />
-      </template>
+      <span>加</span>
     </vi-button>
     <vi-button type="danger">
-      <template #prefix> 
-        <vi-icon name="Windows" />
-      </template>
-      <vi-icon name="Mac" />
       <template #suffix> 
-        <vi-icon name="Linux" />
+        <vi-icon name="Minus" size="24px" />
       </template>
+      <span>减</span>
     </vi-button>
   </vi-row>
 </div>
@@ -219,37 +220,17 @@
 ```vue
 <template>
   <vi-row>
-    <vi-button>
+    <vi-button type="success">
       <template #prefix> 
-        <vi-icon name="Plus" />
+        <vi-icon name="Plus" size="24px" />
       </template>
-      加
+      <span>加</span>
     </vi-button>
-
-    <vi-button>
-      <template #suffix> 
-        <vi-icon name="Minus" />
-      </template>
-      减
-    </vi-button>
-
-    <vi-button type="warning">
-      <template #prefix> 
-        <vi-icon name="Apple" />
-      </template>
-      <template #suffix> 
-        <vi-icon name="Android" />
-      </template>
-    </vi-button>
-
     <vi-button type="danger">
-      <template #prefix> 
-        <vi-icon name="Windows" />
-      </template>
-      <vi-icon name="Mac" />
       <template #suffix> 
-        <vi-icon name="Linux" />
+        <vi-icon name="Minus" size="24px" />
       </template>
+      <span>减</span>
     </vi-button>
   </vi-row>
 </template>
@@ -261,7 +242,7 @@
 
 ::: tip
 
-按钮的 `active` 和 `hover` 状态 Violet 将会为您自动计算。
+不必担心，`Button` 的 `active` 和 `hover` 状态 Violet 将会自动为您计算。
 
 :::
 

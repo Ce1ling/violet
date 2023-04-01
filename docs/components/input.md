@@ -22,7 +22,7 @@ const val13 = ref('')
 
 ## 基础用法
 
-通过 `v-model` 指令，绑定其 `value` 值。
+通过 `v-model` 指令，绑定 `value` 值。
 
 <div class="examples">
   <vi-input v-model="val1" placeholder="基础 Input" />
@@ -41,7 +41,7 @@ const val1 = ref('')
 
 ## 禁用状态
 
-通过 `disabled` 属性，来禁用 input。
+使用 `disabled` 属性，来禁用 input。
 
 <div class="examples">
   <vi-input v-model="val2" placeholder="禁用 Input" disabled />
@@ -60,7 +60,7 @@ const val2 = ref('')
 
 ## 可清空
 
-通过 `clearable` 属性，启用清空按钮，在有输入内容时，它就会显示。
+使用 `clearable` 属性，启用清空按钮，在有输入内容时，它就会显示。
 
 <div class="examples">
   <vi-input v-model="val3" placeholder="可清空 Input" clearable />
@@ -79,7 +79,7 @@ const val3 = ref('')
 
 ## 显示密码
 
-通过 `show-pwd` 属性，启用切换显示密码框，前提是：此输入框必须是密码框。
+使用 `show-pwd` 属性，启用切换显示密码框，前提是：此输入框必须是密码框。
 
 <div class="examples">
   <vi-input v-model="val4" type="password" placeholder="显示密码" show-pwd />
@@ -98,7 +98,7 @@ const val4 = ref('')
 
 ## 限制输入
 
-通过 `limit` 属性，来限制输入内容长度。你也可以通过 `show-limit`，来展示限制数。分隔符您也可以自定义，它默认是 `' / '`。
+使用 `limit` 属性，来限制输入内容长度。你也可以通过 `show-limit`，来展示限制数。分隔符您也可以自定义，它默认是 `' / '`。
 
 <div class="examples">
   <vi-flex direction="column" gap="18px">
@@ -129,6 +129,12 @@ const val13 = ref('')
 
 将 `type` 属性设置为 `textarea`，启用文本域。你可以使用 `rows` 属性来控制高度，同时，文本域也支持限制输入。
 
+::: tip
+
+虽然 `textarea` 支持限制输入，但不代表它也支持 `input` 的其他功能。如：清空按钮、插槽等。
+
+:::
+
 <div class="examples">
   <vi-flex direction="column" gap="18px">
     <vi-input v-model="val7" type="textarea" placeholder="文本域" />
@@ -154,7 +160,7 @@ const val9 = ref('')
 </script>
 ```
 
-## 自定义 Icon
+## 自定义图标
 
 通过 `prefix-icon`、`suffix-icon` 属性，定义前后 `Icon`，它会使用 Violet 所提供的 `Icon`。如果你想对 `Icon` 做出一些设置，可以使用对象形式。对于更复杂的设置（或想自定义的不是 `Icon`），你可以使用 “插槽式”，我们提供了 `prefix`、`suffix` 插槽。
 
