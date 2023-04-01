@@ -14,12 +14,16 @@ const show9 = ref(false)
 const show10 = ref(false)
 const show11 = ref(false)
 const show12 = ref(false)
+const show13 = ref(false)
 
 const open = () => {
   console.log('dialog open')
 }
 const close = () => {
   console.log('dialog close')
+}
+const beforeClose = (close: () => void) => {
+  console.log('before close 阻止了关闭')
 }
 </script>
 
@@ -402,6 +406,52 @@ const show12 = ref(false)
 </script>
 ```
 
+## 阻止关闭
+
+使用 `before-close` 属性，并绑定一个函数，则可阻止关闭。在关闭前会调用此函数，如果您不在此函数内手动关闭，则不会关闭。
+
+::: tip
+
+`before-close` 绑定的函数会接收一个参数，此参数是一个关闭函数，通过调用此函数手动关闭。
+
+:::
+
+::: warning
+
+注意！虽然添加 `before-close` 之后会在关闭前阻止关闭，但如果是通过直接修改 `v-model` 绑定值关闭的话，则不受此属性影响。
+
+:::
+
+<div class="examples">
+  <vi-button @click="show13 = true">打开</vi-button>
+  <vi-dialog v-model="show13" width="30%" title="阻止关闭" :before-close="beforeClose">
+    <span>试着点击右上角 "关闭按钮" 与 "遮罩层"。他们都无法关闭此 Dialog，但下方按钮可以。</span>
+    <template #footer>
+      <vi-button @click="show13 = false">修改 v-model 关闭</vi-button>
+    </template>
+  </vi-dialog>
+</div>
+
+```vue
+<template>
+  <vi-button @click="show13 = true">打开</vi-button>
+  <vi-dialog v-model="show13" width="30%" title="阻止关闭" :before-close="beforeClose">
+    <span>试着点击右上角 "关闭按钮" 与 "遮罩层"。他们都无法关闭此 Dialog，但下方按钮可以。</span>
+    <template #footer>
+      <vi-button @click="show13 = false">修改 v-model 关闭</vi-button>
+    </template>
+  </vi-dialog>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+const show13 = ref(false)
+const beforeClose = (close: () => void) => {
+  console.log('before close 阻止了关闭', close)
+}
+</script>
+```
+
 ## APIs
 
 ### 属性
@@ -422,6 +472,7 @@ const show12 = ref(false)
 | lock-scroll | 是否锁定滚动条 | `boolean` | `true` |
 | click-mask-close | 是否可点击遮罩层关闭 | `boolean` | `true` |
 | destroy | 是否在关闭时销毁节点 | `boolean` | `false` |
+| before-close | 关闭前回调，可以阻止关闭。通过调用 `close` 参数函数手动关闭。 | `(close: () => void) => void` | `false` |
 
 ### 事件
 

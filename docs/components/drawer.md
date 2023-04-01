@@ -6,7 +6,12 @@ const show2 = ref(false)
 const show3 = ref(false)
 const show4 = ref(false)
 const show5 = ref(false)
+const show6 = ref(false)
 const direction = ref('l-r')
+
+const beforeClose = (close: () => void) => {
+ console.log('before close 阻止了关闭', close)
+}
 </script>
 
 # Drawer 抽屉
@@ -176,6 +181,52 @@ const show5 = ref(false)
 
 与 `Dialog` 重复的属性不再做重复展示。如：`lock-scroll`、`click-mask-close`、`z-index`、`mask` 等。
 
+## 阻止关闭
+
+使用 `before-close` 属性，并绑定一个函数，则可阻止关闭。在关闭前会调用此函数，如果您不在此函数内手动关闭，则不会关闭。
+
+::: tip
+
+`before-close` 绑定的函数会接收一个参数，此参数是一个关闭函数，通过调用此函数手动关闭。
+
+:::
+
+::: warning
+
+注意！虽然添加 `before-close` 之后会在关闭前阻止关闭，但如果是通过直接修改 `v-model` 绑定值关闭的话，则不受此属性影响。
+
+:::
+
+<div class="examples">
+  <vi-button @click="show6 = true">打开</vi-button>
+  <vi-drawer v-model="show6" title="阻止关闭" :before-close="beforeClose">
+    <span>试着点击右上角 "关闭按钮" 与 "遮罩层"。他们都无法关闭此 Drawer，但下方按钮可以。</span>
+    <template #footer>
+      <vi-button @click="show6 = false">修改 v-model 关闭</vi-button>
+    </template>
+  </vi-drawer>
+</div>
+
+```vue
+<template>
+  <vi-button @click="show6 = true">打开</vi-button>
+  <vi-drawer v-model="show6" title="阻止关闭" :before-close="beforeClose">
+    <span>试着点击右上角 "关闭按钮" 与 "遮罩层"。他们都无法关闭此 Drawer，但下方按钮可以。</span>
+    <template #footer>
+      <vi-button @click="show6 = false">修改 v-model 关闭</vi-button>
+    </template>
+  </vi-drawer>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+const show6 = ref(false)
+const beforeClose = (close: () => void) => {
+ console.log('before close 阻止了关闭', close)
+}
+</script>
+```
+
 ## APIs
 
 ### 属性
@@ -193,6 +244,7 @@ const show5 = ref(false)
 | mask | 是否需要遮罩层 | `boolean` | `true` |
 | lock-scroll | 是否锁定滚动条 | `boolean` | `true` |
 | click-mask-close | 是否可点击遮罩层关闭 | `boolean` | `true` |
+| before-close | 关闭前回调，可以阻止关闭。通过调用 `close` 参数函数手动关闭。 | `(close: () => void) => void` | `false` |
 
 ### 事件
 
