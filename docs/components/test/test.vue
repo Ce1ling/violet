@@ -9,14 +9,25 @@ const show5 = ref(false)
 const show6 = ref(false)
 const show7 = ref(false)
 const show8 = ref(false)
-const show9 = ref(false)
-const show10 = ref(false)
+const show = ref(false)
 
 const open = (val: boolean) => {
   console.log('open', val)
 }
 const close = (val: boolean) => {
   console.log('close', val)
+}
+
+const beforeClose = (fn: () => void) => {
+  show.value = true
+  console.log('close fn', fn)
+}
+const cancel = () => {
+  show.value = false
+}
+const confirm = () => {
+  show.value = false
+  show7.value = false
 }
 </script>
 
@@ -52,7 +63,17 @@ const close = (val: boolean) => {
       <vi-button @click="show6 = true">打开嵌套</vi-button>
       <vi-drawer v-model="show6" append-to-body> 内部 </vi-drawer>
     </vi-drawer>
-    <vi-drawer v-model="show7" @open="open" @close="close">打开与关闭事件</vi-drawer>
+    <vi-drawer v-model="show7" title="Events" @open="open" @close="close" :before-close="beforeClose">
+      打开与关闭事件
+      <vi-button @click="show7 = false">直接改变 v-model 绑定值关闭</vi-button>
+      <vi-dialog v-model="show" append-to-body title="确定关闭?" width="30%">
+        Are you sure close the Dialog?
+        <template #footer>
+          <vi-button type="info" @click="cancel">取消</vi-button>
+          <vi-button @click="confirm">确定</vi-button>
+        </template>
+      </vi-dialog>
+    </vi-drawer>
     <vi-drawer v-model="show8" :mask="false">无遮罩层</vi-drawer>
   </div>
 </template>

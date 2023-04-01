@@ -24,6 +24,7 @@ interface Props {
   lockScroll?: boolean
   clickMaskClose?: boolean
   destroy?: boolean
+  beforeClose?: (fn: () => void) => void
 }
 interface Emits {
   (e: 'update:modelValue', val: boolean): void
@@ -56,7 +57,15 @@ const animationDuration = computed(() => {
   return getADByVar(document.body, '--vi-animation-duration', 1000)
 })
 
-const handleClose = () => emit('update:modelValue', false)
+const close = () => emit('update:modelValue', false)
+const handleClose = () => {
+  if (props.beforeClose) {
+    props.beforeClose(close)
+    return
+  }
+
+  close()
+}
 const handleMaskClick = () => {
   if (props.clickMaskClose) { handleClose() }
 }
