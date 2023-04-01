@@ -115,11 +115,7 @@ watch(() => props.modelValue, val => {
                 {{ title }} 
               </span>
               <button class="vi-dialog__header-close-btn" @click="handleClose" v-if="showCloseBtn">
-                <vi-icon 
-                  name="Close" 
-                  size="18px"
-                  hover-color="var(--vi-color-primary)" 
-                />
+                <vi-icon name="Close" size="18px" hover-color="var(--vi-color-primary)" />
               </button>
             </header>
             <section class="vi-dialog__body">
