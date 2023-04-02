@@ -67,30 +67,42 @@ const hasDesc = (arr: string[]) => (arr.map(v => props[v]).filter(v => v)).lengt
 <template>
   <div class="vi-switch">
     <template v-if="!isInside">
-      <vi-icon 
-        :name="offIcon" 
-        :class="getDescClasses(0)" 
-        :style="getDescStyles(0)" 
-        v-if="hasDesc(icons)" 
-      />
-      <div 
-        :class="getDescClasses(0)" 
-        :style="getDescStyles(0)" 
-        v-if="hasDesc(texts)">
-        {{ offText }}
-      </div>
+      <template v-if="$slots.on">
+        <slot name="on" />
+      </template>
+      <template v-else>
+        <vi-icon 
+          :name="offIcon" 
+          :class="getDescClasses(0)" 
+          :style="getDescStyles(0)" 
+          v-if="hasDesc(icons)" 
+        />
+        <div 
+          :class="getDescClasses(0)" 
+          :style="getDescStyles(0)" 
+          v-if="hasDesc(texts)">
+          {{ offText }}
+        </div>
+      </template>
     </template>
     <div class="vi-switch__inner" :class="getClasses" :style="getStyles" @click="toggleChecked">
       <template v-if="isInside">
-        <vi-icon 
-          class="vi-switch__inner-icon" 
-          :class="{ 'is-close': !modelValue }" 
-          :name="modelValue ? onIcon : offIcon" 
-          v-if="onIcon && offIcon" 
-        />
-        <span class="vi-switch__inner-text" :class="{ 'is-close': !modelValue }">
-          {{ modelValue ? onText : offText }}
-        </span>
+        <template v-if="$slots.on || $slots.off">
+          <div class="vi-switch__inner-text" :class="{ 'is-close': !modelValue }">
+            <slot :name="modelValue ? 'on' : 'off'" />
+          </div>
+        </template>
+        <template v-else>
+          <vi-icon 
+            class="vi-switch__inner-icon" 
+            :class="{ 'is-close': !modelValue }" 
+            :name="modelValue ? onIcon : offIcon" 
+            v-if="onIcon && offIcon" 
+          />
+          <span class="vi-switch__inner-text" :class="{ 'is-close': !modelValue }">
+            {{ modelValue ? onText : offText }}
+          </span>
+        </template>
       </template>
       <div class="vi-switch__active" >
         <vi-icon 
@@ -103,18 +115,23 @@ const hasDesc = (arr: string[]) => (arr.map(v => props[v]).filter(v => v)).lengt
       </div>
     </div>
     <template v-if="!isInside">
-      <vi-icon 
-        :name="onIcon" 
-        :class="getDescClasses(1)" 
-        :style="getDescStyles(1)" 
-        v-if="hasDesc(icons)" 
-      />
-      <div 
-        :class="getDescClasses(1)" 
-        :style="getDescStyles(1)" 
-        v-if="hasDesc(texts)">
-        {{ onText }}
-      </div>
+      <template v-if="$slots.off">
+        <slot name="off" />
+      </template>
+      <template v-else>
+        <vi-icon 
+          :name="onIcon" 
+          :class="getDescClasses(1)" 
+          :style="getDescStyles(1)" 
+          v-if="hasDesc(icons)" 
+        />
+        <div 
+          :class="getDescClasses(1)" 
+          :style="getDescStyles(1)" 
+          v-if="hasDesc(texts)">
+          {{ onText }}
+        </div>
+      </template>
     </template>
   </div>
 </template>
