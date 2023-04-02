@@ -264,7 +264,9 @@ const val15 = ref(['AK-47'])
 
 | 属性名 | 属性说明 | 属性类型 | 属性默认值 |
 | :---: | :---: | :---: | :---: |
+| `v-model` | 绑定值 | `string` | —— |
 | gap | 间距 | `string` | `'18px'` |
 | min | 限制最少选中 | `number` | `0` |
 | max | 限制最多选中 | `number` | `Infinity` |
 | is-button | 是否为按钮类型 | `boolean` | `false` |
+| border | 是否需要边框 | `boolean` | `false` |
