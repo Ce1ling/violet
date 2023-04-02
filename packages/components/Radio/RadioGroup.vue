@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed, h, useSlots } from 'vue'
 
-
 interface Props {
   modelValue: string
   isButton?: boolean
+  border?: boolean
   gap?: string
 }
 interface Emits {
@@ -27,6 +27,7 @@ const getStyles = computed(() => ({
 const RenderSlots = () => slots.default && slots.default().map(v => h(v, { 
   modelValue: props.modelValue,
   isBtn: props.isButton,
+  border: props.border,
   'onUpdate:modelValue': (val: string) => emit('update:modelValue', val)
 }))
 

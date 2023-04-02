@@ -10,11 +10,11 @@ import type {
 
 interface Props {
   modelValue: string[]
+  isButton?: boolean
+  border?: boolean
   gap?: string
   min?: number
   max?: number
-  isButton?: boolean
-  border?: boolean
 }
 interface Emits extends CheckboxEmits {}
 const props = withDefaults(defineProps<Props>(), {
