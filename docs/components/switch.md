@@ -10,6 +10,7 @@ const checked6 = ref(true)
 const checked7 = ref(true)
 const checked8 = ref(true)
 const checked9 = ref(true)
+const checked10 = ref(true)
 </script>
 
 # Switch 开关
@@ -116,7 +117,7 @@ const checked6 = ref(true)
 </script>
 ```
 
-## Icon 描述
+## 图标描述
 
 使用 `on-icon`、`off-icon` 属性，来设置图标描述，所有 Violet 内置的图标您都可以使用。
 
@@ -159,6 +160,51 @@ const checked9 = ref(true)
 </script>
 ```
 
+## 自定义内容
+
+使用 `on`、`off` 插槽，来自定义 `on`/`off` 状态内容。
+
+::: tip
+
+如果单纯的文字与图标无法满足您(或是您想使用自定义图标)，您可以使用这两个插槽自定义内容。  
+
+:::
+
+::: warning
+
+**注意**：这两个插槽的优先级非常高，当您使用了这两个插槽后，属性内容都会被覆盖。并且，由于我们无法预知您会在插槽内放置什么内容，所以可能导致我们的默认样式无法达到您想要的效果，此时，需要您手动补充样式代码。
+
+:::
+
+<div class="examples">
+  <vi-switch v-model="checked10" on-icon="Check" off-icon="Close">
+    <template #on> On </template>
+    <template #off> Off </template>
+  </vi-switch>
+  <vi-switch v-model="checked10" on-icon="Check" off-icon="Close" is-inside>
+    <template #on> On </template>
+    <template #off> Off </template>
+  </vi-switch>
+</div>
+
+```vue
+<template>
+  <vi-switch v-model="checked10" on-icon="Check" off-icon="Close">
+    <template #on> On </template>
+    <template #off> Off </template>
+  </vi-switch>
+  <vi-switch v-model="checked10" on-icon="Check" off-icon="Close" is-inside>
+    <template #on> On </template>
+    <template #off> Off </template>
+  </vi-switch>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+const checked10 = ref(true)
+</script>
+```
+
 ## APIs
 
 ### 属性
@@ -175,3 +221,10 @@ const checked9 = ref(true)
 | off-text | 定义“关”状态描述文字 | `string` | —— |
 | on-icon | 定义“开”状态描述图标 | `string` | —— |
 | off-icon | 定义“关”状态描述图标 | `string` | —— |
+
+### 插槽
+
+| 插槽名 | 插槽说明 |
+| :---: | :---: |
+| on | “开” 状态内容 |
+| off | “关” 状态内容 |
