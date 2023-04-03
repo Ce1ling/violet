@@ -13,6 +13,7 @@ interface Props {
   offText?: string
   onIcon?: string
   offIcon?: string
+  width?: string
 }
 interface Emits {
   (e: 'update:modelValue', checked: boolean): void
@@ -40,7 +41,8 @@ const getClasses = computed(() => ({
 const getStyles = computed(() => ({
   '--vi-switch-off-bg-color': props.offColor,
   '--vi-switch-on-bg-color': props.modelValue ? props.onColor : '',
-  '--vi-switch-active-circle-color': props.modelValue ? props.onColor : props.offColor
+  '--vi-switch-active-circle-color': props.modelValue ? props.onColor : props.offColor,
+  width: props.width
 }))
 
 const toggleChecked = () => {
@@ -148,7 +150,6 @@ const hasDesc = (arr: string[]) => (arr.map(v => props[v]).filter(v => v)).lengt
 
   &__inner {
     width: 40px;
-    max-width: 40px;
     height: 20px;
     background-color: var(--vi-switch-off-bg-color);
     cursor: pointer;
@@ -159,7 +160,7 @@ const hasDesc = (arr: string[]) => (arr.map(v => props[v]).filter(v => v)).lengt
     
     &-text {
       width: 1.5em;
-      font-size: 12px;
+      font-size: var(--vi-font-size-small);
       color: #fff;
       user-select: none;
       margin-left: 6px;
@@ -167,17 +168,15 @@ const hasDesc = (arr: string[]) => (arr.map(v => props[v]).filter(v => v)).lengt
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
-      &.is-close { margin-left: 20px; }
+      &.is-close { margin-left: 22px; }
     }
     &-icon {
       width: 2em;
-      margin-left: 2px;
+      margin-left: 4px;
       color: #fff;
       user-select: none;
       transition: margin .3;
-      &.is-close {
-        margin-left: 18px;
-      }
+      &.is-close { margin-left: 20px; }
     }
     &.is-checked {
       background-color: var(--vi-switch-on-bg-color);
