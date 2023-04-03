@@ -181,7 +181,7 @@ const checked9 = ref(true)
     <template #on> On </template>
     <template #off> Off </template>
   </vi-switch>
-  <vi-switch v-model="checked10" on-icon="Check" off-icon="Close" is-inside>
+  <vi-switch v-model="checked10" on-icon="Check" off-icon="Close" is-inside width="50px">
     <template #on> On </template>
     <template #off> Off </template>
   </vi-switch>
@@ -193,7 +193,7 @@ const checked9 = ref(true)
     <template #on> On </template>
     <template #off> Off </template>
   </vi-switch>
-  <vi-switch v-model="checked10" on-icon="Check" off-icon="Close" is-inside>
+  <vi-switch v-model="checked10" on-icon="Check" off-icon="Close" is-inside width="50px">
     <template #on> On </template>
     <template #off> Off </template>
   </vi-switch>
@@ -221,6 +221,7 @@ const checked10 = ref(true)
 | off-text | 定义“关”状态描述文字 | `string` | —— |
 | on-icon | 定义“开”状态描述图标 | `string` | —— |
 | off-icon | 定义“关”状态描述图标 | `string` | —— |
+| width | 定义宽度 | `string` | —— |
 
 ### 插槽
 
