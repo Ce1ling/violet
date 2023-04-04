@@ -28,41 +28,42 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<Emits>()
 
-const classList = computed(() => [`vi-button--${props.type}`, {
+const getClasses = computed(() => [`vi-button--${props.type}`, {
   'is-text-btn': props.text,
   'is-round': props.round,
   'is-circle': props.circle,
   'is-disabled': props.disabled,
   'is-loading': props.loading
 }])
-const customColor = computed(() => ({ 
+const getStyles = computed(() => ({ 
   color: props.color, 
   backgroundColor: props.bgColor
 }))
 
-const RenderIcon = () => !props.loading || h(ViIcon, { 
+const RenderIcon = () => props.loading && h(ViIcon, { 
   name: 'Loading', 
   size: '16px', 
   cursor: 'wait', 
   loading: true 
-}) 
-const handleClick = (e: MouseEvent) => props.disabled || emit('click', e)
+})
+const handleClick = (e: MouseEvent) => !props.disabled && emit('click', e)
+
 </script>
 
 <template>
   <button 
     class="vi-button" 
-    :class="classList" 
-    :style="customColor"
+    :class="getClasses" 
+    :style="getStyles"
     @click="handleClick">
     <slot name="prefix">
-      <RenderIcon v-if="isPrefix" />
+      <render-icon v-if="isPrefix" />
     </slot>
     <span>
       <slot />
     </span>
     <slot name="suffix">
-      <RenderIcon v-if="!isPrefix" />
+      <render-icon v-if="!isPrefix" />
     </slot>
   </button>
 </template>
