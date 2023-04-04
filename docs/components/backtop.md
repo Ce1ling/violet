@@ -88,7 +88,7 @@
 | :---: | :---: | :---: | :---: |
 | show-height | 显示高度(滚动到达此高度则显示) | `number` | `500` |
 | hide-width | 隐藏宽度(小于等于此宽度则彻底隐藏) | `number` | `-Infinity` |
-| right | `backtop` 离右侧距离 | `number` | `50` |
-| bottom | `backtop` 离底部距离 | `number` | `50` |
+| right | `Backtop` 离右侧距离 | `number` | `50` |
+| bottom | `Backtop` 离底部距离 | `number` | `50` |
 | z-index | 同原生 CSS `z-index` | `number` | `99` |
 | round | 是否为圆角 | `boolean` | `fasle` |

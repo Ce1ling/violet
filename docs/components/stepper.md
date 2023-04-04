@@ -58,7 +58,7 @@ const val2 = ref(1)
 
 ## 自定步数
 
-使用 `step` 属性，自定义 加/减 时的步数。
+使用 `step` 属性，自定义 “加”/“减” 时的步数。
 
 <div class="examples">
   <vi-stepper v-model="val3" :step="3" />
@@ -141,7 +141,7 @@ const val8 = ref(1)
 
 ## 按钮位置
 
-使用 `position` 属性，定义 加/减 按钮的位置。仅支持 'left' / 'right'。
+使用 `position` 属性，定义 “加”/“减” 按钮的位置。仅支持 `'left'` / `'right'`。
 
 <div class="examples">
   <vi-flex gap="18px">
@@ -167,11 +167,11 @@ const val10 = ref(1)
 
 ## 定义 Icon 大小
 
-使用 `icon-size` 属性，自定义 Icon 大小。
+使用 `icon-size` 属性，自定义 `Icon` 大小。
 
 ::: tip
 
-一般您不需要此属性，因为 Violet 设置的 Icon 大小正好合适。但如您有特殊需求，可以使用此属性自定义。
+一般您不需要此属性，因为 Violet 设置的 `Icon` 大小正好合适。但如您有特殊需求，可以使用此属性自定义。
 
 :::
 
