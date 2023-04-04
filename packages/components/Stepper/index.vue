@@ -159,9 +159,10 @@ onMounted(() => {
     display: flex;
     align-items: center;
     cursor: pointer;
-    .vi-stepper__icon { 
-      transition: none;
-      &:hover { color: var(--vi-color-primary); }
+    &:hover {
+      .vi-stepper__icon { 
+        color: var(--vi-color-primary);
+      }
     }
     &.is-left {
       position: absolute;
