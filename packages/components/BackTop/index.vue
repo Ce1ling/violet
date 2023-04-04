@@ -20,12 +20,12 @@ const props = withDefaults(defineProps<Props>(), {
 
 const show = ref(false)
 
-const customStyle = computed(() => ({ 
+const getStyles = computed(() => ({ 
   right: props.right + 'px', 
   bottom: props.bottom + 'px', 
   zIndex: props.zIndex 
 }))
-const classObj = computed(() => ({
+const getClasses = computed(() => ({
   'is-round': props.round
 }))
 
@@ -41,8 +41,8 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 <template>
   <div 
     class="vi-backtop" 
-    :class="classObj"
-    :style="customStyle"
+    :class="getClasses"
+    :style="getStyles"
     @click="backtop"
     v-if="show">
     <slot>
