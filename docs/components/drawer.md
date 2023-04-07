@@ -237,7 +237,7 @@ const beforeClose = (close: () => void) => {
 | title | 标题 | `string` | —— |
 | width | 宽度 | `string` | `'30%'` |
 | height | 高度 | `string` | `'30%'` |
-| direction | 方位 | `'l-r'` / `'r-l'` / `'t-b'` / `'b-t'` | `'r-l'` |
+| direction | 方位 | `'l-r' \| 'r-l' \| 't-b' \| 'b-t'` |
 | z-index | 同原生 CSS `z-index` | `number` | —— |
 | show-close | 是否为显示关闭按钮 | `boolean` | `true` |
 | append-to-body | 是否插入至 `body` | `boolean` | `false` |
