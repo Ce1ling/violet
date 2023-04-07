@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, watch, nextTick } from 'vue'
+import { ref, computed, watch, nextTick, onMounted, onBeforeUnmount } from 'vue'
 import { 
   Icon as ViIcon,
   Mask as ViMask
@@ -45,8 +45,7 @@ const emit = defineEmits<Emits>()
 const dialogRef = ref<HTMLElement>()
 const headerRef = ref<HTMLElement>()
 const needDestroy = ref<boolean>(false)
-
-const { show, hide } = useScrollVisible(document.body, 'vi-scroll-hide')
+const visible = ref<boolean>(props.modelValue)
 
 const getClasses = computed(() => ({
   'is-center': props.center,
@@ -61,22 +60,20 @@ const close = () => emit('update:modelValue', false)
 const handleClose = () => {
   if (props.beforeClose) {
     props.beforeClose(close)
-    return
+  } else {
+    close()
   }
-
-  close()
 }
 const handleMaskClick = () => {
   if (props.clickMaskClose) { handleClose() }
 }
-const handleScrollVisible = (visible: boolean) => {
-  if (!props.lockScroll) { return }
-  if (visible) { return hide() }
-  
-  useTimeout(() => show(), animationDuration.value)
+const handleLockScroll = (val: boolean) => {
+  if (props.lockScroll) {
+    visible.value = val
+  }
 }
 const handleDestory = (visible: boolean) => {
-  if (props.destroy) { return }
+  if (!props.destroy) { return }
   if (visible) {
     needDestroy.value = false
     return
@@ -94,9 +91,13 @@ watch(() => props.modelValue, val => {
   emit('update:modelValue', val)
   emit(val ? 'open' : 'close', val)
 
-  handleScrollVisible(val)
+  handleLockScroll(val)
   handleDestory(val)
   handleMovable(val)
+})
+
+onMounted(() => {
+  useScrollVisible(visible, document.body, 'vi-scroll-hide')
 })
 
 </script>
