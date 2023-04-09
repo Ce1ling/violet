@@ -15,6 +15,7 @@ const show10 = ref(false)
 const show11 = ref(false)
 const show12 = ref(false)
 const show13 = ref(false)
+const movable = ref(true)
 
 const open = () => {
   console.log('dialog open')
@@ -33,7 +34,7 @@ const beforeClose = (close: () => void) => {
 
 ## 基础用法
 
-通过 `v-model` 绑定 Dialog 是否显示(它必须是 `boolean`)，使用 `title` 属性来定义头部内容、`width` 来定义宽度，标签体内容将会被渲染为主体内容。
+通过 `v-model` 绑定 `Dialog` 是否显示(它必须是 `boolean`)，使用 `title` 属性来定义头部内容、`width` 来定义宽度，标签体内容将会被渲染为主体内容。
 
 <div class="examples">
   <vi-button @click="show1 = true">打开 Dialog</vi-button>
@@ -66,11 +67,11 @@ const show1 = ref(false)
 
 ## 进阶用法
 
-使用 `content` 属性，定义主体内容。通过 `show-close-btn`，来隐藏默认的关闭按钮。通过 `z-index` 可自定义 Dialog 的 CSS `z-index`。
+使用 `content` 属性，定义主体内容。通过 `show-close-btn`，来隐藏默认的关闭按钮。通过 `z-index` 可自定义 `Dialog` 的 CSS `z-index`。
 
 ::: tip
 
-1. 如果您的 Dialog 仅包含简单的文本，可以直接使用 `title` + `content` 的形式进行简写，使代码更加简洁！
+1. 如果您的 `Dialog` 仅包含简单的文本，可以直接使用 `title` + `content` 的形式进行简写，使代码更加简洁！
 2. 如果您需要自定义的内容比较多，可以使用 `header`、`default`、`footer` 插槽，任意定义！
 
 :::
@@ -153,11 +154,11 @@ const show3 = ref(false)
 
 ## 多层嵌套
 
-有时您可能需要在一个 Dialog 中再打开一个 Dialog，此时，请尽量给子级 Dialog 加上 `append-to-body` 属性，即使未出现问题。
+有时您可能需要在一个 `Dialog` 中再打开一个 `Dialog`，此时，请尽量给子级 `Dialog` 加上 `append-to-body` 属性，即使未出现问题。
 
 ::: warning
 
-一般来说，我们并不推荐嵌套，但如果确实存在此需求，请最好给子级 Dialog 加上 `append-to-body` 属性。
+一般来说，我们并不推荐嵌套，但如果确实存在此需求，请最好给子级 `Dialog` 加上 `append-to-body` 属性。
 
 :::
 
@@ -307,26 +308,39 @@ const show9 = ref(false)
 
 ## 可移动的
 
-通过 `lock-scroll` 属性，来锁定/解锁滚动条。默认为锁定。
+通过 `movable` 属性，来启用可拖拽的 `Dialog`。
+
+::: tip
+
+您还可以通过切换 `movable` 属性值达到切换可拖拽性的目的。
+
+:::
 
 <div class="examples">
   <vi-button @click="show10 = true">打开</vi-button>
-  <vi-dialog v-model="show10" width="30%" title="可移动(拖拽)" movable>
+  <vi-dialog v-model="show10" width="30%" title="可移动(拖拽)" :movable="movable">
     将鼠标放到 header 区域，然后按下拖动。
+    <vi-button @click="movable = !movable">
+      切换为 {{ movable ? '不可移动' : '可移动' }}
+    </vi-button>
   </vi-dialog>
 </div>
 
 ```vue
 <template>
   <vi-button @click="show10 = true">打开</vi-button>
-  <vi-dialog v-model="show10" width="30%" title="可移动(拖拽)" movable>
+  <vi-dialog v-model="show10" width="30%" title="可移动(拖拽)" :movable="movable">
     将鼠标放到 header 区域，然后按下拖动。
+    <vi-button @click="movable = !movable">
+      切换为 {{ movable ? '不可移动' : '可移动' }}
+    </vi-button>
   </vi-dialog>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 const show10 = ref(false)
+const movable = ref(true)
 </script>
 ```
 
@@ -336,7 +350,7 @@ const show10 = ref(false)
 
 ::: tip
 
-对了，Dialog 在打开和关闭时都会触发事件，分别是：`open`、`close`。
+对了，`Dialog` 在打开和关闭时都会触发事件，分别是：`open`、`close`。
 
 :::
 
@@ -458,7 +472,7 @@ const beforeClose = (close: () => void) => {
 
 | 属性名 | 属性说明 | 属性类型 | 属性默认值 |
 | :---: | :---: | :---: | :---: |
-| `v-model` | Dialog 显示/隐藏值 | `boolean` | —— |
+| `v-model` | `Dialog` 显示/隐藏值 | `boolean` | —— |
 | title | 标题 | `string` | —— |
 | content | 主体内容 | `string` | —— |
 | width | 宽度 | `string` | '50%' |
@@ -478,8 +492,8 @@ const beforeClose = (close: () => void) => {
 
 | 事件名 | 事件触发时机 | 事件参数 |
 | :---: | :---: | :---: |
-| open | Dialog 打开时触发 | `(val: boolean) => void` |
-| close | Dialog 关闭时触发 | `(val: boolean) => void` |
+| open | `Dialog` 打开时触发 | `(val: boolean) => void` |
+| close | `Dialog` 关闭时触发 | `(val: boolean) => void` |
 
 ### 插槽
 
