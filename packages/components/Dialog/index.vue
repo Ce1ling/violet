@@ -1,5 +1,10 @@
-<script setup lang="ts">
-import { ref, computed, watch, nextTick, onMounted, onBeforeUnmount } from 'vue'
+<script lang="ts" setup>
+import { 
+  ref, 
+  watch, 
+  computed, 
+  onMounted 
+} from 'vue'
 import { 
   Icon as ViIcon,
   Mask as ViMask
@@ -45,7 +50,6 @@ const emit = defineEmits<Emits>()
 const dialogRef = ref<HTMLElement>()
 const headerRef = ref<HTMLElement>()
 const needDestroy = ref<boolean>(false)
-const visible = ref<boolean>(props.modelValue)
 
 const getClasses = computed(() => ({
   'is-center': props.center,
@@ -55,6 +59,8 @@ const getClasses = computed(() => ({
 const animationDuration = computed(() => {
   return getADByVar(document.body, '--vi-animation-duration', 1000)
 })
+const movable = computed(() => props.movable)
+const visible = computed(() => props.modelValue)
 
 const close = () => emit('update:modelValue', false)
 const handleClose = () => {
@@ -67,11 +73,6 @@ const handleClose = () => {
 const handleMaskClick = () => {
   if (props.clickMaskClose) { handleClose() }
 }
-const handleLockScroll = (val: boolean) => {
-  if (props.lockScroll) {
-    visible.value = val
-  }
-}
 const handleDestory = (visible: boolean) => {
   if (!props.destroy) { return }
   if (visible) {
@@ -79,11 +80,12 @@ const handleDestory = (visible: boolean) => {
     return
   }
   
+  // 如果能去掉这个异步任务，那么就可以使用 computed 优化 destroy
   useTimeout(() => needDestroy.value = true, animationDuration.value)
 }
 const handleMovable = (visible: boolean) => {
   if (visible) {
-    nextTick(() => useMovable(dialogRef, headerRef, props.movable))
+    useMovable(dialogRef, headerRef, movable)
   }
 }
 
@@ -91,7 +93,6 @@ watch(() => props.modelValue, val => {
   emit('update:modelValue', val)
   emit(val ? 'open' : 'close', val)
 
-  handleLockScroll(val)
   handleDestory(val)
   handleMovable(val)
 })
