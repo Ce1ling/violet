@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, watch } from 'vue'
+import { computed, onMounted, watch } from 'vue'
 import { 
   Mask as ViMask,
   Icon as ViIcon
@@ -39,8 +39,6 @@ const props = withDefaults(defineProps<Props>(), {
 })
 const emit = defineEmits<Emits>()
 
-const { show, hide } = useScrollVisible(document.body, 'vi-scroll-hide')
-
 const getClasses = computed(() => [`vi-drawer--${props.direction}`])
 const getStyles = computed(() => ({ 
   width: getWHByDirection('width'),
@@ -50,6 +48,7 @@ const getStyles = computed(() => ({
 const animationDuration = computed(() => {
   return getADByVar(document.body, '--vi-animation-duration', 1000)
 })
+const visible = computed(() => props.modelValue)
 
 /** 通过方位获取 "宽度" 或 "高度" */
 const getWHByDirection = (target: 'width' | 'height') => {
@@ -72,19 +71,16 @@ const handleClose = () => {
 const handleMaskClose = () => {
   if (props.clickMaskClose) { handleClose() }
 }
-const handleScrollVisible = (visible: boolean) => {
-  if (!props.lockScroll) { return }
-  if (visible) { return hide() }
-
-  useTimeout(() => show(), animationDuration.value)
-}
 
 watch(() => props.modelValue, val => {
   emit('update:modelValue', val)
   emit(val ? 'open' : 'close', val)
-
-  handleScrollVisible(val)
 })
+
+onMounted(() => {
+  useScrollVisible(visible, document.body, 'vi-scroll-hide')
+})
+
 </script>
 
 <template>
