@@ -8,7 +8,6 @@ import {
 
 const author = '<a href="https://github.com/Ce1ling" target="_blank">L1en</a>'
 
-
 export default {
   title: 'Violet',
   description: 'A Vue3 UI Framework',
@@ -31,7 +30,6 @@ export default {
     ],
     // 侧边栏
     sidebar: [
-      { text: '组件测试页', items: [{ text: '组件测试', link: '/components/test/index.md' }] },
       { text: '基础组件', items: basic },
       { text: '布局组件', items: layout },
       { text: '表单组件', items: form },
