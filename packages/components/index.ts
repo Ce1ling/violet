@@ -6,7 +6,6 @@ import Row from './Grid/Row.vue'
 import Col from './Grid/Col.vue'
 import Link from './Link/index.vue'
 import Divider from './Divider/index.vue'
-import { Toast } from './Toast/index'
 import Switch from './Switch/index.vue'
 import Input from './Input/index.vue'
 import Header from './Layout/Header.vue'
@@ -34,7 +33,6 @@ export {
   Col,
   Link,
   Divider,
-  Toast,
   Switch,
   Input,
   Header,
