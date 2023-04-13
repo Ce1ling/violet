@@ -9,6 +9,7 @@ import {
 const author = '<a href="https://github.com/Ce1ling" target="_blank">L1en</a>'
 
 export default {
+  base: '/violet/',
   title: 'Violet',
   description: 'A Vue3 UI Framework',
   lang: 'zh-CN',
