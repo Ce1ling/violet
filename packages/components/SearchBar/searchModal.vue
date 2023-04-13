@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { nextTick, reactive, ref, watch } from 'vue'
+import { computed, nextTick, ref, watch } from 'vue'
 import { useSearch } from '../../hooks/useSearch'
 import { useTimeout } from '../../hooks/useTimeout'
 import { Icon as ViIcon} from '../index'
-
 
 type Results = Array<{
   id: string 
@@ -12,11 +11,15 @@ type Results = Array<{
 const searchVal = ref<string>('')
 const isSearching = ref<boolean>(false)
 const isFocus = ref<boolean>(false)
-const showClearBtn = ref<boolean>(false)
-const searchInp = ref<HTMLInputElement | null>(null)
-const results = reactive<Results>([])
+const searchInp = ref<HTMLInputElement>()
+const results = ref<Results>([])
 
 const { close } = useSearch()
+
+const searchIconColor = computed(() => isFocus.value 
+  ? 'var(--doc-color-primary)' 
+  : 'var(--doc-color-info)'
+)
 
 const handleSearch = () => {
   if (isSearching.value || !searchVal.value) { return }
@@ -25,7 +28,7 @@ const handleSearch = () => {
     isSearching.value = false
     // test
     Array.from([{}]).map((_, i) => {
-      results.push({ 
+      results.value.push({ 
         id: `id${++i}`, 
         title: `测试数据：${Math.random().toString().slice(2, 8)}` 
       })
@@ -35,14 +38,12 @@ const handleSearch = () => {
 
 watch(searchVal, val => {
   if (!val) {
-    showClearBtn.value = false
-    results.splice(0, results.length)
-    return 
+    results.value.splice(0, results.value.length)
   }
-  showClearBtn.value = true
 })
 
 nextTick(() => searchInp.value?.focus())
+
 </script>
 
 <template>
@@ -51,17 +52,17 @@ nextTick(() => searchInp.value?.focus())
       <header class="search-header" :class="{ 'is-focus': isFocus }">
         <label>
           <vi-icon 
-            v-if="isSearching"
+            v-show="isSearching"
             name="Loading" 
             size="30px" 
             color="var(--vi-color-primary)" 
             loading 
           />
           <vi-icon 
-            v-else
+            v-show="!isSearching"
             name="Search" 
             size="30px" 
-            :color="isFocus ? 'var(--doc-color-primary)' : 'var(--doc-color-info)'" 
+            :color="searchIconColor" 
             @click="handleSearch"
           />
           <input 
@@ -76,16 +77,17 @@ nextTick(() => searchInp.value?.focus())
             @blur="isFocus = false"
           />
           <vi-icon 
-            v-show="showClearBtn" 
-            name="Close" size="30px" 
+            name="Close" 
+            size="30px" 
             hover-color="var(--vi-color-primary)"
+            v-show="searchVal.trim()" 
             @click="searchVal = ''"
           />
         </label>
       </header>
       <section class="search-body">
         <h2>Results</h2>
-        <h3 v-show="!results.length">没有内容</h3>
+        <h3 v-show="!results.length">正在开发中，尽请期待...</h3>
         <ul class="result-list">
           <li 
             class="result-item"
