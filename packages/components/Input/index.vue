@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, watch, h, useSlots, nextTick } from 'vue'
+import { computed, ref, watch, h, useSlots, nextTick, onMounted } from 'vue'
 import { Icon as ViIcon } from '../index'
 
 type Icon = typeof ViIcon | string
@@ -78,7 +78,8 @@ watch(() => props.modelValue, val => {
   if (props.showPwd) { isShowPwd.value = !!val }
 })
 
-nextTick(() => {
+onMounted(async () => {
+  await nextTick()
   lineHeight.value = `${viInputEl.value!.offsetHeight - 1}px`
 })
 
