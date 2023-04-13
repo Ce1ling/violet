@@ -1,11 +1,17 @@
 import { onScopeDispose, watch } from 'vue'
 import { getScrollWidth } from '../../utils/dom/scroll'
 import { addClass, removeClass, overflow } from '../../utils/dom/style'
+import { useTimeout } from './../useTimeout/index'
 
 import type { Ref } from 'vue'
 
 interface UseScrollVisible {
-  (trigger: Ref<boolean>, target: HTMLElement, cls?: string): void
+  (
+    trigger: Ref<boolean>, 
+    target: HTMLElement, 
+    cls?: string,
+    timeout?: number
+  ): void
 }
 
 /** 
@@ -13,8 +19,9 @@ interface UseScrollVisible {
  * @param {Ref<boolean>} trigger 用于触发 隐藏/显示。它必须是 Ref！为 `true` 时，隐藏滚动条，`false` 显示。
  * @param {HTMLElement} target 需操作的元素
  * @param {String} cls 隐藏滚动条的类名，不传则手动操作 DOM(此参数非常推荐传递)
+ * @param {Number} timeout 延迟显示滚动条(ms)
  **/
-export const useScrollVisible: UseScrollVisible = (trigger, target, cls) => {
+export const useScrollVisible: UseScrollVisible = (trigger, target, cls, timeout) => {
   const show = () => {
     if (cls) {
       removeClass(target, cls)
@@ -35,9 +42,13 @@ export const useScrollVisible: UseScrollVisible = (trigger, target, cls) => {
   watch(trigger, (val) => {
     if (val) {
       hide()
-    } else {
-      show()
+      return
+    } 
+    if (timeout) {
+      useTimeout(show, timeout)
+      return
     }
+    show()
   })
 
   // 在当前 Hook 作用域停止后还原滚动条
