@@ -5,7 +5,6 @@ import {
   Icon as ViIcon
 } from '../index'
 import { useScrollVisible } from '../../hooks/useScrollVisible'
-import { useTimeout } from '../../hooks/useTimeout'
 import { getADByVar } from '../../utils/dom/animation'
 
 interface Props {
@@ -71,15 +70,18 @@ const handleClose = () => {
 const handleMaskClose = () => {
   if (props.clickMaskClose) { handleClose() }
 }
+const handleLockScroll = () => {
+  if (props.lockScroll) {
+    useScrollVisible(visible, document.body, 'vi-scroll-hide', animationDuration.value)
+  }
+}
 
 watch(() => props.modelValue, val => {
   emit('update:modelValue', val)
   emit(val ? 'open' : 'close', val)
 })
 
-onMounted(() => {
-  useScrollVisible(visible, document.body, 'vi-scroll-hide')
-})
+onMounted(handleLockScroll)
 
 </script>
 

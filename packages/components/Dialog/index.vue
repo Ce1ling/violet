@@ -88,6 +88,11 @@ const handleMovable = (visible: boolean) => {
     useMovable(dialogRef, headerRef, movable)
   }
 }
+const handleLockScroll = () => {
+  if (props.lockScroll) { 
+    useScrollVisible(visible, document.body, 'vi-scroll-hide', animationDuration.value)
+  }
+}
 
 watch(() => props.modelValue, val => {
   emit('update:modelValue', val)
@@ -97,9 +102,7 @@ watch(() => props.modelValue, val => {
   handleMovable(val)
 })
 
-onMounted(() => {
-  useScrollVisible(visible, document.body, 'vi-scroll-hide')
-})
+onMounted(handleLockScroll)
 
 </script>
 
