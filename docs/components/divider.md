@@ -176,5 +176,5 @@
 | thick | 厚度 | `string` | `'1px'` |
 | color | 颜色 | `string` | —— |
 | border-style | 样式 | `string` | `'solid'` |
-| position | 标注内容的位置 | `start` / `center` / `end` | `'start'` |
-| direction | 方向 | `horizontal` / `vertival` | `'horizontal'` |
+| position | 标注内容的位置 | `'start' \| 'center' \| 'end'` | `'start'` |
+| direction | 方向 | `'horizontal' \| 'vertival'` | `'horizontal'` |

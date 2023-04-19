@@ -296,7 +296,7 @@
 
 | 属性名 | 属性说明 | 属性类型 | 属性默认值 |
 | :---: | :---: | :---: | :---: |
-| type | 定义按钮类型 | `'primary'` / `'success'` / `'info'` / `'warning'` / `'danger'` | `'primary'` |
+| type | 定义按钮类型 | `'primary' \| 'success' \| 'info' \| 'warning' \| 'danger'` | `'primary'` |
 | text | 是否为文字按钮 | `boolean` | `false` |
 | round | 是否为圆角按钮 | `boolean` | `fasle` |
 | circle | 是否为圆形按钮 | `boolean` | `false` |

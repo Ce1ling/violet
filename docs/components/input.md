@@ -257,8 +257,8 @@ const val13 = ref('')
 | rows | `type="textarea"` 的高度 | `string` | `'2'` |
 | limit | 限制输入长度 | `string` | —— |
 | show-limit | 显示限制长度 | `boolean` | `false` |
-| prefix-icon | 头部图标 | `vi-icon` / `string` | —— |
-| suffix-icon | 尾部图标 | `vi-icon` / `string` | —— |
+| prefix-icon | 头部图标 | `vi-icon \| string` | —— |
+| suffix-icon | 尾部图标 | `vi-icon \| string` | —— |
 
 ### 插槽
 

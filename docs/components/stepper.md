@@ -212,5 +212,5 @@ const val11 = ref(1)
 | max | 最大值 | `number` | `Infinity` |
 | min | 最小值 | `number` | `-Infinity` |
 | to-fixed | 保留小数 | `number` | —— |
-| position | 按钮位置 | `'normal'` / `'left'` / `'right'` | `'normal'` |
+| position | 按钮位置 | `'normal' \| 'left' \| 'right'` | `'normal'` |
 | icon-size | icon 大小 | `string` | —— |

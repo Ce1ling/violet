@@ -200,9 +200,9 @@ Violet 提供的布局组件包括：
 
 | 属性名 | 属性说明 | 属性类型 | 属性默认值 |
 | :---: | :---: | :---: | :---: |
-| direction | 同原生 `flex` 布局的 `flex-direction` | `'row'` / `'column'` / `'row-reverse'` / `'column-reverse'` | `'row'` |
-| justify | 同原生 `flex` 布局的 `justify-content` | `'start'` / `'center'` / `'end'` / `'space-between'` / `'space-around'` / `'space-evenly'` | —— |
-| align | 同原生 `flex` 布局的 `align-items` | `'start'` / `'center'` / `'end'` | —— |
+| direction | 同原生 `flex` 布局的 `flex-direction` | `'row' \| 'column' \| 'row-reverse' \| 'column-reverse'` | `'row'` |
+| justify | 同原生 `flex` 布局的 `justify-content` | `'start' \| 'center' \| 'end' \| 'space-between' \| 'space-around' \| 'space-evenly'` | —— |
+| align | 同原生 `flex` 布局的 `align-items` | `'start' \| 'center' \| 'end'` | —— |
 | flex | 同原生 `flex` 布局的 `flex` | `string` | `'1'` |
 
 ### Header 属性

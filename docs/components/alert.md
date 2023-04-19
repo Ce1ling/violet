@@ -238,11 +238,11 @@ const close = () => window.alert('Closing')
 
 | 属性名 | 属性说明 | 属性类型 | 属性默认值 |
 | :---: | :---: | :---: | :---: |
-| type | `Alert` 类型 | `'primary'` / `'success'` / `'info'` / `'warning'` / `'danger'` | `'primary'` |
+| type | `Alert` 类型 | `'primary' \| 'success' \| 'info' \| 'warning' \| 'danger'` | `'primary'` |
 | dark | 是否为深色模式 | `boolean` | `false` |
 | closable | 是否可关闭 | `boolean` | `fasle` |
 | pre-icon | 是否需要前置图标 | `boolean` | `false` |
-| center | 居中模式 | `'none'` / `'text'` / `'all'` | `'none'` |
+| center | 居中模式 | `'none' \| 'text' \| 'all'` | `'none'` |
 | title | 标题 | `string` | —— |
 | content | 内容 | `string` | —— |
 
