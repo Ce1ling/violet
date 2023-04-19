@@ -13,6 +13,9 @@ export default {
   title: 'Violet',
   description: 'A Vue3 UI Framework',
   lang: 'zh-CN',
+  head: [
+    ['link', { rel: 'icon', href: '/violet-logo.svg',  type: 'image/svg+xm' }]
+  ],
   markdown: {
     // 代码块主题
     theme: {
