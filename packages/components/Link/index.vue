@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 
 interface Props {
-  type?: string
+  type?: 'primary' | 'success' | 'warning' | 'danger'
   disabled?: boolean
   underline?: boolean
 }
@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 const emit = defineEmits<Emits>()
 
-const classList = computed(() => [`vi-link--${props.type}`, {
+const getClasses = computed(() => [`vi-link--${props.type}`, {
   'is-disabled': props.disabled,
   'has-underline': props.underline
 }])
@@ -24,10 +24,11 @@ const classList = computed(() => [`vi-link--${props.type}`, {
 const handleClick = (e: MouseEvent) => props.disabled 
   ? e.preventDefault() 
   : emit('click', e)
+  
 </script>
 
 <template>
-  <a class="vi-link" :class="classList" v-bind="$attrs" @click="handleClick">
+  <a class="vi-link" :class="getClasses" v-bind="$attrs" @click="handleClick">
     <span class="vi-link__inner">
       <slot name="prefix" />
       <slot />
