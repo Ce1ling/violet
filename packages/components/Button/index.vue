@@ -122,6 +122,16 @@ $types: primary, success, info, warning, danger;
           opacity: var(--vi-opacity-half);
         }
       }
+      &.is-loading.is-plain {
+        opacity: 0.5;
+        color: var(--vi-button-text-color);
+        background-color: var(--vi-button-bg-color-weak);
+      }
+      &.is-disabled.is-plain {
+        opacity: 0.5;
+        color: var(--vi-button-text-color);
+        background-color: var(--vi-button-bg-color-weak);
+      }
     }
   }
 
