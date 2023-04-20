@@ -88,6 +88,8 @@ onMounted(() => {
 </template>
 
 <style lang="scss">
+$types: primary, success, info, warning, danger;
+
 .vi-toast {
   position: fixed;
   left: 50%;
@@ -99,31 +101,13 @@ onMounted(() => {
   align-items: center;
   gap: 8px;
   transition: top var(--vi-animation-duration) ease;
-
-  &--primary {
-    background-color: var(--vi-color-primary-weak);
-    color: var(--vi-color-primary);
-    box-shadow: 2px 2px 8px 0 var(--vi-color-primary-weak);
-  }
-  &--success {
-    background-color: var(--vi-color-success-weak);
-    color: var(--vi-color-success);
-    box-shadow: 2px 2px 8px 0 var(--vi-color-success-weak);
-  }
-  &--info {
-    background-color: var(--vi-color-info-weak);
-    color: var(--vi-color-font-black-weak);
-    box-shadow: 2px 2px 8px 0 var(--vi-color-info-weak);
-  }
-  &--warning {
-    background-color: var(--vi-color-warning-weak);
-    color: var(--vi-color-warning);
-    box-shadow: 2px 2px 8px 0 var(--vi-color-warning-weak);
-  }
-  &--danger {
-    background-color: var(--vi-color-danger-weak);
-    color: var(--vi-color-danger);
-    box-shadow: 2px 2px 8px 0 var(--vi-color-danger-weak);
+  
+  @each $t in $types {
+    &--#{$t} {
+      background-color: var(--vi-color-#{$t}-weak);
+      color: var(--vi-color-#{$t});
+      box-shadow: 2px 2px 8px 0 var(--vi-color-#{$t}-weak);
+    }
   }
 }
 

@@ -69,6 +69,8 @@ const handleClick = (e: MouseEvent) => !props.disabled && emit('click', e)
 </template>
 
 <style lang="scss">
+$types: primary, success, info, warning, danger;
+
 .vi-button {
   display: flex;
   justify-content: center;
@@ -87,25 +89,11 @@ const handleClick = (e: MouseEvent) => !props.disabled && emit('click', e)
   &:hover { opacity: var(--vi-opacity-half); }
   &:active { opacity: 1; }
 
-  &--primary {
-    color: var(--vi-color-white);
-    background-color: var(--vi-color-primary);
-  }
-  &--success {
-    color: var(--vi-color-white);
-    background-color: var(--vi-color-success);
-  }
-  &--info {
-    color: var(--vi-color-white);
-    background-color: var(--vi-color-info);
-  }
-  &--warning {
-    color: var(--vi-color-white);
-    background-color: var(--vi-color-warning);
-  }
-  &--danger {
-    color: var(--vi-color-white);
-    background-color: var(--vi-color-danger);
+  @each $t in $types {
+    &--#{$t} {
+      color: var(--vi-color-white);
+      background-color: var(--vi-color-#{$t});
+    }
   }
 
   &.is-text-btn {

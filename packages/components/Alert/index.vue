@@ -86,11 +86,7 @@ const handleClose = (e: MouseEvent) => {
 </template>
 
 <style lang="scss">
-.vi-alert-fade-leave-active {
-  opacity: 0;
-  transform: translateY(-100%);
-  transition: all var(--vi-animation-duration);
-}
+$types: primary, success, info, warning, danger;
 
 .vi-alert {
   width: 100%;
@@ -99,6 +95,16 @@ const handleClose = (e: MouseEvent) => {
   display: flex;
   align-items: center;
   gap: 8px;
+
+  @each $t in $types {
+    &--#{$t} {
+      color: var(--vi-color-#{$t});
+      background-color: var(--vi-color-#{$t}-weak);
+      &.is-dark {
+        background-color: var(--vi-color-#{$t});
+      }
+    }
+  }
 
   &__inner {
     width: 100%;
@@ -112,41 +118,6 @@ const handleClose = (e: MouseEvent) => {
   &__close {
     cursor: pointer;
     flex-shrink: 0;
-  }
-  &--primary {
-    color: var(--vi-color-primary);
-    background-color: var(--vi-color-primary-weak);
-    &.is-dark {
-      background-color: var(--vi-color-primary);
-    }
-  }
-  &--success {
-    color: var(--vi-color-success);
-    background-color: var(--vi-color-success-weak);
-    &.is-dark {
-      background-color: var(--vi-color-success);
-    }
-  }
-  &--info {
-    color: var(--vi-color-info);
-    background-color: var(--vi-color-info-weak);
-    &.is-dark {
-      background-color: var(--vi-color-info);
-    }
-  }
-  &--warning {
-    color: var(--vi-color-warning);
-    background-color: var(--vi-color-warning-weak);
-    &.is-dark {
-      background-color: var(--vi-color-warning);
-    }
-  }
-  &--danger {
-    color: var(--vi-color-danger);
-    background-color: var(--vi-color-danger-weak);
-    &.is-dark {
-      background-color: var(--vi-color-danger);
-    }
   }
   &.is-dark {
     color: var(--vi-color-white);
@@ -171,5 +142,11 @@ const handleClose = (e: MouseEvent) => {
       &-content { font-size: var(--vi-font-size-small); }
     }
   }
+}
+
+.vi-alert-fade-leave-active {
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: all var(--vi-animation-duration);
 }
 </style>
