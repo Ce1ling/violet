@@ -8,6 +8,8 @@ interface Props {
   bottom?: number
   zIndex?: number
   round?: boolean
+  shadowColor?: string
+  bgColor?: string
 }
 const props = withDefaults(defineProps<Props>(), {
   showHeight: 500,
@@ -15,7 +17,8 @@ const props = withDefaults(defineProps<Props>(), {
   right: 50,
   bottom: 50,
   zIndex: 99,
-  round: false
+  round: false,
+  shadowColor: 'var(--vi-color-gray)'
 })
 
 const show = ref(false)
@@ -23,7 +26,8 @@ const show = ref(false)
 const getStyles = computed(() => ({ 
   right: props.right + 'px', 
   bottom: props.bottom + 'px', 
-  zIndex: props.zIndex 
+  zIndex: props.zIndex,
+  boxShadow: `0 0 8px ${props.shadowColor}`
 }))
 const getClasses = computed(() => ({
   'is-round': props.round
@@ -62,7 +66,6 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   position: fixed;
   border: 1px solid var(--vi-color-primary);
   background-color: var(--vi-color-white);
-  box-shadow: 0 0 8px var(--vi-color-gray);
   cursor: pointer;
   &:hover {
     background-color: var(--vi-color-primary);
