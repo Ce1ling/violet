@@ -22,6 +22,13 @@
       <vi-button type="danger"> 危险按钮 </vi-button>
     </vi-row>
     <vi-row>
+      <vi-button plain> 主要按钮 </vi-button>
+      <vi-button type="success" plain> 成功按钮 </vi-button>
+      <vi-button type="info" plain> 信息按钮 </vi-button>
+      <vi-button type="warning" plain> 警告按钮 </vi-button>
+      <vi-button type="danger" plain> 危险按钮 </vi-button>
+    </vi-row>
+    <vi-row>
       <vi-button round> 主要按钮 </vi-button>
       <vi-button type="success" round> 成功按钮 </vi-button>
       <vi-button type="info" round> 信息按钮 </vi-button>
@@ -57,6 +64,13 @@
       <vi-button type="info"> 信息按钮 </vi-button>
       <vi-button type="warning"> 警告按钮 </vi-button>
       <vi-button type="danger"> 危险按钮 </vi-button>
+    </vi-row>
+    <vi-row>
+      <vi-button plain> 主要按钮 </vi-button>
+      <vi-button type="success" plain> 成功按钮 </vi-button>
+      <vi-button type="info" plain> 信息按钮 </vi-button>
+      <vi-button type="warning" plain> 警告按钮 </vi-button>
+      <vi-button type="danger" plain> 危险按钮 </vi-button>
     </vi-row>
     <vi-row>
       <vi-button round> 主要按钮 </vi-button>
@@ -174,6 +188,12 @@
 
 :::
 
+::: warning
+
+请尽量不要与 `plain` 属性一起使用，虽然一起使用有额外效果，但没有什么意义，还可能触发未知的 `UI bug`。
+
+:::
+
 <div class="examples">
   <vi-row>
     <vi-button type="primary" text> 主要按钮 </vi-button>
@@ -247,12 +267,20 @@
 :::
 
 <div class="examples">
-  <vi-row>
-    <vi-button type="primary" bg-color="orange"> 自定义1 </vi-button>
-    <vi-button type="success" bg-color="skyblue"> 自定义2 </vi-button>
-    <vi-button type="warning" bg-color="violet"> 自定义3 </vi-button>
-    <vi-button type="danger" bg-color="blueviolet"> 自定义4 </vi-button>
-  </vi-row>
+  <vi-flex direction="column" gap="18px">
+    <vi-row>
+      <vi-button type="primary" bg-color="orange"> 自定义1 </vi-button>
+      <vi-button type="success" bg-color="skyblue"> 自定义2 </vi-button>
+      <vi-button type="warning" bg-color="violet"> 自定义3 </vi-button>
+      <vi-button type="danger" bg-color="green"> 自定义4 </vi-button>
+    </vi-row>
+    <vi-row>
+      <vi-button plain type="primary" bg-color="orange"> 自定义1 </vi-button>
+      <vi-button plain type="success" bg-color="skyblue"> 自定义2 </vi-button>
+      <vi-button plain type="warning" bg-color="violet"> 自定义3 </vi-button>
+      <vi-button plain type="danger" bg-color="green"> 自定义4 </vi-button>
+    </vi-row>
+  </vi-flex>
 </div>
 
 ```vue
@@ -271,22 +299,38 @@
 使用 `color` 属性，来自定义按钮的文字颜色。
 
 <div class="examples">
-  <vi-row>
-    <vi-button type="primary" text color="orange"> 自定义1 </vi-button>
-    <vi-button type="success" text color="skyblue"> 自定义2 </vi-button>
-    <vi-button type="warning" color="green"> 自定义3 </vi-button>
-    <vi-button type="danger" color="blue"> 自定义4 </vi-button>
-  </vi-row>
+  <vi-flex direction="column" gap="18px">
+    <vi-row>
+      <vi-button type="primary" text color="orange"> 自定义1 </vi-button>
+      <vi-button type="success" text color="skyblue"> 自定义2 </vi-button>
+      <vi-button type="warning" color="green"> 自定义3 </vi-button>
+      <vi-button type="danger" color="blue"> 自定义4 </vi-button>
+    </vi-row>
+    <vi-row>
+      <vi-button type="primary" color="orange" plain> 自定义1 </vi-button>
+      <vi-button type="success" color="skyblue" plain> 自定义2 </vi-button>
+      <vi-button type="warning" color="green" plain> 自定义3 </vi-button>
+      <vi-button type="danger" color="blue" plain> 自定义4 </vi-button>
+    </vi-row>
+  </vi-flex>
 </div>
 
 ```vue
 <template>
-  <vi-row>
-    <vi-button type="primary" text color="orange"> 自定义1 </vi-button>
-    <vi-button type="success" text color="skyblue"> 自定义2 </vi-button>
-    <vi-button type="warning" color="green"> 自定义3 </vi-button>
-    <vi-button type="danger" color="blue"> 自定义4 </vi-button>
-  </vi-row>
+  <vi-flex direction="column" gap="18px">
+    <vi-row>
+      <vi-button type="primary" text color="orange"> 自定义1 </vi-button>
+      <vi-button type="success" text color="skyblue"> 自定义2 </vi-button>
+      <vi-button type="warning" color="green"> 自定义3 </vi-button>
+      <vi-button type="danger" color="blue"> 自定义4 </vi-button>
+    </vi-row>
+    <vi-row>
+      <vi-button type="primary" color="orange" plain> 自定义1 </vi-button>
+      <vi-button type="success" color="skyblue" plain> 自定义2 </vi-button>
+      <vi-button type="warning" color="green" plain> 自定义3 </vi-button>
+      <vi-button type="danger" color="blue" plain> 自定义4 </vi-button>
+    </vi-row>
+  </vi-flex>
 </template>
 ```
 
@@ -305,6 +349,7 @@
 | bg-color | 定义按钮背景颜色 | `string` | —— |
 | color | 定义按钮文字颜色 | `string` | —— |
 | is-prefix | 加载时的图标是否在前面(左边) | `boolean` | `true` |
+| plain | 是否为朴素的按钮 | `boolean` | `false` |
 
 ### 插槽
 
