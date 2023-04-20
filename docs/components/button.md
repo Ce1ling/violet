@@ -113,42 +113,78 @@
 :::
 
 <div class="examples">
-  <vi-row>
-    <vi-button type="primary" loading> 加载状态1 </vi-button>
-    <vi-button type="success" loading :is-prefix="false"> 加载状态2 </vi-button>
-    <vi-button type="warning" loading> 
-      加载状态3 
-      <template #prefix>
-        <vi-icon name="Close" size="16px" cursor="wait" loading />
-      </template>
-    </vi-button>
-    <vi-button type="danger" loading :is-prefix="false">
-      加载状态4 
-      <template #suffix>
-        <vi-icon name="Close" size="16px" cursor="wait" loading />
-      </template>
-    </vi-button>
-  </vi-row>
+  <vi-flex direction="column" gap="18px">
+    <vi-row>
+      <vi-button type="primary" loading> 加载状态1 </vi-button>
+      <vi-button type="success" loading :is-prefix="false"> 加载状态2 </vi-button>
+      <vi-button type="warning" loading> 
+        加载状态3 
+        <template #prefix>
+          <vi-icon name="Close" size="16px" cursor="wait" loading />
+        </template>
+      </vi-button>
+      <vi-button type="danger" loading :is-prefix="false">
+        加载状态4 
+        <template #suffix>
+          <vi-icon name="Close" size="16px" cursor="wait" loading />
+        </template>
+      </vi-button>
+    </vi-row>
+    <vi-row>
+      <vi-button type="primary" loading plain> 加载状态1 </vi-button>
+      <vi-button type="success" loading :is-prefix="false" plain> 加载状态2 </vi-button>
+      <vi-button type="warning" loading plain> 
+        加载状态3 
+        <template #prefix>
+          <vi-icon name="Close" size="16px" cursor="wait" loading />
+        </template>
+      </vi-button>
+      <vi-button type="danger" loading :is-prefix="false" plain>
+        加载状态4 
+        <template #suffix>
+          <vi-icon name="Close" size="16px" cursor="wait" loading />
+        </template>
+      </vi-button>
+    </vi-row>
+  </vi-flex>
 </div>
 
 ```vue
 <template>
-  <vi-row>
-    <vi-button type="primary" loading> 加载状态1 </vi-button>
-    <vi-button type="success" loading :is-prefix="false"> 加载状态2 </vi-button>
-    <vi-button type="warning" loading> 
-      加载状态3 
-      <template #prefix>
-        <vi-icon name="Close" size="16px" cursor="wait" loading />
-      </template>
-    </vi-button>
-    <vi-button type="danger" loading :is-prefix="false">
-      加载状态4 
-      <template #suffix>
-        <vi-icon name="Close" size="16px" cursor="wait" loading />
-      </template>
-    </vi-button>
-  </vi-row>
+  <vi-flex direction="column" gap="18px">
+    <vi-row>
+      <vi-button type="primary" loading> 加载状态1 </vi-button>
+      <vi-button type="success" loading :is-prefix="false"> 加载状态2 </vi-button>
+      <vi-button type="warning" loading> 
+        加载状态3 
+        <template #prefix>
+          <vi-icon name="Close" size="16px" cursor="wait" loading />
+        </template>
+      </vi-button>
+      <vi-button type="danger" loading :is-prefix="false">
+        加载状态4 
+        <template #suffix>
+          <vi-icon name="Close" size="16px" cursor="wait" loading />
+        </template>
+      </vi-button>
+    </vi-row>
+    <vi-row>
+      <vi-button type="primary" loading plain> 加载状态1 </vi-button>
+      <vi-button type="success" loading :is-prefix="false" plain> 加载状态2 </vi-button>
+      <vi-button type="warning" loading plain> 
+        加载状态3 
+        <template #prefix>
+          <vi-icon name="Close" size="16px" cursor="wait" loading />
+        </template>
+      </vi-button>
+      <vi-button type="danger" loading :is-prefix="false" plain>
+        加载状态4 
+        <template #suffix>
+          <vi-icon name="Close" size="16px" cursor="wait" loading />
+        </template>
+      </vi-button>
+    </vi-row>
+  </vi-flex>
 </template>
 ```
 
@@ -157,24 +193,42 @@
 使用 `disabled` 属性， 使按钮处于禁用状态。
 
 <div class="examples">
-  <vi-row>
-    <vi-button type="primary" disabled> 主要按钮 </vi-button>
-    <vi-button type="success" disabled> 成功按钮 </vi-button>
-    <vi-button type="info" disabled> 信息按钮 </vi-button>
-    <vi-button type="warning" disabled> 警告按钮 </vi-button>
-    <vi-button type="danger" disabled> 危险按钮 </vi-button>
-  </vi-row>
+  <vi-flex direction="column" gap="18px">
+    <vi-row>
+      <vi-button type="primary" disabled> 主要按钮 </vi-button>
+      <vi-button type="success" disabled> 成功按钮 </vi-button>
+      <vi-button type="info" disabled> 信息按钮 </vi-button>
+      <vi-button type="warning" disabled> 警告按钮 </vi-button>
+      <vi-button type="danger" disabled> 危险按钮 </vi-button>
+    </vi-row>
+    <vi-row>
+      <vi-button type="primary" disabled plain> 主要按钮 </vi-button>
+      <vi-button type="success" disabled plain> 成功按钮 </vi-button>
+      <vi-button type="info" disabled plain> 信息按钮 </vi-button>
+      <vi-button type="warning" disabled plain> 警告按钮 </vi-button>
+      <vi-button type="danger" disabled plain> 危险按钮 </vi-button>
+    </vi-row>
+  </vi-flex>
 </div>
 
 ```vue
 <template>
-  <vi-row>
-    <vi-button type="primary" disabled> 主要按钮 </vi-button>
-    <vi-button type="success" disabled> 成功按钮 </vi-button>
-    <vi-button type="info" disabled> 信息按钮 </vi-button>
-    <vi-button type="warning" disabled> 警告按钮 </vi-button>
-    <vi-button type="danger" disabled> 危险按钮 </vi-button>
-  </vi-row>
+  <vi-flex direction="column" gap="18px">
+    <vi-row>
+      <vi-button type="primary" disabled> 主要按钮 </vi-button>
+      <vi-button type="success" disabled> 成功按钮 </vi-button>
+      <vi-button type="info" disabled> 信息按钮 </vi-button>
+      <vi-button type="warning" disabled> 警告按钮 </vi-button>
+      <vi-button type="danger" disabled> 危险按钮 </vi-button>
+    </vi-row>
+    <vi-row>
+      <vi-button type="primary" disabled plain> 主要按钮 </vi-button>
+      <vi-button type="success" disabled plain> 成功按钮 </vi-button>
+      <vi-button type="info" disabled plain> 信息按钮 </vi-button>
+      <vi-button type="warning" disabled plain> 警告按钮 </vi-button>
+      <vi-button type="danger" disabled plain> 危险按钮 </vi-button>
+    </vi-row>
+  </vi-flex>
 </template>
 ```
 
@@ -285,12 +339,20 @@
 
 ```vue
 <template>
-  <vi-row>
-    <vi-button type="primary" bg-color="orange"> 自定义1 </vi-button>
-    <vi-button type="success" bg-color="skyblue"> 自定义2 </vi-button>
-    <vi-button type="warning" bg-color="violet"> 自定义3 </vi-button>
-    <vi-button type="danger" bg-color="blueviolet"> 自定义4 </vi-button>
-  </vi-row>
+  <vi-flex direction="column" gap="18px">
+    <vi-row>
+      <vi-button type="primary" bg-color="orange"> 自定义1 </vi-button>
+      <vi-button type="success" bg-color="skyblue"> 自定义2 </vi-button>
+      <vi-button type="warning" bg-color="violet"> 自定义3 </vi-button>
+      <vi-button type="danger" bg-color="green"> 自定义4 </vi-button>
+    </vi-row>
+    <vi-row>
+      <vi-button plain type="primary" bg-color="orange"> 自定义1 </vi-button>
+      <vi-button plain type="success" bg-color="skyblue"> 自定义2 </vi-button>
+      <vi-button plain type="warning" bg-color="violet"> 自定义3 </vi-button>
+      <vi-button plain type="danger" bg-color="green"> 自定义4 </vi-button>
+    </vi-row>
+  </vi-flex>
 </template>
 ```
 
