@@ -15,11 +15,22 @@ const { Layout } = DefaultTheme
       <SearchBar class="search-bar-wrap" />
     </template>
   </Layout>
-  <vi-backtop :right="100" :bottom="100" />
+  <vi-backtop 
+    class="docs-backtop"
+    :right="100" 
+    :bottom="100" 
+    shadow-color="var(--doc-backtop-shadow-color)"
+  />
 </template>
 
 <style scoped lang="scss">
 .search-bar-wrap {
   margin: 0 10px;
+}
+.docs-backtop {
+  background-color: var(--doc-bg-color);
+  :hover {
+    background-color: var(--doc-color-primary);
+  }
 }
 </style>

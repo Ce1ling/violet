@@ -21,6 +21,7 @@
   --doc-color-danger: #e25f2b;
   --doc-color-white: #ffffff;
   --doc-homepage-animation-duration: 1s;
+  --doc-backtop-shadow-color: #dddddd;
 
   /** vitepress 首页 */
   --vp-button-brand-border: var(--vi-color-primary);
@@ -242,7 +243,8 @@
 // dark 主题
 html.dark {
   &:root {
-    --scroll-bar-color: #555555;
+    --doc-scroll-bar-color: #555555;
+    --doc-scroll-bar-color-deep: #666666;
     --doc-border-color: #555555;
     --vp-code-block-bg: #3c3841;
     --search-mask-color: #000000aa;
@@ -252,6 +254,7 @@ html.dark {
     --shadow-color: #1a1a1a;
     --doc-search-modal-shadow-color: #000000;
     --doc-search-result-item-shadow-color: #0f0f0f;
+    --doc-backtop-shadow-color: #000000;
   }
 
   #app {
