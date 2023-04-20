@@ -12,7 +12,7 @@ export default {
   description: 'A Vue3 UI Framework',
   lang: 'zh-CN',
   head: [
-    ['link', { rel: 'icon', href: '/violet-logo.svg',  type: 'image/svg+xml' }]
+    ['link', { rel: 'icon', href: '/violet/violet-logo.svg',  type: 'image/svg+xml' }]
   ],
   markdown: {
     theme: {
