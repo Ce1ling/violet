@@ -58,7 +58,7 @@ const val2 = ref(1)
 
 ## 自定步数
 
-使用 `step` 属性，自定义 “加”/“减” 时的步数。
+使用 `step` 属性，自定义 “加”/“减” 步数。
 
 <div class="examples">
   <vi-stepper v-model="val3" :step="3" />
@@ -81,7 +81,7 @@ const val3 = ref(0)
 
 <div class="examples">
   <vi-flex align="center" gap="8px">
-    <span>单独使用：</span>
+    <span>仅使用 min：</span>
     <vi-stepper v-model="val4" :min="1" />
     <span>一起使用：</span>
     <vi-stepper v-model="val5" :min="1" :max="3" />
@@ -91,7 +91,7 @@ const val3 = ref(0)
 ```vue
 <template>
   <vi-flex align="center" gap="8px">
-    <span>单独使用：</span>
+    <span>仅使用 min：</span>
     <vi-stepper v-model="val4" :min="1" />
     <span>一起使用：</span>
     <vi-stepper v-model="val5" :min="1" :max="3" />
@@ -141,7 +141,7 @@ const val8 = ref(1)
 
 ## 按钮位置
 
-使用 `position` 属性，定义 “加”/“减” 按钮的位置。仅支持 `'left'` / `'right'`。
+使用 `position` 属性，定义 加/减 按钮的位置。仅支持 `'left'` / `'right'`。
 
 <div class="examples">
   <vi-flex gap="18px">
@@ -165,13 +165,13 @@ const val10 = ref(1)
 </script>
 ```
 
-## 定义 Icon 大小
+## 定义图标大小
 
-使用 `icon-size` 属性，自定义 `Icon` 大小。
+使用 `icon-size` 属性，自定义图标大小。
 
 ::: tip
 
-一般您不需要此属性，因为 Violet 设置的 `Icon` 大小正好合适。但如您有特殊需求，可以使用此属性自定义。
+一般您不需要此属性，因为 Violet 设置的图标大小正好合适。但如您有特殊需求，可以使用此属性自定义。
 
 :::
 
@@ -208,9 +208,9 @@ const val11 = ref(1)
 | :---: | :---: | :---: | :---: |
 | `v-model` | 绑定步进器的值 | `number` | —— |
 | disabled | 是否为禁用状态 | `boolean` | `false` |
-| step | 步数 | `number` | 1 |
+| step | 步数 | `number` | `1` |
 | max | 最大值 | `number` | `Infinity` |
 | min | 最小值 | `number` | `-Infinity` |
 | to-fixed | 保留小数 | `number` | —— |
 | position | 按钮位置 | `'normal' \| 'left' \| 'right'` | `'normal'` |
-| icon-size | icon 大小 | `string` | —— |
+| icon-size | 图标大小 | `string` | —— |
