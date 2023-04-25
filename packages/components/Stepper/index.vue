@@ -29,7 +29,7 @@ const decrementEl = ref<HTMLDivElement>()
 const inputWidth = ref<string>('0px')
 
 const getClasses = computed(() => ({ 'is-disabled': props.disabled }))
-const iconClass = computed(() => props.position === 'normal' || `is-${props.position}`)
+const getPositionClass = computed(() => props.position === 'normal' || `is-${props.position}`)
 const incrementClass = computed(() => ({ 'is-disabled': props.modelValue >= props.max }))
 const decrementClass = computed(() => ({ 'is-disabled': props.modelValue <= props.min }))
 const getIconSize = computed(() => props.iconSize 
@@ -75,11 +75,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="vi-stepper" :class="[iconClass, getClasses]">
+  <div class="vi-stepper" :class="[getPositionClass, getClasses]">
     <div 
       ref="decrementEl" 
       class="vi-stepper__decrement" 
-      :class="[iconClass, decrementClass]" 
+      :class="[getPositionClass, decrementClass]" 
       @click="calcStep('decrement')">
       <vi-icon 
         name="Minus" 
@@ -102,7 +102,7 @@ onMounted(() => {
     />
     <div 
       class="vi-stepper__increment" 
-      :class="[iconClass, incrementClass]" 
+      :class="[getPositionClass, incrementClass]" 
       @click="calcStep('increment')">
       <vi-icon 
         name="Plus" 
