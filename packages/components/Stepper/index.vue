@@ -60,7 +60,8 @@ const calcStep = (action: Action) => {
 }
 const getInputWidth = async () => {
   // normal 无需获取宽度
-  if (props.position = 'normal') { return }
+  /** 服了，难怪出现奇怪的 bug，原来是这里的 "===" 写成了 "=" */
+  if (props.position === 'normal') { return }
   await nextTick()
   inputWidth.value = decrementEl.value?.offsetWidth + 'px'
 }
