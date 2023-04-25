@@ -6,13 +6,21 @@ import {
   message 
 } from '../routes/index'
 
+/**
+ * @desc 若 `push` 到 `github`, 请设置为 `true`; 若自行部署, 请在打包前设置为 `false`.
+ */
+const hasBase: boolean = true
+
+// 仅在本文件与 404(NotFound.vue) 组件中使用
+export const baseURI = hasBase ? '/violet/' : '/'
+
 export default {
-  base: '/violet/',
+  base: baseURI,
   title: 'Violet',
   description: 'A Vue3 UI Framework',
   lang: 'zh-CN',
   head: [
-    ['link', { rel: 'icon', href: '/violet/violet-logo.svg',  type: 'image/svg+xml' }]
+    ['link', { rel: 'icon', href: `${baseURI}violet-logo.svg`,  type: 'image/svg+xml' }]
   ],
   markdown: {
     theme: {

@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { baseURI } from '../config'
 </script>
 
 <template>
@@ -8,7 +9,7 @@
     <p class="desc">
       一般来说，这不是服务器的问题，而是您请求了服务器没有的资源！所以，请检查您的 URL！
     </p>
-    <a href="/violet/" class="backhome">回到首页</a>
+    <a :href="baseURI" class="backhome">回到首页</a>
   </div>
 </template>
 
