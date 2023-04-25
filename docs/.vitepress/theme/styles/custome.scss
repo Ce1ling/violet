@@ -180,9 +180,6 @@
             display: table;
             width: 100%;
             tr, th, td { border: none; }
-            th:not(:last-child), td:not(:last-child) {
-              border-right: 1px solid var(--doc-border-color);
-            }
           }
           // tip 区块
           .tip.custom-block {
