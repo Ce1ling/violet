@@ -99,12 +99,12 @@ const handleClose = () => {
 
 ## 使用 HTML 字符串
 
-设置 `isHtmlStr` 属性为 `true`，可以在内容中写入 HTML 元素并渲染。
+设置 `isHtmlStr` 属性为 `true`，可以在内容中写入 `HTML` 元素并渲染。
 
 ::: warning
 
-请注意，在网站上动态的渲染 HTML 是非常危险的行为。所以，请确保此 HTML 渲染绝对的安全，否则请勿使用 HTML 渲染。<br />
-二次注意，一个原则是：永远不要相信用户的输入。所以，你不该在任何情况下将用户的输入作为 Toast HTML 渲染。
+请注意，在网站上动态的渲染 `HTML` 是非常危险的行为。所以，请确保此 `HTML` 渲染绝对的安全，否则请勿使用 `HTML` 渲染。<br />
+再次注意，一个原则是：永远不要相信用户的输入。所以，你不该在任何情况下将用户的输入作为 `HTML` 渲染。
 
 :::
 
@@ -155,17 +155,17 @@ const handleUnclosed = () => {
 </script>
 ```
 
-## 自定义 Icon
+## 自定义图标
 
-通过 `prefix`，自定义前置 Icon，目前仅能使用 Violet 提供的 Icon。
+通过 `prefix`，自定义前置图标，目前仅能使用 Violet 提供的图标。
 
 <div class="examples">
-  <vi-button @click="custome">自定义 Icon</vi-button>
+  <vi-button @click="custome">自定义图标</vi-button>
 </div>
 
 ```vue
 <template>
-  <vi-button @click="custome">自定义 Icon</vi-button>
+  <vi-button @click="custome">自定义图标</vi-button>
 </template>
 
 <script>
@@ -173,7 +173,7 @@ import { Toast } from 'violet'
 const custome = () => {
   Toast({
     type: 'primary',
-    content: '自定义 Icon',
+    content: '自定义图标',
     prefix: 'Home'
   })
 }
@@ -186,9 +186,9 @@ const custome = () => {
 
 | 属性名 | 属性说明 | 属性类型 | 属性默认值 |
 | :---: | :---: | :---: | :---: |
-| type | `Toast` 类型 | `string` | `'info'` |
-| content | `Toast` 内容 | `string` | —— |
-| duration | `Toast` 存在时间，设置为 `0` 将不会自动关闭 | `number` | `3000` |
+| type | 示类型 | `string` | `'info'` |
+| content | 内容 | `string` | —— |
+| duration | 存在时间，设置为 `0` 将不会自动关闭 | `number` | `3000` |
 | closable | 是否可手动关闭 | `boolean` | `false` |
 | isHtmlStr | 是否使用 `HTML` 字符串 | `boolean` | `false` |
 | prefix | 自定义 `Icon` | `string` | —— |
