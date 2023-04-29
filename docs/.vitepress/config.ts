@@ -4,7 +4,7 @@ import {
   form, 
   navigation, 
   message 
-} from '../routes/index'
+} from '../pages/index'
 
 /**
  * @desc 若 `push` 到 `github`, 请设置为 `true`; 若自行部署, 请在打包前设置为 `false`.

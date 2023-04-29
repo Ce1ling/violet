@@ -1,3 +1,8 @@
+---
+title: Button
+lang: zh-CN
+---
+
 # Button 按钮
 
 基础按钮组件，改善您的按钮。
@@ -12,7 +17,7 @@
 
 :::
 
-<div class="examples vi-button-demo">
+<div class="examples">
   <vi-flex direction="column" gap="18px">
     <vi-row>
       <vi-button> 主要按钮 </vi-button>
