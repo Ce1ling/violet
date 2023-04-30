@@ -16,7 +16,7 @@ hero:
   actions:
     - theme: brand
       text: 开始
-      link: /examples/button.md
+      link: /components/button.md
     - theme: alt
       text: 在 GitHub 上查看
       link: https://github.com/Ce1ling/violet

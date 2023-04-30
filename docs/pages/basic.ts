@@ -1,14 +1,14 @@
 export const basic = [
   {
     text: 'Button 按钮',
-    link: '/examples/button.md'
+    link: '/components/button.md'
   },
   {
     text: 'Icon 图标',
-    link: '/examples/icon.md'
+    link: '/components/icon.md'
   },
   {
     text: 'Link 链接',
-    link: '/examples/link.md'
+    link: '/components/link.md'
   },
 ]

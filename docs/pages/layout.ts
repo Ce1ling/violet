@@ -1,14 +1,14 @@
 export const layout = [
   {
     text: 'Divider 分割线',
-    link: '/examples/divider.md'
+    link: '/components/divider.md'
   },
   {
     text: 'Grid 布局',
-    link: '/examples/grid.md'
+    link: '/components/grid.md'
   },
   {
     text: 'Layout 布局',
-    link: '/examples/layout.md'
+    link: '/components/layout.md'
   },
 ]

@@ -1,22 +1,22 @@
 export const form = [
   {
     text: 'Input 输入框',
-    link: '/examples/input.md'
+    link: '/components/input.md'
   },
   {
     text: 'Radio 单选按钮',
-    link: '/examples/radio.md'
+    link: '/components/radio.md'
   },
   {
     text: 'Checkbox 复选框',
-    link: '/examples/checkbox.md'
+    link: '/components/checkbox.md'
   },
   {
     text: 'Switch 开关',
-    link: '/examples/switch.md'
+    link: '/components/switch.md'
   },
   {
     text: 'Stepper 步进器',
-    link: '/examples/stepper.md'
+    link: '/components/stepper.md'
   },
 ]
