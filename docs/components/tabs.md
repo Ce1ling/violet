@@ -15,9 +15,11 @@ const list = ref([
   { name: '4', label: 'Solid', content: 'Solid，用于构建用户界面的简单且高性能的响应式' }
 ])
 const val3 = ref('1')
+const val4 = ref('1')
 const handleRemove = (name: string) => {
   list.value = list.value.filter(v => v.name !== name)
 }
+const beforeChange = (name) => !(name === '2')
 </script>
 
 # Tabs 标签
@@ -153,7 +155,14 @@ const val2 = ref('1')
 
 ```vue
 <template>
-  <vi-tabs v-model="val3" removable @tab-remove>
+  <vi-tabs v-model="val3" removable @tab-remove="handleRemove">
+    <vi-tab 
+      v-for="item in list"
+      :key="item.name"
+      :name="item.name"
+      :label="item.label">
+      {{ item.content }}
+    </vi-tab>
   </vi-tabs>
 </template>
 
@@ -172,23 +181,68 @@ const handleRemove = (name: string) => {
 </script>
 ```
 
+## 阻止切换
+
+使用 `before-change` 钩子，此钩子函数返回 `true` 则正常切换，返回 `false` 则阻止切换。
+
+::: tip
+此示例中使用 `before-change` 阻止了切换到 `React`，所以您无法切换到 `React`。
+:::
+
+::: warning 
+注意：`before-change` 虽然会阻止切换，但被点击的标签仍能触发 `tab-click` 事件。
+:::
+
+<div class="examples">
+  <vi-tabs v-model="val4" :before-change="beforeChange">
+    <vi-tab 
+      v-for="item in JSON.parse(JSON.stringify(list))"
+      :key="item.name"
+      :name="item.name"
+      :label="item.label">
+      {{ item.content }}
+    </vi-tab>
+  </vi-tabs>
+</div>
+
+```vue
+<template>
+  <vi-tabs v-model="val4" :before-change="beforeChange">
+    <vi-tab 
+      v-for="item in JSON.parse(JSON.stringify(list))"
+      :key="item.name"
+      :name="item.name"
+      :label="item.label">
+      {{ item.content }}
+    </vi-tab>
+  </vi-tabs>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+const val4 = ref('1')
+const beforeChange = (name) => !(name === '2')
+</script>
+```
+
 ## APIs
 
 ### Tabs 属性
 
 | 属性名 | 属性说明 | 属性类型 | 属性默认值 |
 | :---: | :---: | :---: | :---: |
-| `v-model` | 当前展示的 `Tab` | `string` | —— |
-| active-bg-color | 当前展示的 `Tab` 的背景颜色 | `string` | `'#802ae8'` |
+| `v-model` | 当前展示的标签 | `string` | —— |
+| active-bg-color | 当前展示的标签的背景颜色 | `string` | `'#802ae8'` |
 | bg-color | 标题背景颜色 | `string` | `#eeeeee` |
 | ifMode | 是否为类似 `v-if` 的模式 | `boolean` | `false` |
 | removable | 是否可被移除 | `boolean` | `false` |
+| before-change | 标签切换前触发，返回 `false` 则阻止切换 | `(name: string) => boolean` | —— |
 
 ### Tabs 事件
 
 | 事件名 | 事件触发时机 | 事件参数 |
 | :---: | :---: | :---: |
-| tab-click | `Tab` 标题点击时触发 | `(name: string, e: MouseEvent) => void` |
+| tab-click |标签标题被点击时触发 | `(name: string, e: MouseEvent) => void` |
 | tab-remove | 点击移除按钮触发 | `(name: string, e: MouseEvent) => void` |
 | change | `v-model` 值改变后触发 | `(newVal: string, oldVal: string) => void` |
 
@@ -196,5 +250,5 @@ const handleRemove = (name: string) => {
 
 | 属性名 | 属性说明 | 属性类型 | 属性默认值 |
 | :---: | :---: | :---: | :---: |
-| label | `Tab` 标题 | `string` | —— |
-| name | 唯一标识符，`Tabs` 的 `v-model` 根据此属性辨别当前展示的 `Tab` | `string` | —— |
+| label |标签 标题 | `string` | —— |
+| name | 唯一标识符，标签的 `v-model` 根据此属性辨别当前展示的标签 | `string` | —— |
