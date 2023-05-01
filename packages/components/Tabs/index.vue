@@ -10,6 +10,7 @@ interface Props {
   bgColor?: string
   ifMode?: boolean
   removable?: boolean
+  beforeChange?: (name: string) => boolean
 }
 interface Emits {
   (e: 'update:modelValue', val: string): void
@@ -31,6 +32,15 @@ const getHeaderStyles = computed(() => ({
   backgroundColor: props.bgColor
 }))
 
+const onBeforeChange = (fn: Props['beforeChange'], name: string) => {
+  if (!fn) {
+    emit('update:modelValue', name)
+    return
+  }
+  if (fn(name)) {
+    emit('update:modelValue', name)
+  }
+}
 /**
  * 用于检查 DOM 类型，共以下几种：
  *  1. `normal`: 正常节点
@@ -71,8 +81,10 @@ const hRenderTabHeader = (type: string, vNode: VNode) => {
       backgroundColor: isActive ? props.activeBgColor : ''
     },
     onClick: (e: MouseEvent) => {
-      emit('update:modelValue', vNode.props?.name)
-      emit('tab-click', vNode.props?.name, e)
+      const { name } = vNode.props ?? {}
+      emit('tab-click', name, e)
+      // 改变前判断是否允许改变
+      onBeforeChange(props.beforeChange, name)
     },
   }, [
     h('span', vNode.props?.label), 
