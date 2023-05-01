@@ -74,6 +74,7 @@ const hRenderTabHeader = (type: string, vNode: VNode) => {
   const isActive = props.modelValue === vNode.props?.name
 
   return h(type, {
+    ...vNode.props,
     class: ['vi-tabs__header-item', {
       'is-active': isActive
     }],
