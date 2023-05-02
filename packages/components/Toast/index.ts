@@ -1,15 +1,13 @@
 import { createApp, watch, ref } from 'vue'
 import ToastComponent from './Toast.vue'
-import { types } from './types'
 import { useTimeout } from '../../hooks/useTimeout'
 
 import type { App } from 'vue'
-import type { Options, Ins } from './types'
-
+import type { Options, Ins, ToastFn } from './types'
 
 const instances = ref<Ins[]>([])
 
-export const Toast = (ops: Options | string) => {
+export const Toast: ToastFn = (ops) => {
   const renderToast = (ops: Options) => {
     const app = createApp(ToastComponent, { 
       ...ops, 
@@ -23,11 +21,13 @@ export const Toast = (ops: Options | string) => {
     document.body.appendChild(fragment)
     
     setOffset(ins)
-    /** 请勿在 setOffset 之前 watch */
+    // 请勿在 setOffset 之前 watch
     watch(instances.value, () => setOffset(ins))
+
     if (ops.duration !== 0) {
       removeToast(app, ins, ops.duration)
     }
+
     return ins
   }
 
@@ -52,15 +52,15 @@ export const Toast = (ops: Options | string) => {
     }, 0)
   }
 
-  return renderToast(typeof ops === 'object' 
-    ? ops 
-    : { type: 'info', content: ops })
+  return renderToast(typeof ops === 'object' ? ops : { type: 'info', content: ops })
 }
 
-/** 静态方法 */
-Object.values(types).forEach(type => {
-  Toast[type] = (str: string) => Toast({ 
-    type: type as Options['type'], 
-    content: str 
-  })
-})
+/**
+ * 静态方法
+ * 待解决问题: 通过循环添加静态方法会导致 ToastFn 无法找到具体实现导致 TS 报错
+ */
+Toast.primary = (str: string) => Toast({ type: 'primary', content: str })
+Toast.success = (str: string) => Toast({ type: 'success', content: str })
+Toast.info = (str: string) => Toast({ type: 'info', content: str })
+Toast.warning = (str: string) => Toast({ type: 'warning', content: str })
+Toast.danger = (str: string) => Toast({ type: 'danger', content: str })

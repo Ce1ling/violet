@@ -1,4 +1,13 @@
-export const types = { 
+import type { ComponentPublicInstance } from 'vue'
+
+export interface Types {
+  primary: string
+  success: string
+  info: string
+  warning: string
+  danger: string
+}
+export const toastTypes: Types = { 
   primary: 'primary',
   success: 'success',
   info: 'info',
@@ -7,7 +16,7 @@ export const types = {
 }
 
 export interface Options {
-  type: 'primary' | 'success' | 'info' | 'warning' | 'danger'
+  type: keyof Types
   content: string
   duration?: number
   closable?: boolean
@@ -18,4 +27,12 @@ export interface Options {
 
 export interface Ins {
   [k: string]: any
+}
+
+export type ToastMethods = {
+  [K in keyof Types]: (str: string) => ComponentPublicInstance
+}
+
+export interface ToastFn extends ToastMethods {
+  (options: Options | string): ComponentPublicInstance
 }
