@@ -1,23 +1,7 @@
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const val1 = ref(true)
-const val2 = ref(false)
-const val3 = ref(true)
-const val4 = ref(false)
-const val5 = ref(true)
-const val6 = ref(false)
-const val7 = ref(true)
-const val8 = ref(false)
-const val9 = ref(true)
-const val10 = ref(false)
-const val11 = ref(true)
-const val12 = ref(false)
-const val13 = ref(['AK-47'])
-const val14 = ref(['AK-47'])
-const val15 = ref(['AK-47'])
-</script>
-
+---
+title: Checkbox
+lang: zh-CN
+---
 
 # Checkbox 复选框
 
@@ -27,103 +11,31 @@ const val15 = ref(['AK-47'])
 
 通过 `v-model` 绑定选中状态，`vi-checkbox` 的 `label` 内容可以当作标签体内容，如果您的标签体内容与 `label` 内容一致的话，可以省略标签体。
 
-<div class="examples">
-  <vi-flex gap="18px">
-    <span>请选择你的武器</span>
-    <vi-checkbox v-model="val1" label="AK-47" />
-    <vi-checkbox v-model="val2" label="AWP" />
-    <vi-checkbox v-model="val3" label="M4A4" />
-    <vi-checkbox v-model="val4" label="M4A1-S" />
-  </vi-flex>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-flex gap="18px">
-    <span>请选择你的武器</span>
-    <vi-checkbox v-model="val1" label="AK-47" />
-    <vi-checkbox v-model="val2" label="AWP" />
-    <vi-checkbox v-model="val3" label="M4A4" />
-    <vi-checkbox v-model="val4" label="M4A1-S" />
-  </vi-flex>
-</template>
+Checkbox/Basic
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const val1 = ref(true)
-const val2 = ref(false)
-const val3 = ref(true)
-const val4 = ref(false)
-</script>
-```
+:::
 
 ## 禁用状态
 
 通过 `disabled` 属性，禁用 checkbox。
 
-<div class="examples">
-  <vi-flex gap="18px">
-    <span>请选择你的武器</span>
-    <vi-checkbox v-model="val5" label="AK-47" disabled />
-    <vi-checkbox v-model="val6" label="AWP" />
-    <vi-checkbox v-model="val7" label="M4A4" />
-    <vi-checkbox v-model="val8" label="M4A1-S" disabled />
-  </vi-flex>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-flex gap="18px">
-    <span>请选择你的武器</span>
-    <vi-checkbox v-model="val5" label="AK-47" disabled />
-    <vi-checkbox v-model="val6" label="AWP" />
-    <vi-checkbox v-model="val7" label="M4A4" />
-    <vi-checkbox v-model="val8" label="M4A1-S" disabled />
-  </vi-flex>
-</template>
+Checkbox/Disabled
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const val5 = ref(true)
-const val6 = ref(false)
-const val7 = ref(true)
-const val8 = ref(false)
-</script>
-```
+:::
 
 ## 带边框
 
 通过 `border` 属性，启用边框。
 
-<div class="examples">
-  <vi-flex gap="18px">
-    <span>请选择你的武器</span>
-    <vi-checkbox v-model="val9" label="AK-47" border />
-    <vi-checkbox v-model="val10" label="AWP" border />
-    <vi-checkbox v-model="val11" label="M4A4" border disabled />
-    <vi-checkbox v-model="val12" label="M4A1-S" border />
-  </vi-flex>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-flex gap="18px">
-    <span>请选择你的武器</span>
-    <vi-checkbox v-model="val9" label="AK-47" border />
-    <vi-checkbox v-model="val10" label="AWP" border />
-    <vi-checkbox v-model="val11" label="M4A4" border disabled />
-    <vi-checkbox v-model="val12" label="M4A1-S" border />
-  </vi-flex>
-</template>
+Checkbox/HasBorder
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const val9 = ref(true)
-const val10 = ref(false)
-const val11 = ref(true)
-const val12 = ref(false)
-</script>
-```
+:::
 
 ## Ckeckbox 组
 
@@ -136,36 +48,11 @@ const val12 = ref(false)
 
 :::
 
-<div class="examples">
-  <vi-flex gap="18px">
-    <span>请选择你的武器</span>
-    <vi-checkbox-group v-model="val14" gap="18px" border>
-      <vi-checkbox label="AK-47" />
-      <vi-checkbox label="AWP" />
-      <vi-checkbox label="M4A4" disabled />
-      <vi-checkbox label="M4A1-S" />
-    </vi-checkbox-group>
-  </vi-flex>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-flex gap="18px">
-    <span>请选择你的武器</span>
-    <vi-checkbox-group v-model="val14" gap="18px" border>
-      <vi-checkbox label="AK-47" />
-      <vi-checkbox label="AWP" />
-      <vi-checkbox label="M4A4" disabled />
-      <vi-checkbox label="M4A1-S" />
-    </vi-checkbox-group>
-  </vi-flex>
-</template>
+Checkbox/CheckboxGroup
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const val14 = ref(['AK-47'])
-</script>
-```
+:::
 
 ## 按钮类型
 
@@ -183,71 +70,21 @@ const val14 = ref(['AK-47'])
 
 :::
 
-<div class="examples">
-  <vi-flex gap="18px">
-    <span>请选择你的武器</span>
-    <vi-checkbox-group v-model="val13" is-button>
-      <vi-checkbox label="AK-47" />
-      <vi-checkbox label="AWP" />
-      <vi-checkbox label="M4A4" disabled />
-      <vi-checkbox label="M4A1-S" />
-    </vi-checkbox-group>
-  </vi-flex>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-flex gap="18px">
-    <span>请选择你的武器</span>
-    <vi-checkbox-group v-model="val13" is-button>
-      <vi-checkbox label="AK-47" />
-      <vi-checkbox label="AWP" />
-      <vi-checkbox label="M4A4" disabled />
-      <vi-checkbox label="M4A1-S" />
-    </vi-checkbox-group>
-  </vi-flex>
-</template>
+Checkbox/ButtonType
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const val13 = ref(['AK-47'])
-</script>
-```
+:::
 
 ## 限制选中数量
 
 如需限制选中数量，请使用 `vi-checkbox-group` 包裹。使用 `min` 属性来限制最少选中，`max` 属性来限制最多选中。
 
-<div class="examples">
-  <vi-flex gap="18px">
-    <span>请选择你的武器</span>
-    <vi-checkbox-group v-model="val15" :min="1" :max="3">
-      <vi-checkbox label="AK-47" />
-      <vi-checkbox label="AWP" />
-      <vi-checkbox label="M4A4" />
-      <vi-checkbox label="M4A1-S" />
-    </vi-checkbox-group>
-  </vi-flex>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-flex gap="18px">
-    <span>请选择你的武器</span>
-    <vi-checkbox-group v-model="val15" :min="1" :max="3">
-      <vi-checkbox label="AK-47" />
-      <vi-checkbox label="AWP" />
-      <vi-checkbox label="M4A4" />
-      <vi-checkbox label="M4A1-S" />
-    </vi-checkbox-group>
-  </vi-flex>
-</template>
+Checkbox/LimitChoice
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const val15 = ref(['AK-47'])
-</script>
-```
+:::
 
 ## APIs
 
