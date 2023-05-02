@@ -1,32 +1,7 @@
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const tabActive = ref('Vue')
-const show1 = ref(false)
-const show2 = ref(false)
-const show3 = ref(false)
-const show4 = ref(false)
-const show5 = ref(false)
-const show6 = ref(false)
-const show7 = ref(false)
-const show8 = ref(false)
-const show9 = ref(false)
-const show10 = ref(false)
-const show11 = ref(false)
-const show12 = ref(false)
-const show13 = ref(false)
-const movable = ref(true)
-
-const open = () => {
-  console.log('dialog open')
-}
-const close = () => {
-  console.log('dialog close')
-}
-const beforeClose = (close: () => void) => {
-  console.log('before close 阻止了关闭')
-}
-</script>
+---
+title: Dialog
+lang: zh-CN
+---
 
 # Dialog 对话框
 
@@ -36,34 +11,11 @@ const beforeClose = (close: () => void) => {
 
 通过 `v-model` 绑定 `Dialog` 是否显示(它必须是 `boolean`)，使用 `title` 属性来定义头部内容、`width` 来定义宽度，标签体内容将会被渲染为主体内容。
 
-<div class="examples">
-  <vi-button @click="show1 = true">打开 Dialog</vi-button>
-  <vi-dialog v-model="show1" width="30%" title="你知道吗">
-    香菜是这个世界上最难吃的菜
-    <template #footer>
-      <vi-button @click="show1 = false">确认</vi-button>
-      <vi-button type="info" @click="show1 = false">取消</vi-button>
-    </template>
-  </vi-dialog>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-button @click="show1 = true">打开 Dialog</vi-button>
-  <vi-dialog v-model="show1" width="30%" title="你知道吗">
-    香菜是这个世界上最难吃的菜
-    <template #footer>
-      <vi-button @click="show1 = false">确认</vi-button>
-      <vi-button type="info" @click="show1 = false">取消</vi-button>
-    </template>
-  </vi-dialog>
-</template>
+Dialog/Basic
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const show1 = ref(false)
-</script>
-```
+:::
 
 ## 进阶用法
 
@@ -82,75 +34,11 @@ const show1 = ref(false)
 
 :::
 
-<div class="examples">
-  <vi-row>
-    <vi-button @click="show2 = true">打开简写的 Dialog</vi-button>
-    <vi-button @click="show3 = true">打开自定义的 Dialog</vi-button>
-  </vi-row>
-  <vi-dialog 
-    v-model="show2" 
-    width="30%" 
-    title="简写形式" 
-    content="使用 content 属性简写"
-    :show-close-btn="false"
-  />
-  <vi-dialog v-model="show3" :show-close-btn="false">
-    <template #header>
-      <span>自定义的头部</span>
-      <vi-button type="danger" @click="show3 = false">
-        <vi-icon name="Close" />
-      </vi-button>
-    </template>
-    主体内容可以是其他组件
-    <vi-tabs v-model="tabActive">
-      <vi-tab name="Vue" label="Vue">Vue</vi-tab>
-      <vi-tab name="React" label="React">React</vi-tab>
-      <vi-tab name="Svelte" label="Svelte">Svelte</vi-tab>
-    </vi-tabs>
-    <template #footer>
-      自定义底部
-      <vi-button @click="show3 = false">关闭</vi-button>
-    </template>
-  </vi-dialog>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-row>
-    <vi-button @click="show2 = true">打开简写的 Dialog</vi-button>
-    <vi-button @click="show3 = true">打开自定义的 Dialog</vi-button>
-  </vi-row>
-  <vi-dialog 
-    v-model="show2" 
-    width="30%" 
-    title="简写形式" 
-    content="使用 content 属性简写"
-    :show-close-btn="false"
-  />
-  <vi-dialog 
-    v-model="show3" 
-    width="30%" 
-    :show-close-btn="false">
-    <template #header>
-      <span>自定义的头部</span>
-      <vi-button type="danger" @click="show3 = false">
-        <vi-icon name="Close" />
-      </vi-button>
-    </template>
-    自定义主体内容
-    <template #footer>
-      自定义底部
-      <vi-button @click="show3 = false">关闭</vi-button>
-    </template>
-  </vi-dialog>
-</template>
+Dialog/AdvancedUsage
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const show2 = ref(false)
-const show3 = ref(false)
-</script>
-```
+:::
 
 ## 多层嵌套
 
@@ -162,39 +50,11 @@ const show3 = ref(false)
 
 :::
 
-<div class="examples">
-  <vi-button @click="show4 = true">打开 Dialog</vi-button>
-  <vi-dialog v-model="show4" title="嵌套 Dialog">
-    <vi-button @click="show5 = true">打开嵌套</vi-button>
-    <vi-dialog 
-      v-model="show5" 
-      width="30%" 
-      title="我是一个" 
-      content="在 Dialog 里面的 Dialog"
-    />
-  </vi-dialog>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-button @click="show4 = true">打开 Dialog</vi-button>
-  <vi-dialog v-model="show4" title="嵌套 Dialog">
-    <vi-button @click="show5 = true">打开嵌套</vi-button>
-    <vi-dialog 
-      v-model="show5" 
-      width="30%" 
-      title="我是一个" 
-      content="在 Dialog 里面的 Dialog"
-    />
-  </vi-dialog>
-</template>
+Dialog/Nested
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const show4 = ref(false)
-const show5 = ref(false)
-</script>
-```
+:::
 
 ## 设置居中
 
@@ -206,49 +66,11 @@ const show5 = ref(false)
 
 :::
 
-<div class="examples">
-  <vi-button @click="show6 = true">内容居中</vi-button>
-  <vi-dialog v-model="show6" title="嵌套 Dialog" center>
-    这是内容
-    <vi-dialog 
-      v-model="show7" 
-      width="30%" 
-      title="整体居中" 
-      content="我在屏幕中间"
-      box-center
-      :show-close-btn="false"
-    />
-    <template #footer>
-      <vi-button @click="show7 = true">整体居中</vi-button>
-    </template>
-  </vi-dialog>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-button @click="show5 = true">内容居中</vi-button>
-  <vi-dialog v-model="show6" title="嵌套 Dialog" center>
-    这是内容
-    <vi-dialog 
-      v-model="show6" 
-      width="30%" 
-      title="整体居中" 
-      content="我在屏幕中间"
-      box-center
-      :show-close-btn="false"
-    />
-    <template #footer>
-      <vi-button @click="show6 = true">整体居中</vi-button>
-    </template>
-  </vi-dialog>
-</template>
+Dialog/SetCenter
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const show6 = ref(false)
-const show7 = ref(false)
-</script>
-```
+:::
 
 ## 隐藏遮罩层
 
@@ -260,51 +82,21 @@ const show7 = ref(false)
 
 :::
 
-<div class="examples">
-  <vi-button @click="show8 = true">打开</vi-button>
-  <vi-dialog v-model="show8" title="隐藏遮罩层" :mask="false">
-    无遮罩层
-  </vi-dialog>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-button @click="show8 = true">打开</vi-button>
-  <vi-dialog v-model="show8" title="隐藏遮罩层" :mask="false">
-    无遮罩层
-  </vi-dialog>
-</template>
+Dialog/HideMask
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const show8 = ref(false)
-</script>
-```
+:::
 
 ## 解锁滚动条
 
 通过 `lock-scroll` 属性，来锁定/解锁滚动条。默认为锁定。
 
-<div class="examples">
-  <vi-button @click="show9 = true">打开</vi-button>
-  <vi-dialog v-model="show9" title="解锁滚动条" :lock-scroll="false">
-    试着滚动一下鼠标滚轮
-  </vi-dialog>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-button @click="show9 = true">打开</vi-button>
-  <vi-dialog v-model="show9" title="解锁滚动条" :lock-scroll="false">
-    试着滚动一下鼠标滚轮
-  </vi-dialog>
-</template>
+Dialog/UnlockScoll
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const show9 = ref(false)
-</script>
-```
+:::
 
 ## 可移动的
 
@@ -316,33 +108,11 @@ const show9 = ref(false)
 
 :::
 
-<div class="examples">
-  <vi-button @click="show10 = true">打开</vi-button>
-  <vi-dialog v-model="show10" width="30%" title="可移动(拖拽)" :movable="movable">
-    将鼠标放到 header 区域，然后按下拖动。
-    <vi-button @click="movable = !movable">
-      切换为 {{ movable ? '不可移动' : '可移动' }}
-    </vi-button>
-  </vi-dialog>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-button @click="show10 = true">打开</vi-button>
-  <vi-dialog v-model="show10" width="30%" title="可移动(拖拽)" :movable="movable">
-    将鼠标放到 header 区域，然后按下拖动。
-    <vi-button @click="movable = !movable">
-      切换为 {{ movable ? '不可移动' : '可移动' }}
-    </vi-button>
-  </vi-dialog>
-</template>
+Dialog/Movable
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const show10 = ref(false)
-const movable = ref(true)
-</script>
-```
+:::
 
 ## 遮罩层不可关闭
 
@@ -354,71 +124,21 @@ const movable = ref(true)
 
 :::
 
-<div class="examples">
-  <vi-button @click="show11 = true">打开</vi-button>
-  <vi-dialog 
-    v-model="show11" 
-    width="30%" 
-    title="点击遮罩层" 
-    box-center 
-    :click-mask-close="false"
-    @open="open"
-    @close="close">
-    试着点击遮罩层
-  </vi-dialog>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-button @click="show11 = true">打开</vi-button>
-  <vi-dialog 
-    v-model="show11" 
-    width="30%" 
-    title="点击遮罩层" 
-    box-center 
-    :click-mask-close="false"
-    @open="open"
-    @close="close">
-    试着点击遮罩层
-  </vi-dialog>
-</template>
+Dialog/MaskCannotClose
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const show11 = ref(false)
-const open = () => {
-  console.log('dialog open')
-}
-const close = () => {
-  console.log('dialog close')
-}
-</script>
-```
+:::
 
 ## 关闭时销毁
 
 使用 `destroy` 属性，设置关闭后销毁节点。默认不销毁。
 
-<div class="examples">
-  <vi-button @click="show12 = true">打开</vi-button>
-  <vi-dialog v-model="show12" width="30%" title="关闭时销毁" destroy>
-    在开发者工具中的 Elements 中查看吧！
-  </vi-dialog>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-button @click="show12 = true">打开</vi-button>
-  <vi-dialog v-model="show12" width="30%" title="关闭时销毁" destroy>
-    在开发者工具中的 Elements 中查看吧！
-  </vi-dialog>
-</template>
+Dialog/DestroyClose
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const show12 = ref(false)
-</script>
-```
+:::
 
 ## 阻止关闭
 
@@ -436,35 +156,11 @@ const show12 = ref(false)
 
 :::
 
-<div class="examples">
-  <vi-button @click="show13 = true">打开</vi-button>
-  <vi-dialog v-model="show13" width="30%" title="阻止关闭" :before-close="beforeClose">
-    <span>试着点击右上角 "关闭按钮" 与 "遮罩层"。他们都无法关闭此 Dialog，但下方按钮可以。</span>
-    <template #footer>
-      <vi-button @click="show13 = false">修改 v-model 关闭</vi-button>
-    </template>
-  </vi-dialog>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-button @click="show13 = true">打开</vi-button>
-  <vi-dialog v-model="show13" width="30%" title="阻止关闭" :before-close="beforeClose">
-    <span>试着点击右上角 "关闭按钮" 与 "遮罩层"。他们都无法关闭此 Dialog，但下方按钮可以。</span>
-    <template #footer>
-      <vi-button @click="show13 = false">修改 v-model 关闭</vi-button>
-    </template>
-  </vi-dialog>
-</template>
+Dialog/PreventClose
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const show13 = ref(false)
-const beforeClose = (close: () => void) => {
-  console.log('before close 阻止了关闭', close)
-}
-</script>
-```
+:::
 
 ## APIs
 
