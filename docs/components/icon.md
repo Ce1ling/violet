@@ -1,20 +1,7 @@
-<script setup lang="ts">
-import { ref } from 'vue'
-import { iconMaps } from '../../packages/components/Icon/iconMaps'
-import { Toast } from '../../packages/components/Toast/index'
-
-const isLoading = ref(false)
-const duration = ref(2)
-const selfClosing = ref(true)
-
-const copy = (name: string) => {
-  const selfClosingTag = `<vi-icon name="${name}" />`
-  const completeTag = `<vi-icon name="${name}"></vi-icon>`
-  navigator.clipboard.writeText(selfClosing.value ? selfClosingTag : completeTag)
-    .then(res => Toast.success('复制成功'))
-    .catch(err => Toast.danger('复制失败'))
-}
-</script>
+---
+title: Icon
+lang: zh-CN
+---
 
 # Icon 图标
 
@@ -24,29 +11,11 @@ const copy = (name: string) => {
 
 使用 `name` 属性，来定义图标，它是必须的！
 
-<div class="examples">
-  <vi-row>
-    <vi-icon name="Windows" size="28px" />
-    <vi-icon name="Linux" size="28px" />
-    <vi-icon name="Mac" size="28px" />
-    <vi-icon name="Check" size="28px" />
-    <vi-icon name="Close" size="28px" />
-    <vi-icon name="Loading" size="28px" />
-  </vi-row>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-row>
-    <vi-icon name="Windows" size="28px" />
-    <vi-icon name="Linux" size="28px" />
-    <vi-icon name="Mac" size="28px" />
-    <vi-icon name="Check" size="28px" />
-    <vi-icon name="Close" size="28px" />
-    <vi-icon name="Loading" size="28px" />
-  </vi-row>
-</template>
-```
+Icon/Basic
+
+:::
 
 ## 加载动画
 
@@ -58,135 +27,71 @@ const copy = (name: string) => {
 
 :::
 
-<div class="examples">
-  <vi-row align="center">
-    <vi-icon name="Loading" size="28px" loading />
-    <vi-icon name="Close" size="28px" :loading="isLoading" />
-    <vi-button @click="isLoading = !isLoading">测试</vi-button>
-  </vi-row>
-</div>
+::: demo
 
-```vue
-<script setup lang="ts">
-import { ref } from 'vue'
-const isLoading = ref(false)
-</script>
+Icon/LoadingAnimation
 
-<template>
-  <vi-row align="center">
-    <vi-icon name="Loading" size="28px" loading />
-    <vi-icon name="Close" size="28px" :loading="isLoading" />
-    <vi-button @click="isLoading = !isLoading">测试</vi-button>
-  </vi-row>
-</template>
-```
+:::
 
 ## 自定义加载动画时长
 
 使用 `duration` 属性，定义加载时间，通过下方“加”、“减”按钮查看效果。
 
-<div class="examples">
-  <vi-row align="center">
-    <vi-icon name="Loading" size="28px" loading :duration="duration" />
-    <p>当前动画时间为：{{ duration }} 秒</p>
-    <vi-button circle @click="duration ++"> 
-      <vi-icon name="Plus" title="增加" size="18px" /> 
-    </vi-button>
-    <vi-button circle @click="duration --"> 
-      <vi-icon name="Minus" title="减少" size="18px" /> 
-    </vi-button>
-  </vi-row>
-</div>
+::: demo
 
-```vue
-<script setup lang="ts">
-import { ref } from 'vue'
-const duration = ref(2)
-</script>
+Icon/CustomLoadingDuration
 
-<template>
-  <vi-row align="center">
-    <vi-icon name="Loading" size="28px" loading :duration="duration" />
-    <p>当前动画时间为：{{ duration }} 秒</p>
-    <vi-button circle @click="duration ++"> 
-      <vi-icon name="Plus" title="增加" size="18px" /> 
-    </vi-button>
-    <vi-button circle @click="duration --"> 
-      <vi-icon name="Minus" title="减少" size="18px" /> 
-    </vi-button>
-  </vi-row>
-</template>
-```
+:::
 
 ## 自定义颜色
 
 使用 `color` 属性，定义图标颜色。
 
-<div class="examples">
-  <vi-row>
-    <vi-icon name="Check" size="28px" color="blueviolet" />
-    <vi-icon name="Close" size="28px" color="violet" />
-    <vi-icon name="Plus" size="28px" color="orange" />
-  </vi-row>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-row>
-    <vi-icon name="Check" size="28px" color="blueviolet" />
-    <vi-icon name="Close" size="28px" color="violet" />
-    <vi-icon name="Plus" size="28px" color="orange" />
-  </vi-row>
-</template>
-```
+Icon/CustomColor
+
+:::
 
 ## 自定义 hover 状态颜色
 
 使用 `hover-color` 属性，定义图标 `hover` 状态的颜色。
 
-<div class="examples">
-  <vi-row>
-    <vi-icon name="Check" size="28px" hover-color="blueviolet" />
-    <vi-icon name="Close" size="28px" hover-color="violet" />
-    <vi-icon name="Plus" size="28px" hover-color="orange" />
-  </vi-row>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-row>
-    <vi-icon name="Check" size="28px" hover-color="blueviolet" />
-    <vi-icon name="Close" size="28px" hover-color="violet" />
-    <vi-icon name="Plus" size="28px" hover-color="orange" />
-  </vi-row>
-</template>
-```
+Icon/CustomHoverColor
+
+:::
 
 ## 自定义鼠标指针
 
 使用 `cursor` 属性，定义鼠标指针状态。此功能完全等同于 CSS 的 `cursor` 属性，考虑到图标大部分时候都是可以被点击的，所以它默认是 `pointer` 状态。
 
-<div class="examples">
-  <vi-row>
-    <vi-icon name="Check" size="28px" cursor="text" />
-    <vi-icon name="Close" size="28px" cursor="not-allowed" />
-    <vi-icon name="Plus" size="28px" cursor="move" />
-  </vi-row>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-row>
-    <vi-icon name="Check" size="28px" cursor="text" />
-    <vi-icon name="Close" size="28px" cursor="not-allowed" />
-    <vi-icon name="Plus" size="28px" cursor="move" />
-  </vi-row>
-</template>
-```
+Icon/CustomCursor
+
+:::
 
 ## 图标集合
 
 点击图标即可复制。
+
+<script lang="ts" setup>
+import { ref } from 'vue'
+import { iconMaps } from '../../packages/components/Icon/iconMaps'
+import { Toast } from '../../packages/components/Toast/index'
+
+const selfClosing = ref(true)
+
+const copy = (name: string) => {
+  const selfClosingTag = `<vi-icon name="${name}" />`
+  const completeTag = `<vi-icon name="${name}"></vi-icon>`
+  navigator.clipboard.writeText(selfClosing.value ? selfClosingTag : completeTag)
+    .then(res => Toast.success('复制成功'))
+    .catch(err => Toast.danger('复制失败'))
+}
+</script>
 
 <vi-flex>
   <span>复制模式：</span>
