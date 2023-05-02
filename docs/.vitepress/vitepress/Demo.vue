@@ -51,11 +51,11 @@ const change = (name: string) => {
 
 <style scoped lang="scss">
 .demo-tabs :deep() {
-  .vi-tabs__header {
+  > .vi-tabs__header {
     justify-content: center;
     user-select: none;
   }
-  .vi-tab-plane {
+  > .vi-tabs__content > .vi-tab-plane {
     padding: 0;
   }
 }
