@@ -1,41 +1,7 @@
-<script setup lang="ts">
-import { Toast } from '../../packages/components/Toast'
-
-const handleClick = (type) => Toast[type](`${type} toast 提示`)
-
-const handleHtmlStr = () => {
-  Toast({
-    isHtmlStr: true,
-    type: 'primary',
-    content: '<b>这是 HTML 字符串内容</b>'
-  })
-}
-
-const handleClose = () => {
-  Toast({
-    closable: true,
-    type: 'primary',
-    content: '可手动关闭'
-  })
-}
-
-const handleUnclosed = () => {
-  Toast({
-    closable: true,
-    type: 'primary',
-    content: '不会自动关闭，不信你可以等，信了点这里 →',
-    duration: 0
-  })
-}
-
-const custome = () => {
-  Toast({
-    type: 'primary',
-    content: '自定义 Icon',
-    prefix: 'Home'
-  })
-}
-</script>
+---
+title: Toast
+lang: zh-CN
+---
 
 # Toast 轻提示
 
@@ -45,57 +11,21 @@ const custome = () => {
 
 从 Violet 中导入 `Toast` 方法，调用即可。
 
-<div class="examples">
-  <vi-row>
-    <vi-button @click="handleClick('primary')">主要提示</vi-button>
-    <vi-button type="success" @click="handleClick('success')">成功提示</vi-button>
-    <vi-button type="info" @click="handleClick('info')">信息提示</vi-button>
-    <vi-button type="warning" @click="handleClick('warning')">警告提示</vi-button>
-    <vi-button type="danger" @click="handleClick('danger')">危险提示</vi-button>
-  </vi-row>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-row>
-    <vi-button @click="handleClick('primary')">主要提示</vi-button>
-    <vi-button type="success" @click="handleClick('success')">成功提示</vi-button>
-    <vi-button type="info" @click="handleClick('info')">信息提示</vi-button>
-    <vi-button type="warning" @click="handleClick('warning')">警告提示</vi-button>
-    <vi-button type="danger" @click="handleClick('danger')">危险提示</vi-button>
-  </vi-row>
-</template>
+Toast/Basic
 
-<script setup lang="ts">
-import { Toast } from 'violet'
-const handleClick = (type) => Toast[type](`${type} toast 提示`)
-</script>
-```
+:::
 
-## 可关闭的 Toast
+## 可关闭的
 
 设置 `closable` 属性为 `true`，开启可手动关闭功能。
 
-<div class="examples">
-  <vi-button @click="handleClose">可手动关闭</vi-button>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-button @click="handleClose">可手动关闭</vi-button>
-</template>
+Toast/Closable
 
-<script>
-import { Toast } from 'violet'
-const handleClose = () => {
-  Toast({
-    closable: true,
-    type: 'primary',
-    content: '可手动关闭'
-  })
-}
-</script>
-```
+:::
 
 ## 使用 HTML 字符串
 
@@ -108,77 +38,31 @@ const handleClose = () => {
 
 :::
 
-<div class="examples">
-  <vi-button @click="handleHtmlStr">HTML 字符串</vi-button>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-button @click="handleHtmlStr">HTML 字符串</vi-button>
-</template>
+Toast/HtmlStr
 
-<script>
-import { Toast } from 'violet'
-const handleHtmlStr = () => {
-  Toast({
-    isHtmlStr: true,
-    type: 'primary',
-    content: '<b>这是 HTML 字符串内容</b>'
-  })
-}
-</script>
-```
+:::
 
 ## 不会自动关闭
 
 设置 `duration` 属性为 `0`，Toast 就不会自动关闭。
 
-<div class="examples">
-  <vi-button @click="handleUnclosed">不自动关闭</vi-button>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-button @click="handleUnclosed">不自动关闭</vi-button>
-</template>
+Toast/NotAutoClose
 
-<script>
-import { Toast } from 'violet'
-const handleUnclosed = () => {
-  Toast({
-    closable: true,
-    type: 'primary',
-    content: '不会自动关闭，不信你可以等，信了点这里 →',
-    duration: 0
-  })
-}
-</script>
-```
+:::
 
 ## 自定义图标
 
 通过 `prefix`，自定义前置图标，目前仅能使用 Violet 提供的图标。
 
-<div class="examples">
-  <vi-button @click="custome">自定义图标</vi-button>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-button @click="custome">自定义图标</vi-button>
-</template>
+Toast/CustomIcon
 
-<script>
-import { Toast } from 'violet'
-const custome = () => {
-  Toast({
-    type: 'primary',
-    content: '自定义图标',
-    prefix: 'Home'
-  })
-}
-</script>
-```
+:::
 
 ## APIs
 
