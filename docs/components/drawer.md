@@ -1,18 +1,7 @@
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const show1 = ref(false)
-const show2 = ref(false)
-const show3 = ref(false)
-const show4 = ref(false)
-const show5 = ref(false)
-const show6 = ref(false)
-const direction = ref('l-r')
-
-const beforeClose = (close: () => void) => {
- console.log('before close 阻止了关闭', close)
-}
-</script>
+---
+title: Drawer
+lang: zh-CN
+---
 
 # Drawer 抽屉
 
@@ -22,34 +11,11 @@ const beforeClose = (close: () => void) => {
 
 通过 `v-model` 指定，绑定显示状态。`title` 属性添加标题。
 
-<div class="examples">
-  <vi-button @click="show1 = true">打开</vi-button>
-  <vi-drawer v-model="show1" title="爱就一个字">
-    我只说一次
-    <template #footer>
-      <vi-button type="info" @click="show1 = false">取消</vi-button>
-      <vi-button @click="show1 = false">确定</vi-button>
-    </template>
-  </vi-drawer>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-button @click="show1 = true">打开</vi-button>
-  <vi-drawer v-model="show1" title="爱就一个字">
-    我只说一次
-    <template #footer>
-      <vi-button type="info" @click="show1 = false">取消</vi-button>
-      <vi-button @click="show1 = false">确定</vi-button>
-    </template>
-  </vi-drawer>
-</template>
+Drawer/Basic
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const show1 = ref(false)
-</script>
-```
+:::
 
 ## 不同方位
 
@@ -66,39 +32,11 @@ const show1 = ref(false)
 
 :::
 
-<div class="examples">
-  <vi-row align="center">
-    <vi-radio-group v-model="direction">
-      <vi-radio label="l-r">左边</vi-radio>
-      <vi-radio label="r-l">右边</vi-radio>
-      <vi-radio label="t-b">上面</vi-radio>
-      <vi-radio label="b-t">下面</vi-radio>
-    </vi-radio-group>
-    <vi-button @click="show2 = true">打开</vi-button>
-  </vi-row>
-  <vi-drawer v-model="show2" title="爱就一个字" :direction="direction"> 我只说一次 </vi-drawer>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-row align="center">
-    <vi-radio-group v-model="direction">
-      <vi-radio label="l-r">左边</vi-radio>
-      <vi-radio label="r-l">右边</vi-radio>
-      <vi-radio label="t-b">上面</vi-radio>
-      <vi-radio label="b-t">下面</vi-radio>
-    </vi-radio-group>
-    <vi-button @click="show2 = true">打开</vi-button>
-  </vi-row>
-  <vi-drawer v-model="show2" title="爱就一个字" :direction="direction"> 我只说一次 </vi-drawer>
-</template>
+Drawer/Direction
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const show2 = ref(false)
-const direction = ref('l-r')
-</script>
-```
+:::
 
 ## 自定义
 
@@ -114,70 +52,21 @@ const direction = ref('l-r')
 
 :::
 
-<div class="examples">
-  <vi-button @click="show3 = true">打开</vi-button>
-  <vi-drawer v-model="show3" title="外部" width="40%" :show-close="false">
-    <template #header>
-      <h4>定义头部</h4>
-    </template>
-    <p> 主体内容 </p>
-    <template #footer>
-      <span>定义底部</span>
-      <vi-button type="info" @click="show3 = false">取消</vi-button>
-      <vi-button @click="show3 = false">确定</vi-button>
-    </template>
-  </vi-drawer>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-button @click="show3 = true">打开</vi-button>
-  <vi-drawer v-model="show3" title="外部" width="40%" :show-close="false">
-    <template #header>
-      <h4>定义头部</h4>
-    </template>
-    <p> 主体内容 </p>
-    <template #footer>
-      <span>定义底部</span>
-      <vi-button type="info" @click="show3 = false">取消</vi-button>
-      <vi-button @click="show3 = false">确定</vi-button>
-    </template>
-  </vi-drawer>
-</template>
+Drawer/Custom
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const show3 = ref(false)
-</script>
-```
+:::
 
 ## 嵌套抽屉
 
 `Drawer` 与 `Dialog` 一样支持嵌套，但也务必为子级 `Drawer` 添加 `append-to-body` 属性，以防止一些问题。
 
-<div class="examples">
-  <vi-button @click="show4 = true">打开</vi-button>
-  <vi-drawer v-model="show4" title="外部" width="40%">
-    <vi-button @click="show5 = true">打开内部</vi-button>
-    <vi-drawer v-model="show5" append-to-body>内部</vi-drawer>
-  </vi-drawer>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-button @click="show4 = true">打开</vi-button>
-  <vi-drawer v-model="show4" title="外部" width="40%">
-    <vi-button @click="show5 = true">打开内部</vi-button>
-    <vi-drawer v-model="show5" append-to-body>内部</vi-drawer>
-  </vi-drawer>
-</template>
+Drawer/Nested
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const show4 = ref(false)
-const show5 = ref(false)
-</script>
-```
+:::
 
 与 `Dialog` 重复的属性不再做重复展示。如：`lock-scroll`、`click-mask-close`、`z-index`、`mask` 等。
 
@@ -197,35 +86,11 @@ const show5 = ref(false)
 
 :::
 
-<div class="examples">
-  <vi-button @click="show6 = true">打开</vi-button>
-  <vi-drawer v-model="show6" title="阻止关闭" :before-close="beforeClose">
-    <span>试着点击右上角 "关闭按钮" 与 "遮罩层"。他们都无法关闭此 Drawer，但下方按钮可以。</span>
-    <template #footer>
-      <vi-button @click="show6 = false">修改 v-model 关闭</vi-button>
-    </template>
-  </vi-drawer>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-button @click="show6 = true">打开</vi-button>
-  <vi-drawer v-model="show6" title="阻止关闭" :before-close="beforeClose">
-    <span>试着点击右上角 "关闭按钮" 与 "遮罩层"。他们都无法关闭此 Drawer，但下方按钮可以。</span>
-    <template #footer>
-      <vi-button @click="show6 = false">修改 v-model 关闭</vi-button>
-    </template>
-  </vi-drawer>
-</template>
+Drawer/PreventClose
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const show6 = ref(false)
-const beforeClose = (close: () => void) => {
- console.log('before close 阻止了关闭', close)
-}
-</script>
-```
+:::
 
 ## APIs
 
