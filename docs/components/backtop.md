@@ -6,79 +6,31 @@
 
 通过 `show-height` 属性，控制显示高度。当滚动条滚动到此值时，则显示。
 
-<div class="examples">
-  <span>请下滑查看效果（右下角第一个）</span>
-  <vi-backtop :show-height="50" :right="280" :bottom="100" />
-</div>
+::: demo
 
-```vue
-<template>
-  <span>请下滑查看效果（右下角第一个）</span>
-  <vi-backtop :show-height="50" :right="280" :bottom="100" />
-</template>
-```
+Backtop/Basic
 
-## 圆形形式
+:::
+
+## 圆形
 
 通过 `round` 属性，控制是否为圆形。
 
-<div class="examples">
-  <span>请下滑查看效果（右下角第二个）</span>
-  <vi-backtop :show-height="50" :right="220" :bottom="100" round />
-</div>
+::: demo
 
-```vue
-<template>
-  <span>请下滑查看效果（右下角第二个）</span>
-  <vi-backtop :show-height="50" :right="220" :bottom="100" round />
-</template>
-```
+Backtop/Circle
+
+:::
 
 ## 自定义内容
 
 将自定义内容直接放入标签体内即可。
 
-<div class="examples">
-  <span>请下滑查看效果（右下角第三个）</span>
-  <vi-backtop 
-    class="vi-backtop-demo-custome" 
-    :show-height="50" 
-    :right="160" 
-    :bottom="100">
-    TOP
-  </vi-backtop>
-</div>
+::: demo
 
-<style lang="scss">
-.vi-backtop-demo-custome {
-  padding: 10px;
-  font-weight: bolder;
-  color: var(--vi-color-primary);
-  &:hover { color: var(--vi-color-white); }
-}
-</style>
+Backtop/CustomContent
 
-```vue
-<template>
-  <span>请下滑查看效果（右下角第三个）</span>
-  <vi-backtop 
-    class="vi-backtop-demo-custome" 
-    :show-height="50" 
-    :right="160" 
-    :bottom="100">
-    TOP
-  </vi-backtop>
-</template>
-
-<style lang="scss">
-  .vi-backtop-demo-custome {
-    padding: 10px;
-    font-weight: bolder;
-    color: var(--vi-color-primary);
-    &:hover { color: var(--vi-color-white); }
-  }
-</style>
-```
+:::
 
 ## APIs
 
