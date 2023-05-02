@@ -19,13 +19,7 @@ const active = ref('example')
 
 const copy = () => {
   navigator.clipboard.writeText(decodeURIComponent(props.rawCode))
-    .then(() => {
-      // @ts-ignore
-      Toast.success('复制成功')
-    }).catch(() => {
-      // @ts-ignore
-      Toast.danger('复制失败')
-    })
+    .then(() => Toast.success('复制成功'), () => Toast.danger('复制失败'))
 }
 const change = (name: string) => {
   if (name === 'copy') {
