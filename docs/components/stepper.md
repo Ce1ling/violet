@@ -1,18 +1,7 @@
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const val1 = ref(1)
-const val2 = ref(1)
-const val3 = ref(0)
-const val4 = ref(1)
-const val5 = ref(1)
-const val6 = ref(1)
-const val7 = ref(1)
-const val8 = ref(1)
-const val9 = ref(1)
-const val10 = ref(1)
-const val11 = ref(1)
-</script>
+---
+title: Stepper
+lang: zh-CN
+---
 
 # Stepper 步进器
 
@@ -22,87 +11,41 @@ const val11 = ref(1)
 
 使用 `v-model` 指令，绑定数字内容。
 
-<div class="examples">
-  <vi-stepper v-model="val1" />
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-stepper v-model="val1" />
-</template>
+Stepper/Basic
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const val1 = ref(1)
-</script>
-```
+:::
 
 ## 禁用状态
 
 使用 `disabled` 属性，禁用步进器。
 
-<div class="examples">
-  <vi-stepper v-model="val2" disabled />
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-stepper v-model="val2" disabled />
-</template>
+Stepper/Disabled
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const val2 = ref(1)
-</script>
-```
+:::
 
 ## 自定步数
 
 使用 `step` 属性，自定义 “加”/“减” 步数。
 
-<div class="examples">
-  <vi-stepper v-model="val3" :step="3" />
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-stepper v-model="val3" :step="3" />
-</template>
+Stepper/CustomStep
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const val3 = ref(0)
-</script>
-```
+:::
 
 ## 限制最大/最小值
 
 使用 `min`、`max` 属性，分别设置最小值与最大值。当然，您也可以单独使用其中一个。
 
-<div class="examples">
-  <vi-flex align="center" gap="8px">
-    <span>仅使用 min：</span>
-    <vi-stepper v-model="val4" :min="1" />
-    <span>一起使用：</span>
-    <vi-stepper v-model="val5" :min="1" :max="3" />
-  </vi-flex>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-flex align="center" gap="8px">
-    <span>仅使用 min：</span>
-    <vi-stepper v-model="val4" :min="1" />
-    <span>一起使用：</span>
-    <vi-stepper v-model="val5" :min="1" :max="3" />
-  </vi-flex>
-</template>
+Stepper/LimitMaxMin
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const val3 = ref(0)
-</script>
-```
+:::
 
 ## 保留小数
 
@@ -114,56 +57,21 @@ const val3 = ref(0)
 
 :::
 
-<div class="examples">
-  <vi-flex gap="18px">
-    <vi-stepper v-model="val6" :to-fixed="1" />
-    <vi-stepper v-model="val7" :to-fixed="2" :step="0.3" />
-    <vi-stepper v-model="val8" :to-fixed="3" :step="0.03" />
-  </vi-flex>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-flex gap="18px">
-    <vi-stepper v-model="val6" :to-fixed="1" />
-    <vi-stepper v-model="val7" :to-fixed="2" :step="0.3" />
-    <vi-stepper v-model="val8" :to-fixed="3" :step="0.03" />
-  </vi-flex>
-</template>
+Stepper/ToFixed
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const val6 = ref(1)
-const val7 = ref(1)
-const val8 = ref(1)
-</script>
-```
+:::
 
 ## 按钮位置
 
 使用 `position` 属性，定义 加/减 按钮的位置。仅支持 `'left'` / `'right'`。
 
-<div class="examples">
-  <vi-flex gap="18px">
-    <vi-stepper v-model="val9" position="left" :min="1" :max="5" />
-    <vi-stepper v-model="val10" position="right" :min="1" :max="5" />
-  </vi-flex>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-flex gap="18px">
-    <vi-stepper v-model="val9" position="left" :min="1" :max="5" />
-    <vi-stepper v-model="val10" position="right" :min="1" :max="5" />
-  </vi-flex>
-</template>
+Stepper/ButtonPosition
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const val9 = ref(1)
-const val10 = ref(1)
-</script>
-```
+:::
 
 ## 定义图标大小
 
@@ -175,30 +83,11 @@ const val10 = ref(1)
 
 :::
 
-<div class="examples">
-  <vi-flex gap="18px">
-    <vi-stepper v-model="val9" icon-size="22px" />
-    <vi-stepper v-model="val10" position="left" icon-size="16px" />
-    <vi-stepper v-model="val11" position="right" icon-size="16px" />
-  </vi-flex>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-flex gap="18px">
-    <vi-stepper v-model="val9" icon-size="22px" />
-    <vi-stepper v-model="val10" position="left" icon-size="16px" />
-    <vi-stepper v-model="val11" position="right" icon-size="16px" />
-  </vi-flex>
-</template>
+Stepper/CustomIconSize
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const val9 = ref(1)
-const val10 = ref(1)
-const val11 = ref(1)
-</script>
-```
+:::
 
 ## APIs
 
