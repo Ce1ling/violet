@@ -1,0 +1,47 @@
+@import 'prism-theme-vars/base.css';
+@import 'prism-theme-vars/marker.css';
+
+:root {
+  --prism-marker-font-size: 12px;
+  --prism-marker-opacity: 1;
+}
+
+html:not(.dark) {
+  --prism-foreground: #90A4AE;
+  --prism-background: #f9f9f9;
+  --prism-comment: #90A4AE;
+  --prism-namespace: #90A4AE;
+  --prism-string: #91B859;
+  --prism-punctuation: #39ADB5;
+  --prism-literal: #E53935;
+  --prism-keyword: #9C3EDA;
+  --prism-function: #6182B8;
+  --prism-deleted: #9a050f;
+  --prism-class: #E2931D;
+  --prism-builtin: #e53935;
+  --prism-property: #9C3EDA;
+  --prism-regex: #39ADB5;
+  --prism-boolean: #FF5370;
+  --prism-number: #F76D47;
+  --prism-selector: #91B859;
+}
+
+html.dark {
+  --prism-foreground: #A6ACCD;
+  --prism-background: #f9f9f9;
+  --prism-comment: #676E95;
+  --prism-namespace: #90A4AE;
+  --prism-string: #C3E88D;
+  --prism-punctuation: #89DDFF;
+  --prism-literal: #FFCB6B;
+  --prism-keyword: #C792EA;
+  --prism-function: #A6ACCD;
+  --prism-deleted: #9e6a6d;
+  --prism-class: #FFCB6B;
+  --prism-builtin: #F07178;
+  --prism-property: #C792EA;
+  --prism-regex: #89DDFF;
+  --prism-boolean: #FF9CAC;
+  --prism-number: #F78C6C;
+  --prism-selector: #C3E88D;
+}

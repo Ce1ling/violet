@@ -5,6 +5,9 @@ import {
   navigation, 
   message 
 } from '../pages/index'
+import { mdPlugin } from './plugins/mdPlugin'
+
+import type { UserConfig } from 'vitepress'
 
 /**
  * @desc 若 `push` 到 `github`, 请设置为 `true`; 若自行部署, 请在打包前设置为 `false`.
@@ -14,7 +17,7 @@ const hasBase: boolean = true
 // 仅在本文件与 404(NotFound.vue) 组件中使用
 export const baseURI = hasBase ? '/violet/' : '/'
 
-export default {
+export const config: UserConfig = {
   base: baseURI,
   title: 'Violet',
   description: 'A Vue3 UI Framework',
@@ -27,6 +30,7 @@ export default {
       light: 'material-lighter',
       dark: 'material-palenight'
     },
+    config: md => mdPlugin(md)
   },
   themeConfig: {
     socialLinks: [
@@ -50,3 +54,5 @@ export default {
     }
   },
 }
+
+export default config
