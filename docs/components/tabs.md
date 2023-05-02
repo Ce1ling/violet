@@ -1,26 +1,7 @@
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const val1 = ref('1')
-const val2 = ref('1')
-const active = ref('1')
-const change = () => {
-  const state = active.value <= 3 ? Number(active.value) + 1 : 1
-  active.value = state.toString()
-}
-const list = ref([
-  { name: '1', label: 'Vue', content: 'Vue，渐进式 JavaScript 框架' },
-  { name: '2', label: 'React', content: 'React，用于构建用户界面的 JavaScript 库' },
-  { name: '3', label: 'Svelte', content: 'Svelte，控制性增强的 Web 应用程序' },
-  { name: '4', label: 'Solid', content: 'Solid，用于构建用户界面的简单且高性能的响应式' }
-])
-const val3 = ref('1')
-const val4 = ref('1')
-const handleRemove = (name: string) => {
-  list.value = list.value.filter(v => v.name !== name)
-}
-const beforeChange = (name) => !(name === '2')
-</script>
+---
+title: Tabs
+lang: zh-CN
+---
 
 # Tabs 标签
 
@@ -36,65 +17,21 @@ Tabs 选项卡切换组件，分隔展示不同类型的数据。
 
 :::
 
-<div class="examples">
-  <vi-tabs v-model="val1">
-    <vi-tab label="Vue" name="1">Vue，渐进式 JavaScript 框架</vi-tab>
-    <vi-tab label="React" name="2">React，用于构建用户界面的 JavaScript 库</vi-tab>
-    <vi-tab label="Svelte" name="3">Svelte，控制性增强的 Web 应用程序</vi-tab>
-    <vi-tab label="Solid" name="4">Solid，用于构建用户界面的简单且高性能的响应式</vi-tab>
-  </vi-tabs>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-tabs v-model="val1">
-    <vi-tab label="Vue" name="1">Vue，渐进式 JavaScript 框架</vi-tab>
-    <vi-tab label="React" name="2">React，用于构建用户界面的 JavaScript 库</vi-tab>
-    <vi-tab label="Svelte" name="3">Svelte，控制性增强的 Web 应用程序</vi-tab>
-    <vi-tab label="Solid" name="4">Solid，用于构建用户界面的简单且高性能的响应式</vi-tab>
-  </vi-tabs>
-</template>
+Tabs/Basic
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const val1 = ref('1')
-</script>
-```
+:::
 
 ## 动态切换
 
 通过动态的 `active` 属性，来切换当前展示的 tab。如下所示：
 
-<div class="examples">
-  <vi-button @click="change">动态切换</vi-button>  <br />
-  <vi-tabs v-model="active">
-    <vi-tab label="Vue" name="1">Vue，渐进式 JavaScript 框架</vi-tab>
-    <vi-tab label="React" name="2">React，用于构建用户界面的 JavaScript 库</vi-tab>
-    <vi-tab label="Svelte" name="3">Svelte，控制性增强的 Web 应用程序</vi-tab>
-    <vi-tab label="Solid" name="4">Solid，用于构建用户界面的简单且高性能的响应式</vi-tab>
-  </vi-tabs>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-button @click="change">动态切换</vi-button> <br />
-  <vi-tabs v-model="active">
-    <vi-tab label="Vue" name="1">Vue，渐进式 JavaScript 框架</vi-tab>
-    <vi-tab label="React" name="2">React，用于构建用户界面的 JavaScript 库</vi-tab>
-    <vi-tab label="Svelte" name="3">Svelte，控制性增强的 Web 应用程序</vi-tab>
-    <vi-tab label="Solid" name="4">Solid，用于构建用户界面的简单且高性能的响应式</vi-tab>
-  </vi-tabs>
-</template>
+Tabs/DynamicToggle
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const active = ref('1')
-const change = () => {
-  const state = active.value <= 3 ? Number(active.value) + 1 : 1
-  active.value = state.toString()
-}
-</script>
-```
+:::
 
 ## ifMode
 
@@ -106,30 +43,11 @@ const change = () => {
 
 :::
 
-<div class="examples">
-  <vi-tabs v-model="val2" if-mode>
-    <vi-tab label="Vue" name="1">Vue，渐进式 JavaScript 框架</vi-tab>
-    <vi-tab label="React" name="2">React，用于构建用户界面的 JavaScript 库</vi-tab>
-    <vi-tab label="Svelte" name="3">Svelte，控制性增强的 Web 应用程序</vi-tab>
-    <vi-tab label="Solid" name="4">Solid，用于构建用户界面的简单且高性能的响应式</vi-tab>
-  </vi-tabs>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-tabs v-model="val2" if-mode>
-    <vi-tab label="Vue" name="1">Vue，渐进式 JavaScript 框架</vi-tab>
-    <vi-tab label="React" name="2">React，用于构建用户界面的 JavaScript 库</vi-tab>
-    <vi-tab label="Svelte" name="3">Svelte，控制性增强的 Web 应用程序</vi-tab>
-    <vi-tab label="Solid" name="4">Solid，用于构建用户界面的简单且高性能的响应式</vi-tab>
-  </vi-tabs>
-</template>
+Tabs/IfMode
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const val2 = ref('1')
-</script>
-```
+:::
 
 ## 可被移除
 
@@ -141,45 +59,11 @@ const val2 = ref('1')
 
 :::
 
-<div class="examples">
-  <vi-tabs v-model="val3" removable @tab-remove="handleRemove">
-    <vi-tab 
-      v-for="item in list"
-      :key="item.name"
-      :name="item.name"
-      :label="item.label">
-      {{ item.content }}
-    </vi-tab>
-  </vi-tabs>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-tabs v-model="val3" removable @tab-remove="handleRemove">
-    <vi-tab 
-      v-for="item in list"
-      :key="item.name"
-      :name="item.name"
-      :label="item.label">
-      {{ item.content }}
-    </vi-tab>
-  </vi-tabs>
-</template>
+Tabs/Movable
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const list = ref([
-  { name: '1', label: 'Vue', content: 'Vue，渐进式 JavaScript 框架' },
-  { name: '2', label: 'React', content: 'React，用于构建用户界面的 JavaScript 库' },
-  { name: '3', label: 'Svelte', content: 'Svelte，控制性增强的 Web 应用程序' },
-  { name: '4', label: 'Solid', content: 'Solid，用于构建用户界面的简单且高性能的响应式' }
-])
-const val3 = ref('1')
-const handleRemove = (name: string) => {
-  list.value = list.value.filter(v => v.name !== name)
-}
-</script>
-```
+:::
 
 ## 阻止切换
 
@@ -193,37 +77,11 @@ const handleRemove = (name: string) => {
 注意：`before-change` 虽然会阻止切换，但被点击的标签仍能触发 `tab-click` 事件。
 :::
 
-<div class="examples">
-  <vi-tabs v-model="val4" :before-change="beforeChange">
-    <vi-tab 
-      v-for="item in JSON.parse(JSON.stringify(list))"
-      :key="item.name"
-      :name="item.name"
-      :label="item.label">
-      {{ item.content }}
-    </vi-tab>
-  </vi-tabs>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-tabs v-model="val4" :before-change="beforeChange">
-    <vi-tab 
-      v-for="item in JSON.parse(JSON.stringify(list))"
-      :key="item.name"
-      :name="item.name"
-      :label="item.label">
-      {{ item.content }}
-    </vi-tab>
-  </vi-tabs>
-</template>
+Tabs/PreventToggle
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const val4 = ref('1')
-const beforeChange = (name) => !(name === '2')
-</script>
-```
+:::
 
 ## APIs
 
