@@ -1,12 +1,7 @@
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const val1 = ref('1')
-const val2 = ref('1')
-const val3 = ref('1')
-const val4 = ref('1')
-const val5 = ref('1')
-</script>
+---
+title: Radio
+lang: zh-CN
+---
 
 # Radio 单选框
 
@@ -16,94 +11,31 @@ const val5 = ref('1')
 
 您必须绑定 `v-model` 与 `label` 属性，才能使 `vi-radio` 正常工作。`v-model` 用于绑定同一个变量，`lable` 是选中此 radio 时提供的内容。
 
-<div class="examples">
-  <vi-flex gap="18px">
-    <span>你喜欢干什么？</span>
-    <vi-radio v-model="val1" label="1">写代码</vi-radio>
-    <vi-radio v-model="val1" label="2">删代码</vi-radio>
-    <vi-radio v-model="val1" label="3">改代码</vi-radio>
-    <vi-radio v-model="val1" label="4">看代码</vi-radio>
-  </vi-flex>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-flex gap="18px">
-    <span>你喜欢干什么？</span>
-    <vi-radio v-model="val1" label="1">写代码</vi-radio>
-    <vi-radio v-model="val1" label="2">删代码</vi-radio>
-    <vi-radio v-model="val1" label="3">改代码</vi-radio>
-    <vi-radio v-model="val1" label="4">看代码</vi-radio>
-  </vi-flex>
-</template>
+Radio/Basic
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const val1 = ref('1')
-</script>
-```
+:::
 
 ## 禁用状态
 
 使用 `disabled` 属性，来禁用 radio。
 
-<div class="examples">
-  <vi-flex gap="18px">
-    <span>你喜欢干什么？</span>
-    <vi-radio v-model="val2" label="1">写代码</vi-radio>
-    <vi-radio v-model="val2" label="2" disabled>删代码</vi-radio>
-    <vi-radio v-model="val2" label="3" disabled>改代码</vi-radio>
-    <vi-radio v-model="val2" label="4">看代码</vi-radio>
-  </vi-flex>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-flex gap="18px">
-    <span>你喜欢干什么？</span>
-    <vi-radio v-model="val2" label="1">写代码</vi-radio>
-    <vi-radio v-model="val2" label="2" disabled>删代码</vi-radio>
-    <vi-radio v-model="val2" label="3" disabled>改代码</vi-radio>
-    <vi-radio v-model="val2" label="4">看代码</vi-radio>
-  </vi-flex>
-</template>
+Radio/Disabled
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const val2 = ref('1')
-</script>
-```
+:::
 
 ## 带边框
 
 使用 `border` 属性，来启用边框。
 
-<div class="examples">
-  <vi-flex gap="18px">
-    <span>你喜欢干什么？</span>
-    <vi-radio v-model="val3" label="1" border>写代码</vi-radio>
-    <vi-radio v-model="val3" label="2" border disabled>删代码</vi-radio>
-    <vi-radio v-model="val3" label="3" border>改代码</vi-radio>
-    <vi-radio v-model="val3" label="4" border>看代码</vi-radio>
-  </vi-flex>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-flex gap="18px">
-    <span>你喜欢干什么？</span>
-    <vi-radio v-model="val3" label="1" border>写代码</vi-radio>
-    <vi-radio v-model="val3" label="2" border disabled>删代码</vi-radio>
-    <vi-radio v-model="val3" label="3" border>改代码</vi-radio>
-    <vi-radio v-model="val3" label="4" border>看代码</vi-radio>
-  </vi-flex>
-</template>
+Radio/HasBorder
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const val3 = ref('1')
-</script>
-```
+:::
 
 ## Radio 组
 
@@ -116,36 +48,11 @@ const val3 = ref('1')
 
 :::
 
-<div class="examples">
-  <vi-flex gap="18px">
-    <span>你喜欢干什么？</span>
-    <vi-radio-group v-model="val5" gap="28px">
-      <vi-radio label="1">写代码</vi-radio>
-      <vi-radio label="2" disabled>删代码</vi-radio>
-      <vi-radio label="3">改代码</vi-radio>
-      <vi-radio label="4">看代码</vi-radio>
-    </vi-radio-group>
-  </vi-flex>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-flex gap="18px">
-    <span>你喜欢干什么？</span>
-    <vi-radio-group v-model="val5" gap="28px">
-      <vi-radio label="1">写代码</vi-radio>
-      <vi-radio label="2" disabled>删代码</vi-radio>
-      <vi-radio label="3">改代码</vi-radio>
-      <vi-radio label="4">看代码</vi-radio>
-    </vi-radio-group>
-  </vi-flex>
-</template>
+Radio/RadioGroup
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const val4 = ref('1')
-</script>
-```
+:::
 
 ## 按钮类型
 
@@ -163,36 +70,11 @@ const val4 = ref('1')
 
 :::
 
-<div class="examples">
-  <vi-flex gap="18px">
-    <span>你喜欢干什么？</span>
-    <vi-radio-group v-model="val4" is-button>
-      <vi-radio label="1">写代码</vi-radio>
-      <vi-radio label="2" disabled>删代码</vi-radio>
-      <vi-radio label="3">改代码</vi-radio>
-      <vi-radio label="4">看代码</vi-radio>
-    </vi-radio-group>
-  </vi-flex>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-flex gap="18px">
-    <span>你喜欢干什么？</span>
-    <vi-radio-group v-model="val4" is-button>
-      <vi-radio label="1">写代码</vi-radio>
-      <vi-radio label="2" disabled>删代码</vi-radio>
-      <vi-radio label="3">改代码</vi-radio>
-      <vi-radio label="4">看代码</vi-radio>
-    </vi-radio-group>
-  </vi-flex>
-</template>
+Radio/ButtonType
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const val4 = ref('1')
-</script>
-```
+:::
 
 ## APIs
 
