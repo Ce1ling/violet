@@ -22,6 +22,7 @@
   --doc-color-white: #ffffff;
   --doc-homepage-animation-duration: 1s;
   --doc-backtop-shadow-color: #dddddd;
+  --doc-example-padding: 18px;
 
   /** vitepress 首页 */
   --vp-button-brand-border: var(--vi-color-primary);
@@ -192,11 +193,6 @@
 
   // 示例区域
   .VPDoc .content {
-    .examples {
-      border: 1px solid var(--doc-border-color);
-      border-radius: var(--vi-base-radius);
-      padding: var(--doc-padding);
-    }
     [class*="language-"] {
       border: 1px solid var(--doc-border-color);
       border-radius: var(--vi-base-radius);
