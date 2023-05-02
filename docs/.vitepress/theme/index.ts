@@ -4,10 +4,11 @@ import { format } from '../utils/format'
 import * as VioletComponents from '../../../packages/components'
 import * as DocsComponents from '../vitepress/index'
 
-import './styles/var.scss'
 import './styles/global.scss'
-import './styles/custome.scss'
-import './styles/common.scss'
+import './styles/custom.scss'
+// Violet UI 组件样式
+import '../../../packages/theme-chalk/var.scss'
+import '../../../packages/theme-chalk/common.scss'
 
 export default {
   Layout,
