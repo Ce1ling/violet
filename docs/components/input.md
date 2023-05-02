@@ -1,20 +1,7 @@
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const val1 = ref('')
-const val2 = ref('')
-const val3 = ref('')
-const val4 = ref('')
-const val5 = ref('')
-const val6 = ref('')
-const val7 = ref('')
-const val8 = ref('')
-const val9 = ref('')
-const val10 = ref('')
-const val11 = ref('')
-const val12 = ref('')
-const val13 = ref('')
-</script>
+---
+title: Input
+lang: zh-CN
+---
 
 # Input 输入框
 
@@ -24,106 +11,51 @@ const val13 = ref('')
 
 通过 `v-model` 指令，绑定 `value` 值。
 
-<div class="examples">
-  <vi-input v-model="val1" placeholder="基础 Input" />
-</div>
+::: demo 
 
-```vue
-<template>
-  <vi-input v-model="val1" placeholder="基础 Input" />
-</template>
+Input/Basic
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const val1 = ref('')
-</script>
-```
+:::
 
 ## 禁用状态
 
 使用 `disabled` 属性，来禁用 input。
 
-<div class="examples">
-  <vi-input v-model="val2" placeholder="禁用 Input" disabled />
-</div>
+::: demo 
 
-```vue
-<template>
-  <vi-input v-model="val2" placeholder="禁用 Input" disabled />
-</template>
+Input/Disabled
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const val2 = ref('')
-</script>
-```
+:::
 
 ## 可清空
 
 使用 `clearable` 属性，启用清空按钮，在有输入内容时，它就会显示。
 
-<div class="examples">
-  <vi-input v-model="val3" placeholder="可清空 Input" clearable />
-</div>
+::: demo 
 
-```vue
-<template>
-  <vi-input v-model="val3" placeholder="禁用 Input" clearable />
-</template>
+Input/Clearable
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const val3 = ref('')
-</script>
-```
+:::
 
 ## 显示密码
 
 使用 `show-pwd` 属性，启用切换显示密码框，前提是：此输入框必须是密码框。
 
-<div class="examples">
-  <vi-input v-model="val4" type="password" placeholder="显示密码" show-pwd />
-</div>
+::: demo 
 
-```vue
-<template>
-  <vi-input v-model="val4" type="password" placeholder="显示密码" show-pwd />
-</template>
+Input/ShowPwd
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const val4 = ref('')
-</script>
-```
+:::
 
 ## 限制输入
 
 使用 `limit` 属性，来限制输入内容长度。你也可以通过 `show-limit`，来展示限制数。分隔符您也可以自定义，它默认是 `' / '`。
 
-<div class="examples">
-  <vi-flex direction="column" gap="18px">
-    <vi-input v-model="val5" placeholder="限制输入 10 个字符" limit="10" />
-    <vi-input v-model="val6" placeholder="显示限制输入" limit="10" show-limit />
-    <vi-input v-model="val13" placeholder="自定义分隔符" limit="10" show-limit limit-separator=" - " />
-  </vi-flex>
-</div>
+::: demo 
 
-```vue
-<template>
-  <vi-flex direction="column" gap="18px">
-    <vi-input v-model="val5" placeholder="限制输入 10 个字符" limit="10" />
-    <vi-input v-model="val6" placeholder="显示限制输入" limit="10" show-limit />
-    <vi-input v-model="val13" placeholder="自定义分隔符" limit="10" show-limit limit-separator=" - " />
-  </vi-flex>
-</template>
+Input/LimitInput
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const val5 = ref('')
-const val6 = ref('')
-const val13 = ref('')
-</script>
-```
+:::
 
 ## 文本域
 
@@ -135,113 +67,31 @@ const val13 = ref('')
 
 :::
 
-<div class="examples">
-  <vi-flex direction="column" gap="18px">
-    <vi-input v-model="val7" type="textarea" placeholder="文本域" />
-    <vi-input v-model="val8" type="textarea" placeholder="文本域（自定义高度）" rows="5" />
-    <vi-input v-model="val9" type="textarea" placeholder="文本域（限制输入）" limit="30" show-limit />
-  </vi-flex>
-</div>
+::: demo 
 
-```vue
-<template>
-  <vi-flex direction="column" gap="18px">
-    <vi-input v-model="val7" type="textarea" placeholder="文本域" />
-    <vi-input v-model="val8" type="textarea" placeholder="文本域（自定义高度）" rows="5" />
-    <vi-input v-model="val9" type="textarea" placeholder="文本域（限制输入）" limit="30" show-limit />
-  </vi-flex>
-</template>
+Input/Textarea
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const val7 = ref('')
-const val8 = ref('')
-const val9 = ref('')
-</script>
-```
+:::
 
 ## 自定义图标
 
 通过 `prefix-icon`、`suffix-icon` 属性，定义前后 `Icon`，它会使用 Violet 所提供的 `Icon`。如果你想对 `Icon` 做出一些设置，可以使用对象形式。对于更复杂的设置（或想自定义的不是 `Icon`），你可以使用 “插槽式”，我们提供了 `prefix`、`suffix` 插槽。
 
-<div class="examples">
-  <vi-flex direction="column" gap="18px">
-    <vi-input 
-      v-model="val10" 
-      placeholder="自定义前后 icon" 
-      prefix-icon="Search" 
-      suffix-icon="Menu" 
-    />
-    <vi-input 
-      v-model="val11" placeholder="自定义前后 icon（对象式）" 
-      :prefix-icon="{ name: 'Apple', size: '16px', hoverColor: 'var(--vi-color-primary)' }" 
-      :suffix-icon="{ name: 'Windows', size: '16px', hoverColor: 'var(--vi-color-primary)' }"  
-    />
-    <vi-input v-model="val12" placeholder="自定义前后 icon (插槽式)">
-      <template #prefix>
-        <vi-icon name="Plus" size="16px" color="var(--vi-color-primary)" />
-      </template>
-      <template #suffix>suffix but not Icon</template>
-    </vi-input>
-  </vi-flex>
-</div>
+::: demo 
 
-```vue
-<template>
-  <vi-flex direction="column" gap="18px">
-    <vi-flex direction="column" gap="18px">
-    <vi-input 
-      v-model="val10" 
-      placeholder="自定义前后 icon" 
-      prefix-icon="Search" 
-      suffix-icon="Menu" 
-    />
-    <vi-input 
-      v-model="val11" placeholder="自定义前后 icon（对象式）" 
-      :prefix-icon="{ name: 'Apple', size: '16px', hoverColor: 'var(--vi-color-primary)' }" 
-      :suffix-icon="{ name: 'Windows', size: '16px', hoverColor: 'var(--vi-color-primary)' }"  
-    />
-    <vi-input v-model="val12" placeholder="自定义前后 icon (插槽式)">
-      <template #prefix>
-        <vi-icon name="Plus" size="16px" color="var(--vi-color-primary)" />
-      </template>
-      <template #suffix>suffix but not Icon</template>
-    </vi-input>
-  </vi-flex>
-</template>
+Input/CustomIcon
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const val10 = ref('')
-const val11 = ref('')
-const val12 = ref('')
-</script>
-```
+:::
 
 ## 复合型
 
 通过 `prepend`、`append` 插槽，设置前后置内容。
 
-<div class="examples">
-  <vi-input v-model="val13" placeholder="添加前置与后置内容" clearable>
-    <template #prepend>http://</template>
-    <template #append>.com</template>
-  </vi-input>
-</div>
+::: demo 
 
-```vue
-<template>
-  <vi-input v-model="val13" placeholder="添加前置与后置内容" clearable>
-    <template #prepend>http://</template>
-    <template #append>.com</template>
-  </vi-input>
-</template>
+Input/Mixed
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const val13 = ref('')
-</script>
-```
+:::
 
 ## APIs
 
