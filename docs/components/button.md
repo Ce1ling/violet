@@ -3,10 +3,6 @@ title: Button
 lang: zh-CN
 ---
 
-<script setup>
-import Basic from '../examples/Button'
-console.log('import', Basic)
-</script>
 
 # Button 按钮
 
@@ -22,52 +18,11 @@ console.log('import', Basic)
 
 :::
 
-<Basic />
+::: demo 
 
-```vue
-<template>
-  <vi-flex direction="column" gap="18px">
-    <vi-row>
-      <vi-button> 主要按钮 </vi-button>
-      <vi-button type="success"> 成功按钮 </vi-button>
-      <vi-button type="info"> 信息按钮 </vi-button>
-      <vi-button type="warning"> 警告按钮 </vi-button>
-      <vi-button type="danger"> 危险按钮 </vi-button>
-    </vi-row>
-    <vi-row>
-      <vi-button plain> 主要按钮 </vi-button>
-      <vi-button type="success" plain> 成功按钮 </vi-button>
-      <vi-button type="info" plain> 信息按钮 </vi-button>
-      <vi-button type="warning" plain> 警告按钮 </vi-button>
-      <vi-button type="danger" plain> 危险按钮 </vi-button>
-    </vi-row>
-    <vi-row>
-      <vi-button round> 主要按钮 </vi-button>
-      <vi-button type="success" round> 成功按钮 </vi-button>
-      <vi-button type="info" round> 信息按钮 </vi-button>
-      <vi-button type="warning" round> 警告按钮 </vi-button>
-      <vi-button type="danger" round> 危险按钮 </vi-button>
-    </vi-row>
-    <vi-row>
-      <vi-button circle>
-        <vi-icon name="Home" size="18px" />
-      </vi-button>
-      <vi-button type="success" circle>
-        <vi-icon name="Check" size="18px" />
-      </vi-button>
-      <vi-button type="info" circle>
-        <vi-icon name="Link" size="18px" />
-      </vi-button>
-      <vi-button type="warning" circle>
-        <vi-icon name="WarningCircle" size="18px" />
-      </vi-button>
-      <vi-button type="danger" circle>
-        <vi-icon name="Delete" size="18px" />
-      </vi-button>
-    </vi-row>
-  </vi-flex>
-</template>
-```
+Button/Basic
+
+:::
 
 ## 加载状态
 
@@ -81,90 +36,21 @@ console.log('import', Basic)
 
 :::
 
+::: demo
 
+Button/Loading
 
-```vue
-<template>
-  <vi-flex direction="column" gap="18px">
-    <vi-row>
-      <vi-button type="primary" loading> 加载状态1 </vi-button>
-      <vi-button type="success" loading :is-prefix="false"> 加载状态2 </vi-button>
-      <vi-button type="warning" loading> 
-        加载状态3 
-        <template #prefix>
-          <vi-icon name="Close" size="16px" cursor="wait" loading />
-        </template>
-      </vi-button>
-      <vi-button type="danger" loading :is-prefix="false">
-        加载状态4 
-        <template #suffix>
-          <vi-icon name="Close" size="16px" cursor="wait" loading />
-        </template>
-      </vi-button>
-    </vi-row>
-    <vi-row>
-      <vi-button type="primary" loading plain> 加载状态1 </vi-button>
-      <vi-button type="success" loading :is-prefix="false" plain> 加载状态2 </vi-button>
-      <vi-button type="warning" loading plain> 
-        加载状态3 
-        <template #prefix>
-          <vi-icon name="Close" size="16px" cursor="wait" loading />
-        </template>
-      </vi-button>
-      <vi-button type="danger" loading :is-prefix="false" plain>
-        加载状态4 
-        <template #suffix>
-          <vi-icon name="Close" size="16px" cursor="wait" loading />
-        </template>
-      </vi-button>
-    </vi-row>
-  </vi-flex>
-</template>
-```
+:::
 
 ## 禁用状态
 
 使用 `disabled` 属性， 使按钮处于禁用状态。
 
-<div class="examples">
-  <vi-flex direction="column" gap="18px">
-    <vi-row>
-      <vi-button type="primary" disabled> 主要按钮 </vi-button>
-      <vi-button type="success" disabled> 成功按钮 </vi-button>
-      <vi-button type="info" disabled> 信息按钮 </vi-button>
-      <vi-button type="warning" disabled> 警告按钮 </vi-button>
-      <vi-button type="danger" disabled> 危险按钮 </vi-button>
-    </vi-row>
-    <vi-row>
-      <vi-button type="primary" disabled plain> 主要按钮 </vi-button>
-      <vi-button type="success" disabled plain> 成功按钮 </vi-button>
-      <vi-button type="info" disabled plain> 信息按钮 </vi-button>
-      <vi-button type="warning" disabled plain> 警告按钮 </vi-button>
-      <vi-button type="danger" disabled plain> 危险按钮 </vi-button>
-    </vi-row>
-  </vi-flex>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-flex direction="column" gap="18px">
-    <vi-row>
-      <vi-button type="primary" disabled> 主要按钮 </vi-button>
-      <vi-button type="success" disabled> 成功按钮 </vi-button>
-      <vi-button type="info" disabled> 信息按钮 </vi-button>
-      <vi-button type="warning" disabled> 警告按钮 </vi-button>
-      <vi-button type="danger" disabled> 危险按钮 </vi-button>
-    </vi-row>
-    <vi-row>
-      <vi-button type="primary" disabled plain> 主要按钮 </vi-button>
-      <vi-button type="success" disabled plain> 成功按钮 </vi-button>
-      <vi-button type="info" disabled plain> 信息按钮 </vi-button>
-      <vi-button type="warning" disabled plain> 警告按钮 </vi-button>
-      <vi-button type="danger" disabled plain> 危险按钮 </vi-button>
-    </vi-row>
-  </vi-flex>
-</template>
-```
+Button/Disabled
+
+:::
 
 ## 文字类型
 
@@ -182,67 +68,21 @@ console.log('import', Basic)
 
 :::
 
-<div class="examples">
-  <vi-row>
-    <vi-button type="primary" text> 主要按钮 </vi-button>
-    <vi-button type="success" text> 成功按钮 </vi-button>
-    <vi-button type="info" text> 信息按钮 </vi-button>
-    <vi-button type="warning" text> 警告按钮 </vi-button>
-    <vi-button type="danger" text> 危险按钮 </vi-button>
-  </vi-row>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-row>
-    <vi-button type="primary" text> 主要按钮 </vi-button>
-    <vi-button type="success" text> 成功按钮 </vi-button>
-    <vi-button type="info" text> 信息按钮 </vi-button>
-    <vi-button type="warning" text> 警告按钮 </vi-button>
-    <vi-button type="danger" text> 危险按钮 </vi-button>
-  </vi-row>
-</template>
-```
+Button/TextType
+
+:::
 
 ## 自定义图标
 
 使用 `prefix`、`suffix` 插槽，来放置图标。
 
-<div class="examples">
-  <vi-row>
-    <vi-button type="success">
-      <template #prefix> 
-        <vi-icon name="Plus" size="24px" />
-      </template>
-      <span>加</span>
-    </vi-button>
-    <vi-button type="danger">
-      <template #suffix> 
-        <vi-icon name="Minus" size="24px" />
-      </template>
-      <span>减</span>
-    </vi-button>
-  </vi-row>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-row>
-    <vi-button type="success">
-      <template #prefix> 
-        <vi-icon name="Plus" size="24px" />
-      </template>
-      <span>加</span>
-    </vi-button>
-    <vi-button type="danger">
-      <template #suffix> 
-        <vi-icon name="Minus" size="24px" />
-      </template>
-      <span>减</span>
-    </vi-button>
-  </vi-row>
-</template>
-```
+Button/CustomIcon
+
+:::
 
 ## 自定义背景颜色
 
@@ -254,81 +94,21 @@ console.log('import', Basic)
 
 :::
 
-<div class="examples">
-  <vi-flex direction="column" gap="18px">
-    <vi-row>
-      <vi-button type="primary" bg-color="orange"> 自定义1 </vi-button>
-      <vi-button type="success" bg-color="skyblue"> 自定义2 </vi-button>
-      <vi-button type="warning" bg-color="violet"> 自定义3 </vi-button>
-      <vi-button type="danger" bg-color="green"> 自定义4 </vi-button>
-    </vi-row>
-    <vi-row>
-      <vi-button plain type="primary" bg-color="orange"> 自定义1 </vi-button>
-      <vi-button plain type="success" bg-color="skyblue"> 自定义2 </vi-button>
-      <vi-button plain type="warning" bg-color="violet"> 自定义3 </vi-button>
-      <vi-button plain type="danger" bg-color="green"> 自定义4 </vi-button>
-    </vi-row>
-  </vi-flex>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-flex direction="column" gap="18px">
-    <vi-row>
-      <vi-button type="primary" bg-color="orange"> 自定义1 </vi-button>
-      <vi-button type="success" bg-color="skyblue"> 自定义2 </vi-button>
-      <vi-button type="warning" bg-color="violet"> 自定义3 </vi-button>
-      <vi-button type="danger" bg-color="green"> 自定义4 </vi-button>
-    </vi-row>
-    <vi-row>
-      <vi-button plain type="primary" bg-color="orange"> 自定义1 </vi-button>
-      <vi-button plain type="success" bg-color="skyblue"> 自定义2 </vi-button>
-      <vi-button plain type="warning" bg-color="violet"> 自定义3 </vi-button>
-      <vi-button plain type="danger" bg-color="green"> 自定义4 </vi-button>
-    </vi-row>
-  </vi-flex>
-</template>
-```
+Button/CustomBgColor
+
+:::
 
 ## 自定义文字颜色
 
 使用 `color` 属性，来自定义按钮的文字颜色。
 
-<div class="examples">
-  <vi-flex direction="column" gap="18px">
-    <vi-row>
-      <vi-button type="primary" text color="orange"> 自定义1 </vi-button>
-      <vi-button type="success" text color="skyblue"> 自定义2 </vi-button>
-      <vi-button type="warning" color="green"> 自定义3 </vi-button>
-      <vi-button type="danger" color="blue"> 自定义4 </vi-button>
-    </vi-row>
-    <vi-row>
-      <vi-button type="primary" color="orange" plain> 自定义1 </vi-button>
-      <vi-button type="success" color="skyblue" plain> 自定义2 </vi-button>
-      <vi-button type="warning" color="green" plain> 自定义3 </vi-button>
-      <vi-button type="danger" color="blue" plain> 自定义4 </vi-button>
-    </vi-row>
-  </vi-flex>
-</div>
+::: demo
 
-```vue
-<template>
-  <vi-flex direction="column" gap="18px">
-    <vi-row>
-      <vi-button type="primary" text color="orange"> 自定义1 </vi-button>
-      <vi-button type="success" text color="skyblue"> 自定义2 </vi-button>
-      <vi-button type="warning" color="green"> 自定义3 </vi-button>
-      <vi-button type="danger" color="blue"> 自定义4 </vi-button>
-    </vi-row>
-    <vi-row>
-      <vi-button type="primary" color="orange" plain> 自定义1 </vi-button>
-      <vi-button type="success" color="skyblue" plain> 自定义2 </vi-button>
-      <vi-button type="warning" color="green" plain> 自定义3 </vi-button>
-      <vi-button type="danger" color="blue" plain> 自定义4 </vi-button>
-    </vi-row>
-  </vi-flex>
-</template>
-```
+Button/CustomTextColor
+
+:::
 
 ## APIs
 
