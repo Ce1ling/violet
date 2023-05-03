@@ -48,9 +48,12 @@ const change = (name: string) => {
   > .vi-tabs__header {
     justify-content: center;
     user-select: none;
+    background-color: var(--doc-example-header-bg-color) !important;
+    border-color: var(--doc-example-border-color) !important;
   }
   > .vi-tabs__content > .vi-tab-plane {
     padding: 0;
+    border-color: var(--doc-example-border-color) !important;
   }
 }
 </style>
