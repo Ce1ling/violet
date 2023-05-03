@@ -182,23 +182,7 @@
   }
 }
 
-// dark 主题
 html.dark {
-  &:root {
-    --doc-scroll-bar-color: #555555;
-    --doc-scroll-bar-color-deep: #666666;
-    --doc-border-color: #555555;
-    --vp-code-block-bg: #3c3841;
-    --search-mask-color: #000000aa;
-    --search-modal-shadow-color: #000000;
-    --doc-bg-color: #242424;
-    --toast-info-color: #202121;
-    --shadow-color: #1a1a1a;
-    --doc-search-modal-shadow-color: #000000;
-    --doc-search-result-item-shadow-color: #0f0f0f;
-    --doc-backtop-shadow-color: #000000;
-  }
-
   #app {
     // 头部
     .VPNav {
