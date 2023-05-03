@@ -2,18 +2,32 @@
 import { nanoid } from 'nanoid'
 
 const links = [
-  { id: nanoid(), title: 'GitHub 地址', link: 'https://github.com/Ce1ling/violet' },
-  { id: nanoid(), title: '作者 GitHub', link: 'https://github.com/Ce1ling' },
-  { id: nanoid(), title: '参与贡献', link: 'https://github.com/Ce1ling/violet' },
+  { 
+    id: nanoid(), 
+    title: '项目地址', 
+    link: 'https://github.com/Ce1ling/violet' 
+  },
+  { 
+    id: nanoid(), 
+    title: '意见反馈', 
+    link: 'https://github.com/Ce1ling/violet/issues' 
+  },
+  { 
+    id: nanoid(), 
+    title: '参与贡献', 
+    link: 'https://github.com/Ce1ling/violet/blob/main/.github/CONTRIBUTING.zh.md' 
+  },
 ]
 </script>
 
 <template>
 <footer class="footer-wrap">
   <ul class="footer-list">
-    <li> <h2>链接</h2> </li>
-    <li class="footer-item" v-for="link in links" :key="link.id">
-      <a :href="link.link" target="_blank">{{ link.title }}</a>
+    <li>
+      <h2>链接</h2>
+    </li>
+    <li class="footer-item" v-for="{ id, link, title } in links" :key="id">
+      <a :href="link" target="_blank">{{ title }}</a>
     </li>
   </ul>
 </footer>
@@ -29,8 +43,8 @@ const links = [
   position: absolute;
   left: -32px;
   bottom: 0;
-  // 此处 z-inde 不可小于 10，为什么呢？你可以小于 10 然后开启 dark 模式看看就知道了
-  z-index: 19;
+  // 此处不可小于 10, 小于 10 无法盖住 .aside-curtain
+  z-index: 99;
   .footer-list {
     h1 { 
       font-size: 16px; 
