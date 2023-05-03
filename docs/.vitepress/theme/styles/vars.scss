@@ -25,7 +25,7 @@
   --doc-example-header-bg-color: #ececec;
   --doc-example-border-color: #ececec;
 
-  /** vitepress 首页 */
+  // vitepress 首页
   --vp-button-brand-border: var(--vi-color-primary);
   --vp-button-brand-hover-border: var(--vi-color-primary);
   --vp-button-brand-hover-text: var(--vi-color-primary);
@@ -34,13 +34,13 @@
   --vp-home-hero-name-color: transparent;
   --vp-home-hero-name-background: -webkit-linear-gradient(120deg, var(--vi-color-primary), #4d2ae8, violet);
 
-  /** vitepress 侧边栏 */
+  // vitepress 侧边栏
   --vp-c-brand: #802ae8;
   --vp-c-bg-alt: unset;
   --vp-c-divider-light: transparent;
   --vp-sidebar-width: 300px;
 
-  /** vitepress 内容区 */
+  // vitepress 内容区
   --vp-code-block-bg: #f9f9f9;
   --vp-code-copy-code-active-text: 000;
   --vp-c-text-dark-3: 000;
@@ -55,16 +55,14 @@ html.dark {
     --doc-scroll-bar-color: #555555;
     --doc-scroll-bar-color-deep: #666666;
     --doc-border-color: #555555;
-    --vp-code-block-bg: #3c3841;
-    --search-mask-color: #000000aa;
-    --search-modal-shadow-color: #000000;
     --doc-bg-color: #242424;
-    --toast-info-color: #202121;
-    --shadow-color: #1a1a1a;
     --doc-search-modal-shadow-color: #000000;
     --doc-search-result-item-shadow-color: #0f0f0f;
     --doc-backtop-shadow-color: #000000;
     --doc-example-header-bg-color: #303030;
     --doc-example-border-color: #555555;
+    
+    // vitepress 代码块
+    --vp-code-block-bg: #3c3841;
   }
 }
