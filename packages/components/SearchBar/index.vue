@@ -1,27 +1,31 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { onMounted, onBeforeUnmount } from 'vue'
 import SearchModal from './searchModal.vue'
+import { useAppend } from '../../hooks/useAppend'
 
-const visible = ref(false)
 
-onMounted(() => {
-  window.addEventListener('keydown', (e) => {
-    if (e.ctrlKey && (e.key === 'k')) {
-      e.preventDefault()
-      visible.value = true
-    }
-  })
-})
+const [append] = useAppend(SearchModal, document.body)
+
+const onKeyDown = (e) => {
+  // 热键为 `Ctrl + k`
+  if (e.ctrlKey && (e.key === 'k')) { 
+    e.preventDefault()
+    append()
+  }
+}
+
+onMounted(() => window.addEventListener('keydown', onKeyDown))
+
+onBeforeUnmount(() => window.removeEventListener('keydown', onKeyDown))
 
 </script>
 
 <template>
-  <button class="search-btn" @click="visible = true">
+  <button class="search-btn" @click="append">
     <vi-icon name="Search" />
     <div class="keyboard"> + </div>
     <span> 唤起搜索 </span>
   </button>
-  <SearchModal v-model="visible" />
 </template>
 
 <style scoped lang="scss">

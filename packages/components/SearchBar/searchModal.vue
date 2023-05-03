@@ -1,24 +1,25 @@
 <script setup lang="ts">
-import { computed, nextTick, ref, watch } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useTimeout } from '../../hooks/useTimeout'
+import { useScrollVisible } from '../../hooks/useScrollVisible'
 import { 
   Icon as ViIcon,
   Mask as ViMask
 } from '../index'
 
-interface Props {
-  modelValue: boolean
-}
-interface Emits {
-  (e: 'update:modelValue', val: boolean): void
-}
-type Results = Array<{
+import type { UseAppendEmits } from '../../hooks/useAppend'
+
+
+interface Emits extends UseAppendEmits {}
+
+type Results = {
   id: string 
   title: string
-}>
-defineProps<Props>()
+}[]
+
 const emit = defineEmits<Emits>()
 
+const visible = ref(false)
 const searchVal = ref<string>('')
 const isSearching = ref<boolean>(false)
 const isFocus = ref<boolean>(false)
@@ -45,7 +46,7 @@ const handleSearch = () => {
   }, 500)
 }
 const handleMaskClick = () => {
-  emit('update:modelValue', false)
+  emit('useAppend:remove')
 }
 
 watch(searchVal, val => {
@@ -54,13 +55,21 @@ watch(searchVal, val => {
   }
 })
 
-nextTick(() => searchInp.value?.focus())
+onMounted(() => {
+  useScrollVisible(visible, document.body, 'vi-scroll-hide')
+  nextTick(() => searchInp.value?.focus())
+  visible.value = true
+})
+
+onBeforeUnmount(() => {
+  visible.value = false
+})
 
 </script>
 
 <template>
   <Teleport to="body">
-    <vi-mask :visible="modelValue" @click="handleMaskClick">
+    <vi-mask :visible="visible" @click="handleMaskClick">
       <div class="search-dialog" @click.stop="void">
         <header class="search-header" :class="{ 'is-focus': isFocus }">
           <label>
