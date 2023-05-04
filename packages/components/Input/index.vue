@@ -2,7 +2,14 @@
 import { computed, ref, watch, h, useSlots, nextTick, onMounted } from 'vue'
 import { Icon as ViIcon } from '../index'
 
-type Icon = typeof ViIcon | string
+import type { Props as ViIconProps } from '../Icon/index.vue'
+
+
+// 无法直接使用，所以需要声明一个接口继承自 ViIconProps
+interface IconProps extends ViIconProps {}
+
+type Icon = typeof ViIcon | IconProps | string
+
 interface Props {
   modelValue: string
   type?: string
@@ -16,6 +23,7 @@ interface Props {
   prefixIcon?: Icon
   suffixIcon?: Icon
 }
+
 const props = withDefaults(defineProps<Props>(), {
   type: 'text',
   disabled: false,
@@ -26,12 +34,15 @@ const props = withDefaults(defineProps<Props>(), {
   showLimit: false,
   limitSeparator: ' / '
 })
+
 interface Emits {
   (e: 'update:modelValue', value: string): void
 }
+
 const emit = defineEmits<Emits>()
 
 const slots = useSlots()
+
 const viInputEl = ref<HTMLInputElement>()
 const isShowClear = ref(false)
 const isShowPwd = ref(false)

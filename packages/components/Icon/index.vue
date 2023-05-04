@@ -4,7 +4,7 @@ import { Icon as Iconify } from '@iconify/vue'
 import { iconMaps } from './iconMaps'
 
 
-interface Props {
+export interface Props {
   name: string
   size?: string
   color?: string
