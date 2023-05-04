@@ -1,16 +1,20 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
-import { useTimeout } from '../../hooks/useTimeout'
-import { useScrollVisible } from '../../hooks/useScrollVisible'
+import { useTimeout } from '../../../../../packages/hooks/useTimeout'
+import { useScrollVisible } from '../../../../../packages/hooks/useScrollVisible'
 import { 
   Icon as ViIcon,
   Mask as ViMask
-} from '../index'
+} from '../../../../../packages/components/index'
 
-import type { UseAppendEmits } from '../../hooks/useAppend'
+import type { UseAppendEmits } from '../../../../../packages/hooks/useAppend'
 
 
-interface Emits extends UseAppendEmits {}
+interface Emits extends UseAppendEmits {
+  // 虽然继承了，此处不写也可以正常使用，但 Vue 会报警告
+  (e: 'useAppend:append'): void
+  (e: 'useAppend:remove'): void
+}
 
 type Results = {
   id: string 
