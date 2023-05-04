@@ -17,11 +17,13 @@
 
 - `git commit` 必须符合 `Conventional commit` 规范，如: `type(scope): description`。具体如下：
 
-  1. `type` 必须为: `feat`、`fix`、`chore`、`docs` `perf`、`refactor`、`style`、`revert`、`release` `test`、`improvement`、`build`、`ci` 中的一个。
+  1. `type` 必须为: `feat`、`fix`、`chore`、`docs`、`perf`、`refactor`、`style`、`revert`、`release` 、`test`、`improvement`、`build`、`ci` 中的一个。
   
-  2. `scope` 必须为: `components`、`docs`、`directives`、`hooks`、`utils`、`violet-ui` `test-utils`、`theme-chalk`、`project`、`core`、`ci`、`dev`、`build`、`deploy`、`other`、`color`、`border`、`var`、`typography`、`tokens`、`locale` 中的一个。
+  2. `scope` 必须为: `components`、`docs`、`directives`、`hooks`、`utils`、`violet-ui` `test-utils`、`theme-chalk`、`project`、`core`、`ci`、`dev`、`build`、`deploy`、`other`、`color`、`border`、`var`、`typography` 中的一个。
   
   3. `description` 描述信息不要超过 72 个字符。
+
+- 上述规范具体含义请[点击此处](./COMMIT_DETAILS.md)查看
 
 - 假设你现在正在贡献 `dialog` 组件, 你可以这样提交: 
 
