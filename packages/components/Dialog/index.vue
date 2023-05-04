@@ -16,7 +16,7 @@ import { getADByVar } from '../../utils/dom/animation'
 
 interface Props {
   modelValue: boolean
-  title: string
+  title?: string
   content?: string
   width?: string
   showCloseBtn?: boolean
@@ -36,6 +36,7 @@ interface Emits {
   (e: 'open' | 'close', val: boolean): void
 }
 const props = withDefaults(defineProps<Props>(), {
+  title: '',
   width: '50%',
   showCloseBtn: true,
   appendToBody: false,
