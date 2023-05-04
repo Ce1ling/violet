@@ -72,7 +72,7 @@ const handleMaskClose = () => {
 }
 const handleLockScroll = () => {
   if (props.lockScroll) {
-    useScrollVisible(visible, document.body, 'vi-scroll-hide', animationDuration.value)
+    useScrollVisible(visible, document.body, animationDuration.value)
   }
 }
 

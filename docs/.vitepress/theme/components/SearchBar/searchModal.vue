@@ -60,7 +60,7 @@ watch(searchVal, val => {
 })
 
 onMounted(() => {
-  useScrollVisible(visible, document.body, 'vi-scroll-hide')
+  useScrollVisible(visible, document.body)
   nextTick(() => searchInp.value?.focus())
   visible.value = true
 })
