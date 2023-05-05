@@ -1,4 +1,4 @@
-import { nextTick, onScopeDispose, watch } from 'vue'
+import { watch, onScopeDispose, isRef } from 'vue'
 
 import type { Ref } from 'vue'
 
@@ -6,9 +6,9 @@ type RefEl = Ref<HTMLElement | undefined>
 
 /**
  * 使一个元素可以被鼠标拖动 
- * @param targetRef 目标元素
+ * @param targetRef 待移动的元素
  * @param moveRef 触发移动的元素
- * @param movable 是否可移动，请传递 Ref
+ * @param movable 是否可移动，请传递 ref
  */
 export const useMovable = (targetRef: RefEl, moveRef: RefEl, movable: Ref<boolean>) => {
   const onMouseDown = (e: MouseEvent) => {
@@ -42,9 +42,18 @@ export const useMovable = (targetRef: RefEl, moveRef: RefEl, movable: Ref<boolea
     moveRef.value?.removeEventListener('mousedown', onMouseDown)
   }
 
-  nextTick(() => {
-    if (movable.value) { addMouseDown() }
-  })
+  if (
+    !(targetRef.value instanceof HTMLElement) || 
+    !(moveRef.value instanceof HTMLElement)
+  ) {
+    throw new Error('[useMovable]: `参数1` 和 `参数2` 必须是一个 DOM 元素。')
+  }
+  
+  if (!isRef(movable)) {
+    throw new Error('[useMovable]: `参数3` 必须是一个 ref。')
+  }
+
+  if (movable.value) { addMouseDown() }
 
   watch(movable, val => val ? addMouseDown() : removeMouseDown())
 
