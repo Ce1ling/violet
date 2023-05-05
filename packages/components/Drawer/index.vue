@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, watch } from 'vue'
-import { 
-  Mask as ViMask,
-  Icon as ViIcon
-} from '../index'
+import { Mask as ViMask, Icon as ViIcon } from '../index'
 import { useScrollVisible } from '../../hooks/useScrollVisible'
 import { getADByVar } from '../../utils/dom/animation'
 
