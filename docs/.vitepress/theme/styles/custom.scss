@@ -182,6 +182,12 @@
   }
 }
 
+body.vi-scroll-hide {
+  #app .VPNav {
+    width: calc(100% - 8px);
+  }
+}
+
 html.dark {
   #app {
     // 头部
