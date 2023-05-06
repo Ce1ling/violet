@@ -1,4 +1,4 @@
-import { watch, onScopeDispose, isRef } from 'vue'
+import { watch, onScopeDispose, isRef, nextTick } from 'vue'
 
 import type { Ref } from 'vue'
 
@@ -10,7 +10,7 @@ type RefEl = Ref<HTMLElement | undefined>
  * @param moveRef 触发移动的元素
  * @param movable 是否可移动，请传递 ref
  */
-export const useMovable = (targetRef: RefEl, moveRef: RefEl, movable: Ref<boolean>) => {
+export const useMovable = async (targetRef: RefEl, moveRef: RefEl, movable: Ref<boolean>) => {
   const onMouseDown = (e: MouseEvent) => {
     const targetRect = targetRef.value!.getBoundingClientRect()
     const p = {
@@ -19,10 +19,10 @@ export const useMovable = (targetRef: RefEl, moveRef: RefEl, movable: Ref<boolea
     }
     
     const onMouseMove = (e: MouseEvent) => {
-      const targetStyle = window.getComputedStyle(targetRef.value!)
+      const { marginLeft, marginTop } = window.getComputedStyle(targetRef.value!)
       const r = {
-        x: e.clientX - p.x - parseInt(targetStyle.marginLeft),
-        y: e.clientY - p.y - parseInt(targetStyle.marginTop)
+        x: e.clientX - p.x - parseInt(marginLeft),
+        y: e.clientY - p.y - parseInt(marginTop)
       }
       
       targetRef.value!.style.transform = `translate(${r.x}px, ${r.y}px)`
@@ -41,6 +41,8 @@ export const useMovable = (targetRef: RefEl, moveRef: RefEl, movable: Ref<boolea
   const removeMouseDown = () => {
     moveRef.value?.removeEventListener('mousedown', onMouseDown)
   }
+
+  await nextTick()
 
   if (
     !(targetRef.value instanceof HTMLElement) || 
