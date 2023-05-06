@@ -1,9 +1,7 @@
 <script lang="ts" setup>
 import { ref, watch, computed, onMounted } from 'vue'
 import { Icon as ViIcon, Mask as ViMask } from '../index'
-import { useMovable } from '../../hooks/useMovable'
-import { useTimeout } from '../../hooks/useTimeout'
-import { useScrollVisible } from '../../hooks/useScrollVisible'
+import { useMovable, useTimeout, useScrollVisible } from '../../hooks'
 import { getADByVar } from '../../utils/dom/animation'
 
 interface Props {

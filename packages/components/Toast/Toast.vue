@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, nextTick, computed, onMounted, Transition } from 'vue'
 import { Icon as ViIcon } from '../index'
-import { useTimeout } from '../../hooks/useTimeout'
+import { useTimeout } from '../../hooks'
 import { getADByVar } from '../../utils/dom/animation'
 
 import type { Options } from './types'

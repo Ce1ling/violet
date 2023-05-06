@@ -1,6 +1,6 @@
 import { createApp, watch, ref } from 'vue'
 import ToastComponent from './Toast.vue'
-import { useTimeout } from '../../hooks/useTimeout'
+import { useTimeout } from '../../hooks'
 
 import type { App } from 'vue'
 import type { Options, Ins, ToastFn } from './types'

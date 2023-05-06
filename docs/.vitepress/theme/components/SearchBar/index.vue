@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount } from 'vue'
 import SearchModal from './searchModal.vue'
-import { useAppend } from '../../../../../packages/hooks/useAppend'
+import { useAppend } from '../../../../../packages/hooks'
 
 
 const [append] = useAppend(SearchModal, document.body)

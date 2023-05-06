@@ -1,13 +1,9 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
-import { useTimeout } from '../../../../../packages/hooks/useTimeout'
-import { useScrollVisible } from '../../../../../packages/hooks/useScrollVisible'
-import { 
-  Icon as ViIcon,
-  Mask as ViMask
-} from '../../../../../packages/components/index'
+import { useTimeout, useScrollVisible } from '../../../../../packages/hooks'
+import { Icon as ViIcon, Mask as ViMask } from '../../../../../packages/components/index'
 
-import type { UseAppendEmits } from '../../../../../packages/hooks/useAppend'
+import type { UseAppendEmits } from '../../../../../packages/hooks'
 
 
 interface Emits extends UseAppendEmits {

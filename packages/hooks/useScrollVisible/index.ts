@@ -1,7 +1,7 @@
 import { onScopeDispose, watch, isRef } from 'vue'
 import { getScrollWidth } from '../../utils/dom/scroll'
 import { addClass, removeClass } from '../../utils/dom/style'
-import { useTimeout } from './../useTimeout/index'
+import { useTimeout } from '../index'
 
 import type { Ref } from 'vue'
 
