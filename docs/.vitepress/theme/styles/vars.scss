@@ -25,6 +25,9 @@
   --doc-example-padding: 18px;
   --doc-example-header-bg-color: #ececec;
   --doc-example-border-color: #ececec;
+  --doc-example-footer-bg-color: #e0cbf9;
+  --doc-example-main-bg-color: #cba7f8;
+  --doc-example-aside-bg-color: #d6c1ef;
 
   // vitepress 首页
   --vp-button-brand-border: var(--doc-color-primary);
@@ -82,5 +85,10 @@ html.dark {
     .vi-col {
       --doc-color-violet: #c365c3;
     }
+  }
+  .vi-flex-demo {
+    --doc-example-footer-bg-color: #a898ba;
+    --doc-example-main-bg-color: #a88dcb;
+    --doc-example-aside-bg-color: #b2a2c6;
   }
 }

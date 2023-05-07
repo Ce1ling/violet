@@ -9,15 +9,15 @@
 .vi-flex-demo {
   .vi-header,
   .vi-footer { 
-    background-color: #e0cbf9;
+    background-color: var(--doc-example-footer-bg-color);
   }
   .vi-main { 
     padding: 100px 0;
-    background-color: #cba7f8; 
+    background-color: var(--doc-example-main-bg-color); 
   }
   .vi-aside { 
     padding: 100px 18px;
-    background-color: #d6c1ef;
+    background-color: var(--doc-example-aside-bg-color);
   }
   .vi-header,
   .vi-main,
