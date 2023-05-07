@@ -142,7 +142,7 @@ onBeforeUnmount(() => {
   width: 500px;
   padding: 20px;
   background-color: var(--vp-c-bg);
-  border-radius: var(--doc-base-radius);
+  border-radius: var(--doc-border-radius);
   box-shadow: 0 0 10px var(--doc-search-modal-shadow-color);
   position: fixed;
   top: 10%;
@@ -157,7 +157,7 @@ onBeforeUnmount(() => {
     padding: 0 5px;
     padding-right: 10px;
     border: 2px solid var(--doc-color-info);
-    border-radius: var(--doc-base-radius);
+    border-radius: var(--doc-border-radius);
     background-color: var(--vp-c-bg);
     overflow: hidden;
     transition: border-color .3s;
