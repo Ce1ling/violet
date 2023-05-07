@@ -91,4 +91,14 @@ html.dark {
     --doc-example-main-bg-color: #a88dcb;
     --doc-example-aside-bg-color: #b2a2c6;
   }
+  .vi-input {
+    --vi-input-border-color: var(--doc-border-color);
+    --vi-input-mixed-bg-color: var(--doc-bg-color);
+    &.is-disabled {
+      --vi-input-disabled-color: #454545;
+      &:hover {
+        --vi-input-border-color: var(--doc-border-color);
+      }
+    }
+  }
 }
