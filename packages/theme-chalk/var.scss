@@ -29,29 +29,37 @@
   --vi-animation-duration: 0.3s;
   --vi-opacity-half: 0.666667;
 
-  /** vi-button */
+  // vi-button
   --vi-button-animation-duration: 0.1s;
   --vi-button-text-bg-color: #f5f5f5;
   --vi-button-round-radius: 20px;
   --vi-button-circle-wh: 38px;
 
-  /** vi-header、vi-main、vi-aside、vi-footer */
+  // vi-header、vi-main、vi-aside、vi-footer
   --vi-header-height: 80px;
   --vi-header-padding: 0 18px;
   --vi-main-padding: 18px;
   --vi-aside-width: 300px;
   --vi-footer-height: 80px;
   --vi-footer-padding: 0 18px;
+  
+  // vi-input
+  --vi-input-border-color: var(--vi-color-info);
+  --vi-input-placeholder-color: #bfbfbf;
+  --vi-input-disabled-color: #eeeeee;
+  --vi-input-mixed-bg-color: #f4ecfd;
+  --vi-input-limit-color: var(--vi-color-info);
+  --vi-input-icon-color: var(--vi-color-info);
 
-  /** vi-dialog */
+  // vi-dialog
   --vi-dialog-shadow: 0 0 18px rgba(0, 0, 0, 0.2);
 
-  /** vi-icon */
+  // vi-icon
   --vi-icon-color: 'inherit';
   --vi-icon-hover-color: var(--vi-icon-color);
   --vi-icon-loading-duration: 2s;
 
-  /** vi-switch */
+  // vi-switch
   --vi-switch-off-bg-color: var(--vi-color-shadow);
   --vi-switch-on-bg-color: var(--vi-color-primary);
 }

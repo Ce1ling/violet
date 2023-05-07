@@ -140,7 +140,7 @@ onMounted(async () => {
         title="清除" 
         name="CloseCircle" 
         size="16px" 
-        color="var(--vi-color-info)" 
+        color="var(--vi-input-icon-color)" 
         hover-color="var(--vi-color-primary)" 
         @click="clearInput" 
         v-if="isShowClear" 
@@ -150,7 +150,7 @@ onMounted(async () => {
         :title="isPwdInput ? '显示' : '隐藏'" 
         :name="isPwdInput ? 'VisibilityOff': 'Visibility'" 
         size="16px" 
-        color="var(--vi-color-info)" 
+        color="var(--vi-input-icon-color)" 
         hover-color="var(--vi-color-primary)" 
         @click="toggleShowPwd" 
         v-if="props.type === 'password' && isShowPwd" 
@@ -166,7 +166,7 @@ onMounted(async () => {
 <style lang="scss">
 .vi-input {
   width: 100%;
-  border: 1px solid var(--vi-color-info);
+  border: 1px solid var(--vi-input-border-color);
   border-radius: var(--vi-base-radius);
   transition: all var(--vi-animation-duration);
   display: flex;
@@ -203,6 +203,9 @@ onMounted(async () => {
     height: 100%;
     padding: 6px 0;
     border-radius: var(--vi-base-radius);
+    &::placeholder {
+      color: var(--vi-input-placeholder-color);
+    }
     &-clear,
     &-show-hidden {
       user-select: none;
@@ -216,7 +219,7 @@ onMounted(async () => {
       display: flex;
       align-items: center;
       font-size: 12px;
-      color: var(--vi-color-info);
+      color: var(--vi-input-limit-color);
       line-height: 12px;
       &.is-max { color: var(--vi-color-danger); }
     }
@@ -234,16 +237,16 @@ onMounted(async () => {
     display: flex;
     align-items: center;
     flex-shrink: 0;
-    color: var(--vi-color-info);
+    color: var(--vi-input-icon-color);
   }
   &__prepend,
   &__append {
     color: #909399;
-    background-color: #f4ecfd;
+    background-color: var(--vi-input-mixed-bg-color);
     padding: 0 16px;
     border-width: 0;
     border-style: solid;
-    border-color: var(--vi-color-info);
+    border-color: var(--vi-input-border-color);
     transition: all var(--vi-animation-duration);
   }
   &__prepend {
@@ -253,10 +256,10 @@ onMounted(async () => {
     border-left-width: 1px;
   }
   &.is-disabled {
-    background-color: #eeeeee;
+    background-color: var(--vi-input-disabled-color);
     cursor: not-allowed;
     &:hover {
-      border-color: var(--vi-color-info);
+      border-color: var(--vi-input-border-color);
     }
     .vi-input__input {
       cursor: not-allowed;
