@@ -77,4 +77,10 @@ html.dark {
   .vi-divider {
     --vi-color-white: var(--doc-bg-color);
   }
+  .vi-row-demo {
+    --doc-shadow-color: #4e4e4e;
+    .vi-col {
+      --doc-color-violet: #c365c3;
+    }
+  }
 }
