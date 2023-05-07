@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, watch, computed, onMounted } from 'vue'
+import { ref, watch, computed, onMounted, toRef } from 'vue'
 import { Icon as ViIcon, Mask as ViMask } from '../index'
 import { useMovable, useTimeout, useScrollVisible } from '../../hooks'
 import { getADByVar } from '../../utils/dom/animation'
@@ -50,8 +50,6 @@ const getClasses = computed(() => ({
 const animationDuration = computed(() => {
   return getADByVar(document.body, '--vi-animation-duration', 1000)
 })
-const movable = computed(() => props.movable)
-const visible = computed(() => props.modelValue)
 
 const close = () => emit('update:modelValue', false)
 const handleClose = () => {
@@ -76,12 +74,12 @@ const handleDestory = (visible: boolean) => {
 }
 const handleMovable = (visible: boolean) => {
   if (visible) {
-    useMovable(dialogRef, headerRef, movable)
+    useMovable(dialogRef, headerRef, toRef(props, 'movable'))
   }
 }
 const handleLockScroll = () => {
   if (props.lockScroll) { 
-    useScrollVisible(visible, document.body, animationDuration.value)
+    useScrollVisible(toRef(props, 'modelValue'), document.body, animationDuration.value)
   }
 }
 
