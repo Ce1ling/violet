@@ -41,7 +41,7 @@
     height: 28px;
     border-radius: var(--vi-base-radius);
     background-color: var(--vi-color-primary);
-    &:nth-child(even) { background-color: violet; }
+    &:nth-child(even) { background-color: var(--doc-color-violet); }
     &.justify { flex: 0 0 100px; }
   }
 }
