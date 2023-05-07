@@ -74,4 +74,7 @@ html.dark {
       --vi-button-text-bg-color: #363636;
     }
   }
+  .vi-divider {
+    --vi-color-white: var(--doc-bg-color);
+  }
 }
