@@ -76,7 +76,7 @@ const RenderSlots = () => slots.default && slots.default().map(vNode => {
     }
     &:last-child {
       border-radius: 0 var(--vi-base-radius) var(--vi-base-radius) 0;
-      border-right: 1px solid var(--vi-color-info);
+      border-right: 1px solid var(--vi-checkbox-border-color);
       &.is-checked {
         border-color: var(--vi-color-primary);
       }

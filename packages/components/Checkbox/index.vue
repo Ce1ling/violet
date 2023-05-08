@@ -106,7 +106,7 @@ const updateModelValue = () => {
         height: 8px;
         background-color: transparent;
         position: absolute;
-        border: 1px solid var(--vi-color-white);
+        border: 1px solid var(--vi-checkbox-square-inner-color);
         border-top: none;
         border-left: none;
         top: 1px;
@@ -127,7 +127,7 @@ const updateModelValue = () => {
   &.has-border {
     display: flex;
     align-items: center;
-    border: 1px solid var(--vi-color-info);
+    border: 1px solid var(--vi-checkbox-border-color);
     padding: 2px 8px;
     border-radius: var(--vi-base-radius);
     &.is-checked:not(.is-disabled) {
@@ -144,7 +144,7 @@ const updateModelValue = () => {
   }
   &.is-button {
     padding: 2px 12px;
-    border: 1px solid var(--vi-color-info);
+    border: 1px solid var(--vi-checkbox-border-color);
     border-right: none;
     transition: all var(--vi-animation-duration);
     box-shadow: 1px 0 0 0 transparent;
