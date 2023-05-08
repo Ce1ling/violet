@@ -90,7 +90,7 @@ const classObj = computed(() => ({
         content: '';
         width: 4px;
         height: 4px;
-        background-color: var(--vi-color-white);
+        background-color: var(--vi-radio-dot-inner-color);
         position: absolute;
         top: 50%;
         left: 50%;
@@ -104,14 +104,14 @@ const classObj = computed(() => ({
     opacity: var(--vi-opacity-half);
     cursor: not-allowed;
     .vi-radio__dot {
-      background-color: var(--vi-color-info);
-      border-color: var(--vi-color-info);
+      background-color: var(--vi-radio-dot-color);
+      border-color: var(--vi-radio-dot-border-color);
     }
   }
   &.has-border {
     display: flex;
     align-items: center;
-    border: 1px solid var(--vi-color-info);
+    border: 1px solid var(--vi-radio-border-color);
     padding: 2px 8px;
     border-radius: var(--vi-base-radius);
     &.is-checked {
@@ -129,7 +129,7 @@ const classObj = computed(() => ({
   }
   &.is-button {
     padding: 2px 12px;
-    border: 1px solid var(--vi-color-info);
+    border: 1px solid var(--vi-radio-border-color);
     border-right: none;
     transition: all var(--vi-animation-duration);
     box-shadow: 1px 0 0 0 transparent;
