@@ -101,4 +101,9 @@ html.dark {
       }
     }
   }
+  .vi-radio {
+    --vi-radio-dot-inner-color: var(--doc-bg-color);
+    --vi-radio-dot-color: var(--doc-bg-color);
+    --vi-radio-border-color: var(--doc-border-color);
+  }
 }
