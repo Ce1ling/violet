@@ -120,4 +120,8 @@ html.dark {
     --vi-backtop-shadow-color: var(--doc-bg-color);
     --vi-backtop-bg-color: var(--doc-bg-color);
   }
+  .vi-tabs {
+    --vi-tabs-header-bg-color: var(--doc-example-header-bg-color);
+    --vi-tabs-border-color: var(--doc-border-color);
+  }
 }
