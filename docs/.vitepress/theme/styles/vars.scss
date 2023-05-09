@@ -110,4 +110,10 @@ html.dark {
     --vi-checkbox-square-inner-color: var(--doc-bg-color);
     --vi-checkbox-border-color: var(--doc-border-color);
   }
+  .vi-stepper {
+    --vi-stepper-button-bg-color: var(--doc-bg-color);
+    --vi-stepper-border-color: var(--doc-border-color);
+    --vi-stepper-border-color-hover: #777777;
+    --vi-stepper-bg-color: #454545;
+  }
 }
