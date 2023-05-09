@@ -119,7 +119,7 @@ onMounted(() => {
 .vi-stepper {
   width: 150px;
   padding: 0;
-  border: 1px solid var(--vi-color-gray);
+  border: 1px solid var(--vi-stepper-border-color);
   border-radius: var(--vi-base-radius);
   transition: all var(--vi-animation-duration);
   display: flex;
@@ -128,10 +128,10 @@ onMounted(() => {
   user-select: none;
 
   &:hover {
-    border-color: var(--vi-color-info);
+    border-color: var(--vi-stepper-border-color-hover);
     .vi-stepper__decrement,
     .vi-stepper__increment {
-      border-color: var(--vi-color-info);
+      border-color: var(--vi-stepper-border-color-hover);
     }
   }
   &:focus-within {
@@ -150,12 +150,12 @@ onMounted(() => {
   &__decrement,
   &__increment {
     color: var(--vi-color-black-weak);
-    background-color: #f6f6f6;
+    background-color: var(--vi-stepper-button-bg-color);
     padding: 0 var(--vi-base-padding);
     padding: 0 8px;
     border-width: 0;
     border-style: solid;
-    border-color: var(--vi-color-gray);
+    border-color: var(--vi-stepper-border-color);
     transition: all var(--vi-animation-duration);
     display: flex;
     align-items: center;
@@ -172,7 +172,7 @@ onMounted(() => {
       bottom: 0;
       left: 0;
       border: none;
-      border-right: 1px solid var(--vi-color-gray);
+      border-right: 1px solid var(--vi-stepper-border-color);
       height: 50%;
     }
     &.is-right {
@@ -182,7 +182,7 @@ onMounted(() => {
       bottom: 0;
       left: auto;
       border: none;
-      border-left: 1px solid var(--vi-color-gray);
+      border-left: 1px solid var(--vi-stepper-border-color);
       height: 50%;
     }
     &.is-disabled {
@@ -201,28 +201,28 @@ onMounted(() => {
       right: auto;
       bottom: auto;
       left: 0;
-      border-bottom: 1px solid var(--vi-color-gray);
+      border-bottom: 1px solid var(--vi-stepper-border-color);
     }
     &.is-right {
       top: 0;
       right: 0;
       bottom: auto;
       left: auto;
-      border-bottom: 1px solid var(--vi-color-gray);
+      border-bottom: 1px solid var(--vi-stepper-border-color);
     }
   }
   &.is-disabled {
-    background-color: #eeeeee;
+    background-color: var(--vi-stepper-bg-color);
     cursor: not-allowed;
-    &:hover { border-color: var(--vi-color-gray); }
+    &:hover { border-color: var(--vi-stepper-border-color); }
     .vi-stepper__input { 
       cursor: not-allowed;
       color: var(--vi-color-black-weak);
     }
     .vi-stepper__decrement,
     .vi-stepper__increment {
-      background-color: var(--vi-color-info-weak);
-      border-color: var(--vi-color-gray);
+      background-color: var(--vi-stepper-bg-color);
+      border-color: var(--vi-stepper-border-color);
       pointer-events: none;
     } 
   }
