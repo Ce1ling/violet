@@ -16,9 +16,9 @@ const props = withDefaults(defineProps<Props>(), {
   hideWidth: -Infinity,
   right: 50,
   bottom: 50,
-  zIndex: 99,
+  zIndex: 999,
   round: false,
-  shadowColor: 'var(--vi-color-gray)'
+  shadowColor: 'var(--vi-backtop-shadow-color)'
 })
 
 const show = ref(false)
@@ -65,11 +65,11 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   user-select: none;
   position: fixed;
   border: 1px solid var(--vi-color-primary);
-  background-color: var(--vi-color-white);
+  background-color: var(--vi-backtop-bg-color);
   cursor: pointer;
   &:hover {
     background-color: var(--vi-color-primary);
-    .vi-backtop__icon svg { color: #fff; }
+    .vi-backtop__icon svg { color: var(--vi-backtop-icon-color) }
   }
   &__icon { display: block; }
   &.is-round {
