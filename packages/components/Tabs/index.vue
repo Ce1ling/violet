@@ -21,7 +21,7 @@ interface Emits {
 
 const props = withDefaults(defineProps<Props>(), {
   activeBgColor: 'var(--vi-color-primary)',
-  bgColor: 'var(--vi-color-info-weak)',
+  bgColor: 'var(--vi-tabs-header-bg-color)',
   ifMode: false,
   removable: false
 })
@@ -162,7 +162,7 @@ watch(() => props.modelValue, (val, oVal) => emit('change', val, oVal))
     display: flex;
     border-radius: var(--vi-base-radius) var(--vi-base-radius) 0 0;
     position: relative;
-    border: 1px solid var(--vi-color-gray);
+    border: 1px solid var(--vi-tabs-border-color);
     border-bottom: none;
     overflow: hidden;
     &-item {
