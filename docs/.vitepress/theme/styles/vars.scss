@@ -116,4 +116,8 @@ html.dark {
     --vi-stepper-border-color-hover: #777777;
     --vi-stepper-bg-color: #454545;
   }
+  .vi-backtop {
+    --vi-backtop-shadow-color: var(--doc-bg-color);
+    --vi-backtop-bg-color: var(--doc-bg-color);
+  }
 }
