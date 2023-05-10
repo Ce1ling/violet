@@ -98,10 +98,12 @@ $types: primary, success, info, warning, danger;
 
   @each $t in $types {
     &--#{$t} {
-      color: var(--vi-color-#{$t});
-      background-color: var(--vi-color-#{$t}-weak);
+      --vi-alert-bg-color: var(--vi-color-#{$t}-weak);
+      --vi-alert-color: var(--vi-color-#{$t});
+      color: var(--vi-alert-color);
+      background-color: var(--vi-alert-bg-color);
       &.is-dark {
-        background-color: var(--vi-color-#{$t});
+        background-color: var(--vi-alert-color);
       }
     }
   }
