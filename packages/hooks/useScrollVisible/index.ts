@@ -1,5 +1,5 @@
 import { onScopeDispose, watch, isRef } from 'vue'
-import { getScrollWidth } from '../../utils/dom/scroll'
+import { getScrollWidth, hasScrollBar } from '../../utils/dom/scroll'
 import { addClass, removeClass } from '../../utils/dom/style'
 import { useTimeout } from '../index'
 
@@ -26,6 +26,9 @@ const violetScrollClass = 'vi-scroll-hide'
 export const useScrollVisible: UseScrollVisible = (trigger, target, timeout, cls = violetScrollClass) => {
   if (!isRef(trigger)) {
     throw new Error('`trigger` 必须是一个 Vue 的 `ref` !')
+  }
+  if (!hasScrollBar()) {
+    return
   }
 
   watch(trigger, val => {
