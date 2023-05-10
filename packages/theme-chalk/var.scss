@@ -21,6 +21,8 @@
   --vi-color-gray: #dddddd;
   --vi-color-shadow: #dcd6e4;
   --vi-color-mask-black: rgba(0, 0, 0, 0.5);
+  --vi-bg-color: #ffffff;
+  --vi-shadow-dark: 0 0 18px rgba(0, 0, 0, 0.2);
 
   --vi-base-padding: 18px;
   --vi-base-font-size: 14px;
@@ -28,8 +30,6 @@
   --vi-font-size-small: 12px;
   --vi-font-size-large: 18px;
   --vi-font-size-18: 18px;
-  --vi-bg-color: #ffffff;
-  --vi-shadow-dark: 0 0 18px rgba(0, 0, 0, 0.2);
 
   --vi-animation-duration: 0.3s;
   --vi-opacity-half: 0.666667;
@@ -87,6 +87,9 @@
   // vi-dialog
   --vi-dialog-shadow: 0 0 18px rgba(0, 0, 0, 0.2);
   --vi-dialog-bg-color: var(--vi-color-white);
+
+  // vi-drawer
+  --vi-drawer-bg-color: var(--vi-color-white);
 
   // vi-icon
   --vi-icon-color: 'inherit';

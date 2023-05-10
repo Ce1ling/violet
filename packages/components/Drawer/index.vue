@@ -119,7 +119,7 @@ $ps: l-r, r-l, t-b, b-t;
   position: fixed;
   display: flex;
   flex-direction: column;
-  background-color: var(--vi-bg-color);
+  background-color: var(--vi-drawer-bg-color);
   box-shadow: var(--vi-shadow-dark);
   transition: all var(--vi-animation-duration);
   &__header {
