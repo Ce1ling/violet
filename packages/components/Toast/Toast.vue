@@ -96,7 +96,7 @@ $types: primary, success, info, warning, danger;
   transform: translateX(-50%);
   padding: 8px 28px;
   border-radius: var(--vi-base-radius);
-  border: 1px solid var(--vi-color-shadow);
+  border: 1px solid var(--vi-toast-border-color);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -104,9 +104,11 @@ $types: primary, success, info, warning, danger;
   
   @each $t in $types {
     &--#{$t} {
-      background-color: var(--vi-color-#{$t}-weak);
-      color: var(--vi-color-#{$t});
-      box-shadow: 2px 2px 8px 0 var(--vi-color-#{$t}-weak);
+      --vi-toast-bg-color: var(--vi-color-#{$t}-weak);
+      --vi-toast-color: var(--vi-color-#{$t});
+      background-color: var(--vi-toast-bg-color);
+      color: var(--vi-toast-color);
+      box-shadow: 2px 2px 8px 0 var(--vi-toast-bg-color);
     }
   }
 }
