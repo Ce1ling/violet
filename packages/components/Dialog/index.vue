@@ -134,7 +134,7 @@ onMounted(handleLockScroll)
   left: 0;
   &__content {
     margin: 10vh auto;
-    background-color: var(--vi-color-white);
+    background-color: var(--vi-dialog-bg-color);
     border-radius: var(--vi-base-radius);
     box-shadow: var(--vi-dialog-shadow);
 
