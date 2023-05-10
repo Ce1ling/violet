@@ -141,4 +141,7 @@ html.dark {
       }
     }
   }
+  .vi-dialog {
+    --vi-dialog-bg-color: var(--doc-bg-color);
+  }
 }
