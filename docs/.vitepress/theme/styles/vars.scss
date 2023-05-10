@@ -57,6 +57,7 @@
 
 html.dark {
   $types: primary, success, info, warning, danger;
+
   &:root {
     --doc-scroll-bar-color: #555555;
     --doc-scroll-bar-color-deep: #666666;
@@ -129,6 +130,14 @@ html.dark {
     @each $t in $types {
       &--#{$t} {
         --vi-alert-bg-color: var(--vi-color-#{$t}-deep);
+      }
+    }
+  }
+  .vi-toast {
+    @each $t in $types {
+      &--#{$t} {
+        --vi-toast-border-color: var(--vi-color-#{$t}-deep);
+        --vi-toast-bg-color: var(--vi-color-#{$t}-deep);
       }
     }
   }
