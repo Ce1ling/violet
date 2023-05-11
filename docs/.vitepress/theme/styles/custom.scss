@@ -119,9 +119,11 @@
   // 文档内容
   #VPContent.has-sidebar {
     padding-left: var(--vp-sidebar-width);
+    position: relative;
     .VPDoc {
       .content {
         padding-bottom: var(--doc-footer-height);
+        position: unset;
         .content-container {
           margin: 0;
           max-width: unset;
@@ -145,8 +147,6 @@
     [class*="language-"] {
       border: 1px solid var(--doc-border-color);
       border-radius: var(--vi-base-radius);
-      // height: 0px;
-      // height: unset;
     }
   }
   
@@ -213,6 +213,24 @@ html.dark {
       // 底部颜色
       .footer-wrap {
         filter: brightness(2);
+      }
+    }
+  }
+}
+
+// 非 PC 端
+@media screen and (max-width: 959px) {
+  #app .Layout {
+    .VPSidebar {
+      width: calc(100vw - 64px);
+    }
+    #VPContent {
+      padding: 0;
+      .content {
+        padding-bottom: calc(var(--doc-footer-height) / 2) !important;
+      }
+      .footer-wrap {
+        width: 100% !important;
       }
     }
   }

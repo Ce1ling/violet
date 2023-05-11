@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { nanoid } from 'nanoid'
+import { getScrollWidth } from '../../../../packages/utils/dom/scroll'
 
 const links = [
   { 
@@ -18,10 +20,14 @@ const links = [
     link: 'https://github.com/Ce1ling/violet/blob/main/.github/CONTRIBUTING.zh.md' 
   },
 ]
+
+const getStyles = computed(() => ({
+  width: `calc(100vw - var(--vp-sidebar-width) - ${getScrollWidth()}px`
+}))
 </script>
 
 <template>
-<footer class="footer-wrap">
+<footer class="footer-wrap" :style="getStyles">
   <ul class="footer-list">
     <li>
       <h2>链接</h2>
@@ -39,12 +45,11 @@ const links = [
   padding: 50px;
   background-color: var(--vp-c-bg-alpha-with-backdrop);
   filter: brightness(0.9);
-  width: calc(100vw - var(--vp-sidebar-width) - var(--doc-scroll-bar-wh));
   position: absolute;
-  left: -32px;
+  right: 0;
   bottom: 0;
   // 此处不可小于 10, 小于 10 无法盖住 .aside-curtain
-  z-index: 99;
+  z-index: 19;
   .footer-list {
     h1 { 
       font-size: 16px; 
@@ -61,4 +66,10 @@ const links = [
     }
   }
 }
+@media (max-width: 960px) {
+  .footer-wrap {
+    width: 100%;
+  }
+}
+
 </style>

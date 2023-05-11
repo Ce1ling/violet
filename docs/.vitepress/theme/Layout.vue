@@ -8,11 +8,11 @@ const { Layout } = DefaultTheme
 
 <template>
   <Layout>
-    <template #doc-after>
-      <FooterInfo />
-    </template>
     <template #nav-bar-content-before>
       <SearchBar class="search-bar-wrap" />
+    </template>
+    <template #doc-after>
+      <FooterInfo />
     </template>
   </Layout>
   <vi-backtop 
