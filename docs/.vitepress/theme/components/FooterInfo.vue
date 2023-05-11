@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, nextTick, ref } from 'vue'
 import { nanoid } from 'nanoid'
 import { getScrollWidth } from '../../../../packages/utils/dom/scroll'
 
@@ -21,9 +21,14 @@ const links = [
   },
 ]
 
+const scrollWidth = ref<string>('0px')
 const getStyles = computed(() => ({
-  width: `calc(100vw - var(--vp-sidebar-width) - ${getScrollWidth()}px`
+  width: `calc(100vw - var(--vp-sidebar-width) - ${scrollWidth.value}`
 }))
+
+nextTick(() => {
+  scrollWidth.value = getScrollWidth('px')
+})
 </script>
 
 <template>

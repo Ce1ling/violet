@@ -24,10 +24,9 @@ hero:
 
 <script lang="ts" setup>
 import { onMounted } from 'vue'
-/** 临时隐藏首页滚动条，用于播放动画 */
-const hideScrollbar = () => {
+// 临时隐藏首页滚动条，用于播放动画
+onMounted(() => {
   document.body.style.overflow = 'hidden'
   window.setTimeout(() => document.body.style.overflow = '', 1000)
-}
-onMounted(hideScrollbar)
+})
 </script>
