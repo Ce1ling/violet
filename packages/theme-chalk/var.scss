@@ -40,6 +40,11 @@
   --vi-button-round-radius: 20px;
   --vi-button-circle-wh: 38px;
 
+  // vi-icon
+  --vi-icon-color: 'inherit';
+  --vi-icon-hover-color: var(--vi-icon-color);
+  --vi-icon-loading-duration: 2s;
+
   // vi-header、vi-main、vi-aside、vi-footer
   --vi-header-height: 80px;
   --vi-header-padding: 0 18px;
@@ -66,6 +71,10 @@
   --vi-checkbox-square-inner-color: var(--vi-color-white);
   --vi-checkbox-border-color: var(--vi-color-info);
 
+  // vi-switch
+  --vi-switch-off-bg-color: var(--vi-color-shadow);
+  --vi-switch-on-bg-color: var(--vi-color-primary);
+
   // vi-stepper
   --vi-stepper-button-bg-color: #f6f6f6;
   --vi-stepper-bg-color: #eeeeee;
@@ -90,13 +99,4 @@
 
   // vi-drawer
   --vi-drawer-bg-color: var(--vi-color-white);
-
-  // vi-icon
-  --vi-icon-color: 'inherit';
-  --vi-icon-hover-color: var(--vi-icon-color);
-  --vi-icon-loading-duration: 2s;
-
-  // vi-switch
-  --vi-switch-off-bg-color: var(--vi-color-shadow);
-  --vi-switch-on-bg-color: var(--vi-color-primary);
 }
