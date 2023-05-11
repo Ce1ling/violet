@@ -6,7 +6,7 @@
   // 标题的链接(#)
   .vp-doc .header-anchor {
     font-size: 28px;
-    &:hover { color: var(--vi-color-primary); }
+    &:hover { color: var(--doc-color-primary); }
   }
   
   // 头部
@@ -105,11 +105,11 @@
           white-space: nowrap;
           transition: color 0s, background-color .3s;
           padding: 8px 14px !important;
-          border-radius: var(--vi-base-radius);
+          border-radius: var(--doc-border-radius);
           &:hover { background-color: #ddd; }
           &.active {
             color: #fff;
-            background-color: var(--vi-color-primary);
+            background-color: var(--doc-color-primary);
           }
         }
       }
@@ -135,7 +135,7 @@
           }
           // tip 区块
           .tip.custom-block {
-            border-radius: var(--vi-base-radius);
+            border-radius: var(--doc-border-radius);
           }
         }
       }
@@ -146,7 +146,7 @@
   .VPDoc .content {
     [class*="language-"] {
       border: 1px solid var(--doc-border-color);
-      border-radius: var(--vi-base-radius);
+      border-radius: var(--doc--border-radius);
     }
   }
   
@@ -154,11 +154,11 @@
   .VPDocFooter {
     .prev,
     .next {
-      border-radius: var(--vi-base-radius);
+      border-radius: var(--doc-border-radius);
       position: relative;
       &::after {
         content: '<';
-        color: var(--vi-color-primary);
+        color: var(--doc-color-primary);
         position: absolute;
         left: 4px;
         top: 50%;
@@ -175,8 +175,8 @@
       border-radius: 0;
       &:hover {
         border-color: transparent;
-        border-bottom-color: var(--vi-color-primary);
-        box-shadow: 0 2px 0 0 var(--vi-color-primary);
+        border-bottom-color: var(--doc-color-primary);
+        box-shadow: 0 2px 0 0 var(--doc-color-primary);
       }
     }
   }
@@ -202,7 +202,7 @@ html.dark {
       .nav .items > a {
         &:hover { background-color: #555555; }
         &.active {
-          background-color: var(--vi-color-primary);
+          background-color: var(--doc-color-primary);
         }
       }
     }
