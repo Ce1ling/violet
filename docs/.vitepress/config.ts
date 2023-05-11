@@ -18,7 +18,9 @@ export const config: UserConfig = {
   lang: 'zh-CN',
   head: head(baseURI),
   themeConfig: {
-    socialLinks,
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/Ce1ling/violet' },
+    ],
     outlineTitle: '目录',
     sidebar,
     docFooter,
