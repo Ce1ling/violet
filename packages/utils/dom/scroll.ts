@@ -1,8 +1,9 @@
 /** 
  * 获取滚动条宽度 
- * @param {string} unit 单位，不传递则无单位
+ * @param {String} unit 单位，不传递则无单位
+ * @retrun 返回滚动条宽度
  **/
-export const getScrollWidth = (unit?: string): string | number => {
+export const getScrollWidth = (unit?: string): string => {
   const div = document.createElement('div')
   div.className = 'vi-scrollbar__wrap'
   div.style.visibility = 'hidden'
@@ -22,7 +23,7 @@ export const getScrollWidth = (unit?: string): string | number => {
   div.parentNode?.removeChild(div)
   const scrollWidth = divWidth - innerDivWidth
 
-  return unit ? scrollWidth + unit : scrollWidth
+  return `${unit ? scrollWidth + unit : scrollWidth}`
 }
 
 
