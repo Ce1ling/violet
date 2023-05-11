@@ -1,16 +1,4 @@
-import { socialLinks } from './socialLinks'
-import { sidebar } from './sidebar'
-import { docFooter } from './docFooter'
-import { footer } from './footer'
-
-
-/**
- * 文档主题结构配置
- */
-export const themeConfig = {
-  socialLinks,
-  sidebar,
-  outlineTitle: '目录',
-  docFooter,
-  footer
-}
+export { socialLinks } from './socialLinks'
+export { sidebar } from './sidebar'
+export { docFooter } from './docFooter'
+export { footer } from './footer'

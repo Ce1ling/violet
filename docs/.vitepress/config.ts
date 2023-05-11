@@ -1,5 +1,6 @@
 import { mdPlugin } from './plugins/mdPlugin'
-import { head, themeConfig } from './config/index'
+import { head } from './config/index'
+import { socialLinks, sidebar, docFooter, footer } from './config/themeConfig'
 
 import type { UserConfig } from 'vitepress'
 
@@ -16,7 +17,13 @@ export const config: UserConfig = {
   description: 'A Vue3 UI Framework',
   lang: 'zh-CN',
   head: head(baseURI),
-  themeConfig,
+  themeConfig: {
+    socialLinks,
+    outlineTitle: '目录',
+    sidebar,
+    docFooter,
+    footer
+  },
   markdown: {
     config: md => mdPlugin(md)
   }
