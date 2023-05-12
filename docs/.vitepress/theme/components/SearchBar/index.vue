@@ -4,7 +4,7 @@ import SearchModal from './searchModal.vue'
 import { useAppend } from '../../../../../packages/hooks'
 
 
-const [append] = useAppend(SearchModal, document.body)
+const [append] = useAppend(SearchModal, 'body')
 
 const onKeyDown = (e) => {
   // 热键为 `Ctrl + k`
