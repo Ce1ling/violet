@@ -1,10 +1,8 @@
 <script setup lang="ts">
-interface Props {
-  label: string
-  name: string
-}
-defineProps<Props>()
+import type { TabProps } from './tab'
 
+
+defineProps<TabProps>()
 </script>
 
 <template>

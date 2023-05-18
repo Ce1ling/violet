@@ -3,36 +3,24 @@ import { useSlots, h, watch, computed } from 'vue'
 import { Icon as ViIcon } from '../index'
 
 import type { VNode, VNodeArrayChildren } from 'vue'
+import type { TabsProps, TabsEmits } from './tabs'
 
-interface Props {
-  modelValue: string
-  activeBgColor?: string
-  bgColor?: string
-  ifMode?: boolean
-  removable?: boolean
-  beforeChange?: (name: string) => boolean
-}
-interface Emits {
-  (e: 'update:modelValue', val: string): void
-  (e: 'tab-click', name: string, event: MouseEvent): void
-  (e: 'tab-remove', name: string, event: MouseEvent): void
-  (e: 'change', newVal: string, oldVal: string): void
-}
 
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<TabsProps>(), {
   activeBgColor: 'var(--vi-color-primary)',
   bgColor: 'var(--vi-tabs-header-bg-color)',
   ifMode: false,
   removable: false
 })
-const emit = defineEmits<Emits>()
+const emit = defineEmits<TabsEmits>()
+
 const slots = useSlots()
 
 const getHeaderStyles = computed(() => ({
   backgroundColor: props.bgColor
 }))
 
-const onBeforeChange = (fn: Props['beforeChange'], name: string) => {
+const onBeforeChange = (fn: TabsProps['beforeChange'], name: string) => {
   if (!fn) {
     emit('update:modelValue', name)
     return
@@ -142,7 +130,6 @@ const RenderTabContent = (): RenderVNode => {
 }
 
 watch(() => props.modelValue, (val, oVal) => emit('change', val, oVal))
-
 </script>
 
 <template>
