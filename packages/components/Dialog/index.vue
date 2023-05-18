@@ -4,28 +4,10 @@ import { Icon as ViIcon, Mask as ViMask } from '../index'
 import { useMovable, useTimeout, useScrollVisible } from '../../hooks'
 import { getADByVar } from '../../utils/dom/animation'
 
-interface Props {
-  modelValue: boolean
-  title?: string
-  content?: string
-  width?: string
-  showCloseBtn?: boolean
-  appendToBody?: boolean
-  zIndex?: number
-  center?: boolean
-  boxCenter?: boolean
-  mask?: boolean
-  movable?: boolean
-  lockScroll?: boolean
-  clickMaskClose?: boolean
-  destroy?: boolean
-  beforeClose?: (fn: () => void) => void
-}
-interface Emits {
-  (e: 'update:modelValue', val: boolean): void
-  (e: 'open' | 'close', val: boolean): void
-}
-const props = withDefaults(defineProps<Props>(), {
+import type { DialogProps, DialogEmits } from './dialog'
+
+
+const props = withDefaults(defineProps<DialogProps>(), {
   title: '',
   width: '50%',
   showCloseBtn: true,
@@ -36,7 +18,7 @@ const props = withDefaults(defineProps<Props>(), {
   clickMaskClose: true,
   destroy: false
 })
-const emit = defineEmits<Emits>()
+const emit = defineEmits<DialogEmits>()
 
 const dialogRef = ref<HTMLElement>()
 const headerRef = ref<HTMLElement>()
@@ -92,7 +74,6 @@ watch(() => props.modelValue, val => {
 })
 
 onMounted(handleLockScroll)
-
 </script>
 
 <template>

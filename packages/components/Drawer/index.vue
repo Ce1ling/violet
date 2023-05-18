@@ -1,28 +1,13 @@
 <script setup lang="ts">
-import { computed, onMounted, watch } from 'vue'
+import { computed, onMounted, watch, toRef } from 'vue'
 import { Mask as ViMask, Icon as ViIcon } from '../index'
 import { useScrollVisible } from '../../hooks'
 import { getADByVar } from '../../utils/dom/animation'
 
-interface Props {
-  modelValue: boolean
-  title?: string
-  width?: string
-  height?: string
-  direction?: 'l-r' | 'r-l' | 't-b' | 'b-t'
-  zIndex?: number
-  showClose?: boolean
-  appendToBody?: boolean
-  mask?: boolean
-  lockScroll?: boolean
-  clickMaskClose?: boolean
-  beforeClose?: (fn: () => void) => void
-}
-interface Emits {
-  (e: 'update:modelValue', val: boolean): void
-  (e: 'open' | 'close', val: boolean): void
-}
-const props = withDefaults(defineProps<Props>(), {
+import type { DrawerProps, DrawerEmits } from './drawer'
+
+
+const props = withDefaults(defineProps<DrawerProps>(), {
   width: '30%',
   height: '30%',
   zIndex: new Date().getFullYear(),
@@ -33,7 +18,7 @@ const props = withDefaults(defineProps<Props>(), {
   lockScroll: true,
   clickMaskClose: true
 })
-const emit = defineEmits<Emits>()
+const emit = defineEmits<DrawerEmits>()
 
 const getClasses = computed(() => [`vi-drawer--${props.direction}`])
 const getStyles = computed(() => ({ 
@@ -44,7 +29,6 @@ const getStyles = computed(() => ({
 const animationDuration = computed(() => {
   return getADByVar(document.body, '--vi-animation-duration', 1000)
 })
-const visible = computed(() => props.modelValue)
 
 /** 通过方位获取 "宽度" 或 "高度" */
 const getWHByDirection = (target: 'width' | 'height') => {
@@ -69,7 +53,7 @@ const handleMaskClose = () => {
 }
 const handleLockScroll = () => {
   if (props.lockScroll) {
-    useScrollVisible(visible, document.body, animationDuration.value)
+    useScrollVisible(toRef(props, 'modelValue'), document.body, animationDuration.value)
   }
 }
 
@@ -79,7 +63,6 @@ watch(() => props.modelValue, val => {
 })
 
 onMounted(handleLockScroll)
-
 </script>
 
 <template>
