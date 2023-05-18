@@ -1,4 +1,8 @@
-export const iconMaps = {
+type IconMaps = {
+  [k: string]: string
+}
+
+export const iconMaps: IconMaps = {
   Search: 'material-symbols:search-rounded',
   Loading: 'ep:loading',
   Check: 'material-symbols:done-rounded',

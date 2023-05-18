@@ -3,17 +3,10 @@ import { computed } from "vue"
 import { Icon as Iconify } from '@iconify/vue'
 import { iconMaps } from './iconMaps'
 
+import type { IconProps } from './icon'
 
-export interface Props {
-  name: string
-  size?: string
-  color?: string
-  cursor?: string
-  hoverColor?: string
-  loading?: boolean
-  duration?: number
-}
-const props = withDefaults(defineProps<Props>(), {
+
+const props = withDefaults(defineProps<IconProps>(), {
   size: '14px',
   color: 'inherit',
   cursor: 'pointer',
@@ -31,7 +24,6 @@ const getStyles = computed(() => ({
   '--vi-icon-hover-color': props.hoverColor ? props.hoverColor : props.color,
   '--vi-icon-loading-duration': props.duration + 's'
 }))
-
 </script>
 
 <template>
