@@ -1,17 +1,10 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, computed } from 'vue'
 
-interface Props {
-  showHeight?: number
-  hideWidth?: number
-  right?: number
-  bottom?: number
-  zIndex?: number
-  round?: boolean
-  shadowColor?: string
-  bgColor?: string
-}
-const props = withDefaults(defineProps<Props>(), {
+import type { BacktopProps } from './backtop'
+
+
+const props = withDefaults(defineProps<BacktopProps>(), {
   showHeight: 500,
   hideWidth: -Infinity,
   right: 50,
@@ -33,9 +26,11 @@ const getClasses = computed(() => ({
   'is-round': props.round
 }))
 
-const handleScroll = () => show.value = document.body.offsetWidth > props.hideWidth
-  ? window.scrollY >= props.showHeight
-  : false
+const handleScroll = () => {
+  show.value = document.body.offsetWidth > props.hideWidth
+    ? window.scrollY >= props.showHeight
+    : false
+}
 const backtop = () => window.scrollTo({ top: 0 })
 
 onMounted(() => window.addEventListener('scroll', handleScroll))

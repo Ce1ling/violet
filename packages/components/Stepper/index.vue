@@ -2,20 +2,10 @@
 import { computed, onMounted, watch, ref, nextTick } from 'vue'
 import { Icon as ViIcon } from '../index'
 
-interface Props {
-  modelValue: number
-  disabled?: boolean
-  step?: number
-  max?: number
-  min?: number
-  toFixed?: number
-  position?: 'normal' | 'left' | 'right'
-  iconSize?: string
-}
-interface Emits {
-  (e: 'update:modelValue', n: number): void
-}
-const props = withDefaults(defineProps<Props>(), {
+import type { StepperProps, StepperEmits, StepperAction } from './stepper'
+
+
+const props = withDefaults(defineProps<StepperProps>(), {
   disabled: false,
   step: 1,
   max: Infinity,
@@ -23,7 +13,7 @@ const props = withDefaults(defineProps<Props>(), {
   toFixed: 0,
   position: 'normal'
 })
-const emit = defineEmits<Emits>()
+const emit = defineEmits<StepperEmits>()
 
 const decrementEl = ref<HTMLDivElement>()
 const inputWidth = ref<string>('0px')
@@ -51,8 +41,7 @@ const handleInputBlur = ({ target }: Event) => {
   /** 此处不能使用 updateModelValue 更新，否则可输入大于限制的数值 */ 
   emit('update:modelValue', Number((target as HTMLInputElement).value))
 }
-type Action = 'increment' | 'decrement'
-const calcStep = (action: Action) => {
+const calcStep = (action: StepperAction) => {
   if (props.disabled) { return }
   updateModelValue(action === 'increment' 
     ? props.modelValue + props.step 
@@ -72,7 +61,6 @@ onMounted(() => {
   updateModelValue(props.modelValue)
   getInputWidth()
 })
-
 </script>
 
 <template>
