@@ -1,30 +1,24 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-interface Props {
-  type?: 'primary' | 'success' | 'warning' | 'danger'
-  disabled?: boolean
-  underline?: boolean
-}
-interface Emits {
-  (e: 'click', event: MouseEvent): void
-}
-const props = withDefaults(defineProps<Props>(), {
+import type { LinkProps, LinkEmits } from './link'
+
+
+const props = withDefaults(defineProps<LinkProps>(), {
   type: 'primary',
   disabled: false,
   underline: true
 })
-const emit = defineEmits<Emits>()
+const emit = defineEmits<LinkEmits>()
 
 const getClasses = computed(() => [`vi-link--${props.type}`, {
   'is-disabled': props.disabled,
   'has-underline': props.underline
 }])
 
-const handleClick = (e: MouseEvent) => props.disabled 
-  ? e.preventDefault() 
-  : emit('click', e)
-  
+const handleClick = (e: MouseEvent) => {
+  return props.disabled ? e.preventDefault() : emit('click', e)
+}
 </script>
 
 <template>
