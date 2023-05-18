@@ -2,29 +2,10 @@
 import { computed, ref, watch, h, useSlots, nextTick, onMounted } from 'vue'
 import { Icon as ViIcon } from '../index'
 
-import type { Props as ViIconProps } from '../Icon/index.vue'
+import type { InputProps, InputIcon } from './input'
 
 
-// 无法直接使用，所以需要声明一个接口继承自 ViIconProps
-interface IconProps extends ViIconProps {}
-
-type Icon = typeof ViIcon | IconProps | string
-
-interface Props {
-  modelValue: string
-  type?: string
-  disabled?: boolean
-  clearable?: boolean
-  showPwd?: boolean
-  rows?: string
-  limit?: string
-  showLimit?: boolean
-  limitSeparator?: string
-  prefixIcon?: Icon
-  suffixIcon?: Icon
-}
-
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<InputProps>(), {
   type: 'text',
   disabled: false,
   clearable: false,
@@ -69,7 +50,7 @@ const toggleShowPwd = () => {
   isPwdInput.value = !isPwdInput.value
   el.focus()
 }
-const getIconAttrs = (type: Icon) => typeof type === 'string' 
+const getIconAttrs = (type: InputIcon) => typeof type === 'string' 
   ? { name: type, size: 'inherit' }
   : type
 const RenderLimit = () => {
@@ -93,7 +74,6 @@ onMounted(async () => {
   await nextTick()
   lineHeight.value = `${viInputEl.value!.offsetHeight - 1}px`
 })
-
 </script>
 
 <template>
@@ -110,7 +90,7 @@ onMounted(async () => {
         @input="handleInput" 
         v-bind="$attrs"
       ></textarea>
-      <render-limit v-if="limit.trim() && showLimit" />
+      <RenderLimit v-if="limit.trim() && showLimit" />
     </template>
     <template v-else>
       <div class="vi-input__prepend" :style="getMixedStyles" v-if="$slots.prepend">
@@ -155,7 +135,7 @@ onMounted(async () => {
         @click="toggleShowPwd" 
         v-if="props.type === 'password' && isShowPwd" 
       />
-      <render-limit v-if="limit.trim() && showLimit" />
+      <RenderLimit v-if="limit.trim() && showLimit" />
       <div class="vi-input__append" :style="getMixedStyles" v-if="$slots.append">
         <slot name="append" />
       </div>
