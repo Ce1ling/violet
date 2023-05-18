@@ -1,12 +1,10 @@
 <script setup lang="ts">
-interface Props {
-  span?: string | number
-}
+import type { ColProps } from './'
 
-withDefaults(defineProps<Props>(), {
+
+withDefaults(defineProps<ColProps>(), {
   span: 1
 })
-
 </script>
 
 <template>

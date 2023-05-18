@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-interface Props {
-  gap?: string
-  justify?: 'start' | 'center' | 'end' | 'space-between' | 'space-around' | 'space-evenly'
-  align?: 'start' | 'center' | 'end'
-}
-const props = withDefaults(defineProps<Props>(), {
+import type { RowProps } from './'
+
+
+const props = withDefaults(defineProps<RowProps>(), {
   gap: '10px',
   justify: 'start',
   align: 'start'
@@ -17,7 +15,6 @@ const getStyles = computed(() => ({
   justifyContent: props.justify,
   alignItems: props.align
 }))
-
 </script>
 
 <template>
