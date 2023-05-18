@@ -2,23 +2,16 @@
 import { computed } from 'vue'
 import { Icon as ViIcon } from '../index'
 
-interface Props {
-  modelValue: boolean
-  disabled?: boolean
-  loading?: boolean
-  isInside?: boolean
-  onColor?: string
-  offColor?: string
-  onText?: string
-  offText?: string
-  onIcon?: string
-  offIcon?: string
-  width?: string
-}
-interface Emits {
-  (e: 'update:modelValue', checked: boolean): void
-}
-const props = withDefaults(defineProps<Props>(), {
+import type { 
+  SwitchProps, 
+  SwitchEmits, 
+  SwitchState,
+  SwitchIcons,
+  SwitchTexts
+} from './switch'
+
+
+const props = withDefaults(defineProps<SwitchProps>(), {
   onColor: 'var(--vi-color-primary)',
   offColor: 'var(--vi-color-shadow)',
   disabled: false,
@@ -29,10 +22,10 @@ const props = withDefaults(defineProps<Props>(), {
   onIcon: '',
   offIcon: ''
 })
-const emit = defineEmits<Emits>()
+const emit = defineEmits<SwitchEmits>()
 
-const icons = ['onIcon', 'offIcon']
-const texts = ['onText', 'offText']
+const icons: SwitchIcons = ['onIcon', 'offIcon']
+const texts: SwitchTexts = ['onText', 'offText']
 
 const getClasses = computed(() => ({ 
   'is-checked': props.modelValue,
@@ -49,21 +42,21 @@ const toggleChecked = () => {
   if (props.disabled || props.loading) { return }
   emit('update:modelValue', !props.modelValue)
 }
-type State = 0 | 1
 /** 
  * 为不同的状态添加激活状态类名
  * @param {Number} state 0 为 off 状态，1 为 on 状态。
  **/
-const getDescClasses = (state: State) => ({ 
+const getDescClasses = (state: SwitchState) => ({ 
   'is-active': state ? props.modelValue : !props.modelValue
 })
-const getDescStyles = (state: State) => ({
+const getDescStyles = (state: SwitchState) => ({
   color: state 
     ? props.modelValue ? props.onColor : ''
     : !props.modelValue ? props.onColor : ''
 })
-const hasDesc = (arr: string[]) => (arr.map(v => props[v]).filter(v => v)).length
-
+const hasDesc = (arr: SwitchIcons | SwitchTexts) => {
+  return (arr.map(v => props[v]).filter(v => v)).length
+}
 </script>
 
 <template>
