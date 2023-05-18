@@ -2,20 +2,10 @@
 import { ref, computed } from 'vue'
 import { Icon as ViIcon } from '../index'
 
-type AlertType = 'primary' | 'success' | 'info' | 'warning' | 'danger'
-interface Props {
-  type?: AlertType
-  dark?: boolean
-  closable?: boolean
-  preIcon?: boolean | string
-  center?: 'none' | 'text' | 'all'
-  title?: string
-  content?: string
-}
-interface Emits {
-  (e: 'close', event: MouseEvent): void
-}
-const props = withDefaults(defineProps<Props>(), {
+import type { AlertProps, AlertEmits, AlertDefaultPreIcon } from './alert'
+
+
+const props = withDefaults(defineProps<AlertProps>(), {
   type: 'primary',
   dark: false,
   closable: false,
@@ -24,13 +14,11 @@ const props = withDefaults(defineProps<Props>(), {
   title: '',
   content: ''
 })
-const emit = defineEmits<Emits>()
+const emit = defineEmits<AlertEmits>()
 
 const show = ref<boolean>(true)
-type PreIconObj = {
-  [k in AlertType]?: string
-}
-const defaultPreIcon: PreIconObj = {
+
+const defaultPreIcon: AlertDefaultPreIcon = {
   'primary': 'CheckCircleFill',
   'success': 'CheckCircleFill',
   'info': 'InfoCircleFill',
@@ -44,16 +32,16 @@ const classObj = computed(() => [`vi-alert--${props.type}`, {
   'is-center-all': props.center === 'all',
   'has-title': props.title.trim()
 }])
-const getPreIcon = computed(() => typeof props.preIcon === 'string' 
-  ? props.preIcon 
-  : defaultPreIcon[props.type]!
-)
+const getPreIcon = computed(() => {
+  return typeof props.preIcon === 'string' 
+    ? props.preIcon 
+    : defaultPreIcon[props.type]!
+})
 
 const handleClose = (e: MouseEvent) => {
   emit('close', e)
   show.value = false
 }
-
 </script>
 
 <template>
