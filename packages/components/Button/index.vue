@@ -3,22 +3,10 @@ import { computed, h } from 'vue'
 import { Icon as ViIcon } from '../index'
 import tinycolor from 'tinycolor2'
 
-interface Props {
-  type?: 'primary' | 'success' | 'info' | 'warning' | 'danger'
-  text?: boolean
-  round?: boolean
-  circle?: boolean
-  disabled?: boolean
-  loading?: boolean
-  isPrefix?: boolean
-  bgColor?: string
-  color?: string
-  plain?: boolean
-}
-interface Emits {
-  (e: 'click', event: MouseEvent): void
-}
-const props = withDefaults(defineProps<Props>(), {
+import type { ButtonProps, ButtonEmits } from './button'
+
+
+const props = withDefaults(defineProps<ButtonProps>(), {
   type: 'primary',
   text: false,
   round: false,
@@ -29,7 +17,7 @@ const props = withDefaults(defineProps<Props>(), {
   plain: false
 })
 
-const emit = defineEmits<Emits>()
+const emit = defineEmits<ButtonEmits>()
 
 const getClasses = computed(() => [`vi-button--${props.type}`, {
   'is-text-btn': props.text,
@@ -45,7 +33,6 @@ const getStyles = computed(() => ({
   '--vi-button-text-color': props.color,
   '--vi-button-bg-color-weak': getPlainBgColor.value
 }))
-
 const getPlainBgColor = computed(() => props.bgColor && tinycolor(props.bgColor)?.setAlpha(0.2).toRgbString())
 
 const RenderIcon = () => props.loading && h(ViIcon, { 
@@ -55,7 +42,6 @@ const RenderIcon = () => props.loading && h(ViIcon, {
   loading: true 
 })
 const handleClick = (e: MouseEvent) => !props.disabled && emit('click', e)
-
 </script>
 
 <template>
@@ -65,13 +51,13 @@ const handleClick = (e: MouseEvent) => !props.disabled && emit('click', e)
     :style="getStyles"
     @click="handleClick">
     <slot name="prefix">
-      <render-icon v-if="isPrefix" />
+      <RenderIcon v-if="isPrefix" />
     </slot>
     <span>
       <slot />
     </span>
     <slot name="suffix">
-      <render-icon v-if="!isPrefix" />
+      <RenderIcon v-if="!isPrefix" />
     </slot>
   </button>
 </template>
