@@ -1,16 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
+import type { DividerProps } from './divider'
 
-interface Props {
-  margin?: string
-  thick?: string
-  color?: string
-  borderStyle?: string
-  position?: 'start' | 'center' | 'end'
-  direction?: 'vertical' | 'horizontal'
-}
-const props = withDefaults(defineProps<Props>(), {
+
+const props = withDefaults(defineProps<DividerProps>(), {
   margin: '18px',
   thick: '1px',
   color: 'var(--vi-color-primary)',
@@ -22,18 +16,16 @@ const props = withDefaults(defineProps<Props>(), {
 const getClasses = computed(() => `vi-divider--${props.direction}`)
 const getStyles = computed(() => {
   const borderStyle = `${props.thick} ${props.borderStyle} ${props.color}`
-
-  if (props.direction === 'horizontal') {
-    return {
-      margin: `${props.margin} 0`,
-      borderTop: borderStyle
-    }
+  const horizontalStyle = {
+    margin: `${props.margin} 0`,
+    borderTop: borderStyle
   }
-
-  return {
+  const verticalStyle = {
     margin: `0 ${props.margin}`,
     borderLeft: borderStyle
   }
+
+  return props.direction === 'horizontal' ? horizontalStyle : verticalStyle
 })
 const getPositionClass = computed(() => `is-${props.position}`)
 const getDescStyles = computed(() => ({
@@ -41,7 +33,6 @@ const getDescStyles = computed(() => ({
     ? `translate(-50%, calc(-50% - (${props.thick} / 2)))`
     : `translateY(calc(-50% - (${props.thick} / 2)))`,
 }))
-
 </script>
 
 <template>
