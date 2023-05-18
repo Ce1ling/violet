@@ -2,31 +2,20 @@
 import { useSlots, h, computed } from 'vue'
 
 import type { VNode } from 'vue'
-import type { 
-  ModelValue, 
-  Props as CheckboxProps, 
-  Emits as CheckboxEmits
-} from './index.vue'
+import type { CheckboxGroupProps } from './checkboxGroup'
+import type { CheckboxProps, CheckboxEmits, CheckboxModelValue } from './checkbox'
 
-interface Props {
-  modelValue: string[]
-  isButton?: boolean
-  border?: boolean
-  gap?: string
-  min?: number
-  max?: number
-}
-interface Emits extends CheckboxEmits {}
-const props = withDefaults(defineProps<Props>(), {
+
+const props = withDefaults(defineProps<CheckboxGroupProps>(), {
   gap: '18px',
   min: 0,
   max: Infinity,
   isButton: false,
   border: false
 })
+const emit = defineEmits<CheckboxEmits>()
+
 const slots = useSlots()
-/** 不可将 CheckboxEmits 传入此泛型中，因为 Vue(3.2.41) 泛型暂不支持从其他文件引入的类型 */
-const emit = defineEmits<Emits>()
 
 const getClasses = computed(() => ({ 
   'is-button': props.isButton 
@@ -37,7 +26,7 @@ const getStyles = computed(() => ({
 
 /**
  * 渲染 VNode
- * @param {Object} vNode Vue 虚拟 DOM
+ * @param {VNode} vNode Vue 虚拟 DOM
  * @param {Boolean} disable 是否为禁用节点，为 `true` 返回一个禁用的 vNode，`false` 返回未禁用的。
  */
 const hRender = (vNode: VNode, disable?: boolean) => h(vNode, { 
@@ -45,7 +34,7 @@ const hRender = (vNode: VNode, disable?: boolean) => h(vNode, {
   modelValue: props.modelValue,
   isBtn: props.isButton,
   border: props.border,
-  'onUpdate:modelValue': (val: ModelValue) => emit('update:modelValue', val)
+  'onUpdate:modelValue': (val: CheckboxModelValue) => emit('update:modelValue', val)
 })
 
 const RenderSlots = () => slots.default && slots.default().map(vNode => {
@@ -58,7 +47,6 @@ const RenderSlots = () => slots.default && slots.default().map(vNode => {
 
   return hRender(vNode)
 })
-
 </script>
 
 <template>

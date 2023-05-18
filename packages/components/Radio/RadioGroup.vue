@@ -1,21 +1,16 @@
 <script setup lang="ts">
 import { computed, h, useSlots } from 'vue'
 
-interface Props {
-  modelValue: string
-  isButton?: boolean
-  border?: boolean
-  gap?: string
-}
-interface Emits {
-  (e: 'update:modelValue', label: string): void
-}
-const props = withDefaults(defineProps<Props>(), {
+import type { RadioGroupProps, RadioGroupEmits } from './radioGroup'
+
+
+const props = withDefaults(defineProps<RadioGroupProps>(), {
   isButton: false,
   gap: '18px'
 })
+const emit = defineEmits<RadioGroupEmits>()
+
 const slots = useSlots()
-const emit = defineEmits<Emits>()
 
 const getClasses = computed(() => ({
   'is-button': props.isButton
@@ -30,7 +25,6 @@ const RenderSlots = () => slots.default && slots.default().map(v => h(v, {
   border: props.border,
   'onUpdate:modelValue': (val: string) => emit('update:modelValue', val)
 }))
-
 </script>
 
 <template>

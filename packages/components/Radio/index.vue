@@ -1,22 +1,15 @@
 <script setup lang="ts">
 import { computed  } from 'vue'
 
-interface Props {
-  modelValue: string
-  label: string
-  disabled?: boolean
-  border?: boolean
-  isBtn?: boolean
-}
-interface Emits {
-  (e: 'update:modelValue', label: string): void
-}
-const props = withDefaults(defineProps<Props>(), {
+import type { RadioProps, RadioEmits } from './radio'
+
+
+const props = withDefaults(defineProps<RadioProps>(), {
   disabled: false,
   border: false,
   isBtn: false
 })
-defineEmits<Emits>()
+defineEmits<RadioEmits>()
 
 const classObj = computed(() => ({
   'is-checked': props.modelValue === props.label,
@@ -24,7 +17,6 @@ const classObj = computed(() => ({
   'has-border': props.border && !props.isBtn,
   'is-button': props.isBtn
 }))
-
 </script>
 
 <template>

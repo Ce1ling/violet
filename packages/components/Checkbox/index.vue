@@ -1,29 +1,22 @@
 <script setup lang="ts">
 import { computed  } from 'vue'
 
-export type ModelValue = boolean | string[]
-export interface Props {
-  modelValue: ModelValue
-  label?: string
-  disabled?: boolean
-  border?: boolean
-  isBtn?: boolean
-}
-export interface Emits {
-  (e: 'update:modelValue', label: ModelValue): void
-}
-const props = withDefaults(defineProps<Props>(), {
+import type { CheckboxProps, CheckboxEmits } from './checkbox'
+
+
+const props = withDefaults(defineProps<CheckboxProps>(), {
   label: '',
   disabled: false,
   border: false,
   isBtn: false
 })
-const emit = defineEmits<Emits>()
+const emit = defineEmits<CheckboxEmits>()
 
-const getChecked = computed(() => typeof props.modelValue !== 'boolean'
-  ? props.modelValue.find(v => v === props.label) === props.label
-  : props.modelValue
-)
+const getChecked = computed(() => {
+  return typeof props.modelValue !== 'boolean'
+    ? props.modelValue.find(v => v === props.label) === props.label
+    : props.modelValue
+})
 const getClasses = computed(() => ({
   'is-checked': getChecked.value,
   'is-disabled': props.disabled,
@@ -45,7 +38,6 @@ const updateModelValue = () => {
 
   emit('update:modelValue', arr)
 }
-
 </script>
 
 <template>
