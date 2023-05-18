@@ -1,14 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-interface Props {
-  direction?: 'row' | 'column' | 'row-reverse' | 'column-reverse'
-  justify?: 'start' | 'center' | 'end' | 'space-between' | 'space-around' | 'space-evenly'
-  align?: 'start' | 'center' | 'end'
-  flex?: string
-  gap?: string
-}
-const props = withDefaults(defineProps<Props>(), {
+import type { FlexProps } from './'
+
+
+const props = withDefaults(defineProps<FlexProps>(), {
   direction: 'row',
   flex: '1',
   gap: '0'

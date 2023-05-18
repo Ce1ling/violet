@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-interface Props {
-  padding?: string
-  height?: string
-}
-const props = defineProps<Props>()
+import type { HeaderProps } from './'
+
+
+const props = defineProps<HeaderProps>()
 
 const getStyles = computed(() => ({
   height: props.height || 'var(--vi-header-height)',

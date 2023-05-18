@@ -1,28 +1,27 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-interface Props {
-  padding?: string
-}
-const props = defineProps<Props>()
+import type { AsideProps } from './'
+
+
+const props = defineProps<AsideProps>()
 
 const getStyles = computed(() => ({
-  padding: props.padding || 'var(--vi-main-padding)'
+  width: props.width || 'var(--vi-aside-width)'
 }))
 
 </script>
 
 <template>
-  <main class="vi-main" :style="getStyles">
+  <aside class="vi-aside" :style="getStyles">
     <slot />
-  </main>
+  </aside>
 </template>
 
 <style lang="scss">
-.vi-main {
+.vi-aside {
   display: block;
   box-sizing: border-box;
   overflow: auto;
-  flex: 1;
 }
 </style>
