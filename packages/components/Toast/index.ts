@@ -3,12 +3,12 @@ import ToastComponent from './Toast.vue'
 import { useTimeout } from '../../hooks'
 
 import type { App } from 'vue'
-import type { Options, Ins, ToastFn } from './types'
+import type { ToastOptions, ToastIns, ToastFn } from './toast'
 
-const instances = ref<Ins[]>([])
+const instances = ref<ToastIns[]>([])
 
 export const Toast: ToastFn = (ops) => {
-  const renderToast = (ops: Options) => {
+  const renderToast = (ops: ToastOptions) => {
     const app = createApp(ToastComponent, { 
       ...ops, 
       _id: Math.random().toString().slice(2), 
@@ -37,14 +37,14 @@ export const Toast: ToastFn = (ops) => {
     useTimeout(() => instances.value.splice(result, 1), 300)
   }
 
-  const removeToast = (app: App<Element>, ins: Ins, duration = 3300) => {
+  const removeToast = (app: App<Element>, ins: ToastIns, duration = 3300) => {
     useTimeout(() => {
       app.unmount()
       instances.value.splice(instances.value.indexOf(ins), 1)
     }, duration)
   }
 
-  const setOffset = (ins: Ins) => {
+  const setOffset = (ins: ToastIns) => {
     const index = instances.value.indexOf(ins)
     useTimeout(() => {
       const { height, gap } = ins
@@ -57,7 +57,7 @@ export const Toast: ToastFn = (ops) => {
 
 /**
  * 静态方法
- * 待解决问题: 通过循环添加静态方法会导致 ToastFn 无法找到具体实现导致 TS 报错
+ * TODO: 通过循环添加静态方法会导致 ToastFn 无法找到具体实现导致 TS 报错
  */
 Toast.primary = (str: string) => Toast({ type: 'primary', content: str })
 Toast.success = (str: string) => Toast({ type: 'success', content: str })

@@ -4,22 +4,10 @@ import { Icon as ViIcon } from '../index'
 import { useTimeout } from '../../hooks'
 import { getADByVar } from '../../utils/dom/animation'
 
-import type { Options } from './types'
+import type { ToastProps } from './toast'
 
 
-interface Props {
-  type: Options['type']
-  content: string
-  duration?: number
-  closable?: boolean
-  isHtmlStr?: boolean
-  prefix?: string
-  zIndex?: number
-  /** private props */
-  _id: string
-  close: (id: string) => void
-}
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<ToastProps>(), {
   type: 'info',
   duration: 3000,
   closable: false,
@@ -73,7 +61,6 @@ onMounted(() => {
   }
   nextTick(() => height.value = toastEl.value!.offsetHeight)
 })
-
 </script>
 
 <template>
