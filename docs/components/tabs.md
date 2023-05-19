@@ -61,7 +61,7 @@ Tabs/IfMode
 
 ::: demo
 
-Tabs/Movable
+Tabs/Removable
 
 :::
 
