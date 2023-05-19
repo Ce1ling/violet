@@ -1,3 +1,6 @@
+import type { VNode, VNodeArrayChildren } from 'vue'
+
+
 export interface TabsProps {
   modelValue: string
   activeBgColor?: string
@@ -13,3 +16,9 @@ export interface TabsEmits {
   (e: 'tab-remove', name: string, event: MouseEvent): void
   (e: 'change', newVal: string, oldVal: string): void
 }
+
+export interface TabsSlots {
+  default?: () => VNode[]
+}
+
+export type TabsRenderResult = VNodeArrayChildren | undefined
