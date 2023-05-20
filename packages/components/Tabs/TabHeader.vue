@@ -1,32 +1,63 @@
 <script lang="ts" setup>
-import { h, inject, computed } from 'vue'
+import { h, inject, computed, ref, onMounted, reactive, watch } from 'vue'
 import { Icon as ViIcon } from '../index'
 import { checkNodeType } from '../../utils/vue/node'
 
 import type { VNode, VNodeArrayChildren } from 'vue'
 import type { TabsProps, TabsEmits, TabsSlots, TabsRenderResult } from './tabs'
 import type { TabProps } from './Tab/tab'
+import type { TabsHeaderNodes, TabsHeaderRefEl } from './tabsHeader'
 
 
 const tabsProps = inject<TabsProps>('tabsProps')!
 const tabsEmits = inject<TabsEmits>('tabsEmits')!
 const tabsSlots = inject<TabsSlots>('tabsSlots')!
 
+const tabsHeader = ref<TabsHeaderRefEl>(null)
+const tabsHeaderBar = reactive({ width: 0, offset: 0 })
+const tabsHeaderNodes: TabsHeaderNodes = getTabsHeaderNodes()
+
 const getHeaderStyles = computed(() => ({
   backgroundColor: tabsProps.bgColor
 }))
 
+const getBarStyles = computed(() => ({
+  width: `${tabsHeaderBar.width}px`,
+  maxWidth: `${tabsHeaderBar.width}px`,
+  height: '100%',
+  backgroundColor: tabsProps.activeBgColor,
+  transform: `translateX(${tabsHeaderBar.offset}px)`,
+}))
+
+function getTabsHeaderNodes() {
+  const slots = tabsSlots.default && tabsSlots.default().map(slot => {
+    const type = checkNodeType(slot.type.toString())
+    if (type === 'normal') {
+      return { vNode: slot, ref: ref(null) }
+    }
+    if (type === 'fragment') {
+      return (slot.children as VNodeArrayChildren).map(s => ({ vNode: (s as VNode), ref: ref(null) }))
+    }
+  }) || []
+
+  return slots.filter(item => item).flat() as TabsHeaderNodes
+}
+
+/** 返回 `true` 允许切换, `false` 不允许 */
 const onBeforeChange = (fn: TabsProps['beforeChange'], name: string) => {
   if (!fn) {
     tabsEmits('update:modelValue', name)
-    return
+    return true
   }
-  if (fn(name)) {
+  const isAllowChange = fn(name)
+  if (isAllowChange) {
     tabsEmits('update:modelValue', name)
+    return isAllowChange
   }
+  return false
 }
 
-const renderRemoveIcon = (vNode: VNode) => {
+const renderRemoveIcon = (vNode: VNode, idx: number) => {
   if (!tabsProps.removable) { return }
 
   return h(ViIcon, { 
@@ -35,11 +66,22 @@ const renderRemoveIcon = (vNode: VNode) => {
     onClick: (e: MouseEvent) => {
       e.stopPropagation()
       tabsEmits('tab-remove', vNode.props?.name, e)
+      tabsHeaderNodes.splice(idx, 1)
     }
   })
 }
 
-const hRenderTabHeader = (type: string, vNode: VNode) => {
+const handleNavbar = (el: TabsHeaderRefEl) => {
+  if (el) {
+    const elRect = el.getBoundingClientRect()
+    const parentElRect = tabsHeader.value?.getBoundingClientRect()!
+    
+    tabsHeaderBar.width = parseInt(elRect.width.toString())
+    tabsHeaderBar.offset = elRect.left - parentElRect.left
+  }
+}
+
+const hRenderTabHeader = (type: string, vNode: VNode, idx: number) => {
   const isActive = tabsProps.modelValue === vNode.props?.name
 
   return h(type, {
@@ -47,37 +89,49 @@ const hRenderTabHeader = (type: string, vNode: VNode) => {
     class: ['vi-tabs__header-item', {
       'is-active': isActive
     }],
-    style: {
-      backgroundColor: isActive ? tabsProps.activeBgColor : ''
-    },
+    ref: tabsHeaderNodes[idx].ref, 
     onClick: (e: MouseEvent) => {
       const { name } = vNode.props ?? {}
       tabsEmits('tab-click', name, e)
-      onBeforeChange(tabsProps.beforeChange, name)
+      const isAllowChange = onBeforeChange(tabsProps.beforeChange, name)
+      // 允许切换才能处理 `滑块`
+      if (isAllowChange) {
+        handleNavbar(tabsHeaderNodes[idx].ref.value)
+      }
     },
   }, [
     h('span', (vNode.props as TabProps)?.label), 
-    renderRemoveIcon(vNode)
+    renderRemoveIcon(vNode, idx)
   ])
 }
 
 const RenderTabHeader = (): TabsRenderResult => {
-  return tabsSlots.default && tabsSlots.default().map(vNode => {
+  return tabsSlots.default && tabsSlots.default().map((vNode, idx) => {
     const type = checkNodeType(vNode.type.toString())
     if (type === 'normal') {
-      return hRenderTabHeader('div', vNode)
+      return hRenderTabHeader('div', vNode, idx)
     }
     if (type === 'fragment') {
-      return vNode.children && (vNode.children as VNodeArrayChildren).map(n => {
-        return hRenderTabHeader('div', n as VNode)
+      return (vNode.children as VNodeArrayChildren).map((n, i) => {
+        return hRenderTabHeader('div', n as VNode, i)
       })
     }
   })
 }
+
+watch(() => tabsProps.modelValue, (val) => {
+  const i = tabsHeaderNodes.findIndex(n => n.vNode.props?.name === val)
+  handleNavbar(tabsHeaderNodes[i].ref.value)
+})
+
+onMounted(() => {
+  handleNavbar(tabsHeaderNodes[0].ref?.value)
+})
 </script>
 
 <template>
-  <div class="vi-tabs__header" :style="getHeaderStyles" v-bind="$attrs">
+  <div class="vi-tabs__header" :style="getHeaderStyles" v-bind="$attrs" ref="tabsHeader">
+    <div class="vi-tabs__bar" :style="getBarStyles" />
     <RenderTabHeader />
   </div>
 </template>
@@ -99,6 +153,8 @@ const RenderTabHeader = (): TabsRenderResult => {
     text-align: center;
     transition: all var(--vi-animation-duration);
     border-radius: var(--vi-base-radius) var(--vi-base-radius) 0 0;
+    position: relative;
+
     &:hover {
       color: var(--vi-color-primary);
     }
@@ -122,6 +178,13 @@ const RenderTabHeader = (): TabsRenderResult => {
     &.is-active {
       color: var(--vi-color-white);
     }
+  }
+  .vi-tabs__bar {
+    transition: all var(--vi-animation-duration);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    border-radius: var(--vi-base-radius);
   }
 }
 </style>
