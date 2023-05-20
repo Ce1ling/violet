@@ -8,6 +8,7 @@ export interface TabsProps {
   ifMode?: boolean
   removable?: boolean
   beforeChange?: (name: string) => boolean
+  type?: 'normal' | 'inner-card'
 }
 
 export interface TabsEmits {
@@ -19,6 +20,10 @@ export interface TabsEmits {
 
 export interface TabsSlots {
   default?: () => VNode[]
+}
+
+export interface TabsNavbar {
+  height: string
 }
 
 export type TabsRenderResult = VNodeArrayChildren | undefined

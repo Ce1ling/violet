@@ -4,7 +4,7 @@ import { Icon as ViIcon } from '../index'
 import { checkNodeType } from '../../utils/vue/node'
 
 import type { VNode, VNodeArrayChildren } from 'vue'
-import type { TabsProps, TabsEmits, TabsSlots, TabsRenderResult } from './tabs'
+import type { TabsProps, TabsEmits, TabsSlots, TabsNavbar, TabsRenderResult } from './tabs'
 import type { TabProps } from './Tab/tab'
 import type { TabsHeaderNodes, TabsHeaderRefEl } from './tabsHeader'
 
@@ -12,19 +12,29 @@ import type { TabsHeaderNodes, TabsHeaderRefEl } from './tabsHeader'
 const tabsProps = inject<TabsProps>('tabsProps')!
 const tabsEmits = inject<TabsEmits>('tabsEmits')!
 const tabsSlots = inject<TabsSlots>('tabsSlots')!
+const tabsNavbar = inject<TabsNavbar>('tabsNavbar')!
 
 const tabsHeader = ref<TabsHeaderRefEl>(null)
 const tabsHeaderBar = reactive({ width: 0, offset: 0 })
 const tabsHeaderNodes: TabsHeaderNodes = getTabsHeaderNodes()
 
-const getHeaderStyles = computed(() => ({
-  backgroundColor: tabsProps.bgColor
+// TODO: 也许可以作为一个 props, 用于自定义 padding
+const innerCardPadding = '6px'
+
+const getStyles = computed(() => ({
+  padding: tabsProps.type === 'inner-card' ? innerCardPadding : ''
 }))
 
+const getNavbarHeader = computed(() => {
+  return tabsProps.type === 'inner-card' 
+    ? `calc(${tabsNavbar.height} - ${parseInt(innerCardPadding) * 2}px)` 
+    : tabsNavbar.height
+})
+
 const getBarStyles = computed(() => ({
-  width: `${tabsHeaderBar.width}px`,
+  width: `${ tabsHeaderBar.width}px`,
   maxWidth: `${tabsHeaderBar.width}px`,
-  height: '100%',
+  height: getNavbarHeader.value,
   backgroundColor: tabsProps.activeBgColor,
   transform: `translateX(${tabsHeaderBar.offset}px)`,
 }))
@@ -136,7 +146,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="vi-tabs__header" :style="getHeaderStyles" v-bind="$attrs" ref="tabsHeader">
+  <div class="vi-tabs__header" :style="getStyles" v-bind="$attrs" ref="tabsHeader">
     <div class="vi-tabs__bar" :style="getBarStyles" />
     <RenderTabHeader />
   </div>
@@ -150,6 +160,8 @@ onMounted(() => {
   border: 1px solid var(--vi-tabs-border-color);
   border-bottom: none;
   overflow: hidden;
+  background-color: var(--vi-tabs-header-bg-color);
+
   &-item {
     display: flex;
     align-items: center;
@@ -175,14 +187,14 @@ onMounted(() => {
       }
     }
     &.is-active {
+      --vi-tabs-active-color: var(--vi-color-white);
+
+      color: var(--vi-tabs-active-color);
       .vi-tabs__close-icon:hover {
         border-radius: 50%;
         color: var(--vi-color-primary);
         background-color: var(--vi-color-primary-weak);
       }
-    }
-    &.is-active {
-      color: var(--vi-color-white);
     }
   }
   .vi-tabs__bar {
