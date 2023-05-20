@@ -119,13 +119,19 @@ const RenderTabHeader = (): TabsRenderResult => {
   })
 }
 
+const findIdx = (vNodes: TabsHeaderNodes, target: string) => {
+  const i = vNodes.findIndex(node => node.vNode.props?.name === target)
+  return i === -1 ? 0 : i
+}
+
 watch(() => tabsProps.modelValue, (val) => {
-  const i = tabsHeaderNodes.findIndex(n => n.vNode.props?.name === val)
+  const i = findIdx(tabsHeaderNodes, val)
   handleNavbar(tabsHeaderNodes[i].ref.value)
 })
 
 onMounted(() => {
-  handleNavbar(tabsHeaderNodes[0].ref?.value)
+  const i = findIdx(tabsHeaderNodes, tabsProps.modelValue)
+  handleNavbar(tabsHeaderNodes[i].ref?.value)
 })
 </script>
 
