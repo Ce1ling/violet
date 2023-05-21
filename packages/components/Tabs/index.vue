@@ -39,9 +39,12 @@ watch(() => props.modelValue, (val, oVal) => emit('change', val, oVal))
 
 <style lang="scss">
 .vi-tabs {
+  border: 1px solid var(--vi-tabs-border-color);
   border-radius: var(--vi-base-radius) var(--vi-base-radius);
 
   &--normal {
+    border-color: transparent;
+
     .vi-tabs__header {
       --vi-tabs-header-bg-color: transparent;
       &::before {
@@ -58,6 +61,8 @@ watch(() => props.modelValue, (val, oVal) => emit('change', val, oVal))
     }
   }
   &--inner-card {
+    border-color: var(--vi-tabs-header-bg-color);
+    
     .vi-tabs__header {
       .vi-tabs__bar {
         bottom: unset;

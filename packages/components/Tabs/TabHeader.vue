@@ -161,8 +161,6 @@ onBeforeUnmount(() => unobserve(tabsHeader.value!))
   display: flex;
   border-radius: var(--vi-base-radius) var(--vi-base-radius) 0 0;
   position: relative;
-  border: 1px solid var(--vi-tabs-border-color);
-  border-bottom: none;
   overflow: hidden;
   background-color: var(--vi-tabs-header-bg-color);
 
@@ -174,7 +172,6 @@ onBeforeUnmount(() => unobserve(tabsHeader.value!))
     cursor: pointer;
     text-align: center;
     transition: all var(--vi-animation-duration);
-    border-radius: var(--vi-base-radius) var(--vi-base-radius) 0 0;
     position: relative;
 
     &:hover {
@@ -202,7 +199,7 @@ onBeforeUnmount(() => unobserve(tabsHeader.value!))
     }
   }
   .vi-tabs__bar {
-    transition: all var(--vi-animation-duration);
+    transition: transform var(--vi-animation-duration);
     position: absolute;
     left: 0;
     bottom: 0;
