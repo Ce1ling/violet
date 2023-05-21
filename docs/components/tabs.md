@@ -23,6 +23,16 @@ Tabs/Basic
 
 :::
 
+## 不同类型
+
+切换不同类型的 Tabs, 目前仅支持: `'normal'`、`'inner-card'`。
+
+::: demo
+
+Tabs/Type
+
+:::
+
 ## 动态切换
 
 通过动态的 `active` 属性，来切换当前展示的 tab。如下所示：
@@ -90,6 +100,7 @@ Tabs/PreventToggle
 | 属性名 | 属性说明 | 属性类型 | 属性默认值 |
 | :---: | :---: | :---: | :---: |
 | `v-model` | 当前展示的标签 | `string` | —— |
+| type | 标签类型 | `'normal' \| 'inner-card'` | —— |
 | active-bg-color | 当前展示的标签的背景颜色 | `string` | `'#802ae8'` |
 | bg-color | 标题背景颜色 | `string` | `#eeeeee` |
 | ifMode | 是否为类似 `v-if` 的模式 | `boolean` | `false` |
