@@ -1,13 +1,16 @@
 <script lang="ts" setup>
-import { h, inject, computed, ref, onMounted, reactive, watch } from 'vue'
+import { h, inject, computed, ref, onMounted, reactive, watch, onBeforeUnmount } from 'vue'
 import { Icon as ViIcon } from '../index'
 import { checkNodeType } from '../../utils/vue/node'
+import { useResizeObserver } from '../../hooks/useResizeObserver'
 
 import type { VNode, VNodeArrayChildren } from 'vue'
 import type { TabsProps, TabsEmits, TabsSlots, TabsNavbar, TabsRenderResult } from './tabs'
 import type { TabProps } from './Tab/tab'
 import type { TabsHeaderNodes, TabsHeaderRefEl } from './tabsHeader'
 
+
+const { observe, unobserve } = useResizeObserver(handleTabsHeaderChange)
 
 const tabsProps = inject<TabsProps>('tabsProps')!
 const tabsEmits = inject<TabsEmits>('tabsEmits')!
@@ -51,6 +54,16 @@ function getTabsHeaderNodes() {
   }) || []
 
   return slots.filter(item => item).flat() as TabsHeaderNodes
+}
+
+function findIdx(vNodes: TabsHeaderNodes, target: string) {
+  const i = vNodes.findIndex(node => node.vNode.props?.name === target)
+  return i === -1 ? 0 : i
+}
+
+function handleTabsHeaderChange() {
+  const i = findIdx(tabsHeaderNodes, tabsProps.modelValue)
+  handleNavbar(tabsHeaderNodes[i].ref?.value)
 }
 
 /** 返回 `true` 允许切换, `false` 不允许 */
@@ -129,20 +142,11 @@ const RenderTabHeader = (): TabsRenderResult => {
   })
 }
 
-const findIdx = (vNodes: TabsHeaderNodes, target: string) => {
-  const i = vNodes.findIndex(node => node.vNode.props?.name === target)
-  return i === -1 ? 0 : i
-}
+watch(() => tabsProps.modelValue, handleTabsHeaderChange)
 
-watch(() => tabsProps.modelValue, (val) => {
-  const i = findIdx(tabsHeaderNodes, val)
-  handleNavbar(tabsHeaderNodes[i].ref.value)
-})
+onMounted(() => observe(tabsHeader.value!))
 
-onMounted(() => {
-  const i = findIdx(tabsHeaderNodes, tabsProps.modelValue)
-  handleNavbar(tabsHeaderNodes[i].ref?.value)
-})
+onBeforeUnmount(() => unobserve(tabsHeader.value!))
 </script>
 
 <template>
