@@ -21,23 +21,20 @@ const tabsHeader = ref<TabsHeaderRefEl>(null)
 const tabsHeaderBar = reactive({ width: 0, offset: 0 })
 const tabsHeaderNodes: TabsHeaderNodes = getTabsHeaderNodes()
 
-// TODO: 也许可以作为一个 props, 用于自定义 padding
-const innerCardPadding = '6px'
-
 const getStyles = computed(() => ({
-  padding: tabsProps.type === 'inner-card' ? innerCardPadding : ''
+  padding: tabsProps.type === 'inner-card' ? tabsProps.padding : ''
 }))
 
-const getNavbarHeader = computed(() => {
+const getNavbarHeight = computed(() => {
   return tabsProps.type === 'inner-card' 
-    ? `calc(${tabsNavbar.height} - ${parseInt(innerCardPadding) * 2}px)` 
+    ? `calc(${tabsNavbar.height} - ${parseInt(tabsProps.padding!) * 2}px)` 
     : tabsNavbar.height
 })
 
 const getBarStyles = computed(() => ({
   width: `${ tabsHeaderBar.width}px`,
   maxWidth: `${tabsHeaderBar.width}px`,
-  height: getNavbarHeader.value,
+  height: getNavbarHeight.value,
   backgroundColor: tabsProps.activeBgColor,
   transform: `translateX(${tabsHeaderBar.offset}px)`,
 }))

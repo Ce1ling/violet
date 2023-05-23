@@ -10,7 +10,9 @@ const props = withDefaults(defineProps<TabsProps>(), {
   activeBgColor: 'var(--vi-color-primary)',
   bgColor: 'var(--vi-tabs-header-bg-color)',
   ifMode: false,
-  removable: false
+  removable: false,
+  padding: '6px',
+  barHeight: '2px'
 })
 const emit = defineEmits<TabsEmits>()
 const slots = useSlots()
@@ -24,7 +26,7 @@ provide<TabsProps>('tabsProps', props)
 provide<TabsEmits>('tabsEmits', emit)
 provide<TabsSlots>('tabsSlots', slots)
 provide<TabsNavbar>('tabsNavbar', {
-  height: props.type === 'normal' ? '2px' : '100%'
+  height: props.type === 'normal' ? props.barHeight : '100%'
 })
 
 watch(() => props.modelValue, (val, oVal) => emit('change', val, oVal))

@@ -9,6 +9,8 @@ export interface TabsProps {
   removable?: boolean
   beforeChange?: (name: string) => boolean
   type?: 'normal' | 'inner-card'
+  padding?: string
+  barHeight?: string
 }
 
 export interface TabsEmits {
