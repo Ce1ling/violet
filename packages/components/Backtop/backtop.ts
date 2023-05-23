@@ -7,4 +7,5 @@ export interface BacktopProps {
   round?: boolean
   shadowColor?: string
   bgColor?: string
+  normal?: boolean
 }

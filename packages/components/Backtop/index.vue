@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, computed } from 'vue'
 
+import type { CSSProperties } from 'vue'
 import type { BacktopProps } from './backtop'
 
 
@@ -11,19 +12,26 @@ const props = withDefaults(defineProps<BacktopProps>(), {
   bottom: 50,
   zIndex: 999,
   round: false,
-  shadowColor: 'var(--vi-backtop-shadow-color)'
+  shadowColor: 'var(--vi-backtop-shadow-color)',
+  normal: false
 })
 
 const show = ref(false)
 
-const getStyles = computed(() => ({ 
+const fixedStyles = computed<CSSProperties>(() => ({
+  position: 'fixed',
   right: props.right + 'px', 
   bottom: props.bottom + 'px', 
   zIndex: props.zIndex,
-  boxShadow: `0 0 8px ${props.shadowColor}`
 }))
+const getStyles = computed<CSSProperties>(() => {
+  return Object.assign(props.normal ? {} : fixedStyles.value, {
+    boxShadow: `0 0 8px ${props.shadowColor}`
+  })
+})
 const getClasses = computed(() => ({
-  'is-round': props.round
+  'is-round': props.round,
+  'is-normal':  props.normal
 }))
 
 const handleScroll = () => {
@@ -33,7 +41,13 @@ const handleScroll = () => {
 }
 const backtop = () => window.scrollTo({ top: 0 })
 
-onMounted(() => window.addEventListener('scroll', handleScroll))
+onMounted(() => {
+  if (props.normal) {
+    show.value = true
+    return
+  }
+  window.addEventListener('scroll', handleScroll)
+})
 onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 </script>
 
@@ -58,10 +72,10 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 <style lang="scss">
 .vi-backtop {
   user-select: none;
-  position: fixed;
   border: 1px solid var(--vi-color-primary);
   background-color: var(--vi-backtop-bg-color);
   cursor: pointer;
+
   &:hover {
     background-color: var(--vi-color-primary);
     .vi-backtop__icon svg { color: var(--vi-backtop-icon-color) }
@@ -69,6 +83,9 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   &__icon { display: block; }
   &.is-round {
     border-radius: 50%;
+  }
+  &.is-normal {
+    display: inline-block;
   }
 }
 </style>
