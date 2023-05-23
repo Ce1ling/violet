@@ -12,7 +12,8 @@ const props = withDefaults(defineProps<TabsProps>(), {
   ifMode: false,
   removable: false,
   padding: '6px',
-  barHeight: '2px'
+  barHeight: '2px',
+  center: false
 })
 const emit = defineEmits<TabsEmits>()
 const slots = useSlots()

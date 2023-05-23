@@ -22,7 +22,8 @@ const tabsHeaderBar = reactive({ width: 0, offset: 0 })
 const tabsHeaderNodes: TabsHeaderNodes = getTabsHeaderNodes()
 
 const getStyles = computed(() => ({
-  padding: tabsProps.type === 'inner-card' ? tabsProps.padding : ''
+  padding: tabsProps.type === 'inner-card' ? tabsProps.padding : '',
+  justifyContent: tabsProps.center ? 'center' : ''
 }))
 
 const getNavbarHeight = computed(() => {

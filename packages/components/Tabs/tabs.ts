@@ -11,6 +11,7 @@ export interface TabsProps {
   type?: 'normal' | 'inner-card'
   padding?: string
   barHeight?: string
+  center?: boolean
 }
 
 export interface TabsEmits {
