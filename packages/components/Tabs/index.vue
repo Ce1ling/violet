@@ -3,7 +3,7 @@ import { useSlots, watch, provide, computed } from 'vue'
 import TabHeader from './TabHeader.vue'
 import TabContent from './TabContent.vue'
 
-import type { TabsProps, TabsEmits } from './tabs'
+import type { TabsProps, TabsEmits, TabsSlots, TabsNavbar } from './tabs'
 
 
 const props = withDefaults(defineProps<TabsProps>(), {
@@ -22,8 +22,8 @@ const getClasses = computed(() => ({
 
 provide<TabsProps>('tabsProps', props)
 provide<TabsEmits>('tabsEmits', emit)
-provide('tabsSlots', slots)
-provide('tabsNavbar', {
+provide<TabsSlots>('tabsSlots', slots)
+provide<TabsNavbar>('tabsNavbar', {
   height: props.type === 'normal' ? '2px' : '100%'
 })
 

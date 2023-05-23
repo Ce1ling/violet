@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { h, inject, computed, ref, onMounted, reactive, watch, onBeforeUnmount } from 'vue'
+import { h, inject, computed, ref, onMounted, reactive, watch, onBeforeUnmount, nextTick } from 'vue'
 import { Icon as ViIcon } from '../index'
 import { checkNodeType } from '../../utils/vue/node'
 import { useResizeObserver } from '../../hooks/useResizeObserver'
@@ -63,7 +63,7 @@ function findIdx(vNodes: TabsHeaderNodes, target: string) {
 
 function handleTabsHeaderChange() {
   const i = findIdx(tabsHeaderNodes, tabsProps.modelValue)
-  handleNavbar(tabsHeaderNodes[i].ref?.value)
+  handleNavbar(tabsHeaderNodes[i]?.ref?.value)
 }
 
 /** 返回 `true` 允许切换, `false` 不允许 */
@@ -80,16 +80,31 @@ const onBeforeChange = (fn: TabsProps['beforeChange'], name: string) => {
   return false
 }
 
+const handleTabRemove = (idx: number) => {
+  const index = tabsHeaderNodes.findIndex(n => n.vNode.props?.name === tabsProps.modelValue)
+  // 当前高亮的 tab 被移除了则更新 v-model
+  if (index === -1) {
+    const firstNode = tabsHeaderNodes[0]?.vNode.props?.name
+    const currentPrevNode = tabsHeaderNodes[idx - 1]?.vNode.props?.name
+    tabsEmits('update:modelValue', idx === 0 ? firstNode : currentPrevNode)
+    return
+  }
+  // 其他 tab 被移除则仅更新滑块
+  handleNavbar(tabsHeaderNodes[index]?.ref.value)
+}
+
 const renderRemoveIcon = (vNode: VNode, idx: number) => {
   if (!tabsProps.removable) { return }
 
   return h(ViIcon, { 
     name: 'Close', 
     class: 'vi-tabs__close-icon',
-    onClick: (e: MouseEvent) => {
+    onClick: async (e: MouseEvent) => {
       e.stopPropagation()
-      tabsEmits('tab-remove', vNode.props?.name, e)
       tabsHeaderNodes.splice(idx, 1)
+      tabsEmits('tab-remove', vNode.props?.name, e)
+      await nextTick()
+      handleTabRemove(idx)
     }
   })
 }
