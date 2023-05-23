@@ -12,6 +12,7 @@ export interface TabsProps {
   padding?: string
   barHeight?: string
   center?: boolean
+  barHalf?: boolean
 }
 
 export interface TabsEmits {

@@ -32,12 +32,26 @@ const getNavbarHeight = computed(() => {
     : tabsNavbar.height
 })
 
+const getNavbarWidth = computed(() => {
+  if (tabsProps.type === 'normal' && tabsProps.barHalf) {
+    return tabsHeaderBar.width / 2
+  }
+  return tabsHeaderBar.width
+})
+
+const getNavbarOffset = computed(() => {
+  if (tabsProps.type === 'normal' && tabsProps.barHalf) {
+    return tabsHeaderBar.offset + getNavbarWidth.value / 2
+  }
+  return tabsHeaderBar.offset
+})
+
 const getBarStyles = computed(() => ({
-  width: `${ tabsHeaderBar.width}px`,
-  maxWidth: `${tabsHeaderBar.width}px`,
+  width: `${getNavbarWidth.value}px`,
+  maxWidth: `${getNavbarWidth.value}px`,
   height: getNavbarHeight.value,
   backgroundColor: tabsProps.activeBgColor,
-  transform: `translateX(${tabsHeaderBar.offset}px)`,
+  transform: `translateX(${getNavbarOffset.value}px)`,
 }))
 
 function getTabsHeaderNodes() {
