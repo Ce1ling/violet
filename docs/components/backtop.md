@@ -6,6 +6,12 @@
 
 通过 `show-height` 属性，控制显示高度。当滚动条滚动到此值时，则显示。
 
+::: tip
+
+使用 `normal` 属性, 可以取消 `Backtop` 的定位。您可以使用这个属性将它放在任意位置。
+
+:::
+
 ::: demo
 
 Backtop/Basic
