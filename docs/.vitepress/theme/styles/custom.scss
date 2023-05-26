@@ -47,38 +47,16 @@
         left: 30%;
         transform: translate(-30%, -50%);
 
-        @keyframes fromTop {
-          from { transform: translateY(-500%); }
-          to { transform: translateY(0%); }
-        }
-        @keyframes fromBottom {
-          from { transform: translateY(500%); }
-          to { transform: translateY(0%); }
-        }
-        @keyframes fromLeft {
-          from { transform: translateX(-500%); }
-          to { transform: translateY(0%); }
-        }
-        @keyframes fromRight {
-          from { transform: translateX(500%); }
-          to { transform: translateY(0%); }
-        }
         // 名称
         .name {
-          animation: fromTop var(--doc-homepage-animation-duration);
-          span { font-size: 86px; }
+          .clip { font-size: 86px; }
         }
         // 标题
         .text { 
           max-width: 100%; 
-          animation: fromLeft var(--doc-homepage-animation-duration);
-        }
-        .tagline {
-          animation: fromRight var(--doc-homepage-animation-duration);
         }
         // 开始按钮
         .actions {
-          animation: fromBottom var(--doc-homepage-animation-duration);
           .action:first-child .VPButton {
             padding: 0 40px;
             font-weight: bold;

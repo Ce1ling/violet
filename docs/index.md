@@ -21,12 +21,3 @@ hero:
       text: 在 GitHub 上查看
       link: https://github.com/Ce1ling/violet
 ---
-
-<script lang="ts" setup>
-import { onMounted } from 'vue'
-// 临时隐藏首页滚动条，用于播放动画
-onMounted(() => {
-  document.body.style.overflow = 'hidden'
-  window.setTimeout(() => document.body.style.overflow = '', 1000)
-})
-</script>
