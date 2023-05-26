@@ -1,7 +1,7 @@
-import Example from './Example.vue'
-import SourceCode from './SourceCode.vue'
+import Example from './example/Example.vue'
+import SourceCode from './example/SourceCode.vue'
 
 export {
   Example,
-  SourceCode
+  SourceCode,
 }
