@@ -49,7 +49,14 @@
 
         // 名称
         .name {
-          .clip { font-size: 86px; }
+          .clip { 
+            cursor: pointer;
+            font-size: 86px;
+            transition: .3s all;
+            &:hover {
+              text-shadow: 0 0 15px var(--doc-color-primary);
+            }
+          }
         }
         // 标题
         .text { 
