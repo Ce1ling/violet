@@ -106,6 +106,10 @@ Tabs/PreventToggle
 | ifMode | 是否为类似 `v-if` 的模式 | `boolean` | `false` |
 | removable | 是否可被移除 | `boolean` | `false` |
 | before-change | 标签切换前触发，返回 `false` 则阻止切换 | `(name: string) => boolean` | —— |
+| padding | 非 `'normal'` 类型的 `padding` | `string` | `'6px'` |
+| bar-height | 高亮状态条高度(仅 `'normal'` 模式可用) | `string` | `'2px'` |
+| center | 居中标签 | `boolean` | `false` |
+| bar-half | 使用一半宽度的高亮状态条(仅 `'normal'` 模式可用) | `boolean` | `false` |
 
 ### Tabs 事件
 
