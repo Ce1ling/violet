@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import { Example, SourceCode } from './components/index'
 import { Tabs as ViTabs } from '../../../packages/components/index'
-import { Toast } from '../../../packages/components/Toast'
+import { Message } from '../../../packages/components/Message'
 import { useExamples } from './composables/useExamples'
 
 interface Props {
@@ -19,7 +19,7 @@ const active = ref('example')
 
 const copy = () => {
   navigator.clipboard.writeText(decodeURIComponent(props.rawCode))
-    .then(() => Toast.success('复制成功'), () => Toast.danger('复制失败'))
+    .then(() => Message.success('复制成功'), () => Message.danger('复制失败'))
 }
 const change = (name: string) => {
   if (name === 'copy') {

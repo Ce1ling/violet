@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { Toast } from '../../../packages/components/Toast'
+import { Message } from '../../../packages/components/Message'
 
 const handleClose = () => {
-  Toast({
+  Message({
     closable: true,
     type: 'primary',
     content: '可手动关闭'

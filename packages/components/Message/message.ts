@@ -1,7 +1,7 @@
 import type { ComponentPublicInstance } from 'vue'
 
 
-export interface ToastTypes {
+export interface MessageTypes {
   primary: string
   success: string
   info: string
@@ -9,7 +9,7 @@ export interface ToastTypes {
   danger: string
 }
 
-export const toastTypes: ToastTypes = { 
+export const messageTypes: MessageTypes = { 
   primary: 'primary',
   success: 'success',
   info: 'info',
@@ -17,8 +17,8 @@ export const toastTypes: ToastTypes = {
   danger: 'danger'
 }
 
-export interface ToastOptions {
-  type: keyof ToastTypes
+export interface MessageOptions {
+  type: keyof MessageTypes
   content: string
   duration?: number
   closable?: boolean
@@ -27,20 +27,20 @@ export interface ToastOptions {
   zIndex?: number
 }
 
-export interface ToastIns {
+export interface MessageIns {
   [k: string]: any
 }
 
-export type ToastMethods = {
-  [K in keyof ToastTypes]: (str: string) => ComponentPublicInstance
+export type MessageMethods = {
+  [K in keyof MessageTypes]: (str: string) => ComponentPublicInstance
 }
 
-export interface ToastFn extends ToastMethods {
-  (options: ToastOptions | string): ComponentPublicInstance
+export interface MessageFn extends MessageMethods {
+  (options: MessageOptions | string): ComponentPublicInstance
 }
 
-export interface ToastProps {
-  type: ToastOptions['type']
+export interface MessageProps {
+  type: MessageOptions['type']
   content: string
   duration?: number
   closable?: boolean

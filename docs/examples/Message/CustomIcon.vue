@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { Toast } from '../../../packages/components/Toast'
+import { Message } from '../../../packages/components/Message'
 
 const custome = () => {
-  Toast({
+  Message({
     type: 'primary',
     content: '自定义图标',
     prefix: 'Home'

@@ -1,15 +1,15 @@
 import { createApp, watch, ref } from 'vue'
-import ToastComponent from './Toast.vue'
+import MessageComponent from './Message.vue'
 import { useTimeout } from '../../hooks'
 
 import type { App } from 'vue'
-import type { ToastOptions, ToastIns, ToastFn } from './toast'
+import type { MessageOptions, MessageIns, MessageFn } from './message'
 
-const instances = ref<ToastIns[]>([])
+const instances = ref<MessageIns[]>([])
 
-export const Toast: ToastFn = (ops) => {
-  const renderToast = (ops: ToastOptions) => {
-    const app = createApp(ToastComponent, { 
+export const Message: MessageFn = (ops) => {
+  const renderMessage = (ops: MessageOptions) => {
+    const app = createApp(MessageComponent, { 
       ...ops, 
       _id: Math.random().toString().slice(2), 
       close 
@@ -25,7 +25,7 @@ export const Toast: ToastFn = (ops) => {
     watch(instances.value, () => setOffset(ins))
 
     if (ops.duration !== 0) {
-      removeToast(app, ins, ops.duration)
+      removeMessage(app, ins, ops.duration)
     }
 
     return ins
@@ -37,14 +37,14 @@ export const Toast: ToastFn = (ops) => {
     useTimeout(() => instances.value.splice(result, 1), 300)
   }
 
-  const removeToast = (app: App<Element>, ins: ToastIns, duration = 3300) => {
+  const removeMessage = (app: App<Element>, ins: MessageIns, duration = 3300) => {
     useTimeout(() => {
       app.unmount()
       instances.value.splice(instances.value.indexOf(ins), 1)
     }, duration)
   }
 
-  const setOffset = (ins: ToastIns) => {
+  const setOffset = (ins: MessageIns) => {
     const index = instances.value.indexOf(ins)
     useTimeout(() => {
       const { height, gap } = ins
@@ -52,15 +52,15 @@ export const Toast: ToastFn = (ops) => {
     }, 0)
   }
 
-  return renderToast(typeof ops === 'object' ? ops : { type: 'info', content: ops })
+  return renderMessage(typeof ops === 'object' ? ops : { type: 'info', content: ops })
 }
 
 /**
  * 静态方法
- * TODO: 通过循环添加静态方法会导致 ToastFn 无法找到具体实现导致 TS 报错
+ * TODO: 通过循环添加静态方法会导致 MessageFn 无法找到具体实现导致 TS 报错
  */
-Toast.primary = (str: string) => Toast({ type: 'primary', content: str })
-Toast.success = (str: string) => Toast({ type: 'success', content: str })
-Toast.info = (str: string) => Toast({ type: 'info', content: str })
-Toast.warning = (str: string) => Toast({ type: 'warning', content: str })
-Toast.danger = (str: string) => Toast({ type: 'danger', content: str })
+Message.primary = (str: string) => Message({ type: 'primary', content: str })
+Message.success = (str: string) => Message({ type: 'success', content: str })
+Message.info = (str: string) => Message({ type: 'info', content: str })
+Message.warning = (str: string) => Message({ type: 'warning', content: str })
+Message.danger = (str: string) => Message({ type: 'danger', content: str })

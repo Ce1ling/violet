@@ -4,10 +4,10 @@ import { Icon as ViIcon } from '../index'
 import { useTimeout } from '../../hooks'
 import { getADByVar } from '../../utils/dom/animation'
 
-import type { ToastProps } from './toast'
+import type { MessageProps } from './message'
 
 
-const props = withDefaults(defineProps<ToastProps>(), {
+const props = withDefaults(defineProps<MessageProps>(), {
   type: 'info',
   duration: 3000,
   closable: false,
@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<ToastProps>(), {
 })
 
 const visible = ref<boolean>(false)
-const toastEl = ref<HTMLElement>()
+const messageEl = ref<HTMLElement>()
 const height = ref<number>()
 const offset = ref<string>('0px')
 const gap = ref<number>(20)
@@ -31,7 +31,7 @@ const iconMap = {
 /** 'ad' 是 'animation duration' 缩写 */
 const ad = getADByVar(document.body, '--vi-animation-duration', 1000)
 
-const getClasses = computed(() => `vi-toast--${props.type}`)
+const getClasses = computed(() => `vi-message--${props.type}`)
 const getStyles = computed(() => ({
   top: offset.value,
   zIndex: props.zIndex
@@ -42,7 +42,7 @@ const setOffset = (value: number) => {
 }
 const handleClose = () => {
   visible.value = false
-  useTimeout(() => document.body.removeChild(toastEl.value!), ad)
+  useTimeout(() => document.body.removeChild(messageEl.value!), ad)
   props.close(props._id)
 }
 
@@ -59,13 +59,13 @@ onMounted(() => {
   if (props.duration !== 0) {
     useTimeout(() => visible.value = false, props.duration)
   }
-  nextTick(() => height.value = toastEl.value!.offsetHeight)
+  nextTick(() => height.value = messageEl.value!.offsetHeight)
 })
 </script>
 
 <template>
-  <Transition name="vi-toast-fade">
-    <div ref="toastEl" class="vi-toast" :class="getClasses" :style="getStyles" v-show="visible">
+  <Transition name="vi-message-fade">
+    <div ref="messageEl" class="vi-message" :class="getClasses" :style="getStyles" v-show="visible">
       <vi-icon :name="prefix ? prefix : iconMap[type]" />
       <span v-if="isHtmlStr" v-html="content"></span>
       <span v-else>{{ content }}</span>
@@ -77,13 +77,13 @@ onMounted(() => {
 <style lang="scss">
 $types: primary, success, info, warning, danger;
 
-.vi-toast {
+.vi-message {
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
   padding: 8px 28px;
   border-radius: var(--vi-base-radius);
-  border: 1px solid var(--vi-toast-border-color);
+  border: 1px solid var(--vi-message-border-color);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -91,16 +91,16 @@ $types: primary, success, info, warning, danger;
   
   @each $t in $types {
     &--#{$t} {
-      --vi-toast-bg-color: var(--vi-color-#{$t}-weak);
-      --vi-toast-color: var(--vi-color-#{$t});
-      background-color: var(--vi-toast-bg-color);
-      color: var(--vi-toast-color);
-      box-shadow: 2px 2px 8px 0 var(--vi-toast-bg-color);
+      --vi-message-bg-color: var(--vi-color-#{$t}-weak);
+      --vi-message-color: var(--vi-color-#{$t});
+      background-color: var(--vi-message-bg-color);
+      color: var(--vi-message-color);
+      box-shadow: 2px 2px 8px 0 var(--vi-message-bg-color);
     }
   }
 }
 
-@keyframes vi-toast-zoom-in {
+@keyframes vi-message-zoom-in {
   from {
     transform: translate(-50%, -100%) scale(0.5);
     opacity: 0;
@@ -111,12 +111,12 @@ $types: primary, success, info, warning, danger;
   }
 }
 
-.vi-toast-fade {
+.vi-message-fade {
   &-enter-active {
-    animation: vi-toast-zoom-in var(--vi-animation-duration) ease;
+    animation: vi-message-zoom-in var(--vi-animation-duration) ease;
   }
   &-leave-active {
-    animation: vi-toast-zoom-in var(--vi-animation-duration) ease reverse;
+    animation: vi-message-zoom-in var(--vi-animation-duration) ease reverse;
   }
 }
 </style>

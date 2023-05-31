@@ -1,19 +1,19 @@
 ---
-title: Toast
+title: Message
 lang: zh-CN
 ---
 
-# Toast 轻提示
+# Message 轻提示
 
 轻提示组件，对于一些操作弹出轻型提示。
 
 ## 基础用法
 
-从 Violet 中导入 `Toast` 方法，调用即可。
+从 Violet 中导入 `Message` 方法，调用即可。
 
 ::: demo
 
-Toast/Basic
+Message/Basic
 
 :::
 
@@ -23,7 +23,7 @@ Toast/Basic
 
 ::: demo
 
-Toast/Closable
+Message/Closable
 
 :::
 
@@ -40,17 +40,17 @@ Toast/Closable
 
 ::: demo
 
-Toast/HtmlStr
+Message/HtmlStr
 
 :::
 
 ## 不会自动关闭
 
-设置 `duration` 属性为 `0`，Toast 就不会自动关闭。
+设置 `duration` 属性为 `0`，Message 就不会自动关闭。
 
 ::: demo
 
-Toast/NotAutoClose
+Message/NotAutoClose
 
 :::
 
@@ -60,7 +60,7 @@ Toast/NotAutoClose
 
 ::: demo
 
-Toast/CustomIcon
+Message/CustomIcon
 
 :::
 
@@ -79,8 +79,8 @@ Toast/CustomIcon
 
 ### 方法
 
-`Toast` 调用后会返回当前 `Toast` 实例，如果想手动关闭，可以调用实例的 `close` 方法。
+`Message` 调用后会返回当前 `Message` 实例，如果想手动关闭，可以调用实例的 `close` 方法。
 
 | 方法名 | 方法说明 |
 | :---: | :---: |
-| close | 手动关闭 `Toast` |
+| close | 手动关闭 `Message` |

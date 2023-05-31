@@ -131,11 +131,11 @@ html.dark {
       }
     }
   }
-  .vi-toast {
+  .vi-message {
     @each $t in $types {
       &--#{$t} {
-        --vi-toast-border-color: var(--vi-color-#{$t}-deep);
-        --vi-toast-bg-color: var(--vi-color-#{$t}-deep);
+        --vi-message-border-color: var(--vi-color-#{$t}-deep);
+        --vi-message-bg-color: var(--vi-color-#{$t}-deep);
       }
     }
   }

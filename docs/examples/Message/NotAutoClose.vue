@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { Toast } from '../../../packages/components/Toast'
+import { Message } from '../../../packages/components/Message'
 
 const handleUnclosed = () => {
-  Toast({
+  Message({
     closable: true,
     type: 'primary',
     content: '不会自动关闭，不信你可以等，信了点这里 →',

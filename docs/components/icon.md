@@ -80,7 +80,7 @@ Icon/CustomCursor
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { iconMaps } from '../../packages/components/Icon/iconMaps'
-import { Toast } from '../../packages/components/Toast/index'
+import { Message } from '../../packages/components/Message/index'
 
 const selfClosing = ref(true)
 
@@ -88,8 +88,8 @@ const copy = (name: string) => {
   const selfClosingTag = `<vi-icon name="${name}" />`
   const completeTag = `<vi-icon name="${name}"></vi-icon>`
   navigator.clipboard.writeText(selfClosing.value ? selfClosingTag : completeTag)
-    .then(res => Toast.success('复制成功'))
-    .catch(err => Toast.danger('复制失败'))
+    .then(res => Message.success('复制成功'))
+    .catch(err => Message.danger('复制失败'))
 }
 </script>
 

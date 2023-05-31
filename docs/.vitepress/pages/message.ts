@@ -4,8 +4,8 @@ export const message = [
     link: '/components/alert.md'
   },
   {
-    text: 'Toast 轻提示',
-    link: '/components/toast.md'
+    text: 'Message 消息',
+    link: '/components/message.md'
   },
   {
     text: 'Dialog 对话框',

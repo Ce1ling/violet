@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { Toast } from '../../../packages/components/Toast'
+import { Message } from '../../../packages/components/Message'
 
 const handleClick = (type: string) => {
-  Toast[type](`${type} toast 提示`)
+  Message[type](`${type} Message 提示`)
 }
 </script>
 
