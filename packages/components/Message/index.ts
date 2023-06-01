@@ -2,13 +2,15 @@ import { createApp, watch, ref } from 'vue'
 import MessageComponent from './Message.vue'
 import { useTimeout } from '../../hooks'
 import { nanoid } from 'nanoid'
+import { messageTypes } from './message'
 
 import type { App } from 'vue'
-import type { MessageOptions, MessageIns, MessageFn } from './message'
+import type { MessageOptions, MessageIns, MessageFn, MessageTypes } from './message'
 
 const instances = ref<MessageIns[]>([])
 const DURATION = 3000
 
+// @ts-ignore
 export const Message: MessageFn = (ops) => {
   const renderMessage = (ops: MessageOptions) => {
     const app = createApp(MessageComponent, { 
@@ -57,12 +59,8 @@ export const Message: MessageFn = (ops) => {
   return renderMessage(typeof ops === 'object' ? ops : { type: 'info', content: ops })
 }
 
-/**
- * 静态方法
- * TODO: 通过循环添加静态方法会导致 MessageFn 无法找到具体实现导致 TS 报错
- */
-Message.primary = (str: string) => Message({ type: 'primary', content: str, duration: DURATION })
-Message.success = (str: string) => Message({ type: 'success', content: str, duration: DURATION })
-Message.info = (str: string) => Message({ type: 'info', content: str, duration: DURATION })
-Message.warning = (str: string) => Message({ type: 'warning', content: str, duration: DURATION })
-Message.danger = (str: string) => Message({ type: 'danger', content: str, duration: DURATION })
+/*** 静态方法 */
+Object.keys(messageTypes).forEach(t => {
+  const type = t as unknown as (keyof MessageTypes)
+  Message[type] = (content) => Message({ type , content, duration: DURATION })
+})
