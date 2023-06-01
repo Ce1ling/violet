@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, nextTick, computed, onMounted, Transition } from 'vue'
+import { ref, computed, onMounted, Transition, nextTick } from 'vue'
 import { Icon as ViIcon } from '../index'
 import { useTimeout } from '../../hooks'
 import { getADByVar } from '../../utils/dom/animation'
@@ -18,9 +18,10 @@ const props = withDefaults(defineProps<MessageProps>(), {
 
 const visible = ref<boolean>(false)
 const messageEl = ref<HTMLElement>()
-const height = ref<number>()
+const height = ref<number>(0)
 const offset = ref<string>('0px')
 const gap = ref<number>(20)
+const transitionDuration = ref<number>(0)
 const iconMap = {
   primary: 'CheckCircle',
   success: 'CheckCircle',
@@ -34,7 +35,8 @@ const ad = getADByVar(document.body, '--vi-animation-duration', 1000)
 const getClasses = computed(() => `vi-message--${props.type}`)
 const getStyles = computed(() => ({
   top: offset.value,
-  zIndex: props.zIndex
+  zIndex: props.zIndex,
+  transition: `top ${transitionDuration.value}s ease`
 }))
 
 const setOffset = (value: number) => {
@@ -55,12 +57,14 @@ defineExpose<MessageExpose>({
   close: handleClose
 })
 
-onMounted(() => {
+onMounted(async () => {
   visible.value = true
   if (props.duration !== 0) {
     useTimeout(() => visible.value = false, props.duration)
   }
-  nextTick(() => height.value = messageEl.value!.offsetHeight)
+  await nextTick()
+  height.value = messageEl.value!.getBoundingClientRect().height
+  useTimeout(() => transitionDuration.value = ad / 1000, ad)
 })
 </script>
 
@@ -88,7 +92,6 @@ $types: primary, success, info, warning, danger;
   display: flex;
   align-items: center;
   gap: 8px;
-  transition: top var(--vi-animation-duration) ease;
   
   @each $t in $types {
     &--#{$t} {
@@ -103,11 +106,11 @@ $types: primary, success, info, warning, danger;
 
 @keyframes vi-message-zoom-in {
   from {
-    transform: translate(-50%, -100%) scale(0.5);
+    transform: translate(-50%, -100%);
     opacity: 0;
   }
   to {
-    transform: translate(-50%, 0%) scale(1);
+    transform: translate(-50%, 0%);
     opacity: 1;
   }
 }
