@@ -1,4 +1,4 @@
-import type { ComponentPublicInstance } from 'vue'
+import type { ComponentPublicInstance, Ref } from 'vue'
 
 
 export interface MessageTypes {
@@ -25,6 +25,15 @@ export interface MessageOptions {
   isHtmlStr?: boolean
   prefix?: string
   zIndex?: number
+}
+
+export interface MessageExpose {
+  _id: string
+  _ad: number
+  _height?: Ref<number | undefined>
+  _gap?: Ref<number | undefined>
+  _setOffset: (value: number) => void 
+  close: () => void
 }
 
 export interface MessageIns {

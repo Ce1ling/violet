@@ -4,7 +4,7 @@ import { Icon as ViIcon } from '../index'
 import { useTimeout } from '../../hooks'
 import { getADByVar } from '../../utils/dom/animation'
 
-import type { MessageProps } from './message'
+import type { MessageProps, MessageExpose } from './message'
 
 
 const props = withDefaults(defineProps<MessageProps>(), {
@@ -46,11 +46,12 @@ const handleClose = () => {
   props.close(props._id)
 }
 
-defineExpose({
+defineExpose<MessageExpose>({
   _id: props._id,
-  height,
-  gap,
-  setOffset,
+  _height: height,
+  _gap: gap,
+  _ad: ad,
+  _setOffset: setOffset,
   close: handleClose
 })
 
