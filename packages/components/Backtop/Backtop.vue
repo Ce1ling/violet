@@ -60,7 +60,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
     v-if="show">
     <slot>
       <vi-icon 
-        name="Top" 
+        name="Up" 
         size="44px" 
         color="var(--vi-color-primary)" 
         class="vi-backtop__icon"
