@@ -2,6 +2,7 @@
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useTimeout, useScrollVisible } from '../../../../../packages/hooks'
 import { Icon as ViIcon, Mask as ViMask } from '../../../../../packages/components/index'
+import { clickOutside as vClickOutside } from '../../../../../packages/directives/click-outside'
 
 import type { UseAppendEmits } from '../../../../../packages/hooks'
 
@@ -45,7 +46,7 @@ const handleSearch = () => {
     })
   }, 500)
 }
-const handleMaskClick = () => {
+const handleClickOutside = () => {
   emit('useAppend:remove')
 }
 
@@ -69,8 +70,8 @@ onBeforeUnmount(() => {
 
 <template>
   <Teleport to="body">
-    <vi-mask :visible="visible" @click="handleMaskClick">
-      <div class="search-dialog" @click.stop="void">
+    <vi-mask :visible="visible">
+      <div class="search-dialog" v-click-outside="handleClickOutside">
         <header class="search-header" :class="{ 'is-focus': isFocus }">
           <label>
             <vi-icon 
