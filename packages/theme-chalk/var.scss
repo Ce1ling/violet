@@ -27,6 +27,7 @@
   --vi-base-padding: 18px;
   --vi-base-font-size: 14px;
   --vi-base-radius: 5px;
+  --vi-small-radius: 2px;
   --vi-font-size-small: 12px;
   --vi-font-size-large: 18px;
   --vi-font-size-18: 18px;
@@ -101,4 +102,7 @@
 
   // vi-drawer
   --vi-drawer-bg-color: var(--vi-color-white);
+
+  // vi-select
+  --vi-select-shadow: 0 0 8px rgba(146, 146, 146, 0.3);
 }

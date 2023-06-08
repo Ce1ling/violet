@@ -19,6 +19,7 @@ import Checkbox from './Checkbox/Checkbox.vue'
 import CheckboxGroup from './Checkbox/CheckboxGroup.vue'
 import Switch from './Switch/Switch.vue'
 import Stepper from './Stepper/Stepper.vue'
+import Select from './Select/Select.vue'
 
 import Backtop from './Backtop/Backtop.vue'
 import Tabs from './Tabs/Tabs.vue'
@@ -55,4 +56,5 @@ export {
   Dialog,
   Drawer,
   Mask,
+  Select,
 }

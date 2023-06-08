@@ -19,4 +19,8 @@ export const form = [
     text: 'Stepper 步进器',
     link: '/components/stepper.md'
   },
+  {
+    text: 'Select 选择器',
+    link: '/components/select.md'
+  },
 ]
