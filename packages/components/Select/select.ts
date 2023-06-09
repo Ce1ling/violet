@@ -13,6 +13,7 @@ export interface SelectProps<T> {
   clearable?: boolean
   multiple?: boolean
   max?: number
+  optionsKey?: string
 }
 
 export interface SelectEmits {

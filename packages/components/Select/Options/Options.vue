@@ -54,7 +54,7 @@ defineExpose<OptionsExpose>({
           class="vi-select__list-item"
           :class="getItemClass(item)"
           v-for="(item, i) in options" 
-          :key="i"
+          :key="selectProps.optionsKey ? item[selectProps.optionsKey] : i"
           @click.stop="handleItemClick(item)"
         >
           {{ item.label }}
