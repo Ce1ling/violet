@@ -1,3 +1,3 @@
-# Violet UI 组件库
+# Violet UI
 
-基于 Vue 3 的一款 UI 组件库，让你的开发更快速！
+A Vue3 components library, make your development faster!
