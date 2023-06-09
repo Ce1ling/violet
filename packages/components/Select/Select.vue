@@ -70,7 +70,7 @@ const handleMouseEnterLeave = (visible: boolean) => {
 }
 
 const handleClear = () => {
-  emit('update:modelValue', '')
+  emit('update:modelValue', props.multiple ? [] : '')
 }
 </script>
 
