@@ -106,7 +106,6 @@ const handleClear = () => {
 
 <style lang="scss">
 .vi-select {
-  width: 200px;
   position: relative;
   border-radius: var(--vi-base-radius);
 
