@@ -5,7 +5,13 @@ import { Input as ViInput, Icon as ViIcon } from '../index'
 import Options from './Options/Options.vue'
 
 import type { CSSProperties } from 'vue'
-import type { SelectProps, SelectEmits, SelectOption, SelectPropsDefaults } from './select'
+import type { 
+  SelectProps, 
+  SelectEmits, 
+  SelectOption, 
+  SelectPropsDefaults,
+} from './select'
+import type { OptionsExpose } from './Options/options'
 
 
 const props = withDefaults<
@@ -22,8 +28,13 @@ provide<SelectEmits>('selectEmits', emit)
 
 const isFocus = ref<boolean>(false)
 const showClearIcon = ref<boolean>(false)
+const optionsRef = ref<OptionsExpose>()
 
 const value = computed<SelectOption['value']>(() => {
+  if (props.multiple) {
+    const modelValues = props.modelValue as SelectOption['value'][]
+    return modelValues.join(',')
+  }
   const active = props.options.find(option => option.value === props.modelValue)
   return active ? active.label : ''
 })
@@ -33,6 +44,13 @@ const selectClass = computed<CSSProperties>(() => ({
   'is-disabled': props.disabled
 }))
 
+function handleClose (isRefEl: boolean) {
+  if (props.multiple && isRefEl) {
+    return
+  }
+  isFocus.value = false
+}
+
 const handleClick = () => {
   if (props.disabled) { return }
   isFocus.value = !isFocus.value
@@ -40,10 +58,6 @@ const handleClick = () => {
 
 const handleInputMouseDown = (e: MouseEvent) => {
   e.preventDefault()
-}
-
-const handleClose = () => {
-  isFocus.value = false
 }
 
 const handleMouseEnterLeave = (visible: boolean) => {
@@ -63,7 +77,7 @@ const handleClear = () => {
     class="vi-select" 
     :class="selectClass"
     @click="handleClick" 
-    v-click-outside="handleClose"
+    v-click-outside:[optionsRef]="handleClose"
     @mouseenter="handleMouseEnterLeave(true)"
     @mouseleave="handleMouseEnterLeave(false)"
   >
@@ -84,7 +98,7 @@ const handleClear = () => {
         <vi-icon name="Close" v-show="showClearIcon" @click.stop="handleClear" />
       </template>
     </vi-input>
-    <Options :show="isFocus" :options="<SelectOption[]>options" />
+    <Options :show="isFocus" :options="<SelectOption[]>options" ref="optionsRef" />
   </div>
 </template>
 

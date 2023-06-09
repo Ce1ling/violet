@@ -4,15 +4,18 @@ export interface SelectOption {
   [k: string]: any
 }
 
+export type SelectModelValue = SelectOption['value'] | SelectOption['value'][]
+
 export interface SelectProps<T> {
-  modelValue: SelectOption['value']
+  modelValue: SelectModelValue
   options: T
   disabled?: boolean
   clearable?: boolean
+  multiple?: boolean
 }
 
 export interface SelectEmits {
-  (e: 'update:modelValue', value: string): void
+  (e: 'update:modelValue', value: SelectModelValue): void
 }
 
 export type SelectPropsDefaults<T> = Omit<SelectProps<T>, 'modelValue' | 'options'>
