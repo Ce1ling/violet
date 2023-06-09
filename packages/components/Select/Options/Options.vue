@@ -26,11 +26,15 @@ const getItemClass = (item: SelectOption) => ({
 const handleItemClick = (item: SelectOption) => {
   if (selectProps.multiple) {
     const arr = [...selectProps.modelValue]
+
     if (arr.includes(item.value)) { 
       arr.splice(arr.indexOf(item.value), 1)
     } else {
       arr.push(item.value)
     }
+
+    if (arr.length > Number(selectProps.max)) { return }
+
     selectEmits('update:modelValue', arr)
     return
   }

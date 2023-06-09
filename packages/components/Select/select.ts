@@ -12,6 +12,7 @@ export interface SelectProps<T> {
   disabled?: boolean
   clearable?: boolean
   multiple?: boolean
+  max?: number
 }
 
 export interface SelectEmits {

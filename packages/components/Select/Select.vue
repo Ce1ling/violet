@@ -20,6 +20,8 @@ const props = withDefaults<
 >(defineProps<SelectProps<T>>(), {
   disabled: false,
   clearable: false,
+  multiple: false,
+  max: Infinity
 })
 const emit = defineEmits<SelectEmits>()
 
