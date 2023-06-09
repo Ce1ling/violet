@@ -34,8 +34,8 @@ const optionsRef = ref<OptionsExpose>()
 
 const value = computed<SelectOption['value']>(() => {
   if (props.multiple) {
-    const modelValues = props.modelValue as SelectOption['value'][]
-    return modelValues.join(',')
+    const modelValues = props.options.map(item => props.modelValue.includes(item.value) ? item.label : '').filter(Boolean)
+    return modelValues.join(', ')
   }
   const active = props.options.find(option => option.value === props.modelValue)
   return active ? active.label : ''
