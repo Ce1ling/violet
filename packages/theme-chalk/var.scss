@@ -25,15 +25,16 @@
   --vi-shadow-dark: 0 0 18px rgba(0, 0, 0, 0.2);
 
   --vi-base-padding: 18px;
-  --vi-base-font-size: 14px;
   --vi-base-radius: 5px;
   --vi-small-radius: 2px;
   --vi-font-size-small: 12px;
+  --vi-font-size-base: 14px;
   --vi-font-size-large: 18px;
   --vi-font-size-18: 18px;
 
   --vi-animation-duration: 0.3s;
   --vi-opacity-half: 0.666667;
+  --vi-round: 999999999px;
 
   // vi-button
   --vi-button-animation-duration: 0.1s;
@@ -109,4 +110,9 @@
   --vi-select-disabled-color: var(--vi-color-info);
   --vi-select-disabled-border-color: var(--vi-input-border-color);
   --vi-select-option-hover-color: #f1f1f1;
+
+  // vi-tag 
+  --vi-tag-border-color: var(--vi-color-primary);
+  --vi-tag-bg-color: var(--vi-color-primary-weak);
+  --vi-tag-color: var(--vi-color-primary);
 }

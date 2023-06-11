@@ -11,4 +11,8 @@ export const basic = [
     text: 'Link 链接',
     link: '/components/link.md'
   },
+  {
+    text: 'Tag 标签',
+    link: '/components/tag.md'
+  },
 ]

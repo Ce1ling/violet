@@ -29,6 +29,7 @@ import Alert from './Alert/Alert.vue'
 import Dialog from './Dialog/Dialog.vue'
 import Drawer from './Drawer/Drawer.vue'
 import Mask from './Mask/Mask.vue'
+import Tag from './Tag/Tag.vue'
 
 export {
   Button,
@@ -57,4 +58,5 @@ export {
   Drawer,
   Mask,
   Select,
+  Tag,
 }
