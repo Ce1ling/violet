@@ -3,7 +3,7 @@ title: Tabs
 lang: zh-CN
 ---
 
-# Tabs 标签
+# Tabs 选项卡
 
 Tabs 选项卡切换组件，分隔展示不同类型的数据。
 
@@ -61,7 +61,7 @@ Tabs/IfMode
 
 ## 可被移除
 
-使用 `removable` 属性，设置标签可被移除。点击移除按钮后触发 `tab-remove` 事件。
+使用 `removable` 属性，设置选项卡可被移除。点击移除按钮后触发 `tab-remove` 事件。
 
 ::: warning
 
@@ -84,7 +84,7 @@ Tabs/Removable
 :::
 
 ::: warning 
-注意：`before-change` 虽然会阻止切换，但被点击的标签仍能触发 `tab-click` 事件。
+注意：`before-change` 虽然会阻止切换，但被点击的选项卡仍能触发 `tab-click` 事件。
 :::
 
 ::: demo
@@ -99,23 +99,23 @@ Tabs/PreventToggle
 
 | 属性名 | 属性说明 | 属性类型 | 属性默认值 |
 | :---: | :---: | :---: | :---: |
-| `v-model` | 当前展示的标签 | `string` | —— |
-| type | 标签类型 | `'normal' \| 'inner-card'` | —— |
-| active-bg-color | 当前展示的标签的背景颜色 | `string` | `'#802ae8'` |
+| `v-model` | 当前展示的选项卡 | `string` | —— |
+| type | 选项卡类型 | `'normal' \| 'inner-card'` | —— |
+| active-bg-color | 当前展示的选项卡的背景颜色 | `string` | `'#802ae8'` |
 | bg-color | 标题背景颜色 | `string` | `#eeeeee` |
 | ifMode | 是否为类似 `v-if` 的模式 | `boolean` | `false` |
 | removable | 是否可被移除 | `boolean` | `false` |
-| before-change | 标签切换前触发，返回 `false` 则阻止切换 | `(name: string) => boolean` | —— |
+| before-change | 选项卡切换前触发，返回 `false` 则阻止切换 | `(name: string) => boolean` | —— |
 | padding | 非 `'normal'` 类型的 `padding` | `string` | `'6px'` |
 | bar-height | 高亮状态条高度(仅 `'normal'` 模式可用) | `string` | `'2px'` |
-| center | 居中标签 | `boolean` | `false` |
+| center | 居中选项卡 | `boolean` | `false` |
 | bar-half | 使用一半宽度的高亮状态条(仅 `'normal'` 模式可用) | `boolean` | `false` |
 
 ### Tabs 事件
 
 | 事件名 | 事件触发时机 | 事件参数 |
 | :---: | :---: | :---: |
-| tab-click |标签标题被点击时触发 | `(name: string, e: MouseEvent) => void` |
+| tab-click |选项卡标题被点击时触发 | `(name: string, e: MouseEvent) => void` |
 | tab-remove | 点击移除按钮触发 | `(name: string, e: MouseEvent) => void` |
 | change | `v-model` 值改变后触发 | `(newVal: string, oldVal: string) => void` |
 
@@ -123,5 +123,5 @@ Tabs/PreventToggle
 
 | 属性名 | 属性说明 | 属性类型 | 属性默认值 |
 | :---: | :---: | :---: | :---: |
-| label |标签 标题 | `string` | —— |
-| name | 唯一标识符，标签的 `v-model` 根据此属性辨别当前展示的标签 | `string` | —— |
+| label |选项卡 标题 | `string` | —— |
+| name | 唯一标识符，选项卡的 `v-model` 根据此属性辨别当前展示的选项卡 | `string` | —— |

@@ -4,7 +4,7 @@ export const navigation = [
     link: '/components/backtop.md'
   },
   {
-    text: 'Tabs 标签',
+    text: 'Tabs 选项卡',
     link: '/components/tabs.md'
   },
 ]
