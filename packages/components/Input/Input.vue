@@ -74,6 +74,10 @@ onMounted(async () => {
   await nextTick()
   lineHeight.value = `${viInputEl.value!.offsetHeight - 1}px`
 })
+
+defineExpose({
+  inputEl: viInputEl
+})
 </script>
 
 <template>
