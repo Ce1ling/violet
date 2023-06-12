@@ -7,7 +7,7 @@ import type { TagProps, TagEmits } from './tag'
 
 const props = withDefaults(defineProps<TagProps>(), {
   type: 'primary',
-  border: true,
+  border: false,
   closable: false,
   disabled: false,
   round: false
@@ -18,7 +18,7 @@ const emit = defineEmits<TagEmits>()
 const isClosed = ref(false)
 
 const tagClasses = computed(() => [`vi-tag--${props.type}`, {
-  'not-border': !props.border,
+  'has-border': props.border,
   'is-disabled': props.disabled,
   'is-round': props.round
 }])
@@ -65,7 +65,7 @@ $types: primary, success, info, warning, danger;
   align-items: center;
   border-radius: var(--vi-base-radius);
   padding: 2px 8px;
-  border: 1px solid var(--vi-tag-border-color);
+  border: 1px solid transparent;
   background-color: var(--vi-tag-bg-color);
   color: var(--vi-tag-color);
   font-size: var(--vi-font-size-base);
@@ -100,8 +100,8 @@ $types: primary, success, info, warning, danger;
     }
   }
 
-  &.not-border {
-    border-color: transparent;
+  &.has-border {
+    border-color: var(--vi-tag-border-color);
   }
 
   &.is-disabled {
