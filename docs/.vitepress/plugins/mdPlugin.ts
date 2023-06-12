@@ -28,13 +28,16 @@ export const mdPlugin: MdPlugin = (md, k = 'demo') => {
     render(tokens, idx) {
       const m = tokens[idx].info.trim().match(reg)
       const title = (m && m[1]) ?? ''
-      const filePath = tokens[idx + 2].children?.[0].content ?? ''
+      const filePath = tokens[idx + 2]?.children?.[0].content ?? ''
 
       if (tokens[idx].nesting === 1) {
         if (!filePath) {
           throw new Error(`错误的文件路径: "${filePath}"`)
         }
-        const textFile = fs.readFileSync(path.resolve(getDocsRoot(), 'examples', `${filePath}.vue`), 'utf-8')
+        const textFile = fs.readFileSync(
+          path.resolve(getDocsRoot(), 'examples', `${filePath}.vue`), 
+          'utf-8'
+        )
 
         return `<Demo 
           title="${title}"
