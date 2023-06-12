@@ -47,7 +47,7 @@ const handleClose = (e: MouseEvent) => {
     <span class="vi-tag__content">
       <slot />
     </span>
-    <span class="vi-tag__close">
+    <span class="vi-tag__close" v-if="closable">
       <vi-icon 
         name="Close" 
         @click="handleClose" 
