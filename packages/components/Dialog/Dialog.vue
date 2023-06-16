@@ -51,7 +51,7 @@ const handleDestory = (visible: boolean) => {
     return
   }
   
-  // 如果能去掉这个异步任务，那么就可以使用 computed 优化 destroy
+  // TODO: 如果能去掉这个异步任务，那么就可以使用 computed 优化 destroy
   useTimeout(() => needDestroy.value = true, animationDuration.value)
 }
 const handleMovable = (visible: boolean) => {
