@@ -27,13 +27,11 @@ export interface MessageOptions {
   zIndex?: number
 }
 
-export interface MessageExpose {
-  _id: string
+export interface MessageExpose extends Pick<MessageProps, '_id' | 'close'> {
   _ad: number
   _height: Ref<number | undefined>
   _gap: Ref<number | undefined>
   _setOffset: (value: number) => void 
-  close: () => void
 }
 
 export interface MessageIns {
@@ -49,7 +47,7 @@ export interface MessageFn extends MessageMethods {
 }
 
 export interface MessageProps extends MessageOptions {
-  /** private props */
+  /** `_id` is private props */
   _id: string
   close: (id: string) => void
 }
