@@ -9,7 +9,7 @@ const props = withDefaults(defineProps<MaskProps>(), {
   zIndex: new Date().getFullYear()
 })
 
-const getStyles = computed(() => ({
+const maskStyles = computed(() => ({
   backgroundColor: props.disabled ? 'transparent' : undefined,
   zIndex: props.zIndex
 }))
@@ -17,7 +17,7 @@ const getStyles = computed(() => ({
 </script>
 
 <template>
-  <div class="vi-mask" v-show="visible" :style="getStyles">
+  <div class="vi-mask" v-show="visible" :style="maskStyles">
     <slot />
   </div>
 </template>
@@ -26,9 +26,6 @@ const getStyles = computed(() => ({
 .vi-mask {
   background-color: var(--vi-color-mask-black);
   position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  inset: 0;
 }
 </style>
