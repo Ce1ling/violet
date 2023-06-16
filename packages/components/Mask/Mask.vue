@@ -1,13 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
+import type { MaskProps } from './mask'
 
-interface Props {
-  visible: boolean
-  disabled?: boolean
-  zIndex?: number
-}
-const props = withDefaults(defineProps<Props>(), {
+
+const props = withDefaults(defineProps<MaskProps>(), {
   disabled: false,
   zIndex: new Date().getFullYear()
 })
