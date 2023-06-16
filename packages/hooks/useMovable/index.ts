@@ -48,7 +48,7 @@ export const useMovable = async (targetRef: RefEl, moveRef: RefEl, movable: Ref<
     !(targetRef.value instanceof HTMLElement) || 
     !(moveRef.value instanceof HTMLElement)
   ) {
-    throw new Error('[useMovable]: `参数1` 和 `参数2` 必须是一个 DOM 元素。')
+    throw new Error('[useMovable]: `参数1` 和 `参数2` 必须是 DOM 元素。')
   }
   
   if (!isRef(movable)) {
