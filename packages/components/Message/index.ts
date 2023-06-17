@@ -1,7 +1,7 @@
 import { createApp, watch, ref } from 'vue'
+import { nanoid } from 'nanoid'
 import MessageComponent from './Message.vue'
 import { useTimeout } from '../../hooks'
-import { nanoid } from 'nanoid'
 import { messageTypes } from './message'
 
 import type { App } from 'vue'
@@ -38,7 +38,7 @@ export const Message: MessageFn = (ops) => {
   /** 手动关闭方法 */
   const close = (id: string) => {
     const idx = instances.value.findIndex(ins => ins._id === id)
-    useTimeout(() => instances.value.splice(idx, 1), instances.value[idx]._ad)
+    useTimeout(() => instances.value.splice(idx, 1), instances.value[idx]?._ad)
   }
 
   const removeMessage = (app: App<Element>, ins: MessageIns, duration = DURATION) => {
