@@ -39,15 +39,15 @@ export interface MessageIns {
 }
 
 export type MessageMethods = {
-  [K in keyof MessageTypes]: (content: string) => ComponentPublicInstance
+  [K in keyof MessageTypes]: (content: string) => ComponentPublicInstance<MessageExpose>
 }
 
 export interface MessageFn extends MessageMethods {
-  (options: MessageOptions | string): ComponentPublicInstance
+  (options: MessageOptions | string): ComponentPublicInstance<MessageExpose>
 }
 
 export interface MessageProps extends MessageOptions {
   /** `_id` is private props */
   _id: string
-  close: (id: string) => void
+  close: (id?: string) => void
 }
