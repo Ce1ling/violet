@@ -9,7 +9,7 @@ lang: zh-CN
 
 ## 基础用法
 
-从 Violet 中导入 `Message` 方法，调用即可。
+Violet 为每种类型都提供了静态方法，直接调用即可。
 
 ::: demo
 
@@ -20,6 +20,12 @@ Message/Basic
 ## 可关闭的
 
 设置 `closable` 属性为 `true`，开启可手动关闭功能。
+
+::: tip
+
+上方提供了静态方法的使用方式，当然也有完整写法，如下所示。
+
+:::
 
 ::: demo
 
@@ -68,19 +74,20 @@ Message/CustomIcon
 
 ### 属性
 
-| 属性名 | 属性说明 | 属性类型 | 属性默认值 |
-| :---: | :---: | :---: | :---: |
-| type | 示类型 | `string` | `'info'` |
-| content | 内容 | `string` | —— |
-| duration | 存在时间，设置为 `0` 将不会自动关闭 | `number` | `3000` |
-| closable | 是否可手动关闭 | `boolean` | `false` |
-| isHtmlStr | 是否使用 `HTML` 字符串 | `boolean` | `false` |
-| prefix | 自定义 `Icon` | `string` | —— |
+| 属性名 | 说明 | 类型 | 默认值 | 是必需项 |
+| :---: | :---: | :---: | :---: | :---: |
+| type | 示类型 | `'primary' \| 'success' \| 'info' \| 'warning' \| 'danger'` | —— | `true` |
+| content | 内容 | `string` | —— | `true` |
+| duration | 存在时间，设置为 `0` 将不会自动关闭 | `number` | `3000` | `false` |
+| closable | 是否可手动关闭 | `boolean` | `false` | `false` |
+| isHtmlStr | 是否使用 `HTML` 字符串 | `boolean` | `false` | `false` |
+| prefix | 自定义图标 | `string` | —— | `false` |
+| z-index | 同原生 `CSS z-index` | `number` | —— | `false` |
 
 ### 方法
 
 `Message` 调用后会返回当前 `Message` 实例，如果想手动关闭，可以调用实例的 `close` 方法。
 
-| 方法名 | 方法说明 |
+| 方法名 | 说明 |
 | :---: | :---: |
 | close | 手动关闭 `Message` |
