@@ -8,7 +8,6 @@ import type { MessageProps, MessageExpose } from './message'
 
 
 const props = withDefaults(defineProps<MessageProps>(), {
-  type: 'info',
   duration: 3000,
   closable: false,
   isHtmlStr: false,
@@ -17,9 +16,9 @@ const props = withDefaults(defineProps<MessageProps>(), {
 })
 
 const visible = ref<boolean>(false)
-const messageEl = ref<HTMLElement>()
+const messageEl = ref<HTMLElement | null>(null)
 const height = ref<number>(0)
-const offset = ref<string>('0px')
+const offset = ref<number>(0)
 const gap = ref<number>(20)
 const transitionDuration = ref<number>(0)
 const iconMap = {
@@ -29,18 +28,18 @@ const iconMap = {
   warning: 'WarningCircle',
   danger: 'CloseCircle'
 }
-/** 'ad' 是 'animation duration' 缩写 */
+/** `animation duration` 的缩写 */
 const ad = getADByVar(document.body, '--vi-animation-duration', 1000)
 
-const getClasses = computed(() => `vi-message--${props.type}`)
-const getStyles = computed(() => ({
-  top: offset.value,
+const messageClass = computed(() => `vi-message--${props.type}`)
+const messageStyles = computed(() => ({
+  top: offset.value + 'px',
   zIndex: props.zIndex,
   transition: `top ${transitionDuration.value}s ease`
 }))
 
 const setOffset = (value: number) => {
-  offset.value = value + 'px'
+  offset.value = value
 }
 const handleClose = () => {
   visible.value = false
@@ -70,7 +69,7 @@ onMounted(async () => {
 
 <template>
   <Transition name="vi-message-fade">
-    <div ref="messageEl" class="vi-message" :class="getClasses" :style="getStyles" v-show="visible">
+    <div ref="messageEl" class="vi-message" :class="messageClass" :style="messageStyles" v-show="visible">
       <vi-icon :name="prefix ? prefix : iconMap[type]" />
       <span v-if="isHtmlStr" v-html="content"></span>
       <span v-else>{{ content }}</span>

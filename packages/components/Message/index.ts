@@ -1,11 +1,16 @@
-import { createApp, watch, ref } from 'vue'
+import { createApp, watch, ref, nextTick } from 'vue'
 import { nanoid } from 'nanoid'
 import MessageComponent from './Message.vue'
 import { useTimeout } from '../../hooks'
 import { messageTypes } from './message'
 
 import type { App } from 'vue'
-import type { MessageOptions, MessageIns, MessageFn, MessageTypes } from './message'
+import type { 
+  MessageOptions, 
+  MessageIns, 
+  MessageFn, 
+  MessageTypes, 
+} from './message'
 
 const instances = ref<MessageIns[]>([])
 const DURATION = 3000
@@ -50,10 +55,10 @@ export const Message: MessageFn = (ops) => {
 
   const setOffset = (ins: MessageIns) => {
     const index = instances.value.indexOf(ins)
-    useTimeout(() => {
+    nextTick(() => {
       const { _height, _gap } = ins
       ins._setOffset(index * (_height + _gap) + _gap)
-    }, 0)
+    })
   }
 
   return renderMessage(typeof ops === 'object' ? ops : { type: 'info', content: ops })
