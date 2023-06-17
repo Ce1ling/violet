@@ -103,24 +103,24 @@ Alert/HasTitle
 
 ### 属性
 
-| 属性名 | 属性说明 | 属性类型 | 属性默认值 |
-| :---: | :---: | :---: | :---: |
-| type | `Alert` 类型 | `'primary' \| 'success' \| 'info' \| 'warning' \| 'danger'` | `'primary'` |
-| dark | 是否为深色模式 | `boolean` | `false` |
-| closable | 是否可关闭 | `boolean` | `fasle` |
-| pre-icon | 是否需要前置图标 | `boolean` | `false` |
-| center | 居中模式 | `'none' \| 'text' \| 'all'` | `'none'` |
-| title | 标题 | `string` | —— |
-| content | 内容 | `string` | —— |
+| 属性名 | 说明 | 类型 | 默认值 | 是必需项 |
+| :---: | :---: | :---: | :---: | :---: | 
+| type | 类型 | `'primary' \| 'success' \| 'info' \| 'warning' \| 'danger'` | `'primary'` | `false` |
+| dark | 是否为深色模式 | `boolean` | `false` | `false` |
+| closable | 是否可关闭 | `boolean` | `fasle` | `false` |
+| pre-icon | 是否需要前置图标 | `boolean` | `false` | `false` | `false` |
+| center | 居中模式 | `'none' \| 'text' \| 'all'` | `'none'` | `false` |
+| title | 标题 | `string` | —— | `false` |
+| content | 内容 | `string` | —— | `false` |
 
 ### 事件
 
-| 事件名 | 事件触发时机 | 事件参数 |
+| 事件名 | 触发时机 | 参数 |
 | :---: | :---: | :---: |
-| close | 点击关闭时关闭前 | `(e: MouseEvent) => void` |
+| close | 点击关闭时关闭前 | `(e: MouseEvent): void` |
 
 ### 插槽
 
-| 插槽名 | 插槽说明 |
+| 插槽名 | 说明 |
 | :---: | :---: |
 | close | 关闭区域内容 |
