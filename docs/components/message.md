@@ -33,7 +33,7 @@ Message/Closable
 
 :::
 
-## 使用 HTML 字符串
+## HTML 字符串
 
 设置 `isHtmlStr` 属性为 `true`，可以在内容中写入 `HTML` 元素并渲染。
 
@@ -50,7 +50,7 @@ Message/HtmlStr
 
 :::
 
-## 不会自动关闭
+## 不自动关闭
 
 设置 `duration` 属性为 `0`，Message 就不会自动关闭。
 
@@ -70,6 +70,26 @@ Message/CustomIcon
 
 :::
 
+## 设置位置
+
+通过 `position` 属性，可以设置消息出现的位置。
+
+::: warning
+
+**注意**：不要同时使用多种位置，否则它会出现问题；依次点击以下示例按钮您即可查看到问题所在！
+
+Q: 很明显这是个 `bug`，为什么不解决呢？
+
+A: 问得好，因为我懒得搞，有本事你就来提 `PR`！
+
+:::
+
+::: demo
+
+Message/Position
+
+:::
+
 ## APIs
 
 ### 属性
@@ -83,6 +103,7 @@ Message/CustomIcon
 | isHtmlStr | 是否使用 `HTML` 字符串 | `boolean` | `false` | `false` |
 | prefix | 自定义图标 | `string` | —— | `false` |
 | z-index | 同原生 `CSS z-index` | `number` | —— | `false` |
+| position | 设置出现位置 | `'t-l' \| 't-m' \| 't-r' \| 'b-l' \| 'b-m' \| 'b-r' ` | `'t-m'` | `false` |
 
 ### 方法
 
