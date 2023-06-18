@@ -32,7 +32,7 @@ export const clickOutside: ObjectDirective = {
     document.addEventListener('mousedown', handleMouseDown(el, binding))
   },
   updated(_, binding) {
-    excludeEl = unref((binding.arg as unknown as OptionsExpose).optionsEl)
+    excludeEl = unref((binding.arg as unknown as OptionsExpose)?.optionsEl)
   },
   beforeUnmount(el, binding) {
     document.removeEventListener('mousedown', handleMouseDown(el, binding))
