@@ -12,7 +12,8 @@ const props = withDefaults(defineProps<MessageProps>(), {
   closable: false,
   isHtmlStr: false,
   prefix: '',
-  zIndex: new Date().getFullYear()
+  zIndex: new Date().getFullYear(),
+  position: 't-m'
 })
 
 const visible = ref<boolean>(false)
@@ -21,26 +22,43 @@ const height = ref<number>(0)
 const offset = ref<number>(0)
 const gap = ref<number>(20)
 const transitionDuration = ref<number>(0)
-const iconMap = {
+/** `animation duration` 的缩写 */
+const ad = getADByVar(document.body, '--vi-animation-duration', 1000)
+
+const iconMap = computed(() => ({
   primary: 'CheckCircle',
   success: 'CheckCircle',
   info: 'InfoCircle',
   warning: 'WarningCircle',
   danger: 'CloseCircle'
-}
-/** `animation duration` 的缩写 */
-const ad = getADByVar(document.body, '--vi-animation-duration', 1000)
-
-const messageClass = computed(() => `vi-message--${props.type}`)
-const messageStyles = computed(() => ({
-  top: offset.value + 'px',
-  zIndex: props.zIndex,
-  transition: `top ${transitionDuration.value}s ease`
 }))
+
+const isTop = computed(() => 
+  props.position === 't-l' || 
+  props.position === 't-m' || 
+  props.position === 't-r'
+)
+
+const messageClass = computed(() => [
+  `vi-message--${props.type}`,
+  `${props.position}`
+])
+
+const messageStyles = computed(() => {
+  const position = isTop.value ? 'top' : 'bottom'
+  /** 使用二维数组结构是为了让 `key` 支持表达式判断. */
+  return Object.fromEntries([
+    [`${position}`, offset.value + 'px'],
+    ['z-index', props.zIndex],
+    ['transition', `${position} ${transitionDuration.value}s ease`],
+    ['--vi-message-translate-y', isTop.value ? '-100%' : '100%']
+  ])
+})
 
 const setOffset = (value: number) => {
   offset.value = value
 }
+
 const handleClose = () => {
   visible.value = false
   useTimeout(() => document.body.removeChild(messageEl.value!), ad)
@@ -80,11 +98,12 @@ onMounted(async () => {
 
 <style lang="scss">
 $types: primary, success, info, warning, danger;
+$positions: t-l, t-m, t-r, b-l, b-m, b-r;
 
 .vi-message {
   position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
+  left: var(--vi-message-position);
+  transform: translateX(var(--vi-message-translate-x));
   padding: 8px 28px;
   border-radius: var(--vi-base-radius);
   border: 1px solid var(--vi-message-border-color);
@@ -101,15 +120,30 @@ $types: primary, success, info, warning, danger;
       box-shadow: 2px 2px 8px 0 var(--vi-message-bg-color);
     }
   }
+
+  @each $p in $positions {
+    &.#{$p} {
+      --vi-message-position: 1%;
+      --vi-message-translate-x: 0%;
+      @if $p == t-m or $p == b-m {
+        --vi-message-position: 50%;
+        --vi-message-translate-x: -50%;
+      }
+      @if $p == t-r or $p == b-r {
+        left: unset;
+        right: var(--vi-message-position);
+      }
+    }
+  }
 }
 
 @keyframes vi-message-zoom-in {
   from {
-    transform: translate(-50%, -100%);
+    transform: translate(var(--vi-message-translate-x), var(--vi-message-translate-y));
     opacity: 0;
   }
   to {
-    transform: translate(-50%, 0%);
+    transform: translate(var(--vi-message-translate-x), 0%);
     opacity: 1;
   }
 }

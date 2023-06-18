@@ -25,6 +25,7 @@ export interface MessageOptions {
   isHtmlStr?: boolean
   prefix?: string
   zIndex?: number
+  position?: 't-l' | 't-m' | 't-r' | 'b-l' | 'b-m' | 'b-r' 
 }
 
 export interface MessageExpose extends Pick<MessageProps, '_id' | 'close'> {
