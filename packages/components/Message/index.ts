@@ -69,3 +69,8 @@ Object.keys(messageTypes).forEach(t => {
   const type = t as unknown as (keyof MessageTypes)
   Message[type] = (content) => Message({ type , content, duration: DURATION })
 })
+
+Message.closeAll = () => { 
+  instances.value.forEach(ins => ins.close())
+  instances.value = []
+}

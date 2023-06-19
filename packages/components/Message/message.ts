@@ -41,6 +41,8 @@ export interface MessageIns {
 
 export type MessageMethods = {
   [K in keyof MessageTypes]: (content: string) => ComponentPublicInstance<MessageExpose>
+} & { 
+  closeAll: () => void 
 }
 
 export interface MessageFn extends MessageMethods {

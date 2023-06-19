@@ -61,8 +61,8 @@ const setOffset = (value: number) => {
 
 const handleClose = () => {
   visible.value = false
-  useTimeout(() => document.body.removeChild(messageEl.value!), ad)
   props.close(props._id)
+  useTimeout(() => messageEl.value?.remove(), ad)
 }
 
 defineExpose<MessageExpose>({
