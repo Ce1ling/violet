@@ -1,4 +1,4 @@
-export const message = [
+export const messages = [
   {
     text: 'Alert 提示',
     link: '/components/alert.md'
