@@ -14,7 +14,7 @@ export const baseURI = hasBase ? '/violet/' : '/'
 export const config: UserConfig = {
   base: baseURI,
   title: 'Violet',
-  description: 'A Vue3 UI Framework',
+  description: 'A Vue3 UI Components Library',
   lang: 'zh-CN',
   head: head(baseURI),
   themeConfig: {
