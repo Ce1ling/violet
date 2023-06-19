@@ -11,10 +11,9 @@ const tags = ref([
 </script>
 
 <template>
-  <vi-tag v-for="{ type, content } in tags" :type="type" disabled>
-    {{ content }}
-  </vi-tag>
+  <vi-flex gap="8px">
+    <vi-tag v-for="{ type, content } in tags" :type="type" disabled>
+      {{ content }}
+    </vi-tag>
+  </vi-flex>
 </template>
-
-<style scoped>
-</style>
