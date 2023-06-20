@@ -1,24 +1,18 @@
 import type { ComponentPublicInstance, Ref } from 'vue'
 
 
-export interface MessageTypes {
-  primary: 'primary'
-  success: 'success'
-  info: 'info'
-  warning: 'warning'
-  danger: 'danger'
+export enum MessageTypes {
+  PRIMARY = 'primary',
+  SUCCESS = 'success',
+  INFO = 'info',
+  WARNING = 'warning',
+  DANGER = 'danger'
 }
 
-export const messageTypes: MessageTypes = { 
-  primary: 'primary',
-  success: 'success',
-  info: 'info',
-  warning: 'warning',
-  danger: 'danger'
-}
+export type MessageTypesValue = `${MessageTypes}`
 
 export interface MessageOptions {
-  type: keyof MessageTypes
+  type: MessageTypesValue
   content: string
   duration?: number
   closable?: boolean
@@ -40,7 +34,7 @@ export interface MessageIns {
 }
 
 export type MessageMethods = {
-  [K in keyof MessageTypes]: (content: string) => ComponentPublicInstance<MessageExpose>
+  [K in MessageTypes]: (content: string) => ComponentPublicInstance<MessageExpose>
 } & { 
   closeAll: () => void 
 }

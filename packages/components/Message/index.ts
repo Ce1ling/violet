@@ -2,14 +2,14 @@ import { createApp, watch, ref, nextTick } from 'vue'
 import { nanoid } from 'nanoid'
 import MessageComponent from './Message.vue'
 import { useTimeout } from '../../hooks'
-import { messageTypes } from './message'
+import { MessageTypes } from './message'
 
 import type { App } from 'vue'
 import type { 
   MessageOptions, 
   MessageIns, 
   MessageFn, 
-  MessageTypes, 
+  MessageTypesValue,
 } from './message'
 
 const instances = ref<MessageIns[]>([])
@@ -65,8 +65,8 @@ export const Message: MessageFn = (ops) => {
 }
 
 /*** 静态方法 */
-Object.keys(messageTypes).forEach(t => {
-  const type = t as unknown as (keyof MessageTypes)
+Object.values(MessageTypes).forEach(t => {
+  const type = t as MessageTypesValue
   Message[type] = (content) => Message({ type , content, duration: DURATION })
 })
 
