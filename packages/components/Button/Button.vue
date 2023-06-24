@@ -14,26 +14,31 @@ const props = withDefaults(defineProps<ButtonProps>(), {
   disabled: false,
   loading: false,
   isPrefix: true,
-  plain: false
+  plain: false,
+  size: 'normal'
 })
 
 const emit = defineEmits<ButtonEmits>()
 
-const getClasses = computed(() => [`vi-button--${props.type}`, {
-  'is-text-btn': props.text,
-  'is-round': props.round,
-  'is-circle': props.circle,
-  'is-disabled': props.disabled,
-  'is-loading': props.loading,
-  'is-plain': props.plain
-}])
-const getStyles = computed(() => ({
+const buttonClass = computed(() => [
+  `vi-button--${props.type}`, 
+  `vi-button--${props.size}`, 
+  {
+    'is-text-btn': props.text,
+    'is-round': props.round,
+    'is-circle': props.circle,
+    'is-disabled': props.disabled,
+    'is-loading': props.loading,
+    'is-plain': props.plain,
+  }
+])
+const buttonStyle = computed(() => ({
   '--vi-button-bg-color': props.bgColor,
   '--vi-button-border-color': props.bgColor,
   '--vi-button-text-color': props.color,
-  '--vi-button-bg-color-weak': getPlainBgColor.value
+  '--vi-button-bg-color-weak': plainBgColor.value
 }))
-const getPlainBgColor = computed(() => props.bgColor && tinycolor(props.bgColor)?.setAlpha(0.2).toRgbString())
+const plainBgColor = computed(() => props.bgColor && tinycolor(props.bgColor)?.setAlpha(0.2).toRgbString())
 
 const RenderIcon = () => props.loading && h(ViIcon, { 
   name: 'Loading', 
@@ -47,13 +52,13 @@ const handleClick = (e: MouseEvent) => !props.disabled && emit('click', e)
 <template>
   <button 
     class="vi-button" 
-    :class="getClasses" 
-    :style="getStyles"
+    :class="buttonClass" 
+    :style="buttonStyle" 
     @click="handleClick">
     <slot name="prefix">
       <RenderIcon v-if="isPrefix" />
     </slot>
-    <span>
+    <span class="vi-button__inner">
       <slot />
     </span>
     <slot name="suffix">
@@ -80,8 +85,10 @@ $types: primary, success, info, warning, danger;
   color: var(--vi-color-black);
   background-color: var(--vi-color-white);
   transition: all var(--vi-button-animation-duration);
+
   &:hover { opacity: var(--vi-opacity-half); }
   &:active { opacity: 1; }
+  &__inner { font-size: inherit; }
 
   @each $t in $types {
     &--#{$t} {
@@ -109,16 +116,25 @@ $types: primary, success, info, warning, danger;
         }
       }
       &.is-loading.is-plain {
-        opacity: 0.5;
+        opacity: var(--vi-opacity-half);
         color: var(--vi-button-text-color);
         background-color: var(--vi-button-bg-color-weak);
       }
       &.is-disabled.is-plain {
-        opacity: 0.5;
+        opacity: var(--vi-opacity-half);
         color: var(--vi-button-text-color);
         background-color: var(--vi-button-bg-color-weak);
       }
     }
+  }
+
+  &--small {
+    padding: var(--vi-button-padding-small);
+    font-size: 12px;
+  }
+  &--large {
+    padding: var(--vi-button-padding-large);
+    font-size: 16px;
   }
 
   &.is-text-btn {
@@ -144,11 +160,11 @@ $types: primary, success, info, warning, danger;
     border-radius: 50%;
   }
   &.is-loading {
-    opacity: 0.5;
+    opacity: var(--vi-opacity-half);
     cursor: wait;
   }
   &.is-disabled {
-    opacity: 0.5;
+    opacity: var(--vi-opacity-half);
     cursor: not-allowed;
   }
 }

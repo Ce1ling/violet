@@ -9,6 +9,7 @@ export interface ButtonProps {
   bgColor?: string
   color?: string
   plain?: boolean
+  size?: 'small' | 'normal' | 'large'
 }
 
 export interface ButtonEmits {
