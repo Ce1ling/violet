@@ -128,15 +128,6 @@ $types: primary, success, info, warning, danger;
     }
   }
 
-  &--small {
-    padding: var(--vi-button-padding-small);
-    font-size: 12px;
-  }
-  &--large {
-    padding: var(--vi-button-padding-large);
-    font-size: 16px;
-  }
-
   &.is-text-btn {
     color: var(--vi-color-black);
     background-color: transparent;
@@ -155,9 +146,10 @@ $types: primary, success, info, warning, danger;
     border-radius: var(--vi-button-round-radius);
   }
   &.is-circle {
-    width: var(--vi-button-circle-wh);
-    height: var(--vi-button-circle-wh);
+    width: var(--vi-button-circle-normal);
+    height: var(--vi-button-circle-normal);
     border-radius: 50%;
+    word-break: keep-all;
   }
   &.is-loading {
     opacity: var(--vi-opacity-half);
@@ -166,6 +158,24 @@ $types: primary, success, info, warning, danger;
   &.is-disabled {
     opacity: var(--vi-opacity-half);
     cursor: not-allowed;
+  }
+
+  &--small {
+    padding: var(--vi-button-padding-small);
+    font-size: 12px;
+    &.is-circle {
+      width: var(--vi-button-circle-small);
+      height: var(--vi-button-circle-small);
+    }
+  }
+  &--large {
+    padding: var(--vi-button-padding-large);
+    font-size: 16px;
+    &.is-circle {
+      padding: 0;
+      width: var(--vi-button-circle-large);
+      height: var(--vi-button-circle-large);
+    }
   }
 }
 </style>
