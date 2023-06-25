@@ -110,22 +110,33 @@ Button/CustomTextColor
 
 :::
 
+## 调整尺寸
+
+使用 `size` 属性，可以调整按钮尺寸，一共内置三种尺寸：`'small' | 'normal' | 'large'`。默认为 `'normal'`。
+
+::: demo
+
+Button/Size
+
+:::
+
 ## APIs
 
 ### 属性
 
-| 属性名 | 属性说明 | 属性类型 | 属性默认值 |
-| :---: | :---: | :---: | :---: |
-| type | 定义按钮类型 | `'primary' \| 'success' \| 'info' \| 'warning' \| 'danger'` | `'primary'` |
-| text | 是否为文字按钮 | `boolean` | `false` |
-| round | 是否为圆角按钮 | `boolean` | `fasle` |
-| circle | 是否为圆形按钮 | `boolean` | `false` |
-| disabled | 是否为禁用状态 | `boolean` | `false` |
-| loading | 是否为加载状态 | `boolean` | `false` |
-| bg-color | 定义按钮背景颜色 | `string` | —— |
-| color | 定义按钮文字颜色 | `string` | —— |
-| is-prefix | 加载时的图标是否在前面(左边) | `boolean` | `true` |
-| plain | 是否为朴素的按钮 | `boolean` | `false` |
+| 属性名 | 说明 | 类型 | 默认值 | 是必需项 |
+| :---: | :---: | :---: | :---: | :---: |
+| type | 定义按钮类型 | `'primary' \| 'success' \| 'info' \| 'warning' \| 'danger'` | `'primary'` | `false` |
+| text | 是否为文字按钮 | `boolean` | `false` | `false` |
+| round | 是否为圆角按钮 | `boolean` | `fasle` | `false` |
+| circle | 是否为圆形按钮 | `boolean` | `false` | `false` |
+| disabled | 是否为禁用状态 | `boolean` | `false` | `false` |
+| loading | 是否为加载状态 | `boolean` | `false` | `false` |
+| bg-color | 定义按钮背景颜色 | `string` | —— | `false` |
+| color | 定义按钮文字颜色 | `string` | —— | `false` |
+| is-prefix | 加载时的图标是否在前面(左边) | `boolean` | `true` | `false` |
+| plain | 是否为朴素的按钮 | `boolean` | `false` | `false` |
+| size | 尺寸大小 | `'small' \| 'normal' \| 'large'` | `normal` | `false` |
 
 ### 插槽
 
