@@ -99,6 +99,16 @@ Switch/CustomContent
 
 :::
 
+## 调整尺寸
+
+使用 `size` 属性，调整尺寸，共支持: `'small' | 'normal' | 'large'`，默认为 `'normal'`。
+
+::: demo
+
+Switch/Size
+
+:::
+
 ## APIs
 
 ### 属性
