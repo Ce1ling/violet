@@ -27,11 +27,12 @@ const emit = defineEmits<SwitchEmits>()
 const icons: SwitchIcons = ['onIcon', 'offIcon']
 const texts: SwitchTexts = ['onText', 'offText']
 
-const getClasses = computed(() => ({ 
+const switchClass = computed(() => ({ 
   'is-checked': props.modelValue,
-  'is-disabled': props.disabled || props.loading
+  'is-disabled': props.disabled,
+  'is-loading': props.loading
 }))
-const getStyles = computed(() => ({
+const switchStyle = computed(() => ({
   '--vi-switch-off-bg-color': props.offColor,
   '--vi-switch-on-bg-color': props.modelValue ? props.onColor : '',
   '--vi-switch-active-circle-color': props.modelValue ? props.onColor : props.offColor,
@@ -46,10 +47,10 @@ const toggleChecked = () => {
  * 为不同的状态添加激活状态类名
  * @param {Number} state 0 为 off 状态，1 为 on 状态。
  **/
-const getDescClasses = (state: SwitchState) => ({ 
+const getDescClass = (state: SwitchState) => ({ 
   'is-active': state ? props.modelValue : !props.modelValue
 })
-const getDescStyles = (state: SwitchState) => ({
+const getDescStyle = (state: SwitchState) => ({
   color: state 
     ? props.modelValue ? props.onColor : ''
     : !props.modelValue ? props.onColor : ''
@@ -68,19 +69,19 @@ const hasDesc = (arr: SwitchIcons | SwitchTexts) => {
       <template v-else>
         <vi-icon 
           :name="offIcon" 
-          :class="getDescClasses(0)" 
-          :style="getDescStyles(0)" 
+          :class="getDescClass(0)" 
+          :style="getDescStyle(0)" 
           v-if="hasDesc(icons)" 
         />
         <div 
-          :class="getDescClasses(0)" 
-          :style="getDescStyles(0)" 
+          :class="getDescClass(0)" 
+          :style="getDescStyle(0)" 
           v-if="hasDesc(texts)">
           {{ offText }}
         </div>
       </template>
     </template>
-    <div class="vi-switch__inner" :class="getClasses" :style="getStyles" @click="toggleChecked">
+    <div class="vi-switch__inner" :class="switchClass" :style="switchStyle" @click="toggleChecked">
       <template v-if="isInside">
         <template v-if="$slots.on || $slots.off">
           <div class="vi-switch__inner-text" :class="{ 'is-close': !modelValue }">
@@ -105,6 +106,7 @@ const hasDesc = (arr: SwitchIcons | SwitchTexts) => {
           size="inherit" 
           :color="modelValue ? onColor : offColor" 
           loading 
+          cursor="wait"
           v-if="loading"
         />
       </div>
@@ -116,13 +118,13 @@ const hasDesc = (arr: SwitchIcons | SwitchTexts) => {
       <template v-else>
         <vi-icon 
           :name="onIcon" 
-          :class="getDescClasses(1)" 
-          :style="getDescStyles(1)" 
+          :class="getDescClass(1)" 
+          :style="getDescStyle(1)" 
           v-if="hasDesc(icons)" 
         />
         <div 
-          :class="getDescClasses(1)" 
-          :style="getDescStyles(1)" 
+          :class="getDescClass(1)" 
+          :style="getDescStyle(1)" 
           v-if="hasDesc(texts)">
           {{ onText }}
         </div>
@@ -180,6 +182,10 @@ const hasDesc = (arr: SwitchIcons | SwitchTexts) => {
     }
     &.is-disabled {
       cursor: not-allowed;
+      opacity: 0.5;
+    }
+    &.is-loading {
+      cursor: wait;
       opacity: 0.5;
     }
   }
