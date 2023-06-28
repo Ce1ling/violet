@@ -42,11 +42,17 @@ Backtop/CustomContent
 
 ### 属性
 
-| 属性名 | 属性说明 | 属性类型 | 属性默认值 |
-| :---: | :---: | :---: | :---: |
-| show-height | 显示高度(滚动到达此高度则显示) | `number` | `500` |
-| hide-width | 隐藏宽度(小于等于此宽度则彻底隐藏) | `number` | `-Infinity` |
-| right | `Backtop` 离右侧距离 | `number` | `50` |
-| bottom | `Backtop` 离底部距离 | `number` | `50` |
-| z-index | 同原生 CSS `z-index` | `number` | `99` |
-| round | 是否为圆角 | `boolean` | `fasle` |
+| 属性名 | 说明 | 类型 | 默认值 | 是必需项 |
+| :---: | :---: | :---: | :---: | :---: |
+| show-height | 显示高度(到达此高度则显示) | `number` | `500` | `false` |
+| hide-width | 隐藏宽度(小于等于此宽度则隐藏) | `number` | `-Infinity` | `false` |
+| right | 距离右侧距离 | `number` | `50` | `false` |
+| bottom | 距离底部距离 | `number` | `50` | `false` |
+| z-index | 同原生 CSS `z-index` | `number` | `99` | `false` |
+| round | 是否为圆角 | `boolean` | `fasle` | `false` |
+
+### 插槽
+
+| 插槽名 | 说明 |
+| :---: | :---: |
+| default | 定义默认内容 |
