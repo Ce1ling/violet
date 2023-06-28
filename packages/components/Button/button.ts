@@ -15,3 +15,9 @@ export interface ButtonProps {
 export interface ButtonEmits {
   (e: 'click', event: MouseEvent): void
 }
+
+export interface ButtonSlots {
+  default?: (props: {}) => any
+  prefix?: (props: {}) => any
+  suffix?: (props: {}) => any
+}

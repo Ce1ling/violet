@@ -3,7 +3,7 @@ import { computed, h } from 'vue'
 import { Icon as ViIcon } from '../index'
 import tinycolor from 'tinycolor2'
 
-import type { ButtonProps, ButtonEmits } from './button'
+import type { ButtonProps, ButtonEmits, ButtonSlots } from './button'
 
 
 const props = withDefaults(defineProps<ButtonProps>(), {
@@ -20,6 +20,8 @@ const props = withDefaults(defineProps<ButtonProps>(), {
 
 const emit = defineEmits<ButtonEmits>()
 
+defineSlots<ButtonSlots>()
+
 const buttonClass = computed(() => [
   `vi-button--${props.type}`, 
   `vi-button--${props.size}`, 
@@ -32,12 +34,14 @@ const buttonClass = computed(() => [
     'is-plain': props.plain,
   }
 ])
+
 const buttonStyle = computed(() => ({
   '--vi-button-bg-color': props.bgColor,
   '--vi-button-border-color': props.bgColor,
   '--vi-button-text-color': props.color,
   '--vi-button-bg-color-weak': plainBgColor.value
 }))
+
 const plainBgColor = computed(() => props.bgColor && tinycolor(props.bgColor)?.setAlpha(0.2).toRgbString())
 
 const RenderIcon = () => props.loading && h(ViIcon, { 
@@ -46,6 +50,7 @@ const RenderIcon = () => props.loading && h(ViIcon, {
   cursor: 'wait', 
   loading: true 
 })
+
 const handleClick = (e: MouseEvent) => !props.disabled && emit('click', e)
 </script>
 

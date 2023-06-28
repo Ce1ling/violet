@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed  } from 'vue'
 
-import type { CheckboxProps, CheckboxEmits } from './checkbox'
+import type { CheckboxProps, CheckboxEmits, CheckboxSlots } from './checkbox'
 
 
 const props = withDefaults(defineProps<CheckboxProps>(), {
@@ -10,15 +10,19 @@ const props = withDefaults(defineProps<CheckboxProps>(), {
   border: false,
   isBtn: false
 })
+
 const emit = defineEmits<CheckboxEmits>()
 
-const getChecked = computed(() => {
+defineSlots<CheckboxSlots>()
+
+const isChecked = computed(() => {
   return typeof props.modelValue !== 'boolean'
     ? props.modelValue.find(v => v === props.label) === props.label
     : props.modelValue
 })
-const getClasses = computed(() => ({
-  'is-checked': getChecked.value,
+
+const checkboxClass = computed(() => ({
+  'is-checked': isChecked.value,
   'is-disabled': props.disabled,
   'has-border': props.border && !props.isBtn,
   'is-button': props.isBtn
@@ -41,13 +45,13 @@ const updateModelValue = () => {
 </script>
 
 <template>
-  <label class="vi-checkbox" :class="getClasses">
+  <label class="vi-checkbox" :class="checkboxClass">
     <input 
       type="checkbox" 
       class="vi-checkbox__input"
       :name="label" 
       :value="label" 
-      :checked="getChecked"
+      :checked="isChecked"
       @input="updateModelValue" 
       :disabled="disabled"
     />
