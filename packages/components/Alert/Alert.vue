@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { Icon as ViIcon } from '../index'
+import { AlertPrefixIcon } from './alert'
 
-import type { AlertProps, AlertEmits, AlertDefaultPreIcon } from './alert'
+import type { AlertProps, AlertEmits, AlertSlots } from './alert'
 
 
 const props = withDefaults(defineProps<AlertProps>(), {
@@ -16,17 +17,11 @@ const props = withDefaults(defineProps<AlertProps>(), {
 })
 const emit = defineEmits<AlertEmits>()
 
+defineSlots<AlertSlots>()
+
 const show = ref<boolean>(true)
 
-const defaultPreIcon: AlertDefaultPreIcon = {
-  'primary': 'CheckCircleFill',
-  'success': 'CheckCircleFill',
-  'info': 'InfoCircleFill',
-  'warning': 'WarningCircleFill',
-  'danger': 'CloseCircleFill'
-}
-
-const classObj = computed(() => [`vi-alert--${props.type}`, {
+const alertClass = computed(() => [`vi-alert--${props.type}`, {
   'is-dark': props.dark,
   'is-center': props.center === 'text',
   'is-center-all': props.center === 'all',
@@ -35,7 +30,7 @@ const classObj = computed(() => [`vi-alert--${props.type}`, {
 const getPreIcon = computed(() => {
   return typeof props.preIcon === 'string' 
     ? props.preIcon 
-    : defaultPreIcon[props.type]!
+    : AlertPrefixIcon[props.type]
 })
 
 const handleClose = (e: MouseEvent) => {
@@ -46,7 +41,7 @@ const handleClose = (e: MouseEvent) => {
 
 <template>
   <Transition name="vi-alert-fade">
-    <div class="vi-alert" :class="classObj" v-if="show">
+    <div class="vi-alert" :class="alertClass" v-if="show">
       <div class="vi-alert__inner">
         <vi-icon 
           cursor="defualt"
