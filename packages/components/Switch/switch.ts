@@ -10,6 +10,7 @@ export interface SwitchProps {
   onIcon?: string
   offIcon?: string
   width?: string
+  size?: 'small' | 'normal' | 'large'
 }
 
 export interface SwitchEmits {

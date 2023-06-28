@@ -20,22 +20,23 @@ const props = withDefaults(defineProps<SwitchProps>(), {
   onText: '',
   offText: '',
   onIcon: '',
-  offIcon: ''
+  offIcon: '',
+  size: 'normal'
 })
 const emit = defineEmits<SwitchEmits>()
 
 const icons: SwitchIcons = ['onIcon', 'offIcon']
 const texts: SwitchTexts = ['onText', 'offText']
 
-const switchClass = computed(() => ({ 
+const switchClass = computed(() => [`vi-switch--${props.size}`, { 
   'is-checked': props.modelValue,
   'is-disabled': props.disabled,
   'is-loading': props.loading
-}))
+}])
 const switchStyle = computed(() => ({
   '--vi-switch-off-bg-color': props.offColor,
   '--vi-switch-on-bg-color': props.modelValue ? props.onColor : '',
-  '--vi-switch-active-circle-color': props.modelValue ? props.onColor : props.offColor,
+  '--vi-switch-active-circle-border-color': props.modelValue ? props.onColor : props.offColor,
   width: props.width
 }))
 
@@ -144,12 +145,12 @@ const hasDesc = (arr: SwitchIcons | SwitchTexts) => {
   }
 
   &__inner {
-    width: 40px;
-    height: 20px;
+    width: var(--vi-switch-width);
+    height: var(--vi-switch-height);
     background-color: var(--vi-switch-off-bg-color);
     cursor: pointer;
     position: relative;
-    border-radius: 10px;
+    border-radius: var(--vi-switch-height);
     display: inline-flex;
     align-items: center;
     
@@ -163,7 +164,9 @@ const hasDesc = (arr: SwitchIcons | SwitchTexts) => {
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
-      &.is-close { margin-left: 22px; }
+      &.is-close { 
+        margin-left: calc(var(--vi-switch-height) + var(--vi-switch-border-width)); 
+      }
     }
     &-icon {
       width: 2em;
@@ -176,8 +179,8 @@ const hasDesc = (arr: SwitchIcons | SwitchTexts) => {
     &.is-checked {
       background-color: var(--vi-switch-on-bg-color);
       .vi-switch__active {
-        left: calc(100% - 20px);
-        border-color: var(--vi-switch-active-circle-color);
+        left: calc(100% - var(--vi-switch-height));
+        border-color: var(--vi-switch-active-circle-border-color);
       }
     }
     &.is-disabled {
@@ -193,15 +196,24 @@ const hasDesc = (arr: SwitchIcons | SwitchTexts) => {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 20px;
-    height: 20px;
-    background-color: #fff;
+    width: var(--vi-switch-height);
+    height: var(--vi-switch-height);
+    background-color: var(--vi-switch-active-circle-color);
     position: absolute;
     top: 0;
     left: 0;
-    border-radius: 10px;
+    border-radius: var(--vi-switch-height);
     transition: left var(--vi-animation-duration);
-    border: 2px solid var(--vi-switch-active-circle-color);
+    border: var(--vi-switch-border-width) solid var(--vi-switch-active-circle-border-color);
+  }
+
+  &--small {
+    --vi-switch-width: 32px;
+    --vi-switch-height: 16px;
+  }
+  &--large {
+    --vi-switch-width: 50px;
+    --vi-switch-height: 26px;
   }
 }
 </style>
