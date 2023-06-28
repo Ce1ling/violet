@@ -90,20 +90,26 @@ Checkbox/LimitChoice
 
 ### Checkbox 属性
 
-| 属性名 | 属性说明 | 属性类型 | 属性默认值 |
-| :---: | :---: | :---: | :---: |
-| `v-model` | 绑定值 | `string` | —— |
-| label | 选中时的内容 | `boolean` | `false` |
-| disabled | 是否为禁用状态 | `boolean` | `fasle` |
-| border | 是否需要边框 | `boolean` | `false` |
+| 属性名 | 说明 | 类型 | 默认值 | 是必需项 |
+| :---: | :---: | :---: | :---: | :---: |
+| `v-model` | 绑定值 | `string` | —— | `true` |
+| label | 选中时的内容 | `boolean` | `false` | `false` |
+| disabled | 是否为禁用状态 | `boolean` | `fasle` | `false` |
+| border | 是否需要边框 | `boolean` | `false` | `false` |
 
 ### CheckboxGroup 属性
 
-| 属性名 | 属性说明 | 属性类型 | 属性默认值 |
-| :---: | :---: | :---: | :---: |
-| `v-model` | 绑定值 | `string` | —— |
-| gap | 间距 | `string` | `'18px'` |
-| min | 限制最少选中 | `number` | `0` |
-| max | 限制最多选中 | `number` | `Infinity` |
-| is-button | 是否为按钮类型 | `boolean` | `false` |
-| border | 是否需要边框 | `boolean` | `false` |
+| 属性名 | 说明 | 类型 | 默认值 | 是必需项 |
+| :---: | :---: | :---: | :---: | :---: |
+| `v-model` | 绑定值 | `string` | —— | `true` |
+| gap | 间距 | `string` | `'18px'` | `false` |
+| min | 限制最少选中 | `number` | `0` | `false` |
+| max | 限制最多选中 | `number` | `Infinity` | `false` |
+| is-button | 是否为按钮类型 | `boolean` | `false` | `false` |
+| border | 是否需要边框 | `boolean` | `false` | `false` |
+
+### 插槽
+
+| 插槽名 | 说明 |
+| :---: | :---: |
+| default | 定义默认内容 |
