@@ -2,7 +2,7 @@
 import { ref, onMounted, onUnmounted, computed } from 'vue'
 
 import type { CSSProperties } from 'vue'
-import type { BacktopProps } from './backtop'
+import type { BacktopProps, BacktopSlots } from './backtop'
 
 
 const props = withDefaults(defineProps<BacktopProps>(), {
@@ -16,20 +16,22 @@ const props = withDefaults(defineProps<BacktopProps>(), {
   normal: false
 })
 
+defineSlots<BacktopSlots>()
+
 const show = ref(false)
 
-const fixedStyles = computed<CSSProperties>(() => ({
+const fixedStyle = computed<CSSProperties>(() => ({
   position: 'fixed',
   right: props.right + 'px', 
   bottom: props.bottom + 'px', 
   zIndex: props.zIndex,
 }))
-const getStyles = computed<CSSProperties>(() => {
-  return Object.assign(props.normal ? {} : fixedStyles.value, {
+const backtopStyle = computed<CSSProperties>(() => {
+  return Object.assign(props.normal ? {} : fixedStyle.value, {
     boxShadow: `0 0 8px ${props.shadowColor}`
   })
 })
-const getClasses = computed(() => ({
+const backtopClass = computed(() => ({
   'is-round': props.round,
   'is-normal':  props.normal
 }))
@@ -54,8 +56,8 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 <template>
   <div 
     class="vi-backtop" 
-    :class="getClasses"
-    :style="getStyles"
+    :class="backtopClass"
+    :style="backtopStyle"
     @click="backtop"
     v-if="show">
     <slot>

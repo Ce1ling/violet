@@ -9,3 +9,7 @@ export interface BacktopProps {
   bgColor?: string
   normal?: boolean
 }
+
+export interface BacktopSlots {
+  default?: (props: {}) => any
+}
