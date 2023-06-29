@@ -166,34 +166,35 @@ Dialog/PreventClose
 
 ### 属性
 
-| 属性名 | 属性说明 | 属性类型 | 属性默认值 |
-| :---: | :---: | :---: | :---: |
-| `v-model` | `Dialog` 显示/隐藏值 | `boolean` | —— |
-| title | 标题 | `string` | —— |
-| content | 主体内容 | `string` | —— |
-| width | 宽度 | `string` | '50%' |
-| z-index | 同原生 CSS `z-index` | `number` | —— |
-| show-close-btn | 是否为显示关闭按钮 | `boolean` | `true` |
-| append-to-body | 是否插入至 `body` | `boolean` | `false` |
-| center | 是否将内容居中 | `boolean` | `false` |
-| box-center | 是否将整体居中 | `boolean` | `false` |
-| mask | 是否需要遮罩层 | `boolean` | `true` |
-| movable | 是否可移动(拖动) | `boolean` | `false` |
-| lock-scroll | 是否锁定滚动条 | `boolean` | `true` |
-| click-mask-close | 是否可点击遮罩层关闭 | `boolean` | `true` |
-| destroy | 是否在关闭时销毁节点 | `boolean` | `false` |
-| before-close | 关闭前回调，可以阻止关闭。通过调用 `close` 参数函数手动关闭。 | `(close: () => void) => void` | `false` |
+| 属性名 | 说明 | 类型 | 默认值 | 是必需项 |
+| :---: | :---: | :---: | :---: | :---: |
+| `v-model` | 显示/隐藏值 | `boolean` | —— | `true` |
+| title | 标题 | `string` | —— | `false` |
+| content | 主体内容 | `string` | —— | `false` |
+| width | 宽度 | `string` | `'50%'` | `false` |
+| z-index | 同原生 CSS `z-index` | `number` | —— | `false` |
+| show-close-btn | 是否为显示关闭按钮 | `boolean` | `true` | `false` |
+| append-to-body | 是否插入至 `body` | `boolean` | `false` | `false` |
+| center | 是否将内容居中 | `boolean` | `false` | `false` |
+| box-center | 是否将整体居中 | `boolean` | `false` | `false` |
+| mask | 是否需要遮罩层 | `boolean` | `true` | `false` |
+| movable | 是否可移动(拖动) | `boolean` | `false` | `false` |
+| lock-scroll | 是否锁定滚动条 | `boolean` | `true` | `false` |
+| click-mask-close | 是否可点击遮罩层关闭 | `boolean` | `true` | `false` |
+| destroy | 是否在关闭时销毁节点 | `boolean` | `false` | `false` |
+| before-close | 关闭前回调，可以阻止关闭。通过调用 `close` 参数函数手动关闭。 | `(close: () => void): void` | `false` | `false` |
 
 ### 事件
 
-| 事件名 | 事件触发时机 | 事件参数 |
+| 事件名 | 触发时机 | 参数 |
 | :---: | :---: | :---: |
-| open | `Dialog` 打开时触发 | `(val: boolean) => void` |
-| close | `Dialog` 关闭时触发 | `(val: boolean) => void` |
+| open | 打开时触发 | `(value: boolean): void` |
+| close | 关闭时触发 | `(value: boolean): void` |
 
 ### 插槽
 
-| 插槽名 | 插槽说明 |
+| 插槽名 | 说明 |
 | :---: | :---: |
-| header | 头部区域，会替换 `title` 属性内容 |
-| footer | 底部区域 |
+| default | 定义默认区域 |
+| header | 定义头部区域，会替换 `title` 属性内容 |
+| footer | 定义底部区域 |

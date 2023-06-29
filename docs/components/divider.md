@@ -87,11 +87,17 @@ Divider/CustomLineStyle
 
 ### 属性
 
-| 属性名 | 属性说明 | 属性类型 | 属性默认值 |
-| :---: | :---: | :---: | :---: |
-| margin | 边距 | `string` | `'18px'` |
-| thick | 厚度 | `string` | `'1px'` |
-| color | 颜色 | `string` | —— |
-| border-style | 样式 | `string` | `'solid'` |
-| position | 标注内容的位置 | `'start' \| 'center' \| 'end'` | `'start'` |
-| direction | 方向 | `'horizontal' \| 'vertival'` | `'horizontal'` |
+| 属性名 | 说明 | 类型 | 默认值 | 是必需项 |
+| :---: | :---: | :---: | :---: | :---: |
+| margin | 边距 | `string` | `'18px'` | `false` |
+| thick | 厚度 | `string` | `'1px'` | `false` |
+| color | 颜色 | `string` | —— | `false` |
+| border-style | 样式 | `string` | `'solid'` | `false` |
+| position | 标注内容的位置 | `'start' \| 'center' \| 'end'` | `'start'` | `false` |
+| direction | 方向 | `'horizontal' \| 'vertival'` | `'horizontal'` | `false` |
+
+### 插槽
+
+| 插槽名 | 说明 |
+| :---: | :---: |
+| default | 定义默认区域 |
