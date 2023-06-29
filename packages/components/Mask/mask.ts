@@ -4,3 +4,6 @@ export interface MaskProps {
   zIndex?: number
 }
 
+export interface MaskSlots {
+  default?: (props: {}) => any
+}

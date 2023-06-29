@@ -9,3 +9,7 @@ export interface RadioProps {
 export interface RadioEmits {
   (e: 'update:modelValue', label: string): void
 }
+
+export interface RadioSlots {
+  default?: (props: {}) => any
+}

@@ -9,3 +9,7 @@ export interface TagProps {
 export interface TagEmits {
   (e: 'close', event: MouseEvent): void
 }
+
+export interface TagSlots {
+  default?: (props: {}) => any
+}

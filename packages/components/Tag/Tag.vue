@@ -2,7 +2,7 @@
 import { ref, computed } from 'vue'
 import { Icon as ViIcon } from '../index'
 
-import type { TagProps, TagEmits } from './tag'
+import type { TagProps, TagEmits, TagSlots } from './tag'
 
 
 const props = withDefaults(defineProps<TagProps>(), {
@@ -15,9 +15,11 @@ const props = withDefaults(defineProps<TagProps>(), {
 
 const emit = defineEmits<TagEmits>()
 
+defineSlots<TagSlots>()
+
 const isClosed = ref(false)
 
-const tagClasses = computed(() => [`vi-tag--${props.type}`, {
+const tagClass = computed(() => [`vi-tag--${props.type}`, {
   'has-border': props.border,
   'is-disabled': props.disabled,
   'is-round': props.round
@@ -40,7 +42,7 @@ const handleClose = (e: MouseEvent) => {
 <template>
   <div 
     class="vi-tag" 
-    :class="tagClasses" 
+    :class="tagClass" 
     :style="tagStyles"
     v-if="!isClosed"
   >

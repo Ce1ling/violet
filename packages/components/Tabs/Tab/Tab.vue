@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import type { TabProps } from './tab'
+import type { TabProps, TabSlots } from './tab'
 
 
 defineProps<TabProps>()
+
+defineSlots<TabSlots>()
 </script>
 
 <template>
@@ -11,7 +13,7 @@ defineProps<TabProps>()
   </div>
 </template>
 
-<style scoped>
+<style>
 .vi-tab-plane {
   padding: var(--vi-base-padding);
 }

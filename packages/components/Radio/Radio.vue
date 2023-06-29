@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed  } from 'vue'
 
-import type { RadioProps, RadioEmits } from './radio'
+import type { RadioProps, RadioEmits, RadioSlots } from './radio'
 
 
 const props = withDefaults(defineProps<RadioProps>(), {
@@ -9,9 +9,12 @@ const props = withDefaults(defineProps<RadioProps>(), {
   border: false,
   isBtn: false
 })
+
 defineEmits<RadioEmits>()
 
-const classObj = computed(() => ({
+defineSlots<RadioSlots>()
+
+const radioClass = computed(() => ({
   'is-checked': props.modelValue === props.label,
   'is-disabled': props.disabled,
   'has-border': props.border && !props.isBtn,
@@ -20,7 +23,7 @@ const classObj = computed(() => ({
 </script>
 
 <template>
-  <label class="vi-radio" :class="classObj">
+  <label class="vi-radio" :class="radioClass">
     <input 
       type="radio" 
       class="vi-radio__input"
@@ -46,6 +49,7 @@ const classObj = computed(() => ({
     transform: translate(-50%, -50%) scale(1);
   }
 }
+
 .vi-radio {
   display: flex;
   align-items: center;

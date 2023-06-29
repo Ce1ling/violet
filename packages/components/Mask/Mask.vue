@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import type { MaskProps } from './mask'
+import type { MaskProps, MaskSlots } from './mask'
 
 
 const props = withDefaults(defineProps<MaskProps>(), {
@@ -9,11 +9,12 @@ const props = withDefaults(defineProps<MaskProps>(), {
   zIndex: new Date().getFullYear()
 })
 
+defineSlots<MaskSlots>()
+
 const maskStyles = computed(() => ({
   backgroundColor: props.disabled ? 'transparent' : undefined,
   zIndex: props.zIndex
 }))
-
 </script>
 
 <template>
