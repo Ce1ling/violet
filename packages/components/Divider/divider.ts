@@ -6,3 +6,7 @@ export interface DividerProps {
   position?: 'start' | 'center' | 'end'
   direction?: 'vertical' | 'horizontal'
 }
+
+export interface DividerSlots {
+  default?: (props: {}) => any
+}

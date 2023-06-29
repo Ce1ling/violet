@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import type { DividerProps } from './divider'
+import type { DividerProps, DividerSlots } from './divider'
 
 
 const props = withDefaults(defineProps<DividerProps>(), {
@@ -12,6 +12,8 @@ const props = withDefaults(defineProps<DividerProps>(), {
   position: 'start',
   direction: 'horizontal'
 })
+
+defineSlots<DividerSlots>()
 
 const getClasses = computed(() => `vi-divider--${props.direction}`)
 const getStyles = computed(() => {
