@@ -18,3 +18,15 @@ export interface InputProps {
   prefixIcon?: InputIcon
   suffixIcon?: InputIcon
 }
+
+export interface InputEmits {
+  (e: 'update:modelValue', value: string): void
+}
+
+export interface InputSlots {
+  default?: (props: {}) => any
+  prepend?: (props: {}) => any
+  append?: (props: {}) => any
+  prefix?: (props: {}) => any
+  suffix?: (props: {}) => any
+}

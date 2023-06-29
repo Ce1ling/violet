@@ -2,7 +2,7 @@
 import { computed, ref, watch, h, useSlots, nextTick, onMounted } from 'vue'
 import { Icon as ViIcon } from '../index'
 
-import type { InputProps, InputIcon } from './input'
+import type { InputProps, InputIcon, InputSlots, InputEmits } from './input'
 
 
 const props = withDefaults(defineProps<InputProps>(), {
@@ -16,11 +16,9 @@ const props = withDefaults(defineProps<InputProps>(), {
   limitSeparator: ' / '
 })
 
-interface Emits {
-  (e: 'update:modelValue', value: string): void
-}
+const emit = defineEmits<InputEmits>()
 
-const emit = defineEmits<Emits>()
+defineSlots<InputSlots>()
 
 const slots = useSlots()
 
@@ -30,29 +28,36 @@ const isShowPwd = ref(false)
 const isPwdInput = ref(props.type === 'password')
 const lineHeight = ref('')
 
-const getClasses = computed(() => ({ 
+const inputClass = computed(() => ({ 
   'is-disabled': props.disabled,
   'vi-input-textarea': props.type === 'textarea',
   'vi-input-group': slots.prepend || slots.append
 }))
-const getMixedStyles = computed(() => ({ lineHeight: lineHeight.value }))
+
+const mixedStyle = computed(() => ({ lineHeight: lineHeight.value }))
 
 const handleInput = ({ target }: Event) => {
   emit('update:modelValue', (target as HTMLInputElement).value)
 }
+
 const clearInput = () => {
   emit('update:modelValue', '')
   viInputEl.value?.focus()
 }
+
 const toggleShowPwd = () => {
   const el = viInputEl.value!
   el.type = isPwdInput.value ? 'text' : 'password'
   isPwdInput.value = !isPwdInput.value
   el.focus()
 }
-const getIconAttrs = (type: InputIcon) => typeof type === 'string' 
-  ? { name: type, size: 'inherit' }
-  : type
+
+const getIconAttrs = (type: InputIcon) => {
+  return typeof type === 'string' 
+    ? { name: type, size: 'inherit' }
+    : type
+}
+
 const RenderLimit = () => {
   const currentLen = props.modelValue.length
   const limit = Number(props.limit)
@@ -81,7 +86,7 @@ defineExpose({
 </script>
 
 <template>
-  <div class="vi-input" :class="getClasses">
+  <div class="vi-input" :class="inputClass">
     <template v-if="type === 'textarea'">
       <textarea 
         ref="viInputEl" 
@@ -97,7 +102,7 @@ defineExpose({
       <RenderLimit v-if="limit.trim() && showLimit" />
     </template>
     <template v-else>
-      <div class="vi-input__prepend" :style="getMixedStyles" v-if="$slots.prepend">
+      <div class="vi-input__prepend" :style="mixedStyle" v-if="$slots.prepend">
         <slot name="prepend" />
       </div>
       <span class="vi-input__prefix-icon" v-if="$slots.prefix || prefixIcon">
@@ -140,7 +145,7 @@ defineExpose({
         v-if="props.type === 'password' && isShowPwd" 
       />
       <RenderLimit v-if="limit.trim() && showLimit" />
-      <div class="vi-input__append" :style="getMixedStyles" v-if="$slots.append">
+      <div class="vi-input__append" :style="mixedStyle" v-if="$slots.append">
         <slot name="append" />
       </div>
     </template>
