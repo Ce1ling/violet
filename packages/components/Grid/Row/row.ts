@@ -3,3 +3,7 @@ export interface RowProps {
   justify?: 'start' | 'center' | 'end' | 'space-between' | 'space-around' | 'space-evenly'
   align?: 'start' | 'center' | 'end'
 }
+
+export interface RowSlots {
+  default?: (props: {}) => any
+}

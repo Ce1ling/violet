@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import type { ColProps } from './'
+import type { ColProps, ColSlots } from './col'
 
 
 withDefaults(defineProps<ColProps>(), {
   span: 1
 })
+
+defineSlots<ColSlots>()
 </script>
 
 <template>

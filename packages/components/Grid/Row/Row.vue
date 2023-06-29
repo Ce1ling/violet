@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import type { RowProps } from './'
+import type { RowProps, RowSlots } from './row'
 
 
 const props = withDefaults(defineProps<RowProps>(), {
@@ -10,7 +10,9 @@ const props = withDefaults(defineProps<RowProps>(), {
   align: 'start'
 })
 
-const getStyles = computed(() => ({
+defineSlots<RowSlots>()
+
+const rowStyle = computed(() => ({
   gap: props.gap,
   justifyContent: props.justify,
   alignItems: props.align
@@ -18,7 +20,7 @@ const getStyles = computed(() => ({
 </script>
 
 <template>
-  <div class="vi-row" :style="getStyles">
+  <div class="vi-row" :style="rowStyle">
     <slot />
   </div>
 </template>
