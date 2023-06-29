@@ -4,7 +4,7 @@ import { Icon as ViIcon, Mask as ViMask } from '../index'
 import { useMovable, useTimeout, useScrollVisible } from '../../hooks'
 import { getADByVar } from '../../utils/dom/animation'
 
-import type { DialogProps, DialogEmits } from './dialog'
+import type { DialogProps, DialogEmits, DialogSlots } from './dialog'
 
 
 const props = withDefaults(defineProps<DialogProps>(), {
@@ -18,22 +18,27 @@ const props = withDefaults(defineProps<DialogProps>(), {
   clickMaskClose: true,
   destroy: false
 })
+
 const emit = defineEmits<DialogEmits>()
+
+defineSlots<DialogSlots>()
 
 const dialogRef = ref<HTMLElement>()
 const headerRef = ref<HTMLElement>()
-const needDestroy = ref<boolean>(false)
+const destructible = ref<boolean>(false)
 
-const getClasses = computed(() => ({
+const dialogClass = computed(() => ({
   'is-center': props.center,
   'is-box-center': props.boxCenter,
   'is-movable': props.movable
 }))
+
 const animationDuration = computed(() => {
   return getADByVar(document.body, '--vi-animation-duration', 1000)
 })
 
 const close = () => emit('update:modelValue', false)
+
 const handleClose = () => {
   if (props.beforeClose) {
     props.beforeClose(close)
@@ -41,24 +46,28 @@ const handleClose = () => {
     close()
   }
 }
+
 const handleMaskClick = () => {
   if (props.clickMaskClose) { handleClose() }
 }
+
 const handleDestory = (visible: boolean) => {
   if (!props.destroy) { return }
   if (visible) {
-    needDestroy.value = false
+    destructible.value = false
     return
   }
   
   // TODO: 如果能去掉这个异步任务，那么就可以使用 computed 优化 destroy
-  useTimeout(() => needDestroy.value = true, animationDuration.value)
+  useTimeout(() => destructible.value = true, animationDuration.value)
 }
+
 const handleMovable = (visible: boolean) => {
   if (visible) {
     useMovable(dialogRef, headerRef, toRef(props, 'movable'))
   }
 }
+
 const handleLockScroll = () => {
   if (props.lockScroll) { 
     useScrollVisible(toRef(props, 'modelValue'), document.body, animationDuration.value)
@@ -80,7 +89,7 @@ onMounted(handleLockScroll)
   <Teleport to="body" :disabled="!appendToBody">
     <Transition name="vi-dialog-fade">
       <vi-mask :visible="modelValue" :disabled="!mask" @click="handleMaskClick">
-        <div class="vi-dialog" :class="getClasses" v-if="!needDestroy">
+        <div class="vi-dialog" :class="dialogClass" v-if="!destructible">
           <div class="vi-dialog__content" ref="dialogRef" :style="{ width }" @click.stop="void">
             <header class="vi-dialog__header" ref="headerRef">
               <template v-if="$slots.header"> 
