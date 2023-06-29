@@ -7,7 +7,8 @@ import type {
   SwitchEmits, 
   SwitchState,
   SwitchIcons,
-  SwitchTexts
+  SwitchTexts,
+  SwitchSlots
 } from './switch'
 
 
@@ -23,7 +24,10 @@ const props = withDefaults(defineProps<SwitchProps>(), {
   offIcon: '',
   size: 'normal'
 })
+
 const emit = defineEmits<SwitchEmits>()
+
+defineSlots<SwitchSlots>()
 
 const icons: SwitchIcons = ['onIcon', 'offIcon']
 const texts: SwitchTexts = ['onText', 'offText']
@@ -33,6 +37,7 @@ const switchClass = computed(() => [`vi-switch--${props.size}`, {
   'is-disabled': props.disabled,
   'is-loading': props.loading
 }])
+
 const switchStyle = computed(() => ({
   '--vi-switch-off-bg-color': props.offColor,
   '--vi-switch-on-bg-color': props.modelValue ? props.onColor : '',
@@ -44,6 +49,7 @@ const toggleChecked = () => {
   if (props.disabled || props.loading) { return }
   emit('update:modelValue', !props.modelValue)
 }
+
 /** 
  * 为不同的状态添加激活状态类名
  * @param {Number} state 0 为 off 状态，1 为 on 状态。
@@ -51,11 +57,13 @@ const toggleChecked = () => {
 const getDescClass = (state: SwitchState) => ({ 
   'is-active': state ? props.modelValue : !props.modelValue
 })
+
 const getDescStyle = (state: SwitchState) => ({
   color: state 
     ? props.modelValue ? props.onColor : ''
     : !props.modelValue ? props.onColor : ''
 })
+
 const hasDesc = (arr: SwitchIcons | SwitchTexts) => {
   return (arr.map(v => props[v]).filter(v => v)).length
 }

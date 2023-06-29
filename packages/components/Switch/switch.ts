@@ -22,3 +22,8 @@ export type SwitchState = 0 | 1
 export type SwitchIcons = ['onIcon', 'offIcon']
 
 export type SwitchTexts = ['onText', 'offText']
+
+export interface SwitchSlots {
+  on?: (props: {}) => any
+  off?: (props: {}) => any
+}

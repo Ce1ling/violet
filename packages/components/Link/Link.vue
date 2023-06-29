@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import type { LinkProps, LinkEmits } from './link'
+import type { LinkProps, LinkEmits, LinkSlots } from './link'
 
 
 const props = withDefaults(defineProps<LinkProps>(), {
@@ -9,9 +9,12 @@ const props = withDefaults(defineProps<LinkProps>(), {
   disabled: false,
   underline: true
 })
+
 const emit = defineEmits<LinkEmits>()
 
-const getClasses = computed(() => [`vi-link--${props.type}`, {
+defineSlots<LinkSlots>()
+
+const linkClass = computed(() => [`vi-link--${props.type}`, {
   'is-disabled': props.disabled,
   'has-underline': props.underline
 }])
@@ -22,7 +25,7 @@ const handleClick = (e: MouseEvent) => {
 </script>
 
 <template>
-  <a class="vi-link" :class="getClasses" v-bind="$attrs" @click="handleClick">
+  <a class="vi-link" :class="linkClass" v-bind="$attrs" @click="handleClick">
     <span class="vi-link__inner">
       <slot name="prefix" />
       <slot />
