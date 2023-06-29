@@ -97,24 +97,25 @@ Input/Mixed
 
 ### 属性
 
-| 属性名 | 属性说明 | 属性类型 | 属性默认值 |
-| :---: | :---: | :---: | :---: |
-| type | Input 类型 | `string` | `'text'` |
-| placeholder | 同原生属性 | `string` | —— |
-| disabled | 禁用 Input | `boolean` | `false` |
-| clearable | 显示清空按钮 | `boolean` | `false` |
-| show-pwd | 切换显示密码 | `boolean` | `false` |
-| rows | `type="textarea"` 的高度 | `string` | `'2'` |
-| limit | 限制输入长度 | `string` | —— |
-| show-limit | 显示限制长度 | `boolean` | `false` |
-| prefix-icon | 头部图标 | `vi-icon \| string` | —— |
-| suffix-icon | 尾部图标 | `vi-icon \| string` | —— |
+| 属性名 | 说明 | 类型 | 默认值 | 是必需项 | 
+| :---: | :---: | :---: | :---: | :---: |
+| `v-model` | 输入框的值 | `string` | —— | `true` |
+| type | 输入框类型 | `string` | `'text'` | `false` |
+| placeholder | 同原生属性 | `string` | —— | `false` |
+| disabled | 是否为禁用 | `boolean` | `false` | `false` |
+| clearable | 显示清空按钮 | `boolean` | `false` | `false` |
+| show-pwd | 切换显示密码 | `boolean` | `false` | `false` |
+| rows | `type="textarea"` 时的高度 | `string` | `'2'` | `false` |
+| limit | 限制输入长度 | `string` | —— | `false` |
+| show-limit | 显示限制长度 | `boolean` | `false` | `false` |
+| prefix-icon | 头部图标 | `vi-icon \| string` | —— | `false` |
+| suffix-icon | 尾部图标 | `vi-icon \| string` | —— | `false` |
 
 ### 插槽
 
-| 插槽名 | 插槽说明 | 注意事项 |
+| 插槽名 | 说明 | 注意事项 |
 | :---: | :---: | :---: |
-| prefix | 头部内容 | 对 `type="textarea"` 无效 |
-| suffix | 尾部内容 | 对 `type="textarea"` 无效 |
-| prepend | 前置内容 | 对 `type="textarea"` 无效 |
-| append | 后置内容 | 对 `type="textarea"` 无效 |
+| prefix | 定义头部内容 | 对 `type="textarea"` 无效 |
+| suffix | 定义尾部内容 | 对 `type="textarea"` 无效 |
+| prepend | 定义前置内容 | 对 `type="textarea"` 无效 |
+| append | 定义后置内容 | 对 `type="textarea"` 无效 |

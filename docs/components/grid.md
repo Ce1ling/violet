@@ -51,14 +51,26 @@ Grid/AlignMethod
 
 ### Row 属性
 
-| 属性名 | 属性说明 | 属性类型 | 属性默认值 |
+| 属性名 | 说明 | 类型 | 默认值 |
 | :---: | :---: | :---: | :---: |
 | gap | 列间距 | `string` | `'10px'` |
 | justify | 垂直对齐方式 | `'start' \| 'center' \| 'end' \| 'space-between' \| 'space-around' \| 'space-evenly'` | `'start'` |
 | align | 水平对齐方式 | `'start' \| 'center' \| 'end'` | `'start'` |
 
+### Row 插槽
+
+| 插槽名 | 说明 |
+| :---: | :---: |
+| default | 定义默认内容 |
+
 ### Col 属性
 
-| 属性名 | 属性说明 | 属性类型 | 属性默认值 |
+| 属性名 | 说明 | 类型 | 默认值 |
 | :---: | :---: | :---: | :---: |
 | span | 宽度占比 | `string \| number` | `1` |
+
+### Col 插槽
+
+| 插槽名 | 说明 |
+| :---: | :---: |
+| default | 定义默认内容 |

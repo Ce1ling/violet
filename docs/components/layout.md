@@ -72,35 +72,65 @@ Layout/Layout6
 
 ### Flex 属性
 
-| 属性名 | 属性说明 | 属性类型 | 属性默认值 |
-| :---: | :---: | :---: | :---: |
-| direction | 同原生 `flex` 布局的 `flex-direction` | `'row' \| 'column' \| 'row-reverse' \| 'column-reverse'` | `'row'` |
-| justify | 同原生 `flex` 布局的 `justify-content` | `'start' \| 'center' \| 'end' \| 'space-between' \| 'space-around' \| 'space-evenly'` | —— |
-| align | 同原生 `flex` 布局的 `align-items` | `'start' \| 'center' \| 'end'` | —— |
-| flex | 同原生 `flex` 布局的 `flex` | `string` | `'1'` |
+| 属性名 | 说明 | 类型 | 默认值 | 是必需项 |
+| :---: | :---: | :---: | :---: | :---: |
+| direction | 同原生 `flex` 布局的 `flex-direction` | `'row' \| 'column' \| 'row-reverse' \| 'column-reverse'` | `'row'` | `false` |
+| justify | 同原生 `flex` 布局的 `justify-content` | `'start' \| 'center' \| 'end' \| 'space-between' \| 'space-around' \| 'space-evenly'` | —— | `false` |
+| align | 同原生 `flex` 布局的 `align-items` | `'start' \| 'center' \| 'end'` | —— | `false` |
+| flex | 同原生 `flex` 布局的 `flex` | `string` | `'1'` | `false` |
+
+### Flex 插槽
+
+| 插槽名 | 说明 |
+| :---: | :---: |
+| default | 定义默认内容 |
 
 ### Header 属性
 
-| 属性名 | 属性说明 | 属性类型 | 属性默认值 |
-| :---: | :---: | :---: | :---: |
-| padding | 内边距 | `string` | `'0 18px'` |
-| height | 高度 | `string` | `'80px'` |
+| 属性名 | 说明 | 类型 | 默认值 | 是必需项 |
+| :---: | :---: | :---: | :---: | :---: |
+| padding | 内边距 | `string` | `'0 18px'` | `false` |
+| height | 高度 | `string` | `'80px'` | `false` |
+
+### Header 插槽
+
+| 插槽名 | 说明 |
+| :---: | :---: |
+| default | 定义默认内容 |
 
 ### Main 属性
 
-| 属性名 | 属性说明 | 属性类型 | 属性默认值 |
-| :---: | :---: | :---: | :---: |
-| padding | 内边距 | `string` | `'18px'` |
+| 属性名 | 说明 | 类型 | 默认值 | 是必需项 |
+| :---: | :---: | :---: | :---: | :---: |
+| padding | 内边距 | `string` | `'18px'` | `false` |
+
+### Main 插槽
+
+| 插槽名 | 说明 |
+| :---: | :---: |
+| default | 定义默认内容 |
 
 ### Aside 属性
 
-| 属性名 | 属性说明 | 属性类型 | 属性默认值 |
-| :---: | :---: | :---: | :---: |
-| width | 宽度 | `string` | `'300px'` |
+| 属性名 | 说明 | 类型 | 默认值 | 是必需项 |
+| :---: | :---: | :---: | :---: | :---: |
+| width | 宽度 | `string` | `'300px'` | `false` |
+
+### Aside 插槽
+
+| 插槽名 | 说明 |
+| :---: | :---: |
+| default | 定义默认内容 |
 
 ### Footer 属性
 
-| 属性名 | 属性说明 | 属性类型 | 属性默认值 |
-| :---: | :---: | :---: | :---: |
-| padding | 内边距 | `string` | `'0 18px'` |
-| height | 高度 | `string` | `'80px'` |
+| 属性名 | 说明 | 类型 | 默认值 | 是必需项 |
+| :---: | :---: | :---: | :---: | :---: |
+| padding | 内边距 | `string` | `'0 18px'` | `false` |
+| height | 高度 | `string` | `'80px'` | `false` |
+
+### Footer 插槽
+
+| 插槽名 | 说明 |
+| :---: | :---: |
+| default | 定义默认内容 |
