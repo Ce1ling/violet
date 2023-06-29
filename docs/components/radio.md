@@ -80,18 +80,18 @@ Radio/ButtonType
 
 ### Radio 属性
 
-| 属性名 | 属性说明 | 属性类型 | 属性默认值 |
-| :---: | :---: | :---: | :---: |
-| `v-model` | 绑定值 | `string` | —— |
-| label | 选中时的内容 | `boolean` | `false` |
-| disabled | 是否为禁用状态 | `boolean` | `false` |
-| border | 是否需要边框 | `boolean` | `false` |
+| 属性名 | 说明 | 类型 | 默认值 | 是必需项 |
+| :---: | :---: | :---: | :---: | :---: |
+| `v-model` | 绑定值 | `string` | —— | `true` |
+| label | 选中时的内容 | `boolean` | `false` | `true` |
+| disabled | 是否为禁用状态 | `boolean` | `false` | `false` |
+| border | 是否需要边框 | `boolean` | `false` | `false` |
 
 ### RadioGroup 属性
 
-| 属性名 | 属性说明 | 属性类型 | 属性默认值 |
-| :---: | :---: | :---: | :---: |
-| `v-model` | 绑定值 | `string` | —— |
-| is-button | 是否为按钮类型 | `boolean` | `false` |
-| border | 是否需要边框 | `boolean` | `false` |
-| gap | 间距 | `string` | `'18px'` |
+| 属性名 | 说明 | 类型 | 默认值 | 是必需想 |
+| :---: | :---: | :---: | :---: | :---: |
+| `v-model` | 绑定值 | `string` | —— | `true` |
+| is-button | 是否为按钮类型 | `boolean` | `false` | `false` |
+| border | 是否需要边框 | `boolean` | `false` | `false` |
+| gap | 间距 | `string` | `'18px'` | `false` |

@@ -97,31 +97,37 @@ Tabs/PreventToggle
 
 ### Tabs 属性
 
-| 属性名 | 属性说明 | 属性类型 | 属性默认值 |
-| :---: | :---: | :---: | :---: |
-| `v-model` | 当前展示的选项卡 | `string` | —— |
-| type | 选项卡类型 | `'normal' \| 'inner-card'` | —— |
-| active-bg-color | 当前展示的选项卡的背景颜色 | `string` | `'#802ae8'` |
-| bg-color | 标题背景颜色 | `string` | `#eeeeee` |
-| ifMode | 是否为类似 `v-if` 的模式 | `boolean` | `false` |
-| removable | 是否可被移除 | `boolean` | `false` |
-| before-change | 选项卡切换前触发，返回 `false` 则阻止切换 | `(name: string) => boolean` | —— |
-| padding | 非 `'normal'` 类型的 `padding` | `string` | `'6px'` |
-| bar-height | 高亮状态条高度(仅 `'normal'` 模式可用) | `string` | `'2px'` |
-| center | 居中选项卡 | `boolean` | `false` |
-| bar-half | 使用一半宽度的高亮状态条(仅 `'normal'` 模式可用) | `boolean` | `false` |
+| 属性名 | 说明 | 类型 | 默认值 | 是必需项 |
+| :---: | :---: | :---: | :---: | :---: |
+| `v-model` | 当前展示的选项卡 | `string` | —— | `true` |
+| type | 选项卡类型 | `'normal' \| 'inner-card'` | —— | `false` |
+| active-bg-color | 当前展示的选项卡的背景颜色 | `string` | `'#802ae8'` | `false` |
+| bg-color | 标题背景颜色 | `string` | `#eeeeee` | `false` |
+| ifMode | 是否为类似 `v-if` 的模式 | `boolean` | `false` | `false` |
+| removable | 是否可被移除 | `boolean` | `false` | `false` |
+| before-change | 选项卡切换前触发，返回 `false` 则阻止切换 | `(name: string) => boolean` | —— | `false` |
+| padding | 非 `'normal'` 类型的 `padding` | `string` | `'6px'` | `false` |
+| bar-height | 高亮状态条高度(仅 `'normal'` 模式可用) | `string` | `'2px'` | `false` |
+| center | 居中选项卡 | `boolean` | `false` | `false` |
+| bar-half | 使用一半宽度的高亮状态条(仅 `'normal'` 模式可用) | `boolean` | `false` | `false` |
 
 ### Tabs 事件
 
-| 事件名 | 事件触发时机 | 事件参数 |
+| 事件名 | 触发时机 | 参数 |
 | :---: | :---: | :---: |
-| tab-click |选项卡标题被点击时触发 | `(name: string, e: MouseEvent) => void` |
-| tab-remove | 点击移除按钮触发 | `(name: string, e: MouseEvent) => void` |
-| change | `v-model` 值改变后触发 | `(newVal: string, oldVal: string) => void` |
+| tab-click |选项卡标题被点击时触发 | `(name: string, e: MouseEvent): void` |
+| tab-remove | 点击移除按钮触发 | `(name: string, e: MouseEvent): void` |
+| change | `v-model` 值改变后触发 | `(newVal: string, oldVal: string): void` |
 
 ### Tab 属性
 
-| 属性名 | 属性说明 | 属性类型 | 属性默认值 |
+| 属性名 | 说明 | 类型 | 默认值 |
 | :---: | :---: | :---: | :---: |
-| label |选项卡 标题 | `string` | —— |
-| name | 唯一标识符，选项卡的 `v-model` 根据此属性辨别当前展示的选项卡 | `string` | —— |
+| label |选项卡 标题 | `string` | —— | `true` |
+| name | 唯一标识符，选项卡的 `v-model` 根据此属性辨别当前展示的选项卡 | `string` | —— | `true` |
+
+### Tab 插槽
+
+| 插槽名 | 说明 |
+| :---: | :---: |
+| default | 定义默认内容 |
