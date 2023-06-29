@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import type { FlexProps } from './'
+import type { FlexProps, FlexSlots } from './flex'
 
 
 const props = withDefaults(defineProps<FlexProps>(), {
@@ -10,18 +10,19 @@ const props = withDefaults(defineProps<FlexProps>(), {
   gap: '0'
 })
 
-const getStyles = computed(() => ({
+defineSlots<FlexSlots>()
+
+const flexStyle = computed(() => ({
   flexDirection: props.direction,
   justifyContent: props.justify,
   alignItems: props.align,
   flex: props.flex,
   gap: props.gap
 }))
-
 </script>
 
 <template>
-  <div class="vi-flex" :style="getStyles">
+  <div class="vi-flex" :style="flexStyle">
     <slot />
   </div>
 </template>

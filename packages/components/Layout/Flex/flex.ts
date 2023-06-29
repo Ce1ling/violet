@@ -5,3 +5,7 @@ export interface FlexProps {
   flex?: string
   gap?: string
 }
+
+export interface FlexSlots {
+  default?: (props: {}) => any
+}
