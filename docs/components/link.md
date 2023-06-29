@@ -46,16 +46,16 @@ Link/CustomIcon
 
 ### 属性
 
-| 属性名 | 属性说明 | 属性类型 | 属性默认值 |
-| :---: | :---: | :---: | :---: |
-| type | 定义链接类型 | `'primary' \| 'success' \| 'warning' \| 'danger'` | `'primary'` |
-| href | 同原生 `a` 标签 `href` 属性 | `string` | —— |
-| underline | 是否需要下划线 | `boolean` | `true` |
-| disabled | 是否为禁用状态 | `boolean` | `false` |
+| 属性名 | 说明 | 类型 | 默认值 | 是必需项 |
+| :---: | :---: | :---: | :---: | :---: |
+| type | 定义链接类型 | `'primary' \| 'success' \| 'warning' \| 'danger'` | `'primary'` | `false` |
+| href | 同原生 `a` 标签 `href` 属性 | `string` | —— | `false` |
+| underline | 是否需要下划线 | `boolean` | `true` | `false` |
+| disabled | 是否为禁用状态 | `boolean` | `false` | `false` |
 
 ### 插槽
 
 | 插槽名 | 插槽说明 |
 | :---: | :---: |
-| prefix | 前置内容 |
-| suffix | 后置内容 |
+| prefix | 定义前置内容 |
+| suffix | 定义后置内容 |

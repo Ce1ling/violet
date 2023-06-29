@@ -113,19 +113,19 @@ Switch/Size
 
 ### 属性
 
-| 属性名 | 属性说明 | 属性类型 | 属性默认值 |
-| :---: | :---: | :---: | :---: |
-| v-model | 开关状态值 | `boolean` | —— |
-| disabled | 禁用状态 | `boolean` | `false` |
-| loading | 加载状态 | `boolean` | `false` |
-| is-inside | 是否为内部模式 | `boolean` | `false` |
-| on-color | 定义“开”状态的颜色 | `string` | —— |
-| off-color | 定义“关”状态的颜色 | `string` | —— |
-| on-text | 定义“开”状态描述文字 | `string` | —— |
-| off-text | 定义“关”状态描述文字 | `string` | —— |
-| on-icon | 定义“开”状态描述图标 | `string` | —— |
-| off-icon | 定义“关”状态描述图标 | `string` | —— |
-| width | 定义宽度 | `string` | —— |
+| 属性名 | 说明 | 类型 | 默认值 | 是必需项 |
+| :---: | :---: | :---: | :---: | :---: |
+| `v-model` | 开关状态值 | `boolean` | —— | `true` |
+| disabled | 禁用状态 | `boolean` | `false` | `false` |
+| loading | 加载状态 | `boolean` | `false` | `false` |
+| is-inside | 是否为内部模式 | `boolean` | `false` | `false` |
+| on-color | 定义“开”状态的颜色 | `string` | —— | `false` |
+| off-color | 定义“关”状态的颜色 | `string` | —— | `false` |
+| on-text | 定义“开”状态描述文字 | `string` | —— | `false` |
+| off-text | 定义“关”状态描述文字 | `string` | —— | `false` |
+| on-icon | 定义“开”状态描述图标 | `string` | —— | `false` |
+| off-icon | 定义“关”状态描述图标 | `string` | —— | `false` |
+| width | 定义宽度 | `string` | —— | `false` |
 
 ### 插槽
 
