@@ -17,3 +17,9 @@ export interface DrawerEmits {
   (e: 'update:modelValue', val: boolean): void
   (e: 'open' | 'close', val: boolean): void
 }
+
+export interface DrawerSlots {
+  default?: (props: {}) => any
+  header?: (props: {}) => any
+  footer?: (props: {}) => any
+}

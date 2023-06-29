@@ -4,7 +4,7 @@ import { Mask as ViMask, Icon as ViIcon } from '../index'
 import { useScrollVisible } from '../../hooks'
 import { getADByVar } from '../../utils/dom/animation'
 
-import type { DrawerProps, DrawerEmits } from './drawer'
+import type { DrawerProps, DrawerEmits, DrawerSlots } from './drawer'
 
 
 const props = withDefaults(defineProps<DrawerProps>(), {
@@ -18,14 +18,19 @@ const props = withDefaults(defineProps<DrawerProps>(), {
   lockScroll: true,
   clickMaskClose: true
 })
+
 const emit = defineEmits<DrawerEmits>()
 
-const getClasses = computed(() => [`vi-drawer--${props.direction}`])
-const getStyles = computed(() => ({ 
+defineSlots<DrawerSlots>()
+
+const drawerClass = computed(() => [`vi-drawer--${props.direction}`])
+
+const drawerStyle = computed(() => ({ 
   width: getWHByDirection('width'),
   height: getWHByDirection('height'),
   zIndex: props.zIndex
 }))
+
 const animationDuration = computed(() => {
   return getADByVar(document.body, '--vi-animation-duration', 1000)
 })
@@ -39,7 +44,9 @@ const getWHByDirection = (target: 'width' | 'height') => {
     ? x.includes(props.direction) ? props.width : undefined
     : y.includes(props.direction) ? props.height : undefined
 }
+
 const close = () => emit('update:modelValue', false)
+
 const handleClose = () => {
   if (props.beforeClose) {
     props.beforeClose(close)
@@ -48,9 +55,11 @@ const handleClose = () => {
 
   close()
 }
+
 const handleMaskClose = () => {
   if (props.clickMaskClose) { handleClose() }
 }
+
 const handleLockScroll = () => {
   if (props.lockScroll) {
     useScrollVisible(toRef(props, 'modelValue'), document.body, animationDuration.value)
@@ -69,7 +78,7 @@ onMounted(handleLockScroll)
   <Teleport to="body" :disabled="!appendToBody">
     <Transition name="vi-drawer-fade">
       <vi-mask :visible="modelValue" :disabled="!mask" @click="handleMaskClose">
-        <div class="vi-drawer" :class="getClasses" @click.stop="void" :style="getStyles">
+        <div class="vi-drawer" :class="drawerClass" @click.stop="void" :style="drawerStyle">
           <header class="vi-drawer__header" v-if="$slots.header || title">
             <div class="vi-drawer__header-title">
               <template v-if="$slots.header">
@@ -96,7 +105,7 @@ onMounted(handleLockScroll)
 </template>
 
 <style lang="scss">
-$ps: l-r, r-l, t-b, b-t;
+$positions: l-r, r-l, t-b, b-t;
 
 .vi-drawer {
   position: fixed;
@@ -105,6 +114,7 @@ $ps: l-r, r-l, t-b, b-t;
   background-color: var(--vi-drawer-bg-color);
   box-shadow: var(--vi-shadow-dark);
   transition: all var(--vi-animation-duration);
+
   &__header {
     padding: var(--vi-base-padding);
     display: flex;
@@ -155,7 +165,8 @@ $ps: l-r, r-l, t-b, b-t;
   &-leave-to {
     transition: all var(--vi-animation-duration);
     opacity: 0;
-    @each $p in $ps {
+    
+    @each $p in $positions {
       .vi-drawer--#{$p} {
         @if $p == l-r {
           transform: translateX(-100%);
