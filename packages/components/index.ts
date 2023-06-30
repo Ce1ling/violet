@@ -31,6 +31,8 @@ import Drawer from './Drawer/Drawer.vue'
 import Mask from './Mask/Mask.vue'
 import Tag from './Tag/Tag.vue'
 
+import Transfer from './Transfer/Transfer.vue'
+
 export {
   Button,
   Icon,
@@ -59,4 +61,5 @@ export {
   Mask,
   Select,
   Tag,
+  Transfer,
 }

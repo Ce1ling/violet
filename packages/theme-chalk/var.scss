@@ -29,6 +29,7 @@
   --vi-font-size-small: 12px;
   --vi-font-size-base: 14px;
   --vi-font-size-large: 18px;
+  --vi-font-size-huge: 22px;
 
   --vi-base-padding: 18px;
   --vi-base-radius: 5px;
@@ -129,4 +130,11 @@
   --vi-message-position: 50%;
   --vi-message-translate-x: -50%;
   --vi-message-translate-y: -100%;
+
+  // vi-transfer
+  --vi-transfer-width: 200px;
+  --vi-transfer-height: 250px;
+  --vi-transfer-title-padding: 8px 12px;
+  --vi-transfer-list-padding: 12px 0;
+  --vi-transfer-item-padding: var(--vi-transfer-title-padding);
 }
