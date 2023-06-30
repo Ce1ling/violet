@@ -23,4 +23,8 @@ export const form = [
     text: 'Select 选择器',
     link: '/components/select.md'
   },
+  {
+    text: 'Transfer 穿梭器',
+    link: '/components/transfer.md'
+  },
 ]
