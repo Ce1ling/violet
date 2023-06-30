@@ -32,6 +32,8 @@ export const iconMaps: IconMaps = {
   SettingFill: 'material-symbols:settings-rounded',
   Up: 'material-symbols:keyboard-arrow-up-rounded',
   Down: 'material-symbols:keyboard-arrow-down-rounded',
+  Left: 'material-symbols:chevron-left-rounded',
+  Right: 'material-symbols:chevron-right-rounded',
   User: 'material-symbols:person-outline',
   UserFill: 'material-symbols:person',
   CheckCircle: 'material-symbols:check-circle-outline-rounded',
