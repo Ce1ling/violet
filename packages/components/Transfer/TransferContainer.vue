@@ -71,7 +71,7 @@ const getItemClass = (item: TransferItem) => ({
     
     &-inner {
       display: inline-block;
-      font-size: var(--vi-font-size-huge);
+      font-size: var(--vi-font-size-large);
       flex-grow: 1;
       overflow: hidden;
     }
