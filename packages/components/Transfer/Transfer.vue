@@ -18,6 +18,7 @@ const {
   checkAll
 } = useTransfer(props.list)
 
+provide<TransferProps<T>>('transferProps', props)
 provide<TransferCheck>('transferCheck', [checkItem, checkAll])
 
 const leftListChecked = computed(() => {

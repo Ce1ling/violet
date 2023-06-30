@@ -1,13 +1,21 @@
 <script lang="ts" setup generic="T extends TransferItem[]">
-import { inject } from 'vue'
+import { computed, inject, ref } from 'vue'
 
-import type { TransferItem, TransferContainerProps } from './transfer'
+import type { TransferItem, TransferProps, TransferContainerProps } from './transfer'
 import type { TransferCheck } from './useTransfer'
 
 
-defineProps<TransferContainerProps<T>>()
+const props = defineProps<TransferContainerProps<T>>()
 
+const transferProps = inject<TransferProps<T>>('transferProps')!
 const [checkItem, checkAll] = inject<TransferCheck>('transferCheck')!
+
+const checkedAndTotal = computed(() => {
+  const total = props.list.length
+  const checkedLen = props.list.filter(item => item.checked).length
+
+  return `${checkedLen}/${total}`
+})
 
 const getItemClass = (item: TransferItem) => ({
   'is-disabled': item.disabled,
@@ -19,7 +27,10 @@ const getItemClass = (item: TransferItem) => ({
   <div class="vi-transfer__container">
     <h2 class="vi-transfer__title">
       <vi-checkbox v-model="checkAll(type).value" />
-      <span>{{ title }}</span>
+      <span class="vi-transfer__title-inner">{{ title }}</span>
+      <span class="vi-transfer-total" v-if="transferProps.showTotal">
+        {{ checkedAndTotal }}
+      </span>
     </h2>
     <ul class="vi-transfer__list">
       <li 
@@ -55,11 +66,19 @@ const getItemClass = (item: TransferItem) => ({
     display: flex;
     align-items: center;
     background-color: var(--vi-color-info-weak);
+    user-select: none;
+    cursor: pointer;
     
-    & > span {
+    &-inner {
       display: inline-block;
       font-size: var(--vi-font-size-huge);
+      flex-grow: 1;
+      overflow: hidden;
     }
+  }
+  & &-total {
+    font-weight: var(--vi-font-weight-normal);
+    font-size: var(--vi-font-size-small);
   }
 
   & &__list {

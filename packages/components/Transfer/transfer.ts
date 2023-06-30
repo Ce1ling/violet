@@ -9,6 +9,7 @@ export interface TransferItem {
 export interface TransferProps<T> {
   modelValue: string
   list: T
+  showTotal?: boolean
 }
 
 export type TransferActionType = 'left' | 'right'
