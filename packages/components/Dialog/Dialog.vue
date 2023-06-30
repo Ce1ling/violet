@@ -122,6 +122,7 @@ onMounted(handleLockScroll)
   right: 0;
   bottom: 0;
   left: 0;
+  
   &__content {
     margin: 10vh auto;
     background-color: var(--vi-dialog-bg-color);
@@ -134,7 +135,7 @@ onMounted(handleLockScroll)
       justify-content: space-between;
       padding: var(--vi-base-padding);
       &-title {
-        font-size: var(--vi-font-size-18);
+        font-size: var(--vi-font-size-large);
         font-weight: bolder;
       }
     }

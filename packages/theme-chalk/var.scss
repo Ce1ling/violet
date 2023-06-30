@@ -1,4 +1,5 @@
 :root {
+  // color
   --vi-color-primary: #802ae8;
   --vi-color-success: #72d342;
   --vi-color-info: #c2c2c2;
@@ -24,14 +25,14 @@
   --vi-bg-color: #ffffff;
   --vi-shadow-dark: 0 0 18px rgba(0, 0, 0, 0.2);
 
-  --vi-base-padding: 18px;
-  --vi-base-radius: 5px;
-  --vi-small-radius: 2px;
+  // font
   --vi-font-size-small: 12px;
   --vi-font-size-base: 14px;
   --vi-font-size-large: 18px;
-  --vi-font-size-18: 18px;
 
+  --vi-base-padding: 18px;
+  --vi-base-radius: 5px;
+  --vi-small-radius: 2px;
   --vi-animation-duration: 0.3s;
   --vi-opacity-half: 0.666667;
   --vi-round: 999999999px;
