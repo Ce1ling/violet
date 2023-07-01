@@ -21,10 +21,25 @@ interface UseTransfer {
   })
 }
 
+const TRANSFER_SORT_KEY = '__sort_key__'
+
 export const useTransfer: UseTransfer = (list) => {
   const dataList = {
-    left: ref<TransferItem[]>(list),
+    left: ref<TransferItem[]>(sortable(list)),
     right: ref<TransferItem[]>([])
+  }
+
+  /**
+   * `transfer` 内部方法，仅用于排序
+   * @param {TransferItem[]} data 数据
+   * @param {String} key 用于排序的 `key`
+   * @returns 返回带 `key` 的 `data`
+   */
+  function sortable(data: TransferItem[], key: string = TRANSFER_SORT_KEY) {
+    return data.map((item, i) => {
+      item[key] = i
+      return item
+    })
   }
 
   /**
@@ -41,7 +56,12 @@ export const useTransfer: UseTransfer = (list) => {
     ]
     dataList[type].value = dataList[type].value.filter(item => !item.checked)
 
-    checkedList.forEach(item => item.checked = false)
+    // 取消选中并排序, 这个操作必须在 dataList[type].value 赋值之后
+    dataList[reverseType].value.sort((item1, item2) => {
+      item1.checked = false
+      item2.checked = false
+      return item1[TRANSFER_SORT_KEY] - item2[TRANSFER_SORT_KEY]
+    })
   }
 
   function checkItem(item: TransferItem, value: boolean) {
