@@ -1,16 +1,22 @@
 <script lang="ts" setup generic="T extends TransferItem[]">
 import { computed, provide } from 'vue'
-import { TransferItem, TransferProps } from './transfer'
 import { useTransfer } from './useTransfer'
 import TransferContainer from './TransferContainer.vue'
 
+import type { TransferItem, TransferProps, TransferPropsDefaults } from './transfer'
 import type { TransferCheck } from './useTransfer'
 
 
-const props = defineProps<TransferProps<T>>()
+const props = withDefaults<
+  TransferProps<T>,
+  TransferPropsDefaults<T>
+>(defineProps<TransferProps<T>>(), {
+  showTotal: false,
+  titles: () => ['List 1', 'List 2']
+})
 
 const { 
-  leftList, 
+  leftList,
   rightList,
   toRight,
   toLeft,
@@ -32,7 +38,7 @@ const rightListChecked = computed(() => {
 
 <template>
   <div class="vi-transfer">
-    <TransferContainer title="List111" type="left" :list="leftList" />
+    <TransferContainer type="left" :title="titles[0]" :list="leftList" />
     <div class="vi-transfer__buttons">
       <vi-button @click="toLeft" :disabled="!rightListChecked">
         <vi-icon name="Left" size="22px" cursor="inheirt" />
@@ -41,7 +47,7 @@ const rightListChecked = computed(() => {
         <vi-icon name="Right" size="22px" cursor="inheirt" />
       </vi-button>
     </div>
-    <TransferContainer title="List222" type="right" :list="rightList" />
+    <TransferContainer type="right" :title="titles[1]" :list="rightList" />
   </div>
 </template>
 
