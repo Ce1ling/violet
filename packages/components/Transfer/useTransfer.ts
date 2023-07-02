@@ -56,12 +56,9 @@ export const useTransfer: UseTransfer = (list) => {
     ]
     dataList[type].value = dataList[type].value.filter(item => !item.checked)
 
-    // 取消选中并排序, 这个操作必须在 dataList[type].value 赋值之后
-    dataList[reverseType].value.sort((item1, item2) => {
-      item1.checked = false
-      item2.checked = false
-      return item1[TRANSFER_SORT_KEY] - item2[TRANSFER_SORT_KEY]
-    })
+    // 取消选中与排序, 这个操作必须在 dataList[type].value 赋值之后
+    dataList[reverseType].value.forEach(item => item.checked = false)
+    dataList[reverseType].value.sort((a, b) => a[TRANSFER_SORT_KEY] - b[TRANSFER_SORT_KEY])
   }
 
   function checkItem(item: TransferItem, value: boolean) {
