@@ -4,20 +4,13 @@ import type { Ref, WritableComputedRef } from 'vue'
 import type { TransferItem, TransferActionType } from './transfer'
 
 
-export type TransferCheckItem = (item: TransferItem, value: boolean) => void
-
-export type TransferCheckAll = (type: TransferActionType) => WritableComputedRef<boolean>
-
-export type TransferCheck = [TransferCheckItem, TransferCheckAll]
-
-interface UseTransfer {
+export interface UseTransfer {
   (list: TransferItem[]): ({
     leftList: Ref<TransferItem[]>
     rightList: Ref<TransferItem[]>
-    toRight(): void
-    toLeft(): void
-    checkItem: TransferCheckItem
-    checkAll: TransferCheckAll
+    setList: (type: TransferActionType, list: TransferItem[]) => void
+    checkItem: (item: TransferItem, value: boolean) => void
+    checkAll: (type: TransferActionType) => WritableComputedRef<boolean>
   })
 }
 
@@ -44,21 +37,21 @@ export const useTransfer: UseTransfer = (list) => {
 
   /**
    * 设置列表数据
-   * @param {TransferActionType} type 待设置的列表，分为左、右
+   * @param to 目标列表
+   * @param data 数据
    */
-  function setList(type: TransferActionType) {
-    const reverseType = type === 'left' ? 'right' : 'left'
-    const checkedList = dataList[type].value.filter(item => item.checked)
+  function setList(to: TransferActionType, data: TransferItem[]) {
+    const reverseType = to === 'left' ? 'right' : 'left'
 
-    dataList[reverseType].value = [
-      ...dataList[reverseType].value, 
-      ...checkedList
+    dataList[to].value = [
+      ...dataList[to].value,
+      ...data
     ]
-    dataList[type].value = dataList[type].value.filter(item => !item.checked)
 
-    // 取消选中与排序, 这个操作必须在 dataList[type].value 赋值之后
-    dataList[reverseType].value.forEach(item => item.checked = false)
-    dataList[reverseType].value.sort((a, b) => a[TRANSFER_SORT_KEY] - b[TRANSFER_SORT_KEY])
+    dataList[reverseType].value = dataList[reverseType].value.filter(item => !data.includes(item))
+
+    dataList[to].value.sort((a, b) => a[TRANSFER_SORT_KEY] - b[TRANSFER_SORT_KEY])
+    dataList[to].value.forEach(item => item.checked = false)
   }
 
   function checkItem(item: TransferItem, value: boolean) {
@@ -88,8 +81,7 @@ export const useTransfer: UseTransfer = (list) => {
   return {
     leftList: dataList.left,
     rightList: dataList.right,
-    toRight: () => setList('left'),
-    toLeft: () => setList('right'),
+    setList,
     checkItem,
     checkAll
   }

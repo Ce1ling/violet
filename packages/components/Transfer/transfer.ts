@@ -13,6 +13,7 @@ export interface TransferProps<T> {
   list: T
   showTotal?: boolean
   titles?: TransferTitles
+  draggable?: boolean
 }
 
 type TransferPropsDefaultsRest<T> = Omit<TransferProps<T>, 'modelValue' | 'list' | 'titles'>

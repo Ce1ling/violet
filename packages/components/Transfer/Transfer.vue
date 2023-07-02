@@ -3,8 +3,8 @@ import { computed, provide } from 'vue'
 import { useTransfer } from './useTransfer'
 import TransferContainer from './TransferContainer.vue'
 
-import type { TransferItem, TransferProps, TransferPropsDefaults } from './transfer'
-import type { TransferCheck } from './useTransfer'
+import type { TransferActionType, TransferItem, TransferProps, TransferPropsDefaults } from './transfer'
+import type { UseTransfer } from './useTransfer'
 
 
 const props = withDefaults<
@@ -12,20 +12,26 @@ const props = withDefaults<
   TransferPropsDefaults<T>
 >(defineProps<TransferProps<T>>(), {
   showTotal: false,
-  titles: () => ['List 1', 'List 2']
+  titles: () => ['List 1', 'List 2'],
+  draggable: false
 })
 
 const { 
   leftList,
   rightList,
-  toRight,
-  toLeft,
+  setList,
   checkItem,
   checkAll
 } = useTransfer(props.list)
 
 provide<TransferProps<T>>('transferProps', props)
-provide<TransferCheck>('transferCheck', [checkItem, checkAll])
+provide<ReturnType<UseTransfer>>('useTransfer', { 
+  leftList, 
+  rightList, 
+  setList,
+  checkItem, 
+  checkAll
+})
 
 const leftListChecked = computed(() => {
   return leftList.value.filter(item => item.checked).length
@@ -34,16 +40,21 @@ const leftListChecked = computed(() => {
 const rightListChecked = computed(() => {
   return rightList.value.filter(item => item.checked).length
 })
+
+const setListData = (to: TransferActionType) => {
+  const checkedData = props.list.filter(item => item.checked)
+  setList(to, checkedData)
+}
 </script>
 
 <template>
   <div class="vi-transfer">
     <TransferContainer type="left" :title="titles[0]" :list="leftList" />
     <div class="vi-transfer__buttons">
-      <vi-button @click="toLeft" :disabled="!rightListChecked">
+      <vi-button @click="setListData('left')" :disabled="!rightListChecked">
         <vi-icon name="Left" size="22px" cursor="inheirt" />
       </vi-button>
-      <vi-button @click="toRight" :disabled="!leftListChecked">
+      <vi-button @click="setListData('right')" :disabled="!leftListChecked">
         <vi-icon name="Right" size="22px" cursor="inheirt" />
       </vi-button>
     </div>

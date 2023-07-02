@@ -2,13 +2,20 @@
 import { computed, inject, ref } from 'vue'
 
 import type { TransferItem, TransferProps, TransferContainerProps } from './transfer'
-import type { TransferCheck } from './useTransfer'
+import type { UseTransfer } from './useTransfer'
 
 
 const props = defineProps<TransferContainerProps<T>>()
 
 const transferProps = inject<TransferProps<T>>('transferProps')!
-const [checkItem, checkAll] = inject<TransferCheck>('transferCheck')!
+
+const {
+  setList,
+  checkItem,
+  checkAll
+} = inject<ReturnType<UseTransfer>>('useTransfer')!
+
+const isDragging = ref(false)
 
 const checkedAndTotal = computed(() => {
   const total = props.list.length
@@ -19,8 +26,27 @@ const checkedAndTotal = computed(() => {
 
 const getItemClass = (item: TransferItem) => ({
   'is-disabled': item.disabled,
-  'is-checked': item.checked
+  'is-checked': item.checked,
+  'is-dragging': isDragging.value
 })
+
+const dragStart = (e: DragEvent, item: TransferItem) => {
+  e.dataTransfer?.setData('item_id', item.id)
+  e.dataTransfer?.setData('origin', props.type)
+  isDragging.value = true
+}
+
+const handleDrop = (e: DragEvent) => {
+  if (!transferProps.draggable) { return }
+
+  const id = e.dataTransfer?.getData('item_id')
+  const dropTarget = e.dataTransfer?.getData('origin')
+  const targetItem = transferProps.list.find(item => item.id === id)
+
+  if (dropTarget === props.type || !targetItem) { return }
+
+  setList(props.type, [targetItem])
+}
 </script>
 
 <template>
@@ -32,13 +58,16 @@ const getItemClass = (item: TransferItem) => ({
         {{ checkedAndTotal }}
       </span>
     </h2>
-    <ul class="vi-transfer__list">
+    <ul class="vi-transfer__list" @dragover.prevent="void" @drop="handleDrop">
       <li 
         class="vi-transfer__item" 
         :class="getItemClass(item)"
         v-for="item in <TransferItem[]>list" 
         :key="item.id"
+        :draggable="transferProps.draggable && !item.disabled"
         @click="checkItem(item, !item.checked)"
+        @dragstart="dragStart($event, item)"
+        @dragend="isDragging = false"
       >
         <vi-checkbox 
           v-model="item.checked" 
@@ -76,6 +105,7 @@ const getItemClass = (item: TransferItem) => ({
       overflow: hidden;
     }
   }
+
   & &-total {
     font-weight: var(--vi-font-weight-normal);
     font-size: var(--vi-font-size-small);
@@ -95,6 +125,7 @@ const getItemClass = (item: TransferItem) => ({
     user-select: none;
     display: flex;
     align-items: center;
+    transition: opacity var(--vi-animation-duration);
 
     &:hover {
       cursor: pointer;
@@ -109,6 +140,9 @@ const getItemClass = (item: TransferItem) => ({
         cursor: not-allowed;
         background-color: inherit;
       }
+    }
+    &.is-dragging {
+      opacity: var(--vi-opacity-half);
     }
   }
 }
