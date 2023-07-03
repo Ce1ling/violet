@@ -18,7 +18,13 @@ const list = ref([
 </script>
 
 <template>
-  <vi-transfer v-model="value" :list="list" show-total />
+  <vi-transfer 
+    v-model="value" 
+    :list="list" 
+    show-total 
+    :titles="['容器1', '容器2']"
+    draggable
+  />
 </template>
 
 <style scoped>
