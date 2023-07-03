@@ -14,44 +14,28 @@ export interface UseTransfer {
   })
 }
 
-const TRANSFER_SORT_KEY = '__sort_key__'
-
 export const useTransfer: UseTransfer = (list) => {
-  const dataList = {
-    left: ref<TransferItem[]>(sortable(list)),
-    right: ref<TransferItem[]>([])
-  }
+  const rightList = ref<TransferItem[]>([])
+  const leftList = computed<TransferItem[]>(() => {
+    return list.filter(item => !rightList.value.includes(item))
+  })
 
-  /**
-   * `transfer` 内部方法，仅用于排序
-   * @param {TransferItem[]} data 数据
-   * @param {String} key 用于排序的 `key`
-   * @returns 返回带 `key` 的 `data`
-   */
-  function sortable(data: TransferItem[], key: string = TRANSFER_SORT_KEY) {
-    return data.map((item, i) => {
-      item[key] = i
-      return item
-    })
-  }
-
-  /**
-   * 设置列表数据
-   * @param to 目标列表
-   * @param data 数据
-   */
-  function setList(to: TransferActionType, data: TransferItem[]) {
-    const reverseType = to === 'left' ? 'right' : 'left'
-
-    dataList[to].value = [
-      ...dataList[to].value,
+  function addRightList(data: TransferItem[]) {
+    const mergeData = [
+      ...rightList.value,
       ...data
     ]
+    // 为了数据的顺序，所以筛选 list 的数据
+    rightList.value = list.filter(item => mergeData.includes(item))
+  }
 
-    dataList[reverseType].value = dataList[reverseType].value.filter(item => !data.includes(item))
+  function removeRightList(data: TransferItem[]) {
+    rightList.value = rightList.value.filter(item => !data.includes(item))
+  }
 
-    dataList[to].value.sort((a, b) => a[TRANSFER_SORT_KEY] - b[TRANSFER_SORT_KEY])
-    dataList[to].value.forEach(item => item.checked = false)
+  function setList(to: TransferActionType, data: TransferItem[]) {
+    data.forEach(item => item.checked = false)
+    to === 'left' ? removeRightList(data) : addRightList(data)
   }
 
   function checkItem(item: TransferItem, value: boolean) {
@@ -60,27 +44,25 @@ export const useTransfer: UseTransfer = (list) => {
     }
   }
 
-  /**
-   * 选中本列表所有项
-   * @param type 待选中的列表，分为左、右
-   * @returns {WritableComputedRef<boolean>} 是否已全选
-   */
   function checkAll(type: TransferActionType) {
-    return computed({
+    const isCheckedAll = (data: TransferItem[]) => computed({
       get() {
-        const checkedLen = dataList[type].value.filter(item => item.checked).length
-        const availableLen = dataList[type].value.filter(item => !item.disabled).length
+        const checkedLen = data.filter(item => item.checked).length
+        const availableLen = data.filter(item => !item.disabled).length
+
         return (checkedLen >= availableLen) && availableLen !== 0
       },
       set(value) {
-        dataList[type].value.forEach(item => checkItem(item, value))
+        data.forEach(item => checkItem(item, value))
       }
     })
+
+    return isCheckedAll(type === 'left' ? leftList.value : rightList.value)
   }
 
   return {
-    leftList: dataList.left,
-    rightList: dataList.right,
+    leftList,
+    rightList,
     setList,
     checkItem,
     checkAll
