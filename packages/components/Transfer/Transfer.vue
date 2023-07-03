@@ -7,7 +7,10 @@ import type { TransferActionType, TransferItem, TransferProps, TransferPropsDefa
 import type { UseTransfer } from './useTransfer'
 
 
-const props = withDefaults< TransferProps<T>, TransferPropsDefaults<T> >(defineProps<TransferProps<T>>(), {
+const props = withDefaults< 
+  TransferProps<T>, 
+  TransferPropsDefaults<T> 
+>(defineProps<TransferProps<T>>(), {
   showTotal: false,
   titles: () => ['List 1', 'List 2'],
   draggable: false
@@ -30,34 +33,41 @@ provide<ReturnType<UseTransfer>>('useTransfer', {
   checkAll
 })
 
-const leftListChecked = computed(() => {
-  return leftList.value.filter(item => item.checked).length
-})
+const listCheckedLen = (list: TransferItem[]) => {
+  return computed(() => list.filter(item => item.checked).length)
+}
 
-const rightListChecked = computed(() => {
-  return rightList.value.filter(item => item.checked).length
-})
-
-const setListData = (to: TransferActionType) => {
-  const checkedData = to === 'left' 
-    ? rightList.value.filter(item => item.checked)
-    : leftList.value.filter(item => item.checked)
-  setList(to, checkedData)
+const setListData = (to: TransferActionType, list: TransferItem[]) => {
+  setList(to, list.filter(item => item.checked))
 }
 </script>
 
 <template>
   <div class="vi-transfer">
-    <TransferContainer type="left" :title="titles[0]" :list="leftList" />
+    <TransferContainer 
+      type="left" 
+      :title="titles[0]" 
+      :list="leftList" 
+    />
     <div class="vi-transfer__buttons">
-      <vi-button @click="setListData('left')" :disabled="!rightListChecked">
+      <vi-button 
+        @click="setListData('left', rightList)" 
+        :disabled="!listCheckedLen(rightList).value"
+      >
         <vi-icon name="Left" size="22px" cursor="inheirt" />
       </vi-button>
-      <vi-button @click="setListData('right')" :disabled="!leftListChecked">
+      <vi-button 
+        @click="setListData('right', leftList)" 
+        :disabled="!listCheckedLen(leftList).value"
+      >
         <vi-icon name="Right" size="22px" cursor="inheirt" />
       </vi-button>
     </div>
-    <TransferContainer type="right" :title="titles[1]" :list="rightList" />
+    <TransferContainer 
+      type="right" 
+      :title="titles[1]" 
+      :list="rightList" 
+    />
   </div>
 </template>
 
