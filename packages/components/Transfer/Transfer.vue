@@ -3,7 +3,13 @@ import { computed, provide } from 'vue'
 import { useTransfer } from './useTransfer'
 import TransferContainer from './TransferContainer.vue'
 
-import type { TransferActionType, TransferItem, TransferProps, TransferPropsDefaults } from './transfer'
+import type { 
+  TransferActionType, 
+  TransferItem, 
+  TransferProps, 
+  TransferPropsDefaults, 
+  TransferEmits
+} from './transfer'
 import type { UseTransfer } from './useTransfer'
 
 
@@ -16,6 +22,8 @@ const props = withDefaults<
   draggable: false
 })
 
+const emit = defineEmits<TransferEmits>()
+
 const { 
   leftList,
   rightList,
@@ -25,6 +33,7 @@ const {
 } = useTransfer(props.list)
 
 provide<TransferProps<T>>('transferProps', props)
+provide<TransferEmits>('transferEmits', emit)
 provide<ReturnType<UseTransfer>>('useTransfer', { 
   leftList, 
   rightList, 
@@ -38,7 +47,9 @@ const listCheckedLen = (list: TransferItem[]) => {
 }
 
 const setListData = (to: TransferActionType, list: TransferItem[]) => {
-  setList(to, list.filter(item => item.checked))
+  const checkedData = list.filter(item => item.checked)
+  setList(to, checkedData)
+  emit('change', to, checkedData)
 }
 </script>
 

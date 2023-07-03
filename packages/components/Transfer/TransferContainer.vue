@@ -1,13 +1,19 @@
 <script lang="ts" setup generic="T extends TransferItem[]">
-import { computed, inject, ref } from 'vue'
+import { computed, inject, ref, watch } from 'vue'
 
-import type { TransferItem, TransferProps, TransferContainerProps } from './transfer'
+import type { 
+  TransferItem, 
+  TransferProps, 
+  TransferContainerProps, 
+  TransferEmits 
+} from './transfer'
 import type { UseTransfer } from './useTransfer'
 
 
 const props = defineProps<TransferContainerProps<T>>()
 
 const transferProps = inject<TransferProps<T>>('transferProps')!
+const transferEmits = inject<TransferEmits>('transferEmits')!
 
 const {
   setList,
@@ -30,6 +36,15 @@ const getItemClass = (item: TransferItem) => ({
   'is-dragging': isDragging.value
 })
 
+const handleCheckChange = (list: TransferItem[]) => {
+  transferEmits('check-change', props.type, list)
+}
+
+const handleItemClick = (item: TransferItem) => {
+  checkItem(item, !item.checked)
+  handleCheckChange([item])
+}
+
 const dragStart = (e: DragEvent, item: TransferItem) => {
   e.dataTransfer?.setData('item_id', item.id)
   e.dataTransfer?.setData('origin', props.type)
@@ -46,13 +61,17 @@ const handleDrop = (e: DragEvent) => {
   if (dropTarget === props.type || !targetItem) { return }
 
   setList(props.type, [targetItem])
+  transferEmits('change', props.type, [targetItem])
 }
 </script>
 
 <template>
   <div class="vi-transfer__container">
     <h2 class="vi-transfer__title">
-      <vi-checkbox v-model="checkAll(type).value" />
+      <vi-checkbox 
+        v-model="checkAll(type).value" 
+        @change="handleCheckChange(list as TransferItem[])" 
+      />
       <span class="vi-transfer__title-inner">{{ title }}</span>
       <span class="vi-transfer-total" v-if="transferProps.showTotal">
         {{ checkedAndTotal }}
@@ -65,13 +84,14 @@ const handleDrop = (e: DragEvent) => {
         v-for="item in <TransferItem[]>list" 
         :key="item.id"
         :draggable="transferProps.draggable && !item.disabled"
-        @click="checkItem(item, !item.checked)"
+        @click="handleItemClick(item)"
         @dragstart="dragStart($event, item)"
         @dragend="isDragging = false"
       >
         <vi-checkbox 
           v-model="item.checked" 
           :disabled="item.disabled" 
+          @click.prevent="void"
         />
         {{ item.label }}
       </li>
