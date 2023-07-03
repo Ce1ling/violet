@@ -10,6 +10,7 @@ export interface CheckboxProps {
 
 export interface CheckboxEmits {
   (e: 'update:modelValue', label: CheckboxModelValue): void
+  (e: 'change', value: boolean, oldValue: boolean): void
 }
 
 export interface CheckboxSlots {

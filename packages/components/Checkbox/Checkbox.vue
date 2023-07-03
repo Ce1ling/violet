@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed  } from 'vue'
+import { computed, watch  } from 'vue'
 
 import type { CheckboxProps, CheckboxEmits, CheckboxSlots } from './checkbox'
 
@@ -42,6 +42,10 @@ const updateModelValue = () => {
 
   emit('update:modelValue', arr)
 }
+
+watch(isChecked, (value, oldValue) => {
+  emit('change', value, oldValue)
+})
 </script>
 
 <template>
