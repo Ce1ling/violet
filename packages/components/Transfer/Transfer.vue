@@ -7,10 +7,7 @@ import type { TransferActionType, TransferItem, TransferProps, TransferPropsDefa
 import type { UseTransfer } from './useTransfer'
 
 
-const props = withDefaults<
-  TransferProps<T>,
-  TransferPropsDefaults<T>
->(defineProps<TransferProps<T>>(), {
+const props = withDefaults< TransferProps<T>, TransferPropsDefaults<T> >(defineProps<TransferProps<T>>(), {
   showTotal: false,
   titles: () => ['List 1', 'List 2'],
   draggable: false
@@ -42,7 +39,9 @@ const rightListChecked = computed(() => {
 })
 
 const setListData = (to: TransferActionType) => {
-  const checkedData = props.list.filter(item => item.checked)
+  const checkedData = to === 'left' 
+    ? rightList.value.filter(item => item.checked)
+    : leftList.value.filter(item => item.checked)
   setList(to, checkedData)
 }
 </script>
