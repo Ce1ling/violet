@@ -52,6 +52,16 @@ Transfer/Draggable
 
 :::
 
+## 触发事件
+
+我们提供了 `change`、`check-change` 等事件。
+
+::: demo
+
+Transfer/Events
+
+:::
+
 ## APIs
 
 ### 属性
@@ -66,7 +76,7 @@ Transfer/Draggable
 
 ### 事件
 
-| 事件名 | 触发时机 | 参数 |
-| :---: | :---: | :---: |
-| change | 数据发生改变时触发 | `(e: MouseEvent): void` |
-| check-change | 选中状态发生改变时触发 | `(e: MouseEvent): void` |
+| 事件名 | 触发时机 | 参数 | 参数说明 |
+| :---: | :---: | :---: | :---: |
+| change | 数据发生改变时触发 | `(to: 'left' \| 'right', data: transferItem[]): void` | `to`: 数据去往的列表 <br> `data`: 被改变的数据 |
+| check-change | 选中状态发生改变时触发 | `(type: 'left' \| 'right', data: transferItem[]): void` | `type`: 状态改变时的列表 <br> `data`: 状态被改变的数据 |
