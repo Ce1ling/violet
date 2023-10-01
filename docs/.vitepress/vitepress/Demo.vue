@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import { Example, SourceCode } from './components/index'
 import { Tabs as ViTabs } from '../../../packages/components/index'
-import { Message } from '../../../packages/components/Message'
+
 import { useExamples } from './composables/useExamples'
 
 interface Props {
@@ -16,30 +16,16 @@ const props = defineProps<Props>()
 const examples = useExamples()
 
 const active = ref('example')
-
-const copy = () => {
-  navigator.clipboard.writeText(decodeURIComponent(props.rawCode))
-    .then(() => Message.success('复制成功'), () => Message.danger('复制失败'))
-}
-const change = (name: string) => {
-  if (name === 'copy') {
-    copy()
-    return false
-  }
-  return true
-}
-
 </script>
 
 <template>
-  <vi-tabs class="demo-tabs" v-model="active" :before-change="change">
+  <vi-tabs class="demo-tabs" v-model="active">
     <vi-tab name="example" label="示例">
       <Example :path="path" :example="examples[path]" />
     </vi-tab>
     <vi-tab name="source" label="代码">
-      <SourceCode :code="code" />
+      <SourceCode :code="code" :raw-code="props.rawCode" />
     </vi-tab>
-    <vi-tab name="copy" label="复制" title="复制代码" />
   </vi-tabs>
 </template>
 

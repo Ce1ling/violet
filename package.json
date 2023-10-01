@@ -23,6 +23,7 @@
     "@types/tinycolor2": "1.4.3",
     "@vitejs/plugin-vue": "4.2.3",
     "markdown-it-container": "3.0.0",
+    "prettier": "3.0.3",
     "prismjs": "1.29.0",
     "sass": "1.6.2",
     "svg-sprite-loader": "6.0.11",

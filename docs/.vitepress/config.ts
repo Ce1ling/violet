@@ -22,11 +22,11 @@ export const config: UserConfig = {
     outlineTitle: '目录',
     sidebar,
     docFooter,
-    footer
+    footer,
   },
   markdown: {
-    config: md => mdPlugin(md)
-  }
+    config: md => mdPlugin(md),
+  },
 }
 
 export default config
