@@ -1,5 +1,5 @@
 <script lang="ts" setup generic="T extends TransferItem[]">
-import { computed, inject, ref, watch } from 'vue'
+import { computed, inject, ref } from 'vue'
 
 import type {
   TransferItem,
@@ -14,7 +14,7 @@ const props = defineProps<TransferContainerProps<T>>()
 const transferProps = inject<TransferProps<T>>('transferProps')!
 const transferEmits = inject<TransferEmits>('transferEmits')!
 
-const { setList, checkItem, checkAll } =
+const { setList, checkItem, checkAll, isCheckedPart } =
   inject<ReturnType<UseTransfer>>('useTransfer')!
 
 const isDragging = ref(false)
@@ -41,24 +41,20 @@ const handleItemClick = (item: TransferItem) => {
   handleCheckChange([item])
 }
 
-const dragStart = (e: DragEvent, item: TransferItem) => {
+const handleDragStart = (e: DragEvent, item: TransferItem) => {
   e.dataTransfer?.setData('item_id', item.id)
   e.dataTransfer?.setData('origin', props.type)
   isDragging.value = true
 }
 
 const handleDrop = (e: DragEvent) => {
-  if (!transferProps.draggable) {
-    return
-  }
+  if (!transferProps.draggable) return
 
   const id = e.dataTransfer?.getData('item_id')
   const dropTarget = e.dataTransfer?.getData('origin')
   const targetItem = transferProps.list.find(item => item.id === id)
 
-  if (dropTarget === props.type || !targetItem) {
-    return
-  }
+  if (dropTarget === props.type || !targetItem) return
 
   setList(props.type, [targetItem])
   transferEmits('change', props.type, [targetItem])
@@ -71,6 +67,7 @@ const handleDrop = (e: DragEvent) => {
       <vi-checkbox
         v-model="checkAll(type).value"
         @change="handleCheckChange(list as TransferItem[])"
+        :is-checked-part="isCheckedPart(type)"
       />
       <span class="vi-transfer__title-inner">{{ title }}</span>
       <span class="vi-transfer-total" v-if="transferProps.showTotal">
@@ -85,7 +82,7 @@ const handleDrop = (e: DragEvent) => {
         :key="item.id"
         :draggable="transferProps.draggable && !item.disabled"
         @click="handleItemClick(item)"
-        @dragstart="dragStart($event, item)"
+        @dragstart="handleDragStart($event, item)"
         @dragend="isDragging = false"
       >
         <vi-checkbox

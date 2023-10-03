@@ -6,6 +6,8 @@ export interface CheckboxProps {
   disabled?: boolean
   border?: boolean
   isBtn?: boolean
+  /** 是否为选中部分 */
+  isCheckedPart?: boolean
 }
 
 export interface CheckboxEmits {

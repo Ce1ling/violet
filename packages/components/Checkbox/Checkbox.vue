@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { computed, watch  } from 'vue'
+import { computed, watch } from 'vue'
 
 import type { CheckboxProps, CheckboxEmits, CheckboxSlots } from './checkbox'
-
 
 const props = withDefaults(defineProps<CheckboxProps>(), {
   label: '',
   disabled: false,
   border: false,
-  isBtn: false
+  isBtn: false,
+  isCheckedPart: false,
 })
 
 const emit = defineEmits<CheckboxEmits>()
@@ -17,28 +17,32 @@ defineSlots<CheckboxSlots>()
 
 const isChecked = computed(() => {
   return typeof props.modelValue !== 'boolean'
-    ? props.modelValue.find(v => v === props.label) === props.label
+    ? props.modelValue.find(e => e === props.label) === props.label
     : props.modelValue
 })
 
 const checkboxClass = computed(() => ({
-  'is-checked': isChecked.value,
+  'is-checked': !props.isCheckedPart && isChecked.value,
   'is-disabled': props.disabled,
   'has-border': props.border && !props.isBtn,
-  'is-button': props.isBtn
+  'is-button': props.isBtn,
+  'is-checked-part': props.isCheckedPart,
 }))
 
 const updateModelValue = () => {
   if (typeof props.modelValue === 'boolean') {
     emit('update:modelValue', !props.modelValue)
-    return 
+    return
   }
 
   const arr = [...props.modelValue]
   const i = arr.indexOf(props.label)
 
-  if (i === -1) { arr.push(props.label) } 
-  else { arr.splice(i, 1) }
+  if (i === -1) {
+    arr.push(props.label)
+  } else {
+    arr.splice(i, 1)
+  }
 
   emit('update:modelValue', arr)
 }
@@ -50,19 +54,19 @@ watch(isChecked, (value, oldValue) => {
 
 <template>
   <label class="vi-checkbox" :class="checkboxClass">
-    <input 
-      type="checkbox" 
+    <input
+      type="checkbox"
       class="vi-checkbox__input"
-      :name="label" 
-      :value="label" 
+      :name="label"
+      :value="label"
       :checked="isChecked"
-      @input="updateModelValue" 
+      @input="updateModelValue"
       :disabled="disabled"
     />
-    <span class="vi-checkbox__square"></span>
+    <span class="vi-checkbox__square" />
     <span class="vi-checkbox__label">
       <slot v-if="$slots.default" />
-      <template v-else>{{ label }}</template>      
+      <template v-else>{{ label }}</template>
     </span>
   </label>
 </template>
@@ -75,7 +79,7 @@ watch(isChecked, (value, oldValue) => {
   cursor: pointer;
   user-select: none;
   position: relative;
-  
+
   &:hover {
     .vi-checkbox__square {
       border-color: var(--vi-color-primary);
@@ -96,24 +100,22 @@ watch(isChecked, (value, oldValue) => {
     border-radius: 2px;
     transition: all var(--vi-animation-duration);
   }
-  &.is-checked {
-    .vi-checkbox__square {
-      background-color: var(--vi-color-primary);
-      border-color: var(--vi-color-primary);
-      &::before {
-        content: '';
-        width: 4px;
-        height: 8px;
-        background-color: transparent;
-        position: absolute;
-        border: 1px solid var(--vi-checkbox-square-inner-color);
-        border-top: none;
-        border-left: none;
-        top: 1px;
-        left: 4px;
-        transform: rotate(45deg);
-        animation: vi-checkbox-zoom var(--vi-animation-duration);
-      }
+  &.is-checked .vi-checkbox__square {
+    background-color: var(--vi-color-primary);
+    border-color: var(--vi-color-primary);
+    &::before {
+      content: '';
+      width: 4px;
+      height: 8px;
+      background-color: transparent;
+      position: absolute;
+      border: 1px solid var(--vi-checkbox-square-inner-color);
+      border-top: none;
+      border-left: none;
+      top: 1px;
+      left: 4px;
+      transform: rotate(45deg);
+      animation: vi-checkbox-rotate-zoom var(--vi-animation-duration);
     }
   }
   &.is-disabled {
@@ -165,14 +167,38 @@ watch(isChecked, (value, oldValue) => {
       position: absolute;
     }
   }
+  &.is-checked-part .vi-checkbox__square {
+    background-color: var(--vi-color-primary);
+    border-color: var(--vi-color-primary);
+    &::before {
+      content: '';
+      width: 60%;
+      height: 1px;
+      background-color: var(--vi-checkbox-square-inner-color);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: vi-checkbox-zoom var(--vi-animation-duration);
+    }
+  }
 }
 
-@keyframes vi-checkbox-zoom {
+@keyframes vi-checkbox-rotate-zoom {
   from {
     transform: rotate(45deg) scale(0);
   }
   to {
     transform: rotate(45deg) scale(1);
+  }
+}
+
+@keyframes vi-checkbox-zoom {
+  from {
+    transform: translate(-50%, -50%) scale(0);
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
   }
 }
 </style>
