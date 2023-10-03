@@ -1,5 +1,7 @@
+import { ViBaseTypes } from '../types'
+
 export interface LinkProps {
-  type?: 'primary' | 'success' | 'warning' | 'danger'
+  type?: Omit<ViBaseTypes, 'info'>
   disabled?: boolean
   underline?: boolean
 }

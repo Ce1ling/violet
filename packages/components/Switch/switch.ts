@@ -1,3 +1,5 @@
+import { ViBaseSizes } from '../types'
+
 export interface SwitchProps {
   modelValue: boolean
   disabled?: boolean
@@ -10,7 +12,7 @@ export interface SwitchProps {
   onIcon?: string
   offIcon?: string
   width?: string
-  size?: 'small' | 'normal' | 'large'
+  size?: ViBaseSizes
 }
 
 export interface SwitchEmits {

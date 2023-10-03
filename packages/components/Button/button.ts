@@ -1,5 +1,7 @@
+import { ViBaseSizes, ViBaseTypes } from '../types'
+
 export interface ButtonProps {
-  type?: 'primary' | 'success' | 'info' | 'warning' | 'danger'
+  type?: ViBaseTypes
   text?: boolean
   round?: boolean
   circle?: boolean
@@ -9,7 +11,7 @@ export interface ButtonProps {
   bgColor?: string
   color?: string
   plain?: boolean
-  size?: 'small' | 'normal' | 'large'
+  size?: ViBaseSizes
   disableShadow?: boolean
 }
 
