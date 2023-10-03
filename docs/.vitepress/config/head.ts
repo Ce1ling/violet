@@ -9,5 +9,8 @@ interface Head {
  * @return 返回一个 `HeadConfig[]` 的数组
  */
 export const head: Head = (baseURI = '/') => [
-  ['link', { rel: 'icon', href: `${baseURI}violet-logo.svg`,  type: 'image/svg+xml' }]
+  [
+    'link',
+    { rel: 'icon', href: `${baseURI}violet-logo.svg`, type: 'image/svg+xml' },
+  ],
 ]

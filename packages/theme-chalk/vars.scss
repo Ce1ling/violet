@@ -1,0 +1,61 @@
+@import './components/button.scss';
+@import './components/backtop.scss';
+@import './components/checkbox.scss';
+@import './components/dialog.scss';
+@import './components/drawer.scss';
+@import './components/icon.scss';
+@import './components/input.scss';
+@import './components/layout.scss';
+@import './components/message.scss';
+@import './components/radio.scss';
+@import './components/select.scss';
+@import './components/stepper.scss';
+@import './components/switch.scss';
+@import './components/tabs.scss';
+@import './components/tag.scss';
+@import './components/transfer.scss';
+
+:root {
+  // color
+  --vi-color-primary: #802ae8;
+  --vi-color-success: #72d342;
+  --vi-color-info: #c2c2c2;
+  --vi-color-warning: #e2b72b;
+  --vi-color-danger: #e25f2b;
+  --vi-color-primary-weak: #f1e2ff;
+  --vi-color-success-weak: #eaffe0;
+  --vi-color-info-weak: #ececec;
+  --vi-color-warning-weak: #fff8e0;
+  --vi-color-danger-weak: #ffe4da;
+  --vi-color-primary-deep: #43186a;
+  --vi-color-success-deep: #2d5d16;
+  --vi-color-info-deep: #4b4b4b;
+  --vi-color-warning-deep: #554714;
+  --vi-color-danger-deep: #572715;
+  --vi-color-violet: #ee82ee;
+  --vi-color-white: #fff;
+  --vi-color-black: #000;
+  --vi-color-black-weak: #666;
+  --vi-color-gray: #dddddd;
+  --vi-color-shadow: #dcd6e4;
+  --vi-color-mask-black: rgba(0, 0, 0, 0.5);
+  --vi-bg-color: #ffffff;
+  --vi-shadow-dark: 0 0 18px rgba(0, 0, 0, 0.2);
+
+  // font
+  --vi-font-size-small: 12px;
+  --vi-font-size-base: 14px;
+  --vi-font-size-large: 18px;
+  --vi-font-size-huge: 22px;
+  --vi-font-weight-normal: normal;
+  --vi-font-weight-middle: bold;
+  --vi-font-weight-large: bolder;
+
+  // base
+  --vi-base-padding: 18px;
+  --vi-base-radius: 5px;
+  --vi-small-radius: 2px;
+  --vi-animation-duration: 0.3s;
+  --vi-opacity-half: 0.666667;
+  --vi-round: 999999999px;
+}

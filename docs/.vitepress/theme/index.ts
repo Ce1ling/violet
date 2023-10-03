@@ -4,7 +4,7 @@ import { format } from '../utils/format'
 import * as VioletComponents from '../../../packages/components'
 import * as DocsComponents from '../vitepress/index'
 
-import '../../../packages/theme-chalk/var.scss'
+import '../../../packages/theme-chalk/vars.scss'
 import '../../../packages/theme-chalk/common.scss'
 // dcos styles
 import './styles/vars.scss'

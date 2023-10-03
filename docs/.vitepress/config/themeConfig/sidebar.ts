@@ -1,10 +1,4 @@
-import { 
-  basic, 
-  layout, 
-  form, 
-  navigation, 
-  messages 
-} from '../../pages/index'
+import { basic, layout, form, navigation, messages } from '../../pages/index'
 
 /** 文档侧边栏 */
 export const sidebar = [

@@ -4,7 +4,6 @@ import { Icon as ViIcon } from '../index'
 
 import type { InputProps, InputIcon, InputSlots, InputEmits } from './input'
 
-
 const props = withDefaults(defineProps<InputProps>(), {
   type: 'text',
   disabled: false,
@@ -13,7 +12,7 @@ const props = withDefaults(defineProps<InputProps>(), {
   rows: '2',
   limit: '',
   showLimit: false,
-  limitSeparator: ' / '
+  limitSeparator: ' / ',
 })
 
 const emit = defineEmits<InputEmits>()
@@ -28,10 +27,10 @@ const isShowPwd = ref(false)
 const isPwdInput = ref(props.type === 'password')
 const lineHeight = ref('')
 
-const inputClass = computed(() => ({ 
+const inputClass = computed(() => ({
   'is-disabled': props.disabled,
   'vi-input-textarea': props.type === 'textarea',
-  'vi-input-group': slots.prepend || slots.append
+  'vi-input-group': slots.prepend || slots.append,
 }))
 
 const mixedStyle = computed(() => ({ lineHeight: lineHeight.value }))
@@ -53,27 +52,36 @@ const toggleShowPwd = () => {
 }
 
 const getIconAttrs = (type: InputIcon) => {
-  return typeof type === 'string' 
-    ? { name: type, size: 'inherit' }
-    : type
+  return typeof type === 'string' ? { name: type, size: 'inherit' } : type
 }
 
 const RenderLimit = () => {
   const currentLen = props.modelValue.length
   const limit = Number(props.limit)
 
-  return h('span', {
-    class: [
-      `vi-input__limit-${props.type === 'textarea' ? props.type : 'input'}`, 
-      { 'is-max': currentLen >= limit } 
-    ],
-  }, `${currentLen}${props.limitSeparator}${limit}`) 
+  return h(
+    'span',
+    {
+      class: [
+        `vi-input__limit-${props.type === 'textarea' ? props.type : 'input'}`,
+        { 'is-max': currentLen >= limit },
+      ],
+    },
+    `${currentLen}${props.limitSeparator}${limit}`
+  )
 }
 
-watch(() => props.modelValue, val => {
-  if (props.clearable) { isShowClear.value = !!val }
-  if (props.showPwd) { isShowPwd.value = !!val }
-})
+watch(
+  () => props.modelValue,
+  val => {
+    if (props.clearable) {
+      isShowClear.value = !!val
+    }
+    if (props.showPwd) {
+      isShowPwd.value = !!val
+    }
+  }
+)
 
 onMounted(async () => {
   await nextTick()
@@ -81,22 +89,22 @@ onMounted(async () => {
 })
 
 defineExpose({
-  inputEl: viInputEl
+  inputEl: viInputEl,
 })
 </script>
 
 <template>
   <div class="vi-input" :class="inputClass">
     <template v-if="type === 'textarea'">
-      <textarea 
-        ref="viInputEl" 
-        class="vi-input__input" 
+      <textarea
+        ref="viInputEl"
+        class="vi-input__input"
         autocomplete="off"
-        :value="modelValue" 
-        :disabled="disabled" 
-        :rows="rows" 
-        :maxlength="limit" 
-        @input="handleInput" 
+        :value="modelValue"
+        :disabled="disabled"
+        :rows="rows"
+        :maxlength="limit"
+        @input="handleInput"
         v-bind="$attrs"
       ></textarea>
       <RenderLimit v-if="limit.trim() && showLimit" />
@@ -109,40 +117,40 @@ defineExpose({
         <vi-icon v-bind="getIconAttrs(prefixIcon)" v-if="prefixIcon" />
         <slot name="prefix" v-else />
       </span>
-      <input 
-        ref="viInputEl" 
-        class="vi-input__input" 
+      <input
+        ref="viInputEl"
+        class="vi-input__input"
         autocomplete="off"
-        :type="type" 
-        :value="modelValue" 
-        :disabled="disabled" 
-        :maxlength="limit" 
-        @input="handleInput" 
+        :type="type"
+        :value="modelValue"
+        :disabled="disabled"
+        :maxlength="limit"
+        @input="handleInput"
         v-bind="$attrs"
       />
       <span class="vi-input__suffix-icon" v-if="$slots.suffix || suffixIcon">
         <vi-icon v-bind="getIconAttrs(suffixIcon)" v-if="suffixIcon" />
         <slot name="suffix" v-else />
       </span>
-      <vi-icon 
+      <vi-icon
         class="vi-input__input-clear"
-        title="清除" 
-        name="CloseCircle" 
-        size="16px" 
-        color="var(--vi-input-icon-color)" 
-        hover-color="var(--vi-color-primary)" 
-        @click="clearInput" 
-        v-if="isShowClear" 
+        title="清除"
+        name="CloseCircle"
+        size="16px"
+        color="var(--vi-input-icon-color)"
+        hover-color="var(--vi-color-primary)"
+        @click="clearInput"
+        v-if="isShowClear"
       />
-      <vi-icon 
+      <vi-icon
         class="vi-input__input-show-hidden"
-        :title="isPwdInput ? '显示' : '隐藏'" 
-        :name="isPwdInput ? 'VisibilityOff': 'Visibility'" 
-        size="16px" 
-        color="var(--vi-input-icon-color)" 
-        hover-color="var(--vi-color-primary)" 
-        @click="toggleShowPwd" 
-        v-if="props.type === 'password' && isShowPwd" 
+        :title="isPwdInput ? '显示' : '隐藏'"
+        :name="isPwdInput ? 'VisibilityOff' : 'Visibility'"
+        size="16px"
+        color="var(--vi-input-icon-color)"
+        hover-color="var(--vi-color-primary)"
+        @click="toggleShowPwd"
+        v-if="props.type === 'password' && isShowPwd"
       />
       <RenderLimit v-if="limit.trim() && showLimit" />
       <div class="vi-input__append" :style="mixedStyle" v-if="$slots.append">
@@ -173,9 +181,13 @@ defineExpose({
   }
   &:focus-within {
     border-color: var(--vi-color-primary);
+    box-shadow: 0 0 0 1px var(--vi-color-primary);
+
     .vi-input__prepend,
     .vi-input__append {
       border-color: var(--vi-color-primary);
+      box-shadow: 0 0 0 1px var(--vi-color-primary);
+      color: var(--vi-color-primary);
     }
   }
   &-textarea {
@@ -210,7 +222,9 @@ defineExpose({
       font-size: 12px;
       color: var(--vi-input-limit-color);
       line-height: 12px;
-      &.is-max { color: var(--vi-color-danger); }
+      &.is-max {
+        color: var(--vi-color-danger);
+      }
     }
     &-textarea {
       position: absolute;
@@ -230,7 +244,8 @@ defineExpose({
   }
   &__prepend,
   &__append {
-    color: #909399;
+    color: #808080;
+    // color: var(--vi-color-info-deep);
     background-color: var(--vi-input-mixed-bg-color);
     padding: 0 16px;
     border-width: 0;
