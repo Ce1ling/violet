@@ -6,9 +6,11 @@
   // 标题的链接(#)
   .vp-doc .header-anchor {
     font-size: 28px;
-    &:hover { color: var(--doc-color-primary); }
+    &:hover {
+      color: var(--doc-color-primary);
+    }
   }
-  
+
   // 头部
   .VPNav {
     background-color: var(--vp-c-bg);
@@ -26,7 +28,7 @@
     .container {
       max-width: 100% !important;
     }
-    // 左 logo 
+    // 左 logo
     .title {
       font-size: 26px;
       color: #802ae8;
@@ -49,18 +51,18 @@
 
         // 名称
         .name {
-          .clip { 
+          .clip {
             cursor: pointer;
             font-size: 86px;
-            transition: .3s all;
+            transition: 0.3s all;
             &:hover {
               text-shadow: 0 0 15px var(--doc-color-primary);
             }
           }
         }
         // 标题
-        .text { 
-          max-width: 100%; 
+        .text {
+          max-width: 100%;
         }
         // 开始按钮
         .actions {
@@ -79,19 +81,27 @@
     overflow-y: hidden;
     width: unset;
     padding-left: 32px;
-    &:hover { overflow-y: auto; }
+    &:hover {
+      overflow-y: auto;
+    }
     .nav {
       margin-top: 24px;
-      .title .title-text { font-size: 18px; }
+      .title .title-text {
+        font-size: 18px;
+      }
       .items {
         > a {
           overflow: hidden;
-          text-overflow:ellipsis;
+          text-overflow: ellipsis;
           white-space: nowrap;
-          transition: color 0s, background-color .3s;
+          transition:
+            color 0s,
+            background-color 0.3s;
           padding: 8px 14px !important;
           border-radius: var(--doc-border-radius);
-          &:hover { background-color: #ddd; }
+          &:hover {
+            background-color: #ddd;
+          }
           &.active {
             color: #fff;
             background-color: var(--doc-color-primary);
@@ -116,7 +126,11 @@
           table {
             display: table;
             width: 100%;
-            tr, th, td { border: none; }
+            tr,
+            th,
+            td {
+              border: none;
+            }
           }
           // tip 区块
           .tip.custom-block {
@@ -129,12 +143,12 @@
 
   // 示例区域
   .VPDoc .content {
-    [class*="language-"] {
+    [class*='language-'] {
       border: 1px solid var(--doc-border-color);
       border-radius: var(--doc--border-radius);
     }
   }
-  
+
   // 文档底部
   .VPDocFooter {
     .prev,
@@ -167,34 +181,31 @@
   }
 }
 
-body.vi-scroll-hide {
-  #app .VPNav {
-    width: calc(100% - 8px);
-  }
-}
-
 html.dark {
   #app {
     // 头部
     .VPNav {
-      &::after { filter: brightness(1.9); }
+      &::after {
+        filter: brightness(1.9);
+      }
     }
-    
+
     // 侧边栏
     .VPSidebar {
       border-right: 1px solid #555555;
 
       .nav .items > a {
-        &:hover { background-color: #555555; }
+        &:hover {
+          background-color: #555555;
+        }
         &.active {
           background-color: var(--doc-color-primary);
         }
       }
     }
 
-    // 内容 
+    // 内容
     #VPContent.has-sidebar {
-
       // 底部颜色
       .footer-wrap {
         filter: brightness(2);
