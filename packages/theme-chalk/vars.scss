@@ -45,11 +45,10 @@
   // font
   --vi-font-size-small: 12px;
   --vi-font-size-base: 14px;
-  --vi-font-size-large: 18px;
-  --vi-font-size-huge: 22px;
-  --vi-font-weight-normal: normal;
-  --vi-font-weight-middle: bold;
-  --vi-font-weight-large: bolder;
+  --vi-font-size-large: 16px;
+  --vi-font-size-xl: 18px;
+  --vi-font-size-xxl: 20px;
+  --vi-font-size-xxxl: 22px;
 
   // base
   --vi-base-padding: 18px;
@@ -57,5 +56,5 @@
   --vi-small-radius: 2px;
   --vi-animation-duration: 0.3s;
   --vi-opacity-half: 0.666667;
-  --vi-round: 999999999px;
+  --vi-rounded: 999999999px;
 }

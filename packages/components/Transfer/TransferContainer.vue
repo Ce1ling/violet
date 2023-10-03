@@ -1,25 +1,21 @@
 <script lang="ts" setup generic="T extends TransferItem[]">
 import { computed, inject, ref, watch } from 'vue'
 
-import type { 
-  TransferItem, 
-  TransferProps, 
-  TransferContainerProps, 
-  TransferEmits 
+import type {
+  TransferItem,
+  TransferProps,
+  TransferContainerProps,
+  TransferEmits,
 } from './transfer'
 import type { UseTransfer } from './useTransfer'
-
 
 const props = defineProps<TransferContainerProps<T>>()
 
 const transferProps = inject<TransferProps<T>>('transferProps')!
 const transferEmits = inject<TransferEmits>('transferEmits')!
 
-const {
-  setList,
-  checkItem,
-  checkAll
-} = inject<ReturnType<UseTransfer>>('useTransfer')!
+const { setList, checkItem, checkAll } =
+  inject<ReturnType<UseTransfer>>('useTransfer')!
 
 const isDragging = ref(false)
 
@@ -33,7 +29,7 @@ const checkedAndTotal = computed(() => {
 const getItemClass = (item: TransferItem) => ({
   'is-disabled': item.disabled,
   'is-checked': item.checked,
-  'is-dragging': isDragging.value
+  'is-dragging': isDragging.value,
 })
 
 const handleCheckChange = (list: TransferItem[]) => {
@@ -52,13 +48,17 @@ const dragStart = (e: DragEvent, item: TransferItem) => {
 }
 
 const handleDrop = (e: DragEvent) => {
-  if (!transferProps.draggable) { return }
+  if (!transferProps.draggable) {
+    return
+  }
 
   const id = e.dataTransfer?.getData('item_id')
   const dropTarget = e.dataTransfer?.getData('origin')
   const targetItem = transferProps.list.find(item => item.id === id)
 
-  if (dropTarget === props.type || !targetItem) { return }
+  if (dropTarget === props.type || !targetItem) {
+    return
+  }
 
   setList(props.type, [targetItem])
   transferEmits('change', props.type, [targetItem])
@@ -68,9 +68,9 @@ const handleDrop = (e: DragEvent) => {
 <template>
   <div class="vi-transfer__container">
     <h2 class="vi-transfer__title">
-      <vi-checkbox 
-        v-model="checkAll(type).value" 
-        @change="handleCheckChange(list as TransferItem[])" 
+      <vi-checkbox
+        v-model="checkAll(type).value"
+        @change="handleCheckChange(list as TransferItem[])"
       />
       <span class="vi-transfer__title-inner">{{ title }}</span>
       <span class="vi-transfer-total" v-if="transferProps.showTotal">
@@ -78,19 +78,19 @@ const handleDrop = (e: DragEvent) => {
       </span>
     </h2>
     <ul class="vi-transfer__list" @dragover.prevent="void" @drop="handleDrop">
-      <li 
-        class="vi-transfer__item" 
+      <li
+        class="vi-transfer__item"
         :class="getItemClass(item)"
-        v-for="item in <TransferItem[]>list" 
+        v-for="item in <TransferItem[]>list"
         :key="item.id"
         :draggable="transferProps.draggable && !item.disabled"
         @click="handleItemClick(item)"
         @dragstart="dragStart($event, item)"
         @dragend="isDragging = false"
       >
-        <vi-checkbox 
-          v-model="item.checked" 
-          :disabled="item.disabled" 
+        <vi-checkbox
+          v-model="item.checked"
+          :disabled="item.disabled"
           @click.prevent="void"
         />
         {{ item.label }}
@@ -117,17 +117,17 @@ const handleDrop = (e: DragEvent) => {
     background-color: var(--vi-color-info-weak);
     user-select: none;
     cursor: pointer;
-    
+
     &-inner {
       display: inline-block;
-      font-size: var(--vi-font-size-large);
+      font-size: var(--vi-font-size-xl);
       flex-grow: 1;
       overflow: hidden;
     }
   }
 
   & &-total {
-    font-weight: var(--vi-font-weight-normal);
+    font-weight: normal;
     font-size: var(--vi-font-size-small);
   }
 

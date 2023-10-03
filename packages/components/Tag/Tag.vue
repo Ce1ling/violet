@@ -4,13 +4,12 @@ import { Icon as ViIcon } from '../index'
 
 import type { TagProps, TagEmits, TagSlots } from './tag'
 
-
 const props = withDefaults(defineProps<TagProps>(), {
   type: 'primary',
   border: false,
   closable: false,
   disabled: false,
-  round: false
+  round: false,
 })
 
 const emit = defineEmits<TagEmits>()
@@ -19,20 +18,25 @@ defineSlots<TagSlots>()
 
 const isClosed = ref(false)
 
-const tagClass = computed(() => [`vi-tag--${props.type}`, {
-  'has-border': props.border,
-  'is-disabled': props.disabled,
-  'is-round': props.round
-}])
+const tagClass = computed(() => [
+  `vi-tag--${props.type}`,
+  {
+    'has-border': props.border,
+    'is-disabled': props.disabled,
+    'is-round': props.round,
+  },
+])
 
 const tagStyles = computed(() => ({
   '--vi-tag-border-color': '',
   '--vi-tag-bg-color': '',
-  '--vi-tag-color': ''
+  '--vi-tag-color': '',
 }))
 
 const handleClose = (e: MouseEvent) => {
-  if (props.disabled) { return }
+  if (props.disabled) {
+    return
+  }
 
   isClosed.value = true
   emit('close', e)
@@ -40,19 +44,14 @@ const handleClose = (e: MouseEvent) => {
 </script>
 
 <template>
-  <div 
-    class="vi-tag" 
-    :class="tagClass" 
-    :style="tagStyles"
-    v-if="!isClosed"
-  >
+  <div class="vi-tag" :class="tagClass" :style="tagStyles" v-if="!isClosed">
     <span class="vi-tag__content">
       <slot />
     </span>
     <span class="vi-tag__close" v-if="closable">
-      <vi-icon 
-        name="Close" 
-        @click="handleClose" 
+      <vi-icon
+        name="Close"
+        @click="handleClose"
         :cursor="disabled ? 'not-allowed' : 'pointer'"
       />
     </span>
@@ -84,9 +83,9 @@ $types: primary, success, info, warning, danger;
         --vi-tag-bg-color: var(--vi-color-#{$t}-weak);
         --vi-tag-color: #707070;
       }
-    }    
+    }
   }
-  
+
   &__content {
     font-size: var(--vi-font-size-base);
   }
@@ -117,7 +116,7 @@ $types: primary, success, info, warning, danger;
   }
 
   &.is-round {
-    border-radius: var(--vi-round);
+    border-radius: var(--vi-rounded);
   }
 }
 </style>

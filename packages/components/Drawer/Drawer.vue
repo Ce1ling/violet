@@ -6,7 +6,6 @@ import { getADByVar } from '../../utils/dom/animation'
 
 import type { DrawerProps, DrawerEmits, DrawerSlots } from './drawer'
 
-
 const props = withDefaults(defineProps<DrawerProps>(), {
   width: '30%',
   height: '30%',
@@ -16,7 +15,7 @@ const props = withDefaults(defineProps<DrawerProps>(), {
   appendToBody: false,
   mask: true,
   lockScroll: true,
-  clickMaskClose: true
+  clickMaskClose: true,
 })
 
 const emit = defineEmits<DrawerEmits>()
@@ -25,10 +24,10 @@ defineSlots<DrawerSlots>()
 
 const drawerClass = computed(() => [`vi-drawer--${props.direction}`])
 
-const drawerStyle = computed(() => ({ 
+const drawerStyle = computed(() => ({
   width: getWHByDirection('width'),
   height: getWHByDirection('height'),
-  zIndex: props.zIndex
+  zIndex: props.zIndex,
 }))
 
 const animationDuration = computed(() => {
@@ -41,8 +40,12 @@ const getWHByDirection = (target: 'width' | 'height') => {
   const y = ['t-b', 'b-t']
 
   return target === 'width'
-    ? x.includes(props.direction) ? props.width : undefined
-    : y.includes(props.direction) ? props.height : undefined
+    ? x.includes(props.direction)
+      ? props.width
+      : undefined
+    : y.includes(props.direction)
+    ? props.height
+    : undefined
 }
 
 const close = () => emit('update:modelValue', false)
@@ -57,19 +60,28 @@ const handleClose = () => {
 }
 
 const handleMaskClose = () => {
-  if (props.clickMaskClose) { handleClose() }
+  if (props.clickMaskClose) {
+    handleClose()
+  }
 }
 
 const handleLockScroll = () => {
   if (props.lockScroll) {
-    useScrollVisible(toRef(props, 'modelValue'), document.body, animationDuration.value)
+    useScrollVisible(
+      toRef(props, 'modelValue'),
+      document.body,
+      animationDuration.value
+    )
   }
 }
 
-watch(() => props.modelValue, val => {
-  emit('update:modelValue', val)
-  emit(val ? 'open' : 'close', val)
-})
+watch(
+  () => props.modelValue,
+  val => {
+    emit('update:modelValue', val)
+    emit(val ? 'open' : 'close', val)
+  }
+)
 
 onMounted(handleLockScroll)
 </script>
@@ -78,7 +90,12 @@ onMounted(handleLockScroll)
   <Teleport to="body" :disabled="!appendToBody">
     <Transition name="vi-drawer-fade">
       <vi-mask :visible="modelValue" :disabled="!mask" @click="handleMaskClose">
-        <div class="vi-drawer" :class="drawerClass" @click.stop="void" :style="drawerStyle">
+        <div
+          class="vi-drawer"
+          :class="drawerClass"
+          @click.stop="void"
+          :style="drawerStyle"
+        >
           <header class="vi-drawer__header" v-if="$slots.header || title">
             <div class="vi-drawer__header-title">
               <template v-if="$slots.header">
@@ -88,7 +105,11 @@ onMounted(handleLockScroll)
                 {{ title }}
               </span>
             </div>
-            <button class="vi-drawer__header-close-btn" @click="handleClose" v-if="showClose">
+            <button
+              class="vi-drawer__header-close-btn"
+              @click="handleClose"
+              v-if="showClose"
+            >
               <vi-icon name="Close" hover-color="var(--vi-color-primary)" />
             </button>
           </header>
@@ -120,10 +141,12 @@ $positions: l-r, r-l, t-b, b-t;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    &-title { flex: 1; }
+    &-title {
+      flex: 1;
+    }
     &-text {
       font-weight: bolder;
-      font-size: var(--vi-font-size-large);
+      font-size: var(--vi-font-size-xl);
     }
   }
   &__body {
@@ -165,7 +188,7 @@ $positions: l-r, r-l, t-b, b-t;
   &-leave-to {
     transition: all var(--vi-animation-duration);
     opacity: 0;
-    
+
     @each $p in $positions {
       .vi-drawer--#{$p} {
         @if $p == l-r {

@@ -10,6 +10,7 @@ export interface ButtonProps {
   color?: string
   plain?: boolean
   size?: 'small' | 'normal' | 'large'
+  disableShadow?: boolean
 }
 
 export interface ButtonEmits {

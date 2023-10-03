@@ -36,7 +36,12 @@
   --vp-button-brand-hover-bg: transparent;
   --vp-button-brand-bg: var(--doc-color-primary);
   --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, var(--doc-color-primary), #4d2ae8, violet);
+  --vp-home-hero-name-background: -webkit-linear-gradient(
+    120deg,
+    var(--doc-color-primary),
+    #4d2ae8,
+    violet
+  );
   --vp-button-brand-active-border: var(--doc-color-primary);
 
   // vitepress 侧边栏
@@ -68,16 +73,13 @@ html.dark {
     --doc-backtop-shadow-color: #000000;
     --doc-example-header-bg-color: #303030;
     --doc-example-border-color: #555555;
-    
+
     // vitepress
     --vp-code-block-bg: #3c3841;
   }
 
   .vi-button {
     --vi-button-bg-color-weak: #222222;
-    &.is-text-btn {
-      --vi-button-text-bg-color: #363636;
-    }
   }
   .vi-divider {
     --vi-color-white: var(--doc-bg-color);

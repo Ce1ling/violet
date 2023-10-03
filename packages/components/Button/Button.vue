@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed, h } from 'vue'
-import { Icon as ViIcon } from '../index'
 import tinycolor from 'tinycolor2'
 
-import type { ButtonProps, ButtonEmits, ButtonSlots } from './button'
+import { Icon as ViIcon } from '../index'
 
+import type { ButtonProps, ButtonEmits, ButtonSlots } from './button'
 
 const props = withDefaults(defineProps<ButtonProps>(), {
   type: 'primary',
@@ -15,7 +15,8 @@ const props = withDefaults(defineProps<ButtonProps>(), {
   loading: false,
   isPrefix: true,
   plain: false,
-  size: 'normal'
+  size: 'normal',
+  disableShadow: false,
 })
 
 const emit = defineEmits<ButtonEmits>()
@@ -23,8 +24,8 @@ const emit = defineEmits<ButtonEmits>()
 defineSlots<ButtonSlots>()
 
 const buttonClass = computed(() => [
-  `vi-button--${props.type}`, 
-  `vi-button--${props.size}`, 
+  `vi-button--${props.type}`,
+  `vi-button--${props.size}`,
   {
     'is-text-btn': props.text,
     'is-round': props.round,
@@ -32,34 +33,54 @@ const buttonClass = computed(() => [
     'is-disabled': props.disabled,
     'is-loading': props.loading,
     'is-plain': props.plain,
-  }
+  },
 ])
 
-const buttonStyle = computed(() => ({
-  '--vi-button-bg-color': props.bgColor,
-  '--vi-button-border-color': props.bgColor,
-  '--vi-button-text-color': props.color,
-  '--vi-button-bg-color-weak': plainBgColor.value
-}))
+const buttonStyle = computed(() => {
+  const styleVars = [
+    ['--vi-button-bg-color', props.bgColor],
+    ['--vi-button-border-color', props.bgColor],
+    ['--vi-button-text-color', props.color],
+    ['--vi-button-bg-color-weak', plainBgColor.value],
+  ]
 
-const plainBgColor = computed(() => props.bgColor && tinycolor(props.bgColor)?.setAlpha(0.2).toRgbString())
+  if (props.bgColor && props.bgColor.trim() !== '') {
+    styleVars.push(
+      [`--vi-color-${props.type}-deep`, props.bgColor],
+      [`--vi-color-${props.type}`, props.bgColor]
+    )
+  }
 
-const RenderIcon = () => props.loading && h(ViIcon, { 
-  name: 'Loading', 
-  size: '16px', 
-  cursor: 'wait', 
-  loading: true 
+  if (props.disableShadow) {
+    styleVars.push(['box-shadow', 'none'])
+  }
+
+  return Object.fromEntries(styleVars)
 })
+
+const plainBgColor = computed(
+  () => props.bgColor && tinycolor(props.bgColor)?.setAlpha(0.2).toRgbString()
+)
+
+const RenderIcon = () =>
+  props.loading &&
+  h(ViIcon, {
+    name: 'Loading',
+    size: '16px',
+    cursor: 'wait',
+    loading: true,
+  })
 
 const handleClick = (e: MouseEvent) => !props.disabled && emit('click', e)
 </script>
 
 <template>
-  <button 
-    class="vi-button" 
-    :class="buttonClass" 
-    :style="buttonStyle" 
-    @click="handleClick">
+  <button
+    class="vi-button"
+    :class="buttonClass"
+    :style="buttonStyle"
+    @click="handleClick"
+  >
     <slot name="prefix">
       <RenderIcon v-if="isPrefix" />
     </slot>
@@ -84,16 +105,16 @@ $types: primary, success, info, warning, danger;
   text-align: center;
   cursor: pointer;
   border: none;
-  font-size: 14px;
-  padding: 6px var(--vi-base-padding);
+  font-size: var(--vi-font-size-base);
+  padding: var(--vi-button-padding-normal);
   border-radius: var(--vi-base-radius);
   color: var(--vi-color-black);
   background-color: var(--vi-color-white);
   transition: all var(--vi-button-animation-duration);
 
-  &:hover { opacity: var(--vi-opacity-half); }
-  &:active { opacity: 1; }
-  &__inner { font-size: inherit; }
+  &__inner {
+    font-size: inherit;
+  }
 
   @each $t in $types {
     &--#{$t} {
@@ -104,6 +125,15 @@ $types: primary, success, info, warning, danger;
       color: var(--vi-button-text-color);
       background-color: var(--vi-button-bg-color);
       border: 1px solid transparent;
+
+      &:hover {
+        opacity: var(--vi-opacity-half);
+        box-shadow: var(--vi-button-shadow) var(--vi-color-#{$t}-deep);
+      }
+      &:active {
+        opacity: 1;
+        box-shadow: var(--vi-button-shadow) var(--vi-color-#{$t});
+      }
       &.is-plain {
         --vi-button-text-color: var(--vi-button-bg-color);
         --vi-button-bg-color-weak: var(--vi-color-#{$t}-weak);
@@ -136,19 +166,21 @@ $types: primary, success, info, warning, danger;
   &.is-text-btn {
     color: var(--vi-color-black);
     background-color: transparent;
-    &:hover { background-color: var(--vi-button-text-bg-color); }
-    &:active { background-color: transparent; }
+    box-shadow: none;
 
     @each $t in $types {
       &.vi-button--#{$t} {
         --vi-button-text-color: var(--vi-color-#{$t});
-
         color: var(--vi-button-text-color);
+
+        &:hover {
+          background-color: var(--vi-color-#{$t}-weak);
+        }
       }
     }
   }
   &.is-round {
-    border-radius: var(--vi-button-round-radius);
+    border-radius: var(--vi-rounded);
   }
   &.is-circle {
     width: var(--vi-button-circle-normal);
@@ -159,15 +191,17 @@ $types: primary, success, info, warning, danger;
   &.is-loading {
     opacity: var(--vi-opacity-half);
     cursor: wait;
+    box-shadow: none;
   }
   &.is-disabled {
     opacity: var(--vi-opacity-half);
     cursor: not-allowed;
+    box-shadow: none;
   }
 
   &--small {
     padding: var(--vi-button-padding-small);
-    font-size: 12px;
+    font-size: var(--vi-font-size-small);
     &.is-circle {
       width: var(--vi-button-circle-small);
       height: var(--vi-button-circle-small);
@@ -175,7 +209,7 @@ $types: primary, success, info, warning, danger;
   }
   &--large {
     padding: var(--vi-button-padding-large);
-    font-size: 16px;
+    font-size: var(--vi-font-size-large);
     &.is-circle {
       padding: 0;
       width: var(--vi-button-circle-large);

@@ -6,7 +6,6 @@ import { getADByVar } from '../../utils/dom/animation'
 
 import type { DialogProps, DialogEmits, DialogSlots } from './dialog'
 
-
 const props = withDefaults(defineProps<DialogProps>(), {
   title: '',
   width: '50%',
@@ -16,7 +15,7 @@ const props = withDefaults(defineProps<DialogProps>(), {
   movable: false,
   lockScroll: true,
   clickMaskClose: true,
-  destroy: false
+  destroy: false,
 })
 
 const emit = defineEmits<DialogEmits>()
@@ -30,7 +29,7 @@ const destructible = ref<boolean>(false)
 const dialogClass = computed(() => ({
   'is-center': props.center,
   'is-box-center': props.boxCenter,
-  'is-movable': props.movable
+  'is-movable': props.movable,
 }))
 
 const animationDuration = computed(() => {
@@ -48,18 +47,20 @@ const handleClose = () => {
 }
 
 const handleMaskClick = () => {
-  if (props.clickMaskClose) { handleClose() }
+  if (props.clickMaskClose) {
+    handleClose()
+  }
 }
 
 const handleDestory = (visible: boolean) => {
-  if (!props.destroy) { return }
+  if (!props.destroy) return
   if (visible) {
     destructible.value = false
     return
   }
-  
+
   // TODO: 如果能去掉这个异步任务，那么就可以使用 computed 优化 destroy
-  useTimeout(() => destructible.value = true, animationDuration.value)
+  useTimeout(() => (destructible.value = true), animationDuration.value)
 }
 
 const handleMovable = (visible: boolean) => {
@@ -69,18 +70,25 @@ const handleMovable = (visible: boolean) => {
 }
 
 const handleLockScroll = () => {
-  if (props.lockScroll) { 
-    useScrollVisible(toRef(props, 'modelValue'), document.body, animationDuration.value)
+  if (props.lockScroll) {
+    useScrollVisible(
+      toRef(props, 'modelValue'),
+      document.body,
+      animationDuration.value
+    )
   }
 }
 
-watch(() => props.modelValue, val => {
-  emit('update:modelValue', val)
-  emit(val ? 'open' : 'close', val)
+watch(
+  () => props.modelValue,
+  val => {
+    emit('update:modelValue', val)
+    emit(val ? 'open' : 'close', val)
 
-  handleDestory(val)
-  handleMovable(val)
-})
+    handleDestory(val)
+    handleMovable(val)
+  }
+)
 
 onMounted(handleLockScroll)
 </script>
@@ -90,16 +98,29 @@ onMounted(handleLockScroll)
     <Transition name="vi-dialog-fade">
       <vi-mask :visible="modelValue" :disabled="!mask" @click="handleMaskClick">
         <div class="vi-dialog" :class="dialogClass" v-if="!destructible">
-          <div class="vi-dialog__content" ref="dialogRef" :style="{ width }" @click.stop="void">
+          <div
+            class="vi-dialog__content"
+            ref="dialogRef"
+            :style="{ width }"
+            @click.stop="void"
+          >
             <header class="vi-dialog__header" ref="headerRef">
-              <template v-if="$slots.header"> 
-                <slot name="header" /> 
+              <template v-if="$slots.header">
+                <slot name="header" />
               </template>
-              <span class="vi-dialog__header-title" v-else> 
-                {{ title }} 
+              <span class="vi-dialog__header-title" v-else>
+                {{ title }}
               </span>
-              <button class="vi-dialog__header-close-btn" @click="handleClose" v-if="showCloseBtn">
-                <vi-icon name="Close" size="18px" hover-color="var(--vi-color-primary)" />
+              <button
+                class="vi-dialog__header-close-btn"
+                @click="handleClose"
+                v-if="showCloseBtn"
+              >
+                <vi-icon
+                  name="Close"
+                  size="18px"
+                  hover-color="var(--vi-color-primary)"
+                />
               </button>
             </header>
             <section class="vi-dialog__body">
@@ -122,7 +143,7 @@ onMounted(handleLockScroll)
   right: 0;
   bottom: 0;
   left: 0;
-  
+
   &__content {
     margin: 10vh auto;
     background-color: var(--vi-dialog-bg-color);
@@ -135,7 +156,7 @@ onMounted(handleLockScroll)
       justify-content: space-between;
       padding: var(--vi-base-padding);
       &-title {
-        font-size: var(--vi-font-size-large);
+        font-size: var(--vi-font-size-xl);
         font-weight: bolder;
       }
     }
@@ -154,7 +175,9 @@ onMounted(handleLockScroll)
     text-align: center;
     .vi-dialog__header {
       justify-content: center;
-      &-title { flex-grow: 1; }
+      &-title {
+        flex-grow: 1;
+      }
     }
     .vi-dialog__footer {
       justify-content: center;
