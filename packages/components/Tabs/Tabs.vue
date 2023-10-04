@@ -14,6 +14,7 @@ const props = withDefaults(defineProps<TabsProps>(), {
   headerPadding: '6px',
   barHeight: '2px',
   center: false,
+  showBar: true,
 })
 const emit = defineEmits<TabsEmits>()
 const slots = useSlots()

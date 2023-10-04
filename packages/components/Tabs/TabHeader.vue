@@ -63,8 +63,8 @@ const getNavbarOffset = computed(() => {
 })
 
 const getBarStyles = computed(() => ({
-  width: `${getNavbarWidth.value}px`,
-  maxWidth: `${getNavbarWidth.value}px`,
+  width: tabsProps.barWidth ?? `${getNavbarWidth.value}px`,
+  maxWidth: tabsProps.barWidth ?? `${getNavbarWidth.value}px`,
   height: getNavbarHeight.value,
   backgroundColor: tabsProps.activeBgColor,
   transform: `translateX(${getNavbarOffset.value}px)`,
@@ -159,17 +159,20 @@ const handleNavbar = (el: TabsHeaderRefEl) => {
 
 const hRenderTabHeader = (type: string, vNode: VNode, idx: number) => {
   const isActive = tabsProps.modelValue === vNode.props?.name
+  const style: { [k: string]: string } = {}
+
+  if (isActive && tabsProps.activeColor) {
+    style['--vi-tabs-active-color'] = tabsProps.activeColor
+  } else if (isActive && !tabsProps.showBar) {
+    style['--vi-tabs-active-color'] = 'var(--vi-color-primary)'
+  }
 
   return h(
     type,
     {
       ...vNode.props,
-      class: [
-        'vi-tabs__header-item',
-        {
-          'is-active': isActive,
-        },
-      ],
+      style,
+      class: ['vi-tabs__header-item', { 'is-active': isActive }],
       ref: tabsHeaderNodes[idx].ref,
       onClick: (e: MouseEvent) => {
         const { name } = vNode.props ?? {}
@@ -216,7 +219,7 @@ onBeforeUnmount(() => unobserve(tabsHeader.value!))
     v-bind="$attrs"
     ref="tabsHeader"
   >
-    <div class="vi-tabs__bar" :style="getBarStyles" />
+    <div v-if="tabsProps.showBar" class="vi-tabs__bar" :style="getBarStyles" />
     <RenderTabHeader />
   </div>
 </template>

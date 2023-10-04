@@ -13,6 +13,9 @@ export interface TabsProps {
   barHeight?: string
   center?: boolean
   barHalf?: boolean
+  barWidth?: string
+  showBar?: boolean
+  activeColor?: string
 }
 
 export interface TabsEmits {
