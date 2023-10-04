@@ -13,6 +13,7 @@ export interface SwitchProps {
   offIcon?: string
   width?: string
   size?: ViBaseSizes
+  beforeChange?: () => boolean
 }
 
 export interface SwitchEmits {

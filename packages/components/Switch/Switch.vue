@@ -56,6 +56,8 @@ const switchStyle = computed(() => ({
 const toggleChecked = () => {
   if (props.disabled || props.loading) return
 
+  if (props.beforeChange && !props.beforeChange()) return
+
   emit('update:modelValue', !props.modelValue)
 }
 
