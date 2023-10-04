@@ -45,6 +45,7 @@ const handleClose = (e: MouseEvent) => {
 
 <template>
   <div class="vi-tag" :class="tagClass" :style="tagStyles" v-if="!isClosed">
+    <vi-icon v-if="prefix" :name="prefix" size="18px" />
     <span class="vi-tag__content">
       <slot />
     </span>

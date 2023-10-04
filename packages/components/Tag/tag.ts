@@ -6,6 +6,7 @@ export interface TagProps {
   closable?: boolean
   disabled?: boolean
   round?: boolean
+  prefix?: string
 }
 
 export interface TagEmits {
