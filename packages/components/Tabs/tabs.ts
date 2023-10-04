@@ -1,6 +1,5 @@
 import type { VNode, VNodeArrayChildren } from 'vue'
 
-
 export interface TabsProps {
   modelValue: string
   activeBgColor?: string
@@ -9,7 +8,8 @@ export interface TabsProps {
   removable?: boolean
   beforeChange?: (name: string) => boolean
   type?: 'normal' | 'inner-card'
-  padding?: string
+  headerPadding?: string
+  contentPadding?: string
   barHeight?: string
   center?: boolean
   barHalf?: boolean
