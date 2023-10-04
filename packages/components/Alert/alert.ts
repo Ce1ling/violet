@@ -1,9 +1,9 @@
 export enum AlertPrefixIcon {
-  'primary' = 'CheckCircleFill',
-  'success' = 'CheckCircleFill',
-  'info' = 'InfoCircleFill',
-  'warning' = 'WarningCircleFill',
-  'danger' = 'CloseCircleFill'
+  primary = 'CheckCircleFill',
+  success = 'CheckCircleFill',
+  info = 'InfoCircleFill',
+  warning = 'WarningCircleFill',
+  danger = 'CloseCircleFill',
 }
 
 export interface AlertProps {

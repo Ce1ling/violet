@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+
 import { Icon as ViIcon } from '../index'
 import { AlertPrefixIcon } from './alert'
 
 import type { AlertProps, AlertEmits, AlertSlots } from './alert'
-
 
 const props = withDefaults(defineProps<AlertProps>(), {
   type: 'primary',
@@ -13,25 +13,28 @@ const props = withDefaults(defineProps<AlertProps>(), {
   preIcon: false,
   center: 'none',
   title: '',
-  content: ''
+  content: '',
 })
 const emit = defineEmits<AlertEmits>()
 
 defineSlots<AlertSlots>()
 
-const show = ref<boolean>(true)
+const show = ref(true)
 
-const alertClass = computed(() => [`vi-alert--${props.type}`, {
-  'is-dark': props.dark,
-  'is-center': props.center === 'text',
-  'is-center-all': props.center === 'all',
-  'has-title': props.title.trim()
-}])
-const getPreIcon = computed(() => {
-  return typeof props.preIcon === 'string' 
-    ? props.preIcon 
+const alertClass = computed(() => [
+  `vi-alert--${props.type}`,
+  {
+    'is-dark': props.dark,
+    'is-center': props.center === 'text',
+    'is-center-all': props.center === 'all',
+    'has-title': props.title.trim(),
+  },
+])
+const getPreIcon = computed(() =>
+  typeof props.preIcon === 'string'
+    ? props.preIcon
     : AlertPrefixIcon[props.type]
-})
+)
 
 const handleClose = (e: MouseEvent) => {
   emit('close', e)
@@ -43,11 +46,11 @@ const handleClose = (e: MouseEvent) => {
   <Transition name="vi-alert-fade">
     <div class="vi-alert" :class="alertClass" v-if="show">
       <div class="vi-alert__inner">
-        <vi-icon 
+        <vi-icon
           cursor="defualt"
-          :name="getPreIcon" 
+          :name="getPreIcon"
           :size="title.trim() && '24px'"
-          v-if="preIcon" 
+          v-if="preIcon"
         />
         <div class="vi-alert__inner-text">
           <span class="vi-alert__inner-text-title" v-if="title.trim()">
@@ -73,7 +76,7 @@ $types: primary, success, info, warning, danger;
 
 .vi-alert {
   width: 100%;
-  padding: calc(var(--vi-base-padding) - 10px) var(--vi-base-padding);
+  padding: var(--vi-alert-padding);
   border-radius: var(--vi-base-radius);
   display: flex;
   align-items: center;
@@ -83,19 +86,21 @@ $types: primary, success, info, warning, danger;
     &--#{$t} {
       --vi-alert-bg-color: var(--vi-color-#{$t}-weak);
       --vi-alert-color: var(--vi-color-#{$t});
+
       color: var(--vi-alert-color);
       background-color: var(--vi-alert-bg-color);
+
       &.is-dark {
         background-color: var(--vi-alert-color);
       }
     }
   }
-
   &__inner {
     width: 100%;
     display: flex;
     align-items: center;
     gap: 8px;
+
     &-text {
       width: 100%;
     }
@@ -107,24 +112,25 @@ $types: primary, success, info, warning, danger;
   &.is-dark {
     color: var(--vi-color-white);
   }
-  &.is-center {
-    .vi-alert__inner { 
-      text-align: center;
+  &.is-center .vi-alert__inner {
+    text-align: center;
+  }
+  &.is-center-all .vi-alert__inner {
+    justify-content: center;
+
+    &-text {
+      width: auto;
     }
   }
-  &.is-center-all {
-    .vi-alert__inner {
-      justify-content: center;
-      &-text { width: auto; }
+  &.has-title .vi-alert__inner-text {
+    display: flex;
+    flex-direction: column;
+    font-size: var(--vi-font-size-small);
+    &-title {
+      font-weight: bolder;
     }
-  }
-  &.has-title {
-    .vi-alert__inner-text {
-      display: flex;
-      flex-direction: column;
+    &-content {
       font-size: var(--vi-font-size-small);
-      &-title { font-weight: bolder; }
-      &-content { font-size: var(--vi-font-size-small); }
     }
   }
 }
