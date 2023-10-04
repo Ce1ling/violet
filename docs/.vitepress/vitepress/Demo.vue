@@ -1,25 +1,29 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
+
 import { Example, SourceCode } from './components/index'
 import { Tabs as ViTabs } from '../../../packages/components/index'
-
 import { useExamples } from './composables/useExamples'
+import HomePage from '../../examples/Home/Home.vue'
 
 interface Props {
   title: string
   path: string
   code: string
   rawCode: string
+  isHome: boolean
 }
+
 const props = defineProps<Props>()
-
 const examples = useExamples()
-
 const active = ref('example')
 </script>
 
 <template>
-  <vi-tabs class="demo-tabs" v-model="active">
+  <!-- 首页示例 -->
+  <component v-if="isHome" :is="HomePage" />
+  <!-- 组件示例 -->
+  <vi-tabs v-else class="demo-tabs" v-model="active" content-padding="0" center>
     <vi-tab name="example" label="示例">
       <Example :path="path" :example="examples[path]" />
     </vi-tab>
@@ -28,18 +32,3 @@ const active = ref('example')
     </vi-tab>
   </vi-tabs>
 </template>
-
-<style scoped lang="scss">
-.demo-tabs :deep() {
-  > .vi-tabs__header {
-    justify-content: center;
-    user-select: none;
-    background-color: var(--doc-example-header-bg-color) !important;
-    border-color: var(--doc-example-border-color) !important;
-  }
-  > .vi-tabs__content > .vi-tab-plane {
-    padding: 0;
-    border-color: var(--doc-example-border-color) !important;
-  }
-}
-</style>

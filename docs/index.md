@@ -12,7 +12,7 @@ head:
 hero:
   name: Violet
   text: 一款基于 Vue3 的 UI 组件库
-  tagline: 点击 “开始” 按钮，预览 Violet UI 组件。
+  tagline: 点击 “开始” 按钮，查看 Violet 的所有组件。
   actions:
     - theme: brand
       text: 开始
@@ -21,3 +21,9 @@ hero:
       text: 在 GitHub 上查看
       link: https://github.com/Ce1ling/violet
 ---
+
+::: demo home
+
+Home/Home
+
+:::

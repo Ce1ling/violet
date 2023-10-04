@@ -4,11 +4,11 @@ import fs from 'fs'
 import path from 'path'
 import MarkdownIt from 'markdown-it'
 import mdContainer from 'markdown-it-container'
+
 import { getDocsRoot } from '../utils/getDocsRoot'
 import { highlight } from '../utils/highlight'
 
 import type Token from 'markdown-it/lib/token'
-
 
 interface ContainerOpts {
   validate?(params: string): boolean
@@ -21,10 +21,10 @@ interface MdPlugin {
 export const mdPlugin: MdPlugin = (md, k = 'demo') => {
   // 匹配参数 k 开头，任意结尾的字符串
   const reg = new RegExp(`^${k}\\s*(.*)$`)
-  
+
   md.use(mdContainer, k, {
     // validate 返回 true 则 render，否则不会调用 render 函数
-    validate: (params) => !!params.trim().match(reg),
+    validate: params => !!params.trim().match(reg),
     render(tokens, idx) {
       const m = tokens[idx].info.trim().match(reg)
       const title = (m && m[1]) ?? ''
@@ -35,7 +35,7 @@ export const mdPlugin: MdPlugin = (md, k = 'demo') => {
           throw new Error(`错误的文件路径: "${filePath}"`)
         }
         const textFile = fs.readFileSync(
-          path.resolve(getDocsRoot(), 'examples', `${filePath}.vue`), 
+          path.resolve(getDocsRoot(), 'examples', `${filePath}.vue`),
           'utf-8'
         )
 
@@ -44,10 +44,11 @@ export const mdPlugin: MdPlugin = (md, k = 'demo') => {
           path="${filePath}"
           code="${encodeURIComponent(highlight(textFile, 'vue'))}"
           raw-code="${encodeURIComponent(textFile)}"
+          :is-home="${title === 'home'}"
         >`
       } else {
         return '</Demo>'
       }
-    }
+    },
   } as ContainerOpts)
 }
