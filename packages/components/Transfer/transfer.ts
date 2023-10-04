@@ -14,6 +14,8 @@ export interface TransferProps<T> {
   showTotal?: boolean
   titles?: TransferTitles
   draggable?: boolean
+  leftClass?: string
+  rightClass?: string
 }
 
 export interface TransferEmits {
@@ -21,7 +23,10 @@ export interface TransferEmits {
   (e: 'check-change', type: TransferActionType, checkData: TransferItem[]): void
 }
 
-type TransferPropsDefaultsRest<T> = Omit<TransferProps<T>, 'modelValue' | 'list' | 'titles'>
+type TransferPropsDefaultsRest<T> = Omit<
+  TransferProps<T>,
+  'modelValue' | 'list' | 'titles'
+>
 
 export interface TransferPropsDefaults<T> extends TransferPropsDefaultsRest<T> {
   titles: () => TransferTitles

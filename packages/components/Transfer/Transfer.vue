@@ -43,7 +43,12 @@ const setListData = (to: TransferActionType, list: TransferItem[]) => {
 
 <template>
   <div class="vi-transfer">
-    <TransferContainer type="left" :title="titles[0]" :list="leftList" />
+    <TransferContainer
+      type="left"
+      :title="titles[0]"
+      :list="leftList"
+      :class="props.leftClass"
+    />
     <div class="vi-transfer__buttons">
       <vi-button
         @click="setListData('left', rightList)"
@@ -58,7 +63,12 @@ const setListData = (to: TransferActionType, list: TransferItem[]) => {
         <vi-icon name="Right" size="22px" cursor="inheirt" />
       </vi-button>
     </div>
-    <TransferContainer type="right" :title="titles[1]" :list="rightList" />
+    <TransferContainer
+      type="right"
+      :title="titles[1]"
+      :list="rightList"
+      :class="props.rightClass"
+    />
   </div>
 </template>
 
